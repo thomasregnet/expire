@@ -1,3 +1,4 @@
+require 'expire/backup_list'
 require "expire/version"
 
 module Expire

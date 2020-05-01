@@ -1,3 +1,7 @@
+# frozen_string_literal: true
+
+require 'date'
+require 'expire/backup'
 require 'expire/backup_list'
 require "expire/version"
 

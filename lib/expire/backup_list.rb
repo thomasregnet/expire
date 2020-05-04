@@ -1,3 +1,5 @@
+require 'byebug'
+
 module Expire
   # All Backups go here
   class BackupList
@@ -10,12 +12,11 @@ module Expire
     def one_per(interval)
       return [] unless backups.any?
 
-      result = [backups.first]
+      result = [backups.sort.first]
       message = "same_#{interval}?"
 
-      backups.sort.reverse.each do |backup|
-        next if backup.send message, result.last
-        result << backup
+      backups.sort.each do |backup|
+        result << backup unless backup.send(message, result.last)
       end
 
       result

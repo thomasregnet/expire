@@ -20,7 +20,7 @@ module Expire
 
     def same_day?(other)
       return false unless same_week?(other)
-      return true if hour == other.hour
+      return true if day == other.day
 
       false
     end
@@ -33,10 +33,14 @@ module Expire
     end
 
     def same_month?(other)
+      return false unless same_year?(other)
+      return true if month == other.month
+
+      false
     end
 
     def same_year?(other)
-      true
+      year == other.year
     end
   end
 end

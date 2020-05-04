@@ -3,6 +3,8 @@
 module Expire
   # Representation of a single backup
   class Backup < Delegator
+    include Comparable
+
     def initialize(datetime, id = nil)
       @datetime = datetime
       @id = id
@@ -41,6 +43,12 @@ module Expire
 
     def same_year?(other)
       year == other.year
+    end
+
+    # The <=> method seems not to be delegated so we need to implement it
+    # Note that this Class includes the Comparable module
+    def <=>(other)
+      datetime <=> other.datetime
     end
   end
 end

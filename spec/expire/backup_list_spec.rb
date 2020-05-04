@@ -6,4 +6,27 @@ RSpec.describe Expire::BackupList do
       end
     end
   end
+
+  describe '#one_per' do
+    let(:backups) do
+      described_class.new(
+        [
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 0,  0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 57, 0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 13, 0,  0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 18, 12, 30, 0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 18, 22, 0,  0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 22, 12, 0,  0)),
+          Expire::Backup.new(DateTime.new(1860, 6, 17, 12, 0,  0)),
+          Expire::Backup.new(DateTime.new(1861, 5, 17, 12, 0,  0))
+        ]
+      )
+    end
+
+    context 'hour' do
+      it 'returns hourly backups' do
+        expect(backups.one_per(:hour).length).to eq(7)
+      end
+    end
+  end
 end

@@ -7,6 +7,7 @@ require 'expire/rules'
 require "expire/version"
 
 module Expire
+  # Exception derived from StandardError
   class Error < StandardError; end
   # Your code goes here...
 end

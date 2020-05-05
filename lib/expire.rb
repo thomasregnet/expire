@@ -3,6 +3,7 @@
 require 'date'
 require 'expire/backup'
 require 'expire/backup_list'
+require 'expire/rules'
 require "expire/version"
 
 module Expire

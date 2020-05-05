@@ -1,21 +1,25 @@
-require 'byebug'
+require 'forwardable'
 
 module Expire
   # All Backups go here
   class BackupList
+    include Enumerable
+    extend Forwardable
+
     def initialize(backups = [])
       @backups = backups
     end
 
     attr_reader :backups
+    def_delegators :backups, :each, :<<
 
     def one_per(interval)
-      return [] unless backups.any?
+      return [] unless any?
 
-      result = [backups.sort.first]
+      result = [min]
       message = "same_#{interval}?"
 
-      backups.sort.each do |backup|
+      sort.each do |backup|
         result << backup unless backup.send(message, result.last)
       end
 

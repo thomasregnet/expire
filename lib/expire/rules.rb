@@ -3,13 +3,16 @@
 module Expire
   # Set expiration rules
   class Rules
+    include Constants
+
+    STEP_WIDTHS.each do |_, adjective|
+      attr_accessor "#{adjective}_to_keep"
+    end
+
     def initialize(rules = {})
       rules.each { |name, value| send "#{name}=", value }
 
       yield self if block_given?
     end
-
-    attr_accessor :hourly_to_keep, :daily_to_keep, :weekly_to_keep
-    attr_accessor :monthly_to_keep, :yearly_to_keep
   end
 end

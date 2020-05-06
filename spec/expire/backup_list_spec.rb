@@ -28,7 +28,7 @@ RSpec.describe Expire::BackupList do
       )
     end
 
-    context 'hour' do
+    context 'with hour' do
       it 'returns hourly backups' do
         expect(backups.one_per(:hour).length).to eq(2)
       end

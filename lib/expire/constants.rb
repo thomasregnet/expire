@@ -10,5 +10,7 @@ module Expire
       %w[month monthly].freeze,
       %w[year yearly].freeze
     ].freeze
+
+    STEP_ADJECTIVES = STEP_WIDTHS.map { |_, adjective| adjective }.freeze
   end
 end

@@ -5,9 +5,7 @@ module Expire
   class Rules
     include Constants
 
-    STEP_WIDTHS.each do |_, adjective|
-      attr_accessor "#{adjective}_to_keep"
-    end
+    STEP_ADJECTIVES.each { |adjective| attr_accessor "#{adjective}_to_keep" }
 
     def initialize(rules = {})
       rules.each { |name, value| send "#{name}=", value }

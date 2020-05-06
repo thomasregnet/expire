@@ -1,9 +1,7 @@
-RSpec.describe Expire do
-  it "has a version number" do
-    expect(Expire::VERSION).not_to be nil
-  end
+# frozen_string_literal: true
 
-  it "does something useful" do
-    expect(true).to eq(true)
+RSpec.describe Expire do
+  it 'has a version number' do
+    expect(Expire::VERSION).not_to be nil
   end
 end

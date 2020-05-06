@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Expire
   MAJOR = 0
   MINOR = 1

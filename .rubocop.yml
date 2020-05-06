@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+    - 'Gemfile'
+    - 'Rakefile'
+    - 'bin/console'
+    - 'expire.gemspec'
+    - 'spec/spec_helper.rb'
+  NewCops: enable
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case

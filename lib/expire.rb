@@ -6,6 +6,7 @@ require 'expire/backup'
 require 'expire/backup_list'
 require 'expire/constants'
 require 'expire/calculate'
+require 'expire/result'
 require 'expire/rules'
 require 'expire/version'
 

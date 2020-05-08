@@ -6,7 +6,7 @@ module Expire
     include Constants
 
     def initialize(backups, rules)
-      @backups = backups
+      @backups = backups.map { |backup| AuditedBackup.new(backup) }
       @rules   = rules
     end
 
@@ -14,11 +14,15 @@ module Expire
 
     def call
       STEP_WIDTHS.each do |noun, adjective|
-        accessor = "#{adjective}_to_keep"
-        ammount = rules.send accessor
-        next unless ammount
+        rule = "#{adjective}_to_keep"
+        ammount = rules.send rule
+        next unless ammount || amount.zero?
 
-        backups.one_per(noun)[0..amount]
+        backups.one_per(noun)[0..amount].each do |backup|
+          backup.add_reason_to_keep("keep #{amount} #{adjective}")
+        end
+
+        Result.new(backups)
       end
     end
   end

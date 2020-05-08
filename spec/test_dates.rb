@@ -6,6 +6,10 @@ class TestDates
   include Enumerable
   extend Forwardable
 
+  def self.create(args = {})
+    new(args).create
+  end
+
   # This method smells of :reek:DuplicateMethodCall
   def initialize(args = {})
     @years   = range_for(args.fetch(:years,     1860))
@@ -39,6 +43,12 @@ class TestDates
     self
   end
   # rubocop:enable Metrics/MethodLength
+
+  def to_backup_list
+    Expire::BackupList.new(
+      result.map { |args| Expire::Backup.new(DateTime.new(*args)) }
+    )
+  end
 
   private
 

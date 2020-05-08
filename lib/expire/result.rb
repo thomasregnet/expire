@@ -19,8 +19,16 @@ module Expire
       backups.select(&:expired?)
     end
 
+    def expired_count
+      expired.length
+    end
+
     def keep
       backups.select(&:keep?)
+    end
+
+    def keep_count
+      keep.length
     end
   end
 end

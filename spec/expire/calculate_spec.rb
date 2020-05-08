@@ -1,13 +1,27 @@
 # frozen_string_literal: true
 
+require 'spec_helper'
 require 'test_dates'
 
 RSpec.describe Expire::Calculate do
-  let(:td) do
-    TestDates.new
-  end
+  describe 'calculate yearly' do
+    let(:result) do
+      described_class.call(
+        TestDates.create(years: 1860..1869, months: 1..5).to_backup_list,
+        Expire::Rules.new(yearly_to_keep: 5)
+      )
+    end
 
-  it 'foos' do
-    expect(td).not_to be_nil
+    it 'keeps the expected amount of backups' do
+      expect(result.keep_count).to eq(5)
+    end
+
+    it 'expires the expected amount of backups' do
+      expect(result.expired_count).to eq(45)
+    end
+
+    it 'keeps the expected backups' do
+      expect(result.keep.first.year).to eq(1860)
+    end
   end
 end

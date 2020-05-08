@@ -5,9 +5,15 @@ module Expire
   class Calculate
     include Constants
 
+    def self.call(backups, rules)
+      new(backups, rules).call
+    end
+
     def initialize(backups, rules)
-      @backups = backups.map { |backup| AuditedBackup.new(backup) }
-      @rules   = rules
+      @backups = BackupList.new(
+        backups.map { |backup| AuditedBackup.new(backup) }
+      )
+      @rules = rules
     end
 
     attr_reader :backups, :rules
@@ -15,15 +21,15 @@ module Expire
     def call
       STEP_WIDTHS.each do |noun, adjective|
         rule = "#{adjective}_to_keep"
-        ammount = rules.send rule
-        next unless ammount || amount.zero?
+        amount = rules.send rule
+        next if !amount || amount.zero?
 
-        backups.one_per(noun)[0..amount].each do |backup|
+        backups.one_per(noun).first(amount).each do |backup|
           backup.add_reason_to_keep("keep #{amount} #{adjective}")
         end
-
-        Result.new(backups)
       end
+
+      Result.new(backups)
     end
   end
 end

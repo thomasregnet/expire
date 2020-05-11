@@ -49,5 +49,15 @@ RSpec.describe Expire::CalculateFirstToKeepService do
       expect(backups.select(&:keep?).first.to_s)
         .to eq('1860-12-28T12:00:00+00:00')
     end
+
+    it 'keeps the right second backup' do
+      expect(backups.select(&:keep?)[1].to_s)
+        .to eq('1860-11-28T12:00:00+00:00')
+    end
+
+    it 'keeps the right laste backup' do
+      expect(backups.select(&:keep?).last.to_s)
+        .to eq('1859-07-28T12:00:00+00:00')
+    end
   end
 end

@@ -19,17 +19,27 @@ module Expire
     attr_reader :backups, :rules
 
     def call
+      calculate_first_to_keep
+
+      Result.new(backups)
+    end
+
+    def calculate_first_to_keep
       STEP_WIDTHS.each do |noun, adjective|
         rule = "#{adjective}_to_keep"
         amount = rules.send rule
         next if !amount || amount.zero?
 
-        backups.one_per(noun).first(amount).each do |backup|
-          backup.add_reason_to_keep("keep #{amount} #{adjective}")
-        end
-      end
+        message = "keep #{amount} #{adjective}"
 
-      Result.new(backups)
+        mark_as_kept(backups.one_per(noun).first(amount), message)
+      end
+    end
+
+    private
+
+    def mark_as_kept(kept_backups, message)
+      kept_backups.each { |backup| backup.add_reason_to_keep(message) }
     end
   end
 end

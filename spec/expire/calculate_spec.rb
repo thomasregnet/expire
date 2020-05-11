@@ -21,7 +21,7 @@ RSpec.describe Expire::Calculate do
     end
 
     it 'keeps the expected backups' do
-      expect(result.keep.first.year).to eq(1865)
+      expect(result.keep.first.year).to eq(1869)
     end
   end
 end

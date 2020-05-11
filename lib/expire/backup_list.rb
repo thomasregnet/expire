@@ -9,7 +9,7 @@ module Expire
     extend Forwardable
 
     def initialize(backups = [])
-      @backups = backups
+      @backups = backups.sort.reverse
     end
 
     attr_reader :backups
@@ -18,10 +18,10 @@ module Expire
     def one_per(interval)
       return [] unless any?
 
-      result = [min]
+      result = [first]
       message = "same_#{interval}?"
 
-      sort.each do |backup|
+      sort.reverse.each do |backup|
         result << backup unless backup.send(message, result.last)
       end
 

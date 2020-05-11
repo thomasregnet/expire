@@ -44,6 +44,12 @@ class TestDates
   end
   # rubocop:enable Metrics/MethodLength
 
+  def to_audited_backup_list
+    Expire::BackupList.new(
+      to_backup_list.map { |backup| Expire::AuditedBackup.new(backup) }
+    )
+  end
+
   def to_backup_list
     Expire::BackupList.new(
       result.map { |args| Expire::Backup.new(DateTime.new(*args)) }

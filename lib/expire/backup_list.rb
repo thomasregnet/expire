@@ -27,5 +27,15 @@ module Expire
 
       result
     end
+
+    # Enumerable#reverse returns an array but we need a BackupList
+    def reverse
+      self.class.new(backups.reverse)
+    end
+
+    # Enumerable#sort returns an array but we need a BackupList
+    def sort
+      self.class.new(backups.sort)
+    end
   end
 end

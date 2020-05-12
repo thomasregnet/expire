@@ -29,10 +29,7 @@ module Expire
       reasons_to_keep.any?
     end
 
-    # def <=>(other)
-    #   backup <=> other.backup
-    # end
-    # This method smells of :reek:ManualMethodDispatch
+    # This method smells of :reek:ManualDispatch
     def <=>(other)
       return datetime <=> other.datetime if other.respond_to? :datetime
 

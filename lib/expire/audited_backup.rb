@@ -17,6 +17,10 @@ module Expire
       reasons_to_keep << reason
     end
 
+    def datetime
+      backup.datetime
+    end
+
     def expired?
       reasons_to_keep.empty?
     end
@@ -25,8 +29,14 @@ module Expire
       reasons_to_keep.any?
     end
 
+    # def <=>(other)
+    #   backup <=> other.backup
+    # end
+    # This method smells of :reek:ManualMethodDispatch
     def <=>(other)
-      backup <=> other.backup
+      return datetime <=> other.datetime if other.respond_to? :datetime
+
+      datetime <=> other
     end
   end
 end

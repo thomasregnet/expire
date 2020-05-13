@@ -13,7 +13,12 @@ RSpec.describe Expire::KeepFirstOfIntervalService do
     let(:rules) { Expire::Rules.new(yearly: 3) }
 
     let(:backups) do
-      first_to_keep = described_class.new(test_backups, rules)
+      first_to_keep = described_class.new(
+        adjective: 'yearly',
+        backups:   test_backups,
+        noun:      'year',
+        rules:     rules
+      )
       first_to_keep.call
       first_to_keep.backups
     end
@@ -36,7 +41,12 @@ RSpec.describe Expire::KeepFirstOfIntervalService do
     let(:rules) { Expire::Rules.new(monthly: 18) }
 
     let(:backups) do
-      first_to_keep = described_class.new(test_backups, rules)
+      first_to_keep = described_class.new(
+        adjective: 'monthly',
+        backups:   test_backups,
+        noun:      'month',
+        rules:     rules
+      )
       first_to_keep.call
       first_to_keep.backups
     end

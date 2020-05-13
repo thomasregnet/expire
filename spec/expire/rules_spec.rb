@@ -17,9 +17,6 @@ RSpec.describe Expire::Rules do
 
     context 'with a block' do
       it 'yields itself' do
-        # rules = described_class.new do |rule|
-        #   rule.hourly_to_keep = 123
-        # end
         rules = described_class.new do |keep|
           keep.hourly = 123
         end

@@ -29,7 +29,7 @@ module Expire
     end
 
     def deadline_for(adjective)
-      rule = "#{adjective}_to_keep_for"
+      rule = "#{adjective}_for"
       amount = rules.send rule
       return unless amount
 

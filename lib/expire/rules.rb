@@ -7,7 +7,7 @@ module Expire
 
     STEP_ADJECTIVES.each { |adjective| attr_accessor adjective }
     STEP_ADJECTIVES.each do |adjective|
-      attr_accessor "#{adjective}_to_keep_for"
+      attr_accessor "#{adjective}_for"
     end
 
     def initialize(rules = {})

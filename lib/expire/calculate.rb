@@ -17,7 +17,7 @@ module Expire
     attr_reader :backups, :rules
 
     def call
-      CalculateFirstToKeepService.call(backups, rules)
+      KeepFirstOfIntervalService.call(backups, rules)
 
       Result.new(backups)
     end

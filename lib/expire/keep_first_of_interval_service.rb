@@ -2,7 +2,7 @@
 
 module Expire
   # Keep first backups of a stepping
-  class CalculateFirstToKeepService
+  class KeepFirstOfIntervalService
     include Constants
 
     def self.call(backups, rules)

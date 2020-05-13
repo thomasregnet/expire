@@ -5,7 +5,7 @@ module Expire
   class Rules
     include Constants
 
-    STEP_ADJECTIVES.each { |adjective| attr_accessor "#{adjective}_to_keep" }
+    STEP_ADJECTIVES.each { |adjective| attr_accessor adjective }
     STEP_ADJECTIVES.each do |adjective|
       attr_accessor "#{adjective}_to_keep_for"
     end

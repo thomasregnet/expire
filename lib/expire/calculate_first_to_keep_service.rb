@@ -18,7 +18,7 @@ module Expire
 
     def call
       STEP_WIDTHS.each do |noun, adjective|
-        rule = "#{adjective}_to_keep"
+        rule = "#{adjective}"
         amount = rules.send rule
         next if !amount || amount.zero?
 

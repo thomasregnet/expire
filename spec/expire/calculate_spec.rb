@@ -8,7 +8,7 @@ RSpec.describe Expire::Calculate do
     let(:result) do
       described_class.call(
         TestDates.create(years: 1860..1869, months: 1..5).to_backup_list,
-        Expire::Rules.new(yearly_to_keep: 5)
+        Expire::Rules.new(yearly: 5)
       )
     end
 

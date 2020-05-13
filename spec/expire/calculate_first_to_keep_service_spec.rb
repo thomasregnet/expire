@@ -10,7 +10,7 @@ RSpec.describe Expire::CalculateFirstToKeepService do
                .to_audited_backup_list
     end
 
-    let(:rules) { Expire::Rules.new(yearly_to_keep: 3) }
+    let(:rules) { Expire::Rules.new(yearly: 3) }
 
     let(:backups) do
       first_to_keep = described_class.new(test_backups, rules)
@@ -33,7 +33,7 @@ RSpec.describe Expire::CalculateFirstToKeepService do
                .to_audited_backup_list
     end
 
-    let(:rules) { Expire::Rules.new(monthly_to_keep: 18) }
+    let(:rules) { Expire::Rules.new(monthly: 18) }
 
     let(:backups) do
       first_to_keep = described_class.new(test_backups, rules)

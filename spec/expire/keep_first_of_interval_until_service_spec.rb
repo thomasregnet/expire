@@ -3,7 +3,7 @@
 require 'test_dates'
 require 'support/shared_examples_for_keep_until_services'
 
-RSpec.describe Expire::CalculateFirstToKeepUntilService do
+RSpec.describe Expire::KeepFirstOfIntervalUntilService do
   describe 'hourly_to_keep_for' do
     it_behaves_like 'a keep until service' do
       let(:now) { DateTime.new(1860, 5, 17, 13, 51, 0) }

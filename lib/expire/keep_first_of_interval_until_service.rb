@@ -2,7 +2,7 @@
 
 module Expire
   # Calculate expiration until
-  class CalculateFirstToKeepUntilService
+  class KeepFirstOfIntervalUntilService
     include Constants
 
     def self.call(*args)

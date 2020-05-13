@@ -3,7 +3,7 @@
 require 'spec_helper'
 require 'test_dates'
 
-RSpec.describe Expire::Calculate do
+RSpec.describe Expire::CalculateService do
   describe 'calculate yearly' do
     let(:result) do
       described_class.call(

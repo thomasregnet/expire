@@ -2,7 +2,7 @@
 
 module Expire
   # Calculate expiration
-  class Calculate
+  class CalculateService
     def self.call(backups, rules)
       new(backups, rules).call
     end

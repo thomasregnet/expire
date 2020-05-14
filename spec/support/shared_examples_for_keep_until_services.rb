@@ -5,7 +5,13 @@ RSpec.shared_examples 'a keep until service' do
     backups = TestDates.create(build_backups_with).to_audited_backup_list
     rules   = Expire::Rules.new(build_rules_with)
 
-    described_class.call(backups, rules, now)
+    described_class.call(
+      adjective: adjective,
+      backups:   backups,
+      noun:      noun,
+      now:       now,
+      rules:     rules
+    )
 
     # Note the splat operator
     expect(backups.filter(&:keep?)).to contain_exactly(*expected_backups)

@@ -3,7 +3,7 @@
 module Expire
   # Base Klass for Expire::Keep... classes
   class KeepBase
-    def self.call(args)
+    def self.call(args = {})
       new(args).call
     end
 

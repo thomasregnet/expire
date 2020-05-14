@@ -2,20 +2,15 @@
 
 module Expire
   # Calculate expiration until
-  class KeepFirstOfIntervalUntilService
+  class KeepFirstOfIntervalUntilService < KeepBase
     include Constants
 
-    def self.call(*args)
-      new(*args).call
-    end
-
-    def initialize(backups, rules, now)
-      @backups = backups.sort.reverse
-      @rules = rules
+    def initialize(now:, **args)
+      super(args)
       @now = now
     end
 
-    attr_reader :backups, :rules, :now
+    attr_reader :now
 
     def call
       STEP_WIDTHS.each do |noun, adjective|

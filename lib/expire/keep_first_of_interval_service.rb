@@ -2,20 +2,7 @@
 
 module Expire
   # Keep first backups of a stepping
-  class KeepFirstOfIntervalService
-    # include Constants
-
-    def self.call(args)
-      new(args).call
-    end
-
-    def initialize(adjective:, backups:, noun:, rules:)
-      @adjective = adjective
-      @backups = backups.sort.reverse
-      @noun = noun
-      @rules = rules
-    end
-
+  class KeepFirstOfIntervalService < KeepBase
     attr_reader :adjective, :backups, :noun, :rules
 
     def call

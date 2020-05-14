@@ -2,7 +2,7 @@
 
 module Expire
   # Keep first backups of a stepping
-  class KeepFirstOfIntervalService < KeepBase
+  class KeepFirstOfIntervalService < KeepServiceBase
     attr_reader :adjective, :backups, :noun, :rules
 
     def call

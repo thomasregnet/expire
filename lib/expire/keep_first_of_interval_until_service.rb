@@ -2,7 +2,7 @@
 
 module Expire
   # Calculate expiration until
-  class KeepFirstOfIntervalUntilService < KeepBase
+  class KeepFirstOfIntervalUntilService < KeepServiceBase
     def initialize(now:, **args)
       super(args)
       @memoized = {}

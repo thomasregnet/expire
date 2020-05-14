@@ -2,7 +2,7 @@
 
 module Expire
   # Base Klass for Expire::Keep... classes
-  class KeepBase
+  class KeepServiceBase
     def self.call(args = {})
       new(args).call
     end

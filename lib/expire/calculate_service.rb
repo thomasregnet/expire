@@ -19,8 +19,8 @@ module Expire
     attr_reader :backups, :rules
 
     def call
-      # KeepFirstOfIntervalService.call(backups, rules)
       keep_first_of_interval
+      keep_first_of_interval_until
 
       Result.new(backups)
     end
@@ -31,6 +31,20 @@ module Expire
           adjective: adjective,
           backups:   backups,
           noun:      noun,
+          rules:     rules
+        )
+      end
+    end
+
+    def keep_first_of_interval_until
+      now = backups.min
+
+      STEP_WIDTHS.each do |noun, adjective|
+        KeepFirstOfIntervalUntilService.call(
+          adjective: adjective,
+          backups:   backups,
+          noun:      noun,
+          now:       now,
           rules:     rules
         )
       end

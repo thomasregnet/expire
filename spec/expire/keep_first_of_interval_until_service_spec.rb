@@ -21,18 +21,20 @@ RSpec.describe Expire::KeepFirstOfIntervalUntilService do
     end
   end
 
-  # describe 'yearly_to_keep_for' do
-  #   it_behaves_like 'a keep until service' do
-  #     let(:now) { DateTime.new(1860, 1, 1, 12, 0, 0) }
-  #     let(:build_rules_with) { { yearly_for: '2 years' } }
-  #     let(:build_backups_with) { { years: 1857..1860 } }
-  #     let(:expected_backups) do
-  #       [
-  #         Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 0, 0)),
-  #         Expire::Backup.new(DateTime.new(1859, 5, 17, 12, 0, 0)),
-  #         Expire::Backup.new(DateTime.new(1858, 5, 17, 12, 0, 0))
-  #       ]
-  #     end
-  #   end
-  # end
+  describe 'yearly_to_keep_for' do
+    it_behaves_like 'a keep until service' do
+      let(:adjective) { :yearly }
+      let(:noun) { :year }
+      let(:now) { DateTime.new(1860, 1, 1, 12, 0, 0) }
+      let(:build_rules_with) { { yearly_for: '2 years' } }
+      let(:build_backups_with) { { years: 1857..1860 } }
+      let(:expected_backups) do
+        [
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 0, 0)),
+          Expire::Backup.new(DateTime.new(1859, 5, 17, 12, 0, 0)),
+          Expire::Backup.new(DateTime.new(1858, 5, 17, 12, 0, 0))
+        ]
+      end
+    end
+  end
 end

@@ -63,31 +63,4 @@ RSpec.describe Expire::CalculateService do
       end
     end
   end
-
-  # describe 'calculate yearly' do
-  #   let(:backups) do
-  #     TestDates.create(years: 1860..1869, months: 1..5).to_backup_list
-  #   end
-
-  #   let(:rules) { Expire::Rules.new(yearly: 5) }
-
-  #   let(:result) do
-  #     described_class.call(
-  #       backups: backups,
-  #       rules:   rules
-  #     )
-  #   end
-
-  #   it 'keeps the expected amount of backups' do
-  #     expect(result.keep_count).to eq(5)
-  #   end
-
-  #   it 'expires the expected amount of backups' do
-  #     expect(result.expired_count).to eq(45)
-  #   end
-
-  #   it 'keeps the expected backups' do
-  #     expect(result.keep.first.year).to eq(1869)
-  #   end
-  # end
 end

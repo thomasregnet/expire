@@ -22,4 +22,16 @@ RSpec.describe Expire::Result do
       expect(result.keep.length).to eq(1)
     end
   end
+
+  describe '#expired_count' do
+    it 'returns the expired backups' do
+      expect(result.expired_count).to eq(2)
+    end
+  end
+
+  describe '#keep_count' do
+    it 'returns the backups to be kept' do
+      expect(result.keep_count).to eq(1)
+    end
+  end
 end

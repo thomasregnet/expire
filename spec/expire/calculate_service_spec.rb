@@ -2,6 +2,7 @@
 
 require 'spec_helper'
 require 'default_test_dates'
+require 'test_dates'
 require 'support/shared_examples_for_expiration_calculations'
 
 RSpec.describe Expire::CalculateService do
@@ -20,6 +21,7 @@ RSpec.describe Expire::CalculateService do
       let(:expected_backups) do
         [
           Expire::Backup.new(DateTime.new(1860, 5, 17, 23, 40, 0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 23, 20, 0)),
           Expire::Backup.new(DateTime.new(1860, 5, 17, 22, 40, 0)),
           Expire::Backup.new(DateTime.new(1860, 5, 17, 21, 40, 0)),
           Expire::Backup.new(DateTime.new(1860, 5, 16, 23, 40, 0)),
@@ -35,30 +37,57 @@ RSpec.describe Expire::CalculateService do
     end
   end
 
-  describe 'calculate yearly' do
-    let(:backups) do
-      TestDates.create(years: 1860..1869, months: 1..5).to_backup_list
-    end
+  describe 'keep latest' do
+    context 'without rules' do
+      let(:result) do
+        described_class.call(
+          backups: TestDates.create(days: 15..17).to_backup_list,
+          rules:   Expire::Rules.new
+        )
+      end
 
-    let(:rules) { Expire::Rules.new(yearly: 5) }
+      it 'keeps two backups' do
+        expect(result.keep_count).to eq(2)
+      end
 
-    let(:result) do
-      described_class.call(
-        backups: backups,
-        rules:   rules
-      )
-    end
+      it 'keeps the right first backup' do
+        expect(result.keep[0].day).to eq(17)
+      end
 
-    it 'keeps the expected amount of backups' do
-      expect(result.keep_count).to eq(5)
-    end
+      it 'keeps the right second backup' do
+        expect(result.keep[1].day).to eq(16)
+      end
 
-    it 'expires the expected amount of backups' do
-      expect(result.expired_count).to eq(45)
-    end
-
-    it 'keeps the expected backups' do
-      expect(result.keep.first.year).to eq(1869)
+      it 'expires the right backups' do
+        expect(result.expired[0].day).to eq(15)
+      end
     end
   end
+
+  # describe 'calculate yearly' do
+  #   let(:backups) do
+  #     TestDates.create(years: 1860..1869, months: 1..5).to_backup_list
+  #   end
+
+  #   let(:rules) { Expire::Rules.new(yearly: 5) }
+
+  #   let(:result) do
+  #     described_class.call(
+  #       backups: backups,
+  #       rules:   rules
+  #     )
+  #   end
+
+  #   it 'keeps the expected amount of backups' do
+  #     expect(result.keep_count).to eq(5)
+  #   end
+
+  #   it 'expires the expected amount of backups' do
+  #     expect(result.expired_count).to eq(45)
+  #   end
+
+  #   it 'keeps the expected backups' do
+  #     expect(result.keep.first.year).to eq(1869)
+  #   end
+  # end
 end

@@ -19,10 +19,17 @@ module Expire
     attr_reader :backups, :rules
 
     def call
+      keep_two_latest
       keep_first_of_interval
       keep_first_of_interval_until
 
       Result.new(backups)
+    end
+
+    def keep_two_latest
+      backups.latest(2).each do |backup|
+        backup.add_reason_to_keep('keep the two latest')
+      end
     end
 
     def keep_first_of_interval

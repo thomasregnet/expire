@@ -2,8 +2,11 @@
 
 require 'test_dates'
 require 'spec_helper'
+require 'support/shared_examples_for_keep_services'
 
 RSpec.describe Expire::KeepFirstOfIntervalService do
+  it_behaves_like 'a keep service'
+
   describe 'calculate yearly' do
     let(:test_backups) do
       TestDates.create(years: 1857..1860, months: 1..5, days: 17)

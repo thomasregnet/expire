@@ -5,11 +5,11 @@ module Expire
   class CalculateService
     include Constants
 
-    def self.call(backups, rules)
-      new(backups, rules).call
+    def self.call(*args)
+      new(*args).call
     end
 
-    def initialize(backups, rules)
+    def initialize(backups:, rules:)
       @backups = BackupList.new(
         backups.map { |backup| AuditedBackup.new(backup) }
       )

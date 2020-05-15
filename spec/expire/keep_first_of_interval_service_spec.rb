@@ -5,7 +5,9 @@ require 'spec_helper'
 require 'support/shared_examples_for_keep_services'
 
 RSpec.describe Expire::KeepFirstOfIntervalService do
-  it_behaves_like 'a keep service'
+  it_behaves_like 'a keep service' do
+    let(:constructor_args) { {} }
+  end
 
   describe 'calculate yearly' do
     let(:test_backups) do

@@ -2,12 +2,14 @@
 
 RSpec.shared_examples 'a keep service' do
   subject do
-    described_class.new(
+    args = {
       adjective: :sunny,
       backups:   :fake_backups,
       noun:      :sun,
       rules:     :fake_rules
-    )
+    }.merge(constructor_args)
+
+    described_class.new(args)
   end
 
   it 'responds to .call' do

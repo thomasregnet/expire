@@ -4,7 +4,7 @@ require 'test_dates'
 require 'support/shared_examples_for_keep_until_services'
 require 'support/shared_examples_for_keep_services'
 
-RSpec.describe Expire::KeepFirstOfIntervalUntilService do
+RSpec.describe Expire::KeepIntervalForService do
   it_behaves_like 'a keep service' do
     let(:constructor_args) { { now: :fake_now } }
   end

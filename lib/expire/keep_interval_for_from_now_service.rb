@@ -3,7 +3,7 @@
 module Expire
   # Keep hourly|daily|weekly|monthly|yearly backups from now
   #     KeepIntervalForFromNowService
-  class KeepIntervalForFromNowService < KeepFirstOfIntervalUntilService
+  class KeepIntervalForFromNowService < KeepIntervalForService
     def rule
       "#{adjective}_for_from_now"
     end

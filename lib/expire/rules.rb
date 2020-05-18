@@ -5,6 +5,9 @@ module Expire
   class Rules
     include Constants
 
+    # This method reeks of :reek:Attribute
+    attr_accessor :at_least
+
     STEP_ADJECTIVES.each { |adjective| attr_accessor adjective }
     STEP_ADJECTIVES.each do |adjective|
       attr_accessor "#{adjective}_for"

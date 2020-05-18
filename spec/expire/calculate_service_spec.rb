@@ -37,6 +37,21 @@ RSpec.describe Expire::CalculateService do
     end
   end
 
+  describe 'keep at least' do
+    context 'with 3 to keep' do
+      let(:result) do
+        described_class.call(
+          backups: TestDates.create(days: 1..5).to_backup_list,
+          rules:   Expire::Rules.new(at_least: 3)
+        )
+      end
+
+      it 'keeps three backups' do
+        expect(result.keep_count).to eq(3)
+      end
+    end
+  end
+
   describe 'keep latest' do
     context 'without rules' do
       let(:result) do

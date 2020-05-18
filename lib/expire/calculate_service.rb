@@ -20,10 +20,22 @@ module Expire
 
     def call
       keep_two_latest
+      keep_at_least
       keep_first_of_interval
       keep_first_of_interval_until
 
       Result.new(backups)
+    end
+
+    def keep_at_least
+      ammount = rules.at_least
+      return unless ammount
+
+      message = "keep at least #{ammount}"
+
+      backups.latest(ammount).each do |backup|
+        backup.add_reason_to_keep(message)
+      end
     end
 
     def keep_two_latest

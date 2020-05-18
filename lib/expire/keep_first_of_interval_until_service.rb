@@ -22,7 +22,6 @@ module Expire
     end
 
     def calculate_amount
-      rule = "#{adjective}_for"
       rules.send rule
     end
 
@@ -32,6 +31,10 @@ module Expire
 
       num, duration = amount.split(/[^a-zA-Z0-9]/)
       now - num.to_i.send(duration)
+    end
+
+    def rule
+      "#{adjective}_for"
     end
   end
 end

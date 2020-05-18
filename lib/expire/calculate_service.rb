@@ -23,6 +23,7 @@ module Expire
       keep_at_least
       keep_first_of_interval
       keep_first_of_interval_until
+      keep_interval_from_now
 
       Result.new(backups)
     end
@@ -65,6 +66,22 @@ module Expire
           rules:     rules
         )
       end
+    end
+
+    def keep_interval_from_now
+      STEP_WIDTHS.each do |noun, adjective|
+        KeepFirstOfIntervalUntilService.call(
+          adjective: adjective,
+          backups:   backups,
+          noun:      noun,
+          now:       now,
+          rules:     rules
+        )
+      end
+    end
+
+    def now
+      @now ||= DateTime.now
     end
   end
 end

@@ -15,6 +15,12 @@ RSpec.describe Expire::Rules do
   it { should respond_to(:monthly_for) }
   it { should respond_to(:yearly_for) }
 
+  it { should respond_to(:hourly_for_from_now) }
+  it { should respond_to(:daily_for_from_now) }
+  it { should respond_to(:weekly_for_from_now) }
+  it { should respond_to(:monthly_for_from_now) }
+  it { should respond_to(:yearly_for_from_now) }
+
   describe '#new' do
     context 'with a hash' do
       it 'sets the parameters' do

@@ -2,8 +2,14 @@
 
 module Expire
   # Keep hourly|daily|weekly|monthly|yearly backups from now
-  #     KeepIntervalForFromNowService
   class KeepIntervalForFromNowService < KeepIntervalForService
+    def initialize(now:, **args)
+      super(args)
+      @now = now
+    end
+
+    attr_reader :now
+
     def rule
       "#{adjective}_for_from_now"
     end

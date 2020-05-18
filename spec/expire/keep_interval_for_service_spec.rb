@@ -6,15 +6,14 @@ require 'support/shared_examples_for_keep_services'
 
 RSpec.describe Expire::KeepIntervalForService do
   it_behaves_like 'a keep service' do
-    let(:constructor_args) { { now: :fake_now } }
+    let(:constructor_args) {{}} # { { now: :fake_now } }
   end
 
-  describe 'hourly_to_keep_for' do
+  describe 'hourly_for' do
     it_behaves_like 'a keep until service' do
       let(:adjective) { :hourly }
       let(:noun) { :hour }
-      let(:now) { DateTime.new(1860, 5, 17, 13, 51, 0) }
-      let(:build_rules_with) { { hourly_for: '3 hours' } }
+      let(:build_rules_with) { { hourly_for: '2 hours' } }
       let(:build_backups_with) { { hours: 9..12, minutes: (1..59).step(10) } }
       let(:expected_backups) do
         [
@@ -26,11 +25,11 @@ RSpec.describe Expire::KeepIntervalForService do
     end
   end
 
-  describe 'yearly_to_keep_for' do
+  describe 'yearly_for' do
     it_behaves_like 'a keep until service' do
       let(:adjective) { :yearly }
       let(:noun) { :year }
-      let(:now) { DateTime.new(1860, 1, 1, 12, 0, 0) }
+      # let(:now) { DateTime.new(1860, 1, 1, 12, 0, 0) }
       let(:build_rules_with) { { yearly_for: '2 years' } }
       let(:build_backups_with) { { years: 1857..1860 } }
       let(:expected_backups) do

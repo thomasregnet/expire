@@ -62,7 +62,6 @@ module Expire
           adjective: adjective,
           backups:   backups,
           noun:      noun,
-          now:       backups.max,
           rules:     rules
         )
       end

@@ -9,10 +9,11 @@ RSpec.shared_examples 'a keep until service' do
       adjective: adjective,
       backups:   backups,
       noun:      noun,
-      now:       now,
+      # now:       now,
       rules:     rules
     )
 
+    # byebug
     # Note the splat operator
     expect(backups.filter(&:keep?)).to contain_exactly(*expected_backups)
   end

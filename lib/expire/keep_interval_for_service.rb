@@ -3,14 +3,6 @@
 module Expire
   # Calculate expiration until
   class KeepIntervalForService < KeepServiceBase
-    def initialize(now:, **args)
-      super(args)
-      @memoized = {}
-      @now = now
-    end
-
-    attr_reader :now
-
     def call
       deadline = calculate_deadline || return
 
@@ -31,6 +23,10 @@ module Expire
 
       num, duration = amount.split(/[^a-zA-Z0-9]/)
       now - num.to_i.send(duration)
+    end
+
+    def now
+      @now ||= backups.max
     end
 
     def rule

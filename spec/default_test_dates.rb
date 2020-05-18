@@ -34,7 +34,8 @@ class DefaultTestDates < TestDates
     TestDates.create(
       years:  1860,
       months: 1..4,
-      days:   (1..28).step(3)
+      # days:   (1..28).step(3)
+      days:   (1..31).step(3)
     ).to_a
   end
 

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'last_day_of'
+
 # Generate ranges of dates for testing
 # This class smells of :reek:TooManyInstanceVariables
 class TestDates
@@ -30,7 +32,7 @@ class TestDates
   def create
     years.each do |year|
       months.each do |month|
-        days.each do |day|
+        days_for(year, month).each do |day|
           hours.each do |hour|
             minutes.each do |minute|
               result << [year, month, day, hour, minute, 0]
@@ -43,6 +45,15 @@ class TestDates
     self
   end
   # rubocop:enable Metrics/MethodLength
+
+  def days_for(year, month)
+    allowed_days = year.last_day_of(month)
+    days_max = days.max
+
+    last_day = days_max > allowed_days ? allowed_days : days_max
+
+    days.min..last_day
+  end
 
   def to_a
     result

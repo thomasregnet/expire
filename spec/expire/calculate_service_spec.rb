@@ -28,8 +28,8 @@ RSpec.describe Expire::CalculateService do
           Expire::Backup.new(DateTime.new(1860, 5, 15, 23, 40, 0)),
           Expire::Backup.new(DateTime.new(1860, 5, 13, 12, 0, 0)),
           Expire::Backup.new(DateTime.new(1860, 5, 6, 12, 0, 0)),
-          Expire::Backup.new(DateTime.new(1860, 4, 28, 12, 0, 0)),
-          Expire::Backup.new(DateTime.new(1860, 3, 28, 12, 0, 0)),
+          Expire::Backup.new(DateTime.new(1860, 4, 30, 12, 0, 0)),
+          Expire::Backup.new(DateTime.new(1860, 3, 31, 12, 0, 0)),
           Expire::Backup.new(DateTime.new(1859, 5, 17, 12, 0, 0)),
           Expire::Backup.new(DateTime.new(1858, 5, 17, 12, 0, 0))
         ]

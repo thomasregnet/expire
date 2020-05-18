@@ -78,4 +78,17 @@ RSpec.describe Expire::CalculateService do
       end
     end
   end
+
+  describe '#keep_first_of_interval_until' do
+    let(:result) do
+      described_class.call(
+        backups: TestDates.create(days: 1..4).to_backup_list,
+        rules:   Expire::Rules.new(daily_for: '2 days')
+      )
+    end
+
+    it 'keeps three backups' do
+      expect(result.keep_count).to eq(3)
+    end
+  end
 end

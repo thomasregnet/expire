@@ -56,14 +56,12 @@ module Expire
     end
 
     def keep_first_of_interval_until
-      now = backups.min
-
       STEP_WIDTHS.each do |noun, adjective|
         KeepFirstOfIntervalUntilService.call(
           adjective: adjective,
           backups:   backups,
           noun:      noun,
-          now:       now,
+          now:       backups.max,
           rules:     rules
         )
       end

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_calculate_service_base_classes'
-require 'support/shared_examples_for_calculate_adjective_service_base_classes'
+require 'support/shared_examples_for_calculate_services'
+require 'support/shared_examples_for_calculate_adjective_services'
 
 RSpec.describe Expire::CalculateAdjectiveServiceBase do
   subject do
@@ -13,5 +13,5 @@ RSpec.describe Expire::CalculateAdjectiveServiceBase do
     )
   end
 
-  it_behaves_like 'a CalculateAdjectiveServiceBase class'
+  it_behaves_like 'a calculate adjective service'
 end

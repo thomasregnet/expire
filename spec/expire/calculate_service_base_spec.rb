@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_calculate_service_base_classes'
+require 'support/shared_examples_for_calculate_services'
 
 RSpec.describe Expire::CalculateServiceBase do
   subject { described_class.new(backups: :fake_backups, rules: :fake_rules) }
 
-  it_behaves_like 'a CalculateServiceBase class'
+  it_behaves_like 'a calculate service'
 
   describe '#call' do
     let(:base) do

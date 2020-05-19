@@ -4,8 +4,13 @@ require 'spec_helper'
 require 'default_test_dates'
 require 'test_dates'
 require 'support/shared_examples_for_expiration_calculations'
+require 'support/shared_examples_for_calculate_service_base_classes'
 
 RSpec.describe Expire::CalculateService do
+  subject { described_class.new(backups: [], rules: :fake_rules) }
+
+  it_behaves_like 'a CalculateServiceBase class'
+
   describe 'integration' do
     rules = Expire::Rules.new(
       hourly:  3,

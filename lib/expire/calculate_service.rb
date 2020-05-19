@@ -2,21 +2,15 @@
 
 module Expire
   # Calculate expiration
-  class CalculateService
+  class CalculateService < CalculateServiceBase
     include Constants
 
-    def self.call(*args)
-      new(*args).call
-    end
-
-    def initialize(backups:, rules:)
+    def initialize(args)
+      super(args)
       @backups = BackupList.new(
-        backups.map { |backup| AuditedBackup.new(backup) }
+        args[:backups].map { |backup| AuditedBackup.new(backup) }
       )
-      @rules = rules
     end
-
-    attr_reader :backups, :rules
 
     def call
       keep_two_latest

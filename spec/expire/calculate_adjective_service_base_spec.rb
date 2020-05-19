@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_calculate_services'
 require 'support/shared_examples_for_calculate_adjective_services'
 
 RSpec.describe Expire::CalculateAdjectiveServiceBase do

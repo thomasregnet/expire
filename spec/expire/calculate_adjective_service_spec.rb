@@ -2,12 +2,19 @@
 
 require 'test_dates'
 require 'spec_helper'
-require 'support/shared_examples_for_keep_services'
+require 'support/shared_examples_for_calculate_adjective_services'
 
-RSpec.describe Expire::KeepFirstOfIntervalService do
-  it_behaves_like 'a keep service' do
-    let(:constructor_args) { {} }
+RSpec.describe Expire::CalculateAdjectiveService do
+  subject do
+    described_class.new(
+      adjective: :fake_adjective,
+      backups:   :fake_backups,
+      noun:      :fake_noun,
+      rules:     :fake_rules
+    )
   end
+
+  it_behaves_like 'a calculate adjective service'
 
   describe 'calculate yearly' do
     let(:test_backups) do

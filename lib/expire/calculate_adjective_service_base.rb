@@ -3,12 +3,17 @@
 module Expire
   # Base Class for CalculateAdjectiveService classes
   class CalculateAdjectiveServiceBase < CalculateServiceBase
-    def initialize(adjective:, noun:, **args)
+    include Constants
+
+    def initialize(adjective:, **args)
       super(args)
       @adjective = adjective
-      @noun      = noun
     end
 
-    attr_reader :adjective, :noun
+    attr_reader :adjective
+
+    def noun
+      NOUN_FOR["#{adjective}"]
+    end
   end
 end

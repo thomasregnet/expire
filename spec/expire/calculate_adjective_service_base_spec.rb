@@ -7,7 +7,6 @@ RSpec.describe Expire::CalculateAdjectiveServiceBase do
     described_class.new(
       adjective: :fake_adjective,
       backups:   :fake_backups,
-      noun:      :fake_noun,
       rules:     :rules
     )
   end

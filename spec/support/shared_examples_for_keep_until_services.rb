@@ -8,8 +8,6 @@ RSpec.shared_examples 'a keep until service' do
     described_class.call(
       adjective: adjective,
       backups:   backups,
-      noun:      noun,
-      # now:       now,
       rules:     rules
     )
 

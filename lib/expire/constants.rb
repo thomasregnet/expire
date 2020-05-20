@@ -20,5 +20,7 @@ module Expire
 
     # STEP_ADJECTIVES = STEP_WIDTHS.map { |_, adjective| adjective }.freeze
     STEP_ADJECTIVES = STEP_WIDTHS.map { |adjective, _| adjective }.freeze
+
+    NOUN_FOR = STEP_WIDTHS.to_h.freeze
   end
 end

@@ -9,7 +9,7 @@ RSpec.describe Expire::CalculateAdjectiveForService do
     described_class.new(
       adjective: :fake_adjective,
       backups:   :fake_backups,
-      noun:      :fake_noun,
+      # noun:      :fake_noun,
       rules:     :fake_rules
     )
   end
@@ -19,7 +19,6 @@ RSpec.describe Expire::CalculateAdjectiveForService do
   describe 'hourly_for' do
     it_behaves_like 'a keep until service' do
       let(:adjective) { :hourly }
-      let(:noun) { :hour }
       let(:build_rules_with) { { hourly_for: '2 hours' } }
       let(:build_backups_with) { { hours: 9..12, minutes: (1..59).step(10) } }
       let(:expected_backups) do
@@ -35,7 +34,6 @@ RSpec.describe Expire::CalculateAdjectiveForService do
   describe 'yearly_for' do
     it_behaves_like 'a keep until service' do
       let(:adjective) { :yearly }
-      let(:noun) { :year }
       let(:build_rules_with) { { yearly_for: '2 years' } }
       let(:build_backups_with) { { years: 1857..1860 } }
       let(:expected_backups) do

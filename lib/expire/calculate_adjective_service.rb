@@ -3,7 +3,8 @@
 module Expire
   # Keep first backups of a stepping
   class CalculateAdjectiveService < CalculateAdjectiveServiceBase
-    attr_reader :adjective, :backups, :noun, :rules
+    # attr_reader :adjective, :backups, :noun, :rules
+    attr_reader :adjective, :backups, :rules
 
     def call
       amount = rules.send adjective

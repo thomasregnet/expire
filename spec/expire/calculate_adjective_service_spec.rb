@@ -9,7 +9,6 @@ RSpec.describe Expire::CalculateAdjectiveService do
     described_class.new(
       adjective: :fake_adjective,
       backups:   :fake_backups,
-      noun:      :fake_noun,
       rules:     :fake_rules
     )
   end
@@ -28,7 +27,6 @@ RSpec.describe Expire::CalculateAdjectiveService do
       first_to_keep = described_class.new(
         adjective: 'yearly',
         backups:   test_backups,
-        noun:      'year',
         rules:     rules
       )
       first_to_keep.call
@@ -56,7 +54,6 @@ RSpec.describe Expire::CalculateAdjectiveService do
       first_to_keep = described_class.new(
         adjective: 'monthly',
         backups:   test_backups,
-        noun:      'month',
         rules:     rules
       )
       first_to_keep.call

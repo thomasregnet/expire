@@ -9,7 +9,6 @@ RSpec.describe Expire::CalculateAdjectiveForFromNowService do
       adjective: :fake_adjective,
       backups:   :fake_backups,
       now:       :fake_now,
-      noun:      :fake_noun,
       rules:     :fake_rules
     )
   end
@@ -31,7 +30,6 @@ RSpec.describe Expire::CalculateAdjectiveForFromNowService do
       described_class.call(
         adjective: :hourly,
         backups:   backups,
-        noun:      :hour,
         now:       now,
         rules:     rules
       )

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'test_dates'
-RSpec.describe Expire::KeepIntervalForFromNowService do
+RSpec.describe Expire::CalculateAdjectiveForFromNowService do
   describe 'hourly' do
     let(:backups) do
       TestDates.create(

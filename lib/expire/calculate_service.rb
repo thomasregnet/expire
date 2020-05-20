@@ -63,7 +63,7 @@ module Expire
 
     def keep_interval_from_now
       STEP_WIDTHS.each do |noun, adjective|
-        KeepIntervalForFromNowService.call(
+        CalculateAdjectiveForFromNowService.call(
           adjective: adjective,
           backups:   backups,
           noun:      noun,

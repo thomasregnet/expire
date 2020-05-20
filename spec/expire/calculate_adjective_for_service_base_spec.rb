@@ -32,4 +32,23 @@ RSpec.describe Expire::CalculateAdjectiveForServiceBase do
         )
     end
   end
+
+  describe '#rule' do
+    let(:base) do
+      described_class.new(
+        adjective: :fake_adjective,
+        backups:   :fake_backups,
+        noun:      :fake_noun,
+        rules:     :fake_rules
+      )
+    end
+
+    it 'raises a NotImplementedError' do
+      expect { base.rule }
+        .to raise_error(
+          NotImplementedError,
+          "#rule not implemented in #{described_class}"
+        )
+    end
+  end
 end

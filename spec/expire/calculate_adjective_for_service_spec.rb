@@ -2,12 +2,19 @@
 
 require 'test_dates'
 require 'support/shared_examples_for_keep_until_services'
-require 'support/shared_examples_for_keep_services'
+require 'support/shared_examples_for_calculate_adjective_for_services'
 
 RSpec.describe Expire::CalculateAdjectiveForService do
-  it_behaves_like 'a keep service' do
-    let(:constructor_args) {{}} # { { now: :fake_now } }
+  subject do
+    described_class.new(
+      adjective: :fake_adjective,
+      backups:   :fake_backups,
+      noun:      :fake_noun,
+      rules:     :fake_rules
+    )
   end
+
+  it_behaves_like 'a calculate adjective for service'
 
   describe 'hourly_for' do
     it_behaves_like 'a keep until service' do
@@ -29,7 +36,6 @@ RSpec.describe Expire::CalculateAdjectiveForService do
     it_behaves_like 'a keep until service' do
       let(:adjective) { :yearly }
       let(:noun) { :year }
-      # let(:now) { DateTime.new(1860, 1, 1, 12, 0, 0) }
       let(:build_rules_with) { { yearly_for: '2 years' } }
       let(:build_backups_with) { { years: 1857..1860 } }
       let(:expected_backups) do

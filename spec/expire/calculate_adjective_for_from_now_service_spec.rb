@@ -1,7 +1,21 @@
 # frozen_string_literal: true
 
+require 'support/shared_examples_for_calculate_adjective_for_services'
 require 'test_dates'
+
 RSpec.describe Expire::CalculateAdjectiveForFromNowService do
+  subject do
+    described_class.new(
+      adjective: :fake_adjective,
+      backups:   :fake_backups,
+      now:       :fake_now,
+      noun:      :fake_noun,
+      rules:     :fake_rules
+    )
+  end
+
+  it_behaves_like 'a calculate adjective for service'
+
   describe 'hourly' do
     let(:backups) do
       TestDates.create(

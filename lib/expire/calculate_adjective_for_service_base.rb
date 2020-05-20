@@ -28,5 +28,9 @@ module Expire
     def now
       raise NotImplementedError, "#now not implemented in #{self.class}"
     end
+
+    def rule
+      raise NotImplementedError, "#rule not implemented in #{self.class}"
+    end
   end
 end

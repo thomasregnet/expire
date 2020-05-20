@@ -40,7 +40,7 @@ module Expire
     end
 
     def keep_first_of_interval
-      STEP_WIDTHS.each do |noun, adjective|
+      STEP_WIDTHS.each do |adjective, noun|
         CalculateAdjectiveService.call(
           adjective: adjective,
           backups:   backups,
@@ -51,7 +51,7 @@ module Expire
     end
 
     def keep_first_of_interval_until
-      STEP_WIDTHS.each do |noun, adjective|
+      STEP_WIDTHS.each do |adjective, noun|
         CalculateAdjectiveForService.call(
           adjective: adjective,
           backups:   backups,
@@ -62,7 +62,7 @@ module Expire
     end
 
     def keep_interval_from_now
-      STEP_WIDTHS.each do |noun, adjective|
+      STEP_WIDTHS.each do |adjective, noun|
         CalculateAdjectiveForFromNowService.call(
           adjective: adjective,
           backups:   backups,

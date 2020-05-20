@@ -52,7 +52,7 @@ module Expire
 
     def keep_first_of_interval_until
       STEP_WIDTHS.each do |noun, adjective|
-        KeepIntervalForService.call(
+        CalculateAdjectiveForService.call(
           adjective: adjective,
           backups:   backups,
           noun:      noun,

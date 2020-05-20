@@ -2,7 +2,7 @@
 
 module Expire
   # Keep hourly|daily|weekly|monthly|yearly backups from now
-  class KeepIntervalForFromNowService < KeepIntervalForService
+  class KeepIntervalForFromNowService < CalculateAdjectiveForServiceBase
     def initialize(now:, **args)
       super(args)
       @now = now

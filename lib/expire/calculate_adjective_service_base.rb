@@ -13,7 +13,7 @@ module Expire
     attr_reader :adjective
 
     def noun
-      NOUN_FOR["#{adjective}"]
+      NOUN_FOR[adjective.to_s]
     end
   end
 end

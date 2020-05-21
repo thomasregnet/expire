@@ -28,4 +28,26 @@ RSpec.describe Expire::BackupList do
       end
     end
   end
+
+  describe '#to_audited_backup_list' do
+    let(:backup_list) do
+      described_class.new(
+        [
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 0,  0))
+        ]
+      )
+    end
+
+    it { should respond_to(:to_audited_backup_list) }
+
+    it 'returns a BackupList' do
+      expect(backup_list.to_audited_backup_list)
+        .to be_instance_of(described_class)
+    end
+
+    it 'contains AuditedBackups' do
+      expect(backup_list.to_audited_backup_list.first)
+        .to be_instance_of(Expire::AuditedBackup)
+    end
+  end
 end

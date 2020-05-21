@@ -7,9 +7,10 @@ module Expire
 
     def initialize(args)
       super(args)
-      @backups = BackupList.new(
-        args[:backups].map { |backup| AuditedBackup.new(backup) }
-      )
+      @backups = backups.to_audited_backup_list
+      # @backups = BackupList.new(
+      #   args[:backups].map { |backup| AuditedBackup.new(backup) }
+      # )
     end
 
     def call

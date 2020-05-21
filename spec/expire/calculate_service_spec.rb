@@ -7,7 +7,13 @@ require 'support/shared_examples_for_expiration_calculations'
 require 'support/shared_examples_for_calculate_services'
 
 RSpec.describe Expire::CalculateService do
-  subject { described_class.new(backups: [], rules: :fake_rules) }
+  # subject { described_class.new(backups: [], rules: :fake_rules) }
+  subject do
+    described_class.new(
+      backups: Expire::BackupList.new([]),
+      rules:   :fake_rules
+    )
+  end
 
   it_behaves_like 'a calculate service'
 
@@ -21,7 +27,7 @@ RSpec.describe Expire::CalculateService do
     )
 
     it_behaves_like 'an expiration calculation service' do
-      let(:backups) { DefaultTestDates.create }
+      let(:backups) { DefaultTestDates.create.to_backup_list }
       let(:rules) { rules }
       let(:expected_backups) do
         [

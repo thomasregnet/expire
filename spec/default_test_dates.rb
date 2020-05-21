@@ -12,6 +12,8 @@ class DefaultTestDates < TestDates
     @result = []
   end
 
+  attr_reader :result
+
   def create
     result << early_years
     result << until_may
@@ -21,6 +23,12 @@ class DefaultTestDates < TestDates
     result.flatten!(1)
 
     self
+  end
+
+  def to_backup_list
+    Expire::BackupList.new(
+      result.map { |datetime| Expire::Backup.new(DateTime.new(*datetime)) }
+    )
   end
 
   private

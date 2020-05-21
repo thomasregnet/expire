@@ -41,5 +41,9 @@ module Expire
     def sort
       self.class.new(backups.sort)
     end
+
+    def to_audited_backup_list
+      self.class.new(map { |backup| AuditedBackup.new(backup) })
+    end
   end
 end

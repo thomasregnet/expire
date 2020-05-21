@@ -15,11 +15,11 @@ module Expire
     attr_reader :backups
     def_delegators :backups, :each, :<<
 
-    def one_per(interval)
+    def one_per(noun)
       return [] unless any?
 
       result = [first]
-      message = "same_#{interval}?"
+      message = "same_#{noun}?"
 
       sort.reverse.each do |backup|
         result << backup unless backup.send(message, result.last)

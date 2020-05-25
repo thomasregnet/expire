@@ -1,0 +1,13 @@
+---
+detectors:
+  Attribute:
+    exclude:
+    - Expire::Rules#daily_to_keep
+    - Expire::Rules#hourly_to_keep
+    - Expire::Rules#monthly_to_keep
+    - Expire::Rules#weekly_to_keep
+    - Expire::Rules#yearly_to_keep
+  TooManyStatements:
+    max_statements: 8
+  UtilityFunction:
+    public_methods_only: true

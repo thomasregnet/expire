@@ -7,7 +7,7 @@ module Expire
   class CLI < Thor
     desc 'purge', 'purge expired backups'
     def purge
-      puts 'Nothing usefull here'
+      puts '2020-05-23-12-13'
     end
   end
 end

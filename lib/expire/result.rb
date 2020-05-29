@@ -31,6 +31,8 @@ module Expire
       keep.length
     end
 
-    def purge; end
+    def purge
+      expired.each { |backup| FileUtils.rm_rf(backup.id) }
+    end
   end
 end

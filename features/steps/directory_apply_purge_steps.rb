@@ -31,8 +31,8 @@ Then("it purges the expired backups") do
   end
 
   # TODO: enable the following code to make this test correct
-  # %w[2020-04-28-20-15 2020-05-26-20-15].each do |purged|
-  #   full_path = Pathname.new("#{@backup_path}/#{purged}")
-  #   expect(full_path).not_to exist
-  # end
+  %w[2020-04-28-20-15 2020-05-26-20-15].each do |purged|
+    full_path = Pathname.new("#{@backup_path}/#{purged}")
+    expect(full_path).not_to exist
+  end
 end

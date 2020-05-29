@@ -53,4 +53,24 @@ RSpec.describe Expire::BackupList do
         .to be_instance_of(Expire::AuditedBackup)
     end
   end
+
+  describe '#apply' do
+    let(:backup_list) do
+      described_class.new(
+        [
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 0,  0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 44, 0)),
+          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 36, 0))
+        ]
+      )
+    end
+
+    it 'calls Expire::CalculateService' do
+      allow(Expire::CalculateService).to receive(:call)
+
+      backup_list.apply(:fake_rules)
+
+      expect(Expire::CalculateService).to have_received(:call)
+    end
+  end
 end

@@ -34,4 +34,22 @@ RSpec.describe Expire::Result do
       expect(result.keep_count).to eq(1)
     end
   end
+
+  describe '#purge' do
+    let(:result) { described_class.new }
+
+    let(:backup) { instance_double('Expire::Backup') }
+
+    before do
+      allow(result).to receive(:expired).and_return([backup])
+      allow(backup).to receive(:id).and_return(:fake_path)
+      allow(FileUtils).to receive(:rm_rf)
+    end
+
+    it 'calls FileUtils.rm_rf' do
+      result.purge
+
+      expect(FileUtils).to have_received(:rm_rf)
+    end
+  end
 end

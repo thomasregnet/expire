@@ -13,6 +13,7 @@ module Expire
     end
 
     attr_reader :backups
+
     def_delegators :backups, :each, :<<
 
     def expired

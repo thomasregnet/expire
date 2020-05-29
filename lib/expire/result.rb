@@ -13,6 +13,7 @@ module Expire
     end
 
     attr_reader :backups
+
     def_delegators :backups, :each, :<<
 
     def expired
@@ -29,6 +30,10 @@ module Expire
 
     def keep_count
       keep.length
+    end
+
+    def purge
+      expired.each { |backup| FileUtils.rm_rf(backup.id) }
     end
   end
 end

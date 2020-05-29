@@ -15,6 +15,7 @@ require 'expire/calculate_adjective_for_service_base'
 require 'expire/calculate_adjective_for_service'
 require 'expire/calculate_service'
 require 'expire/calculate_adjective_for_from_now_service'
+require 'expire/from_directory_service'
 require 'expire/result'
 require 'expire/rules'
 require 'expire/version'
@@ -23,4 +24,8 @@ module Expire
   # Exception derived from StandardError
   class Error < StandardError; end
   # Your code goes here...
+
+  def self.directory(path)
+    FromDirectoryService.call(path)
+  end
 end

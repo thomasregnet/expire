@@ -30,5 +30,7 @@ module Expire
     def keep_count
       keep.length
     end
+
+    def purge; end
   end
 end

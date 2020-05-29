@@ -28,6 +28,10 @@ module Expire
       result
     end
 
+    def apply(rules)
+      Result.new
+    end
+
     def latest(amount = 1)
       backups.sort.reverse.first(amount)
     end

@@ -4,7 +4,7 @@ require 'expire'
 require 'fileutils'
 
 Given('the backup directory exists') do
-  @backup_path = Pathname.new('tmp/backups')
+  @backup_path = Pathname.new('tmp/aruba/backups')
 
   # cleanup
   FileUtils.rm_rf(@backup_path) if @backup_path.exist?

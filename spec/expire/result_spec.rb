@@ -36,9 +36,9 @@ RSpec.describe Expire::Result do
   end
 
   describe '#purge' do
-    let(:result) { described_class.new }
-
     let(:backup) { instance_double('Expire::Backup') }
+    let(:courier) { instance_double('Expire::NullCourier') }
+    let(:result) { described_class.new }
 
     before do
       allow(result).to receive(:expired).and_return([backup])
@@ -47,7 +47,7 @@ RSpec.describe Expire::Result do
     end
 
     it 'calls FileUtils.rm_rf' do
-      result.purge
+      result.purge(courier)
 
       expect(FileUtils).to have_received(:rm_rf)
     end

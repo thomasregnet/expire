@@ -32,7 +32,7 @@ module Expire
       keep.length
     end
 
-    def purge
+    def purge(courier)
       expired.each { |backup| FileUtils.rm_rf(backup.id) }
     end
   end

@@ -23,9 +23,18 @@ RSpec.describe Expire::CalculateAdjectiveForService do
       let(:build_backups_with) { { hours: 9..12, minutes: (1..59).step(10) } }
       let(:expected_backups) do
         [
-          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 51, 0)),
-          Expire::Backup.new(DateTime.new(1860, 5, 17, 11, 51, 0)),
-          Expire::Backup.new(DateTime.new(1860, 5, 17, 10, 51, 0))
+          Expire::Backup.new(
+            datetime: DateTime.new(1860, 5, 17, 12, 51, 0),
+            path:     :fake_path
+          ),
+          Expire::Backup.new(
+            datetime: DateTime.new(1860, 5, 17, 11, 51, 0),
+            path:     :fake_path
+          ),
+          Expire::Backup.new(
+            datetime: DateTime.new(1860, 5, 17, 10, 51, 0),
+            path:     :fake_path
+          )
         ]
       end
     end
@@ -38,9 +47,18 @@ RSpec.describe Expire::CalculateAdjectiveForService do
       let(:build_backups_with) { { years: 1857..1860 } }
       let(:expected_backups) do
         [
-          Expire::Backup.new(DateTime.new(1860, 5, 17, 12, 0, 0)),
-          Expire::Backup.new(DateTime.new(1859, 5, 17, 12, 0, 0)),
-          Expire::Backup.new(DateTime.new(1858, 5, 17, 12, 0, 0))
+          Expire::Backup.new(
+            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+            path:     :fake_path
+          ),
+          Expire::Backup.new(
+            datetime: DateTime.new(1859, 5, 17, 12, 0, 0),
+            path:     :fake_path
+          ),
+          Expire::Backup.new(
+            datetime: DateTime.new(1858, 5, 17, 12, 0, 0),
+            path:     :fake_path
+          )
         ]
       end
     end

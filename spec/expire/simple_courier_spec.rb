@@ -13,7 +13,7 @@ RSpec.describe Expire::SimpleCourier do
     let(:courier) { described_class.new(receiver: receiver) }
 
     before do
-      allow(backup).to receive(:id).and_return(path)
+      allow(backup).to receive(:path).and_return(path)
       allow(receiver).to receive(:puts)
     end
 

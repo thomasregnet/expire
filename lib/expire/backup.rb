@@ -5,12 +5,12 @@ module Expire
   class Backup < Delegator
     include Comparable
 
-    def initialize(datetime, id = nil)
+    def initialize(datetime:, path:)
       @datetime = datetime
-      @id = id
+      @path     = path
     end
 
-    attr_reader :datetime, :id
+    attr_reader :datetime, :path
     alias __getobj__ datetime
 
     def same_hour?(other)

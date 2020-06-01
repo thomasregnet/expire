@@ -27,7 +27,14 @@ class DefaultTestDates < TestDates
 
   def to_backup_list
     Expire::BackupList.new(
-      result.map { |datetime| Expire::Backup.new(DateTime.new(*datetime)) }
+      result.map do |datetime|
+        path = Pathname.new("backups/#{datetime[0..5].join('-')}")
+
+        Expire::Backup.new(
+          datetime: DateTime.new(*datetime),
+          path:     path
+        )
+      end
     )
   end
 

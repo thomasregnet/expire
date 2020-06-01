@@ -27,9 +27,15 @@ RSpec.describe Expire::FromDirectoryService do
     it 'has added the expected backups' do
       expect(backup_list.backups)
         .to contain_exactly(
-          Expire::Backup.new(DateTime.new(2020, 5, 28, 9, 15)),
-          Expire::Backup.new(DateTime.new(2020, 4, 29, 9, 12))
+          Expire::Backup.new(
+            datetime: DateTime.new(2020, 5, 28, 9, 15),
+            path:     :fake
+        ),
+        Expire::Backup.new(
+          datetime: DateTime.new(2020, 4, 29, 9, 12),
+          path:     :fake
         )
+      )
     end
   end
 end

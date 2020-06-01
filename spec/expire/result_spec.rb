@@ -43,7 +43,7 @@ RSpec.describe Expire::Result do
 
     before do
       allow(courier).to receive(:after_purge)
-      allow(backup).to receive(:id).and_return(:fake_path)
+      allow(backup).to receive(:path).and_return(:fake_path)
       allow(backup).to receive(:expired?).and_return(true)
       allow(FileUtils).to receive(:rm_rf)
     end

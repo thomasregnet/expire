@@ -21,7 +21,7 @@ module Expire
       path.children.each do |backup_dir|
         datetime = datetime_for(backup_dir)
 
-        backup = Backup.new(datetime, backup_dir.to_s)
+        backup = Backup.new(datetime: datetime, path: backup_dir)
         backup_list << backup
       end
 

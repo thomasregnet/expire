@@ -1,9 +1,17 @@
 # frozen_string_literal: true
 
+require 'yaml'
+
 module Expire
   # Set expiration rules
   class Rules
     include Constants
+
+    def self.from_yaml(file)
+      pathname = Pathname.new(file)
+      content = pathname.read
+      new(YAML.safe_load(content))
+    end
 
     # This method reeks of :reek:Attribute
     attr_accessor :at_least

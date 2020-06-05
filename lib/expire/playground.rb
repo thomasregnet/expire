@@ -34,7 +34,7 @@ module Expire
     private
 
     def mkbackup(datetime)
-      backup_name = datetime.to_s.sub(/\d\d[+-]\d\d:\d\d\z/, '')
+      backup_name = datetime.to_s.sub(/:\d\d[+-]\d\d:\d\d\z/, '')
       FileUtils.mkdir_p("#{backups_dir}/#{backup_name}")
     end
   end

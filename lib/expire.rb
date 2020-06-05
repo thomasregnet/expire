@@ -17,6 +17,7 @@ require 'expire/calculate_service'
 require 'expire/calculate_adjective_for_from_now_service'
 require 'expire/from_directory_service'
 require 'expire/null_courier'
+require 'expire/playground'
 require 'expire/simple_courier'
 require 'expire/result'
 require 'expire/rules'
@@ -26,6 +27,10 @@ module Expire
   # Exception derived from StandardError
   class Error < StandardError; end
   # Your code goes here...
+
+  def self.create_playground(base)
+    Playground.create(base)
+  end
 
   def self.directory(path)
     FromDirectoryService.call(path)

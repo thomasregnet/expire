@@ -16,15 +16,23 @@ module Expire
     def initialize(base)
       @base        = base
       @backups_dir = Pathname.new("#{base}/backups")
+
+      @options = {
+        hourly:  42,
+        daily:   15,
+        weekly:  15,
+        monthly: 25,
+        yearly:  5
+      }
     end
 
-    attr_reader :backups_dir, :base
+    attr_reader :backups_dir, :base, :options
 
     def create
       oldest_backup = DateTime.now
 
-      STEP_WIDTHS.each do |_, noun|
-        3.times do
+      STEP_WIDTHS.each do |adjective, noun|
+        options[adjective.to_sym].times do
           oldest_backup = oldest_backup.ago(1.send(noun))
           mkbackup(oldest_backup)
         end

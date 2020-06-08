@@ -12,5 +12,5 @@ end
 
 Then('a playground is created') do
   backups = Pathname.new("#{@playground_base}/backups")
-  expect(backups.children.length).to eq(15)
+  expect(backups.children.length).to eq(102)
 end

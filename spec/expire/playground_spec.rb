@@ -12,7 +12,7 @@ RSpec.describe Expire::Playground do
       end
 
       it 'creates 15 backup directories' do
-        expect(backups_dir.children.length).to eq(15)
+        expect(backups_dir.children.length).to eq(102)
       end
 
       it 'creates backup directories in the format YYYYY-mm-ddTHH:MM' do

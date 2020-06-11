@@ -11,7 +11,7 @@ Feature: Oldest
     When I call Expire.oldest(path)
     Then I get the oldest backup
     
-  # Scenario: Get the oldest backup per CLI
-  #   When I run `expire oldest backups`
-  #   Then the output should contain "backups/2020-05-23-12-13"
+  Scenario: Get the oldest backup per CLI
+    When I run `expire oldest backups`
+    Then the output should contain "backups/2020-05-23-12-13"
 

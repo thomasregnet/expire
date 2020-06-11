@@ -36,6 +36,10 @@ module Expire
       backups.sort.reverse.first(amount)
     end
 
+    def latest_one
+      latest[0]
+    end
+
     # Enumerable#reverse returns an array but we need a BackupList
     def reverse
       self.class.new(backups.reverse)

@@ -35,4 +35,8 @@ module Expire
   def self.directory(path)
     FromDirectoryService.call(path)
   end
+
+  def self.latest(path)
+    FromDirectoryService.call(path).latest_one
+  end
 end

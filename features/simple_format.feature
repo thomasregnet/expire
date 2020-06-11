@@ -5,6 +5,6 @@ Feature: Simple Format
 
   Scenario: Purge with no special parameter
     Given the backup directory exists
-    When I run `expire purge`
+    When I run `expire purge backups`
     Then the output should contain "keeping"
     And the output should contain "purged"

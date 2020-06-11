@@ -18,6 +18,7 @@ module Expire
     attr_reader :backup_list, :path
 
     def call
+      # raise "#{Dir.pwd[30..42]}"
       path.children.each do |backup_dir|
         datetime = datetime_for(backup_dir)
 

@@ -6,6 +6,18 @@ module Expire
   # Command line interface
   class CLI < Thor
 
+    desc 'oldest PATH', 'Show the oldest backup'
+    method_option :help, aliases: '-h', type: :boolean,
+                         desc: 'Display usage information'
+    def oldest(path)
+      if options[:help]
+        invoke :help, ['oldest']
+      else
+        require_relative 'commands/oldest'
+        Expire::Commands::Oldest.new(path, options).execute
+      end
+    end
+
     desc 'latest PATH', 'Show the latest backup'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'

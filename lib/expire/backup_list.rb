@@ -40,6 +40,10 @@ module Expire
       latest[0]
     end
 
+    def oldest_one
+      backups.min
+    end
+
     # Enumerable#reverse returns an array but we need a BackupList
     def reverse
       self.class.new(backups.reverse)

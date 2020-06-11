@@ -82,6 +82,30 @@ RSpec.describe Expire::BackupList do
     end
   end
 
+  describe '#oldest_one' do
+    let(:backup_list) do
+      described_class.new(
+        [
+          Expire::Backup.new(
+            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+            path:     :fake_path
+          ),
+
+          Expire::Backup.new(
+            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+            path:     :fake_path
+          )
+        ]
+      )
+    end
+
+    it 'returns the latest backup' do
+      # Since we are working with dates without
+      # time zone we omit the +-\d\d:\d\d part
+      expect(backup_list.oldest_one.to_s).to match(/\A1860-05-17T12:00/)
+    end
+  end
+
   describe '#one_per' do
     let(:backup_list) do
       described_class.new(

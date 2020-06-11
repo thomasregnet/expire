@@ -5,6 +5,18 @@ require 'thor'
 module Expire
   # Command line interface
   class CLI < Thor
+
+    desc 'latest PATH', 'Show the latest backup'
+    method_option :help, aliases: '-h', type: :boolean,
+                         desc: 'Display usage information'
+    def latest(path)
+      if options[:help]
+        invoke :help, ['latest']
+      else
+        require_relative 'commands/latest'
+        Expire::Commands::Latest.new(path, options).execute
+      end
+    end
     # Play with test-data
     class Playground < Thor
       desc 'create PATH', 'play with test-data'

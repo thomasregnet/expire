@@ -23,6 +23,7 @@ require 'expire/result'
 require 'expire/rules'
 require 'expire/version'
 
+# Expire backup directories
 module Expire
   # Exception derived from StandardError
   class Error < StandardError; end
@@ -42,5 +43,11 @@ module Expire
 
   def self.oldest(path)
     FromDirectoryService.call(path).oldest_one
+  end
+
+  def self.purge(path, options)
+    courier = NullCourier.new
+    rules = Rules.from_yaml(options[:rules_file])
+    FromDirectoryService.call(path).apply(rules).purge(courier)
   end
 end

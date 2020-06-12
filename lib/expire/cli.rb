@@ -39,18 +39,15 @@ module Expire
 
     desc 'purge PATH', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
-                         desc: 'Display usage information'
+      desc: 'Display usage information'
+    method_option :rules_file, aliases: '-r', type: :string,
+      desc: 'read expire-rules from file'
     def purge(path)
       if options[:help]
         invoke :help, ['purge']
       else
         require_relative 'commands/purge'
         Expire::Commands::Purge.new(path, options).execute
-        # TODO: use real rules
-        # rules = Expire::Rules.new(at_least: 3)
-        # courier = Expire::SimpleCourier.new
-
-        # Expire.directory('backups').apply(rules).purge(courier)
       end
     end
 

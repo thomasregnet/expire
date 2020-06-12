@@ -6,7 +6,8 @@ Usage:
   expire purge PATH
 
 Options:
-  -h, [--help], [--no-help]  # Display usage information
+  -h, [--help], [--no-help]      # Display usage information
+  -r, [--rules-file=RULES_FILE]  # read expire-rules from file
 
 Command description...
     OUT

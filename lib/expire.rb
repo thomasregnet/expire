@@ -47,7 +47,8 @@ module Expire
 
   def self.purge(path, options)
     courier = NullCourier.new
-    rules = Rules.from_yaml(options[:rules_file])
+    rules_file = options[:rules_file] || return
+    rules = Rules.from_yaml(rules_file)
     FromDirectoryService.call(path).apply(rules).purge(courier)
   end
 end

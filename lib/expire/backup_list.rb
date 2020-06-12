@@ -37,7 +37,7 @@ module Expire
     end
 
     def latest_one
-      latest[0]
+      backups.max
     end
 
     def oldest_one

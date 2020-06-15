@@ -3,10 +3,12 @@ Feature: Simple Format
   as an user
   I want to watch the output with a simple format
 
-  # Delete this feature?
-  # purge without rules may not be a good idea.
-  # Scenario: Purge with no special parameter
-  #   Given the backup directory exists
-  #   When I run `expire purge backups`
-  #   Then the output should contain "keeping"
-  #   And the output should contain "purged"
+  Scenario: Purge with no special parameter
+    Given the backup directory exists
+    Given a file named "rules.yml" with:
+    """
+    at_least: 3
+    """
+    When I run `expire purge --rules-file=rules.yml --format=simple backups`
+    Then the output should contain "keeping"
+    And the output should contain "purged"

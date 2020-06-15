@@ -1,20 +1,24 @@
 # frozen_string_literal: true
 
+require 'pastel'
+
 module Expire
   # Sends "keeping" and "purged" to it's receiver
   class SimpleCourier < NullCourier
     def initialize(receiver: $stdout)
       @receiver = receiver
+
+      @pastel = Pastel.new
     end
 
-    attr_reader :receiver
+    attr_reader :pastel, :receiver
 
     def on_keep(backup)
-      receiver.puts("keeping #{backup.path}")
+      receiver.puts(pastel.green("keeping #{backup.path}"))
     end
 
     def after_purge(backup)
-      receiver.puts("purged #{backup.path}")
+      receiver.puts(pastel.red("purged #{backup.path}"))
     end
   end
 end

@@ -40,6 +40,9 @@ module Expire
     desc 'purge PATH', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
       desc: 'Display usage information'
+    method_option :format, aliases: '-f', type: :string,
+      enum: %w[none simple],
+      desc: 'output format'
     method_option :rules_file, aliases: '-r', type: :string,
       desc: 'read expire-rules from file'
     def purge(path)

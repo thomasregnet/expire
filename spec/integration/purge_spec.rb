@@ -7,6 +7,8 @@ Usage:
 
 Options:
   -h, [--help], [--no-help]      # Display usage information
+  -f, [--format=FORMAT]          # output format
+                                 # Possible values: none, simple
   -r, [--rules-file=RULES_FILE]  # read expire-rules from file
 
 Command description...

@@ -46,9 +46,12 @@ module Expire
   end
 
   def self.purge(path, options)
-    courier = NullCourier.new
+    format = options[:format]
+    courier = format == 'simple' ? SimpleCourier.new : NullCourier.new
+
     rules_file = options[:rules_file] || return
     rules = Rules.from_yaml(rules_file)
+
     FromDirectoryService.call(path).apply(rules).purge(courier)
   end
 end

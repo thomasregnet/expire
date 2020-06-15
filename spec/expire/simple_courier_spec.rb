@@ -22,7 +22,7 @@ RSpec.describe Expire::SimpleCourier do
         courier.after_purge(backup)
 
         expect(receiver).to have_received(:puts)
-          .with('purged backups/2020-06-01-11-29')
+          .with(%r{purged backups/2020-06-01-11-29})
       end
     end
 
@@ -31,7 +31,7 @@ RSpec.describe Expire::SimpleCourier do
         courier.on_keep(backup)
 
         expect(receiver).to have_received(:puts)
-          .with('keeping backups/2020-06-01-11-29')
+          .with(%r{keeping backups/2020-06-01-11-29})
       end
     end
   end

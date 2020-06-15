@@ -42,6 +42,7 @@ module Expire
       desc: 'Display usage information'
     method_option :format, aliases: '-f', type: :string,
       enum: %w[none simple],
+      default: 'none',
       desc: 'output format'
     method_option :rules_file, aliases: '-r', type: :string,
       desc: 'read expire-rules from file'

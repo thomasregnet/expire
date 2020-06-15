@@ -17,6 +17,7 @@ require 'expire/calculate_service'
 require 'expire/calculate_adjective_for_from_now_service'
 require 'expire/from_directory_service'
 require 'expire/null_courier'
+require 'expire/enhanced_courier'
 require 'expire/playground'
 require 'expire/simple_courier'
 require 'expire/result'
@@ -46,12 +47,26 @@ module Expire
   end
 
   def self.purge(path, options)
-    format = options[:format]
-    courier = format == 'simple' ? SimpleCourier.new : NullCourier.new
+    # format = options[:format]
+    # courier = format == 'simple' ? SimpleCourier.new : NullCourier.new
+    courier = courier_for(options)
 
     rules_file = options[:rules_file] || return
     rules = Rules.from_yaml(rules_file)
 
     FromDirectoryService.call(path).apply(rules).purge(courier)
+  end
+
+  def self.courier_for(options)
+    case options[:format]
+    when 'simple'
+      SimpleCourier.new
+    when 'enhanced'
+      EnhancedCourier.new
+    when 'none'
+      NullCourier.new
+    else
+      NullCourier.new
+    end
   end
 end

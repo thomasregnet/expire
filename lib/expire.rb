@@ -18,6 +18,7 @@ require 'expire/calculate_adjective_for_from_now_service'
 require 'expire/from_directory_service'
 require 'expire/null_format'
 require 'expire/enhanced_format'
+require 'expire/keep_format'
 require 'expire/playground'
 require 'expire/simple_format'
 require 'expire/result'
@@ -59,6 +60,8 @@ module Expire
 
   def self.format_for(options)
     case options[:format]
+    when 'keep'
+      KeepFormat.new
     when 'simple'
       SimpleFormat.new
     when 'enhanced'

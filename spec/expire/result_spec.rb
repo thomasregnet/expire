@@ -42,6 +42,7 @@ RSpec.describe Expire::Result do
     let(:result) { described_class.new([backup]) }
 
     before do
+      allow(format).to receive(:before_purge)
       allow(format).to receive(:after_purge)
       allow(backup).to receive(:path).and_return(:fake_path)
       allow(backup).to receive(:expired?).and_return(true)

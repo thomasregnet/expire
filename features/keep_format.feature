@@ -1,0 +1,31 @@
+Feature: Keep Format
+  In order to see only the paths that are kept
+  as a user
+  I want to uset the --format=keep option
+
+ Background:
+    Given a file named "rules.yml" with:
+    """
+    ---
+    at_least: 3
+    """
+    Given a directory named "backups/2020-05-25-12-13"
+    Given a directory named "backups/2020-05-24-12-13"
+    Given a directory named "backups/2020-05-23-12-13"
+    Given a directory named "backups/2020-04-23-12-13"
+    Given a directory named "backups/2020-03-23-12-13"
+
+  Scenario: Purge with the --format=keep option
+    When I run `expire purge --rules-file=rules.yml --format=keep backups` 
+    Then the output should contain "backups/2020-05-25-12-13"
+    And the output should contain "backups/2020-05-24-12-13"
+    And the output should contain "backups/2020-05-23-12-13"
+    And the output should not contain "backups/2020-04-23-12-13"
+    And the output should not contain "backups/2020-03-23-12-13"
+    And the following directories should exist:
+      | backups/2020-05-25-12-13 |
+      | backups/2020-05-24-12-13 |
+      | backups/2020-05-23-12-13 |
+    And the following directories should not exist:
+      | backups/2020-04-23-12-13 |
+      | backups/2020-03-23-12-13 |

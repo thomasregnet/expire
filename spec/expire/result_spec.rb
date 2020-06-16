@@ -38,18 +38,18 @@ RSpec.describe Expire::Result do
   describe '#purge' do
     # No verifying double for backup because #id is delegated
     let(:backup) { double('Expire::AuditedBackup') }
-    let(:courier) { instance_double('Expire::NullCourier') }
+    let(:format) { instance_double('Expire::NullFormat') }
     let(:result) { described_class.new([backup]) }
 
     before do
-      allow(courier).to receive(:after_purge)
+      allow(format).to receive(:after_purge)
       allow(backup).to receive(:path).and_return(:fake_path)
       allow(backup).to receive(:expired?).and_return(true)
       allow(FileUtils).to receive(:rm_rf)
     end
 
     it 'calls FileUtils.rm_rf' do
-      result.purge(courier)
+      result.purge(format)
 
       expect(FileUtils).to have_received(:rm_rf)
     end

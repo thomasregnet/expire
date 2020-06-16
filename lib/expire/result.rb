@@ -32,14 +32,14 @@ module Expire
       keep.length
     end
 
-    def purge(courier)
+    def purge(format)
       # expired.each { |backup| FileUtils.rm_rf(backup.id) }
       each do |backup|
         if backup.expired?
           FileUtils.rm_rf(backup.path)
-          courier.after_purge(backup)
+          format.after_purge(backup)
         else
-          courier.on_keep(backup)
+          format.on_keep(backup)
         end
       end
     end

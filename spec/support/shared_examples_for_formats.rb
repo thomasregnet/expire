@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'a courier' do
+RSpec.shared_examples 'a format' do
   it { should respond_to(:before_all) }
   it { should respond_to(:after_all) }
 

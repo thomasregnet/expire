@@ -18,7 +18,7 @@ module Expire
     end
 
     def after_purge(backup)
-      receiver.puts(pastel.red("purged #{backup.path}"))
+      receiver.puts(pastel.yellow("purged #{backup.path}"))
     end
   end
 end

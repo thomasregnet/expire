@@ -3,13 +3,13 @@
 module Expire
   class KeepFormat < NullFormat
     def initialize(receiver: $stdout)
-        @receiver = receiver
+      @receiver = receiver
     end
 
     attr_reader :receiver
 
     def on_keep(backup)
-      receiver.puts backup.path
+      receiver.puts backup.path.to_s
     end
   end
 end

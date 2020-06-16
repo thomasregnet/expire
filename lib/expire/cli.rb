@@ -41,7 +41,7 @@ module Expire
     method_option :help, aliases: '-h', type: :boolean,
       desc: 'Display usage information'
     method_option :format, aliases: '-f', type: :string,
-      enum: %w[none simple],
+      enum: %w[none simple enhanced],
       default: 'none',
       desc: 'output format'
     method_option :rules_file, aliases: '-r', type: :string,

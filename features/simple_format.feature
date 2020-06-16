@@ -1,5 +1,5 @@
 Feature: Simple Format
-  In order to see the porogress of purging
+  In order to see the progress of purging
   as an user
   I want to watch the output with a simple format
 

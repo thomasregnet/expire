@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Expire
-  # A Courier that discards all messages
-  class NullCourier
+  # A Format that discards all messages
+  class NullFormat
     def before_all(_); end
 
     def after_all(_); end

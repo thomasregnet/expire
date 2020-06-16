@@ -19,11 +19,11 @@ Given('the backup directory exists') do
   end
 end
 
-When('I run Expire.directory\(path).apply\(rules).purge\(courier)') do
-  courier = Expire::NullCourier.new
+When('I run Expire.directory\(path).apply\(rules).purge\(format)') do
+  format = Expire::NullFormat.new
   rules = Expire::Rules.new(at_least: 3)
 
-  Expire.directory(@backup_path.to_s).apply(rules).purge(courier)
+  Expire.directory(@backup_path.to_s).apply(rules).purge(format)
 end
 
 Then("it purges the expired backups") do

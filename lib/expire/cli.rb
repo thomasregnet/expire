@@ -60,9 +60,9 @@ module Expire
     #   # puts '2020-05-23-12-13'
     #   # TODO: use real rules
     #   rules = Expire::Rules.new(at_least: 3)
-    #   courier = Expire::SimpleCourier.new
+    #   format = Expire::SimpleFormat.new
 
-    #   Expire.directory('backups').apply(rules).purge(courier)
+    #   Expire.directory('backups').apply(rules).purge(format)
     # end
 
     desc 'playground', 'play with test-data'

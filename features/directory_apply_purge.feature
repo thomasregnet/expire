@@ -5,5 +5,5 @@ Feature: Expire.directory(path).apply(rules).purge
 
   Scenario: Use the directory.apply.purge chain on a valid backup directory
     Given the backup directory exists
-    When I run Expire.directory(path).apply(rules).purge(courier)
+    When I run Expire.directory(path).apply(rules).purge(format)
     Then it purges the expired backups

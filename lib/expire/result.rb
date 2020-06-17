@@ -36,6 +36,7 @@ module Expire
       # expired.each { |backup| FileUtils.rm_rf(backup.id) }
       each do |backup|
         if backup.expired?
+          format.before_purge(backup)
           FileUtils.rm_rf(backup.path)
           format.after_purge(backup)
         else

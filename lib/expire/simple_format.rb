@@ -4,14 +4,8 @@ require 'expire/colorful'
 
 module Expire
   # Sends "keeping" and "purged" to it's receiver
-  class SimpleFormat < NullFormat
+  class SimpleFormat < FormatBase
     include Colorful
-
-    def initialize(receiver: $stdout)
-      @receiver = receiver
-    end
-
-    attr_reader :receiver
 
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.path}"))

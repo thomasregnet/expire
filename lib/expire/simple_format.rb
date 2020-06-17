@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-require 'pastel'
+require 'expire/colorful'
 
 module Expire
   # Sends "keeping" and "purged" to it's receiver
   class SimpleFormat < NullFormat
+    include Colorful
+
     def initialize(receiver: $stdout)
       @receiver = receiver
-
-      @pastel = Pastel.new
     end
 
-    attr_reader :pastel, :receiver
+    attr_reader :receiver
 
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.path}"))

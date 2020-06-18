@@ -10,5 +10,9 @@ module Expire
     end
 
     attr_reader :receiver
+
+    def pastel
+      @pastel ||= ::Pastel.new
+    end
   end
 end

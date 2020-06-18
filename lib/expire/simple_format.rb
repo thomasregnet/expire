@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'expire/colorful'
+require 'pastel'
 
 module Expire
   # Sends "keeping" and "purged" to it's receiver
   class SimpleFormat < FormatBase
-    include Colorful
-
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.path}"))
     end

@@ -2,13 +2,7 @@
 
 module Expire
   # Print the paths of expired backups
-  class ExpiredFormat < NullFormat
-    def initialize(receiver: $stdout)
-      @receiver = receiver
-    end
-
-    attr_reader :receiver
-
+  class ExpiredFormat < FormatBase
     def before_purge(backup)
       receiver.puts backup.path.to_s
     end

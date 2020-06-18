@@ -1,13 +1,8 @@
 # frozen_string_literal: true
 
 module Expire
-  class KeepFormat < NullFormat
-    def initialize(receiver: $stdout)
-      @receiver = receiver
-    end
-
-    attr_reader :receiver
-
+  # Print the backups that are kept
+  class KeepFormat < FormatBase
     def on_keep(backup)
       receiver.puts backup.path.to_s
     end

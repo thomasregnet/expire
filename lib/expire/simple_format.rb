@@ -4,15 +4,7 @@ require 'pastel'
 
 module Expire
   # Sends "keeping" and "purged" to it's receiver
-  class SimpleFormat < NullFormat
-    def initialize(receiver: $stdout)
-      @receiver = receiver
-
-      @pastel = Pastel.new
-    end
-
-    attr_reader :pastel, :receiver
-
+  class SimpleFormat < FormatBase
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.path}"))
     end

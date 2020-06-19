@@ -35,7 +35,8 @@ module Expire
 
     def initialize(rules = {})
       rules.each_key do |rule_name|
-        raise UnknownRuleError unless ALL_RULE_NAMES.include?(rule_name.to_s)
+        raise UnknownRuleError.new(rule_name) \
+          unless ALL_RULE_NAMES.include?(rule_name.to_s)
       end
     end
   end

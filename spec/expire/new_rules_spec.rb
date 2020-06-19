@@ -29,7 +29,10 @@ RSpec.describe Expire::NewRules do
     context 'with an unknown rule' do
       it 'raises an Expire::UnknownRuleError' do
         expect { described_class.new(bad_rule: 666) }
-          .to raise_error(Expire::UnknownRuleError)
+          .to raise_error(
+            Expire::UnknownRuleError,
+            'unknown rule name "bad_rule"'
+          )
       end
     end
   end

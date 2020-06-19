@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'expire/unknown_rule_error'
+
 module Expire
   # Rules how to expire backups
   class NewRules
@@ -30,5 +32,11 @@ module Expire
     ].flatten.freeze
 
     ALL_RULE_NAMES.each { |rule_name| attr_reader rule_name }
+
+    def initialize(rules = {})
+      rules.each_key do |rule_name|
+        raise UnknownRuleError unless ALL_RULE_NAMES.include?(rule_name.to_s)
+      end
+    end
   end
 end

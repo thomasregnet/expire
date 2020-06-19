@@ -27,6 +27,7 @@ require 'expire/result'
 require 'expire/rules'
 require 'expire/new_rules'
 require 'expire/version'
+require 'expire/unknown_rule_error'
 
 # Expire backup directories
 module Expire

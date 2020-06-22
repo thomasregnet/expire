@@ -46,4 +46,22 @@ RSpec.describe Expire::NewRules do
       expect(rules.one_per_week).to be_instance_of(Expire::SimpleRule)
     end
   end
+
+  describe '.from_string_values' do
+    context 'without any rules' do
+      it 'returns a rules object' do
+        expect(described_class.from_string_values({}))
+          .to be_instance_of(Expire::NewRules)
+      end
+    end
+    context 'with an unknown rule' do
+      it 'raises an Expire::UnknownRuleError' do
+        expect { described_class.from_string_values(evil_rule: '666') }
+          .to raise_error(
+            Expire::UnknownRuleError,
+            'unknown rule name "evil_rule"'
+          )
+      end
+    end
+  end
 end

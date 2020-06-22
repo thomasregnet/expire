@@ -33,6 +33,31 @@ module Expire
 
     ALL_RULE_NAMES.each { |rule_name| attr_reader rule_name }
 
+    class << self
+      def from_string_values(raw_rules)
+        raise_on_unknown_rule(raw_rules)
+
+        rules = {}
+        ONE_PER_UNIT_RULE_NAMES.each do |name|
+          string = raw_rules[name]
+          next unless string
+
+          rules[name] = SimpleRule.from_string(string, name: name)
+        end
+
+        new(rules)
+      end
+
+      private
+
+      def raise_on_unknown_rule(raw_rules)
+        raw_rules.each_key do |rule_name|
+          raise UnknownRuleError.new(rule_name) \
+            unless ALL_RULE_NAMES.include?(rule_name)
+        end
+      end
+    end
+
     def initialize(rules = {})
       rules.each_key do |rule_name|
         raise UnknownRuleError.new(rule_name) \

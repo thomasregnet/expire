@@ -34,5 +34,8 @@ module Expire
     end
 
     attr_reader :amount, :name
+
+    def apply(backups)
+    end
   end
 end

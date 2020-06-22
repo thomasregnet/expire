@@ -59,10 +59,20 @@ module Expire
           unless ALL_RULE_NAMES.include?(rule_name)
       end
 
-      ONE_PER_UNIT_RULE_NAMES.each do |name|
-        next unless rules.has_key?(name)
-        rule = SimpleRule.new(amount: rules[name], name: name)
-        instance_variable_set("@#{name}", rule)
+      @rules = rules
+
+      ALL_RULE_NAMES.each do |name|
+        instance_variable_set("@#{name}", rules[name])
+      end
+    end
+
+    attr_reader :rules
+
+    def apply(backups)
+      ONE_PER_UNIT_RULE_NAMES.each do |rule_name|
+        rule = rules[rule_name] || next
+
+        rule.apply(backups)
       end
     end
   end

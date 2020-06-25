@@ -6,7 +6,6 @@ RSpec.describe Expire::SpacingRuleBase do
   subject do
     described_class.new(
       amount:  3,
-      name:    'my_rule',
       spacing: 'hour'
     )
   end
@@ -16,7 +15,7 @@ RSpec.describe Expire::SpacingRuleBase do
   describe 'spacing' do
     context 'with an invalid spacing' do
       it 'raises an ArgumentError' do
-        args = { amount: 3, name: 'my_rule', spacing: 'February' }
+        args = { amount: 3, spacing: 'February' }
         expect { described_class.new(args) }
           .to raise_error(
             ArgumentError, 'February is not a valid spacing'
@@ -29,7 +28,7 @@ RSpec.describe Expire::SpacingRuleBase do
 
       spacings.each do |spacing|
         it "accepts \"#{spacing}\" as spacing" do
-          args = { amount: 3, name: 'my_rule', spacing: spacing }
+          args = { amount: 3, spacing: spacing }
           expect { described_class.new(args) }.not_to raise_error
         end
       end

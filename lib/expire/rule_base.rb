@@ -4,7 +4,7 @@ module Expire
   # A simple expire rule consists of the amount of backups to keep an a name
   class RuleBase
     class << self
-      def from_string(string, name:)
+      def from_string(string)
         stripped = string.strip.downcase
 
         amount = case stripped
@@ -14,7 +14,7 @@ module Expire
                    amount_to_i(stripped, string, name)
                  end
 
-        new(amount: amount, name: name)
+        new(amount: amount)
       end
 
       private
@@ -22,18 +22,17 @@ module Expire
       def amount_to_i(amount, string, name)
         Integer(amount)
       rescue StandardError
-        raise ArgumentError, "#{string} is not a valid value for #{name}"
+        raise ArgumentError, "#{string} is not a valid amount"
       end
     end
 
     # private_class_method :amount_to_i
 
-    def initialize(amount:, name:)
+    def initialize(amount:)
       @amount = amount
-      @name   = name
     end
 
-    attr_reader :amount, :name
+    attr_reader :amount
 
     def apply(backups)
     end

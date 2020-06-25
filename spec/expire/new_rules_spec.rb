@@ -31,16 +31,6 @@ RSpec.describe Expire::NewRules do
     end
   end
 
-  # describe 'on_per_unit rules' do
-  #   let(:rules) do
-  #     described_class.new(one_per_week: 5)
-  #   end
-
-  #   it 'returns a SimpleRule' do
-  #     expect(rules.one_per_week).to be_instance_of(Expire::SimpleRule)
-  #   end
-  # end
-
   describe '.from_string_values' do
     context 'without any rules' do
       it 'returns a rules object' do

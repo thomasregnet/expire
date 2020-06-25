@@ -37,7 +37,7 @@ module Expire
           string = raw_rules[name]
           next unless string
 
-          rules[name] = RuleBase.from_string(string, name: name)
+          rules[name] = RuleBase.from_string(string)
         end
 
         new(rules)

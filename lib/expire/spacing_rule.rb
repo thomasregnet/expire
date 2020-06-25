@@ -2,7 +2,7 @@
 
 module Expire
   # A rule with a spacing
-  class SpacingRule < SimpleRule
+  class SpacingRule < RuleBase
     VALID_SPACINGS = %w[hour hours day days week weeks month months year years]
 
     def initialize(spacing:, **args)

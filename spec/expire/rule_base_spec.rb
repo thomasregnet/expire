@@ -2,7 +2,7 @@
 
 require 'support/shared_examples_for_rules'
 
-RSpec.describe Expire::SimpleRule do
+RSpec.describe Expire::RuleBase do
   subject do
     described_class.new(amount: 1, name: 'my_rule')
   end

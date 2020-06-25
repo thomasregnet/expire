@@ -55,7 +55,7 @@ RSpec.describe Expire::NewRules do
       end
 
       it 'sets the rule' do
-        expect(rules.one_per_week).to be_instance_of(Expire::SimpleRule)
+        expect(rules.one_per_week).to be_instance_of(Expire::RuleBase)
       end
 
       it 'sets the rule with the right amount' do

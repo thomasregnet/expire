@@ -2,7 +2,7 @@
 
 module Expire
   # A simple expire rule consists of the amount of backups to keep an a name
-  class SimpleRule
+  class RuleBase
     class << self
       def from_string(string, name:)
         stripped = string.strip.downcase

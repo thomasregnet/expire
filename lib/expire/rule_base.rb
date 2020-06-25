@@ -11,7 +11,7 @@ module Expire
                  when 'all' then -1
                  when 'none' then 0
                  else
-                   amount_to_i(stripped, string, name)
+                   amount_to_i(stripped, string)
                  end
 
         new(amount: amount)
@@ -19,7 +19,7 @@ module Expire
 
       private
 
-      def amount_to_i(amount, string, name)
+      def amount_to_i(amount, string)
         Integer(amount)
       rescue StandardError
         raise ArgumentError, "#{string} is not a valid amount"

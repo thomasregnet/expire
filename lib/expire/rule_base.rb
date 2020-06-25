@@ -26,15 +26,10 @@ module Expire
       end
     end
 
-    # private_class_method :amount_to_i
-
     def initialize(amount:)
       @amount = amount
     end
 
     attr_reader :amount
-
-    def apply(backups)
-    end
   end
 end

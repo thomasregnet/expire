@@ -2,7 +2,7 @@
 
 require 'support/shared_examples_for_rules'
 
-RSpec.describe Expire::SpacingRule do
+RSpec.describe Expire::SpacingRuleBase do
   subject do
     described_class.new(
       amount:  3,

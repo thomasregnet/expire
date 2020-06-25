@@ -2,8 +2,10 @@
 
 module Expire
   # A rule with a spacing
-  class SpacingRule < RuleBase
-    VALID_SPACINGS = %w[hour hours day days week weeks month months year years]
+  class SpacingRuleBase < RuleBase
+    VALID_SPACINGS = %w[
+      hour hours day days week weeks month months year years
+    ].freeze
 
     def initialize(spacing:, **args)
       super(args)

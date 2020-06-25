@@ -2,6 +2,6 @@
 
 module Expire
   # Rules one_per(hour|day|week|month|year)
-  class OnePerSpacingRule < SpacingRule
+  class OnePerSpacingRule < SpacingRuleBase
   end
 end

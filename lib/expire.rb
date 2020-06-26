@@ -24,8 +24,13 @@ require 'expire/keep_format'
 require 'expire/playground'
 require 'expire/simple_format'
 require 'expire/result'
+require 'expire/rule_base'
+require 'expire/spacing_rule_base'
+require 'expire/one_per_spacing_rule'
 require 'expire/rules'
+require 'expire/new_rules'
 require 'expire/version'
+require 'expire/unknown_rule_error'
 
 # Expire backup directories
 module Expire

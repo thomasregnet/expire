@@ -15,7 +15,7 @@ module Expire
 
     attr_reader :backups
 
-    def_delegators :backups, :each, :<<
+    def_delegators :backups, :each, :last, :length, :<<
 
     def one_per(noun)
       return [] unless any?
@@ -38,7 +38,7 @@ module Expire
     end
 
     def latest(amount = 1)
-      backups.sort.reverse.first(amount)
+      self.class.new(sort.reverse.first(amount))
     end
 
     def latest_one

@@ -30,7 +30,7 @@ module Expire
         result << backup unless backup.send(message, result.last)
       end
 
-      result
+      self.class.new(result)
     end
 
     def apply(rules)

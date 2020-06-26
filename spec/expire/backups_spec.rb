@@ -111,39 +111,44 @@ RSpec.describe Expire::Backups do
   end
 
   describe '#one_per' do
-    let(:backup_list) do
-      described_class.new(
-        [
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
-          ),
+    context 'with :hour' do
+      let(:hourly) do
+        described_class.new(
+          [
+            Expire::Backup.new(
+              datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+              path:     :fake_path
+            ),
 
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :fake_path
-          ),
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
-            path:     :fake_path
-          ),
+            Expire::Backup.new(
+              datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+              path:     :fake_path
+            ),
+            Expire::Backup.new(
+              datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
+              path:     :fake_path
+            ),
 
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 33, 0),
-            path:     :fake_path
-          ),
+            Expire::Backup.new(
+              datetime: DateTime.new(1860, 5, 17, 12, 33, 0),
+              path:     :fake_path
+            ),
 
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
-            path:     :fake_path
-          )
-        ]
-      )
-    end
+            Expire::Backup.new(
+              datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
+              path:     :fake_path
+            )
+          ]
+        ).one_per(:hour)
+      end
 
-    context 'with hour' do
+      it "returns an instance of #{described_class}" do
+        expect(hourly).to be_instance_of(described_class)
+      end
+
+      # rubocop:disable RSpec/ExampleLength
       it 'returns hourly backups' do
-        expect(backup_list.one_per(:hour)).to contain_exactly(
+        expect(hourly).to contain_exactly(
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
@@ -154,6 +159,7 @@ RSpec.describe Expire::Backups do
           )
         )
       end
+      # rubocop:enable RSpec/ExampleLength
     end
   end
 

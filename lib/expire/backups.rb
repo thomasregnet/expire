@@ -41,11 +41,11 @@ module Expire
       self.class.new(sort.reverse.first(amount))
     end
 
-    def latest_one
+    def newest
       backups.max
     end
 
-    def oldest_one
+    def oldest
       backups.min
     end
 

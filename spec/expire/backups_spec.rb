@@ -62,7 +62,7 @@ RSpec.describe Expire::Backups do
     end
   end
 
-  describe '#latest_one' do
+  describe '#newest' do
     let(:backup_list) do
       described_class.new(
         [
@@ -82,11 +82,11 @@ RSpec.describe Expire::Backups do
     it 'returns the latest backup' do
       # Since we are working with dates without
       # time zone we omit the +-\d\d:\d\d part
-      expect(backup_list.latest_one.to_s).to match(/\A1860-05-17T12:44/)
+      expect(backup_list.newest.to_s).to match(/\A1860-05-17T12:44/)
     end
   end
 
-  describe '#oldest_one' do
+  describe '#oldest' do
     let(:backup_list) do
       described_class.new(
         [
@@ -106,7 +106,7 @@ RSpec.describe Expire::Backups do
     it 'returns the latest backup' do
       # Since we are working with dates without
       # time zone we omit the +-\d\d:\d\d part
-      expect(backup_list.oldest_one.to_s).to match(/\A1860-05-17T12:00/)
+      expect(backup_list.oldest.to_s).to match(/\A1860-05-17T12:00/)
     end
   end
 

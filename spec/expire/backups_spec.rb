@@ -227,12 +227,18 @@ RSpec.describe Expire::Backups do
     end
 
     describe '#expired' do
-      it 'returns the expired backups' do
+      before do
         allow(expired_one).to receive(:expired?).and_return(true)
         allow(expired_two).to receive(:expired?).and_return(true)
         allow(kept_one).to receive(:expired?).and_return(false)
+      end
 
+      it 'returns the expired backups' do
         expect(backups.expired.length).to eq(2)
+      end
+
+      it "returns an instance of #{described_class}" do
+        expect(backups.expired).to be_instance_of(described_class)
       end
     end
 

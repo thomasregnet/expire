@@ -54,8 +54,7 @@ module Expire
     end
 
     def expired
-      # backups.select(&:expired?)
-      backups.select(&:expired?)
+      self.class.new(backups.select(&:expired?))
     end
 
     def expired_count

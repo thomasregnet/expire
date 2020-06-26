@@ -37,7 +37,7 @@ module Expire
       CalculateService.call(backups: self, rules: rules)
     end
 
-    def latest(amount = 1)
+    def most_recent(amount = 1)
       self.class.new(sort.reverse.first(amount))
     end
 

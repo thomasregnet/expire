@@ -9,7 +9,7 @@ RSpec.describe Expire::Backups do
     end
   end
 
-  describe '#latest' do
+  describe '#most_recent' do
     let(:backups) do
       described_class.new(
         [
@@ -20,7 +20,7 @@ RSpec.describe Expire::Backups do
 
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :latest
+            path:     :newest
           ),
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
@@ -32,32 +32,32 @@ RSpec.describe Expire::Backups do
 
     context 'without parameter' do
       it "returns an instance of #{described_class}" do
-        expect(backups.latest).to be_instance_of(described_class)
+        expect(backups.most_recent).to be_instance_of(described_class)
       end
 
       it 'returns one backup' do
-        expect(backups.latest.length).to eq(1)
+        expect(backups.most_recent.length).to eq(1)
       end
 
-      it 'returns the latest backup' do
-        expect(backups.latest.last.path).to eq(:latest)
+      it 'returns the most recent backup' do
+        expect(backups.most_recent.last.path).to eq(:newest)
       end
     end
 
     context 'with 2 as parameter' do
       it 'returns an Array with one element' do
-        expect(backups.latest(2).length).to eq(2)
+        expect(backups.most_recent(2).length).to eq(2)
       end
 
-      it 'returns the latest backup' do
-        paths = backups.latest(2).map(&:path)
-        expect(paths).to eq(%i[latest middle])
+      it 'returns the most recent backup' do
+        paths = backups.most_recent(2).map(&:path)
+        expect(paths).to eq(%i[newest middle])
       end
     end
 
     context 'with a parameter that exceeds the amount of backups' do
       it 'returns an Array with the backups' do
-        expect(backups.latest(99).length).to eq(3)
+        expect(backups.most_recent(99).length).to eq(3)
       end
     end
   end

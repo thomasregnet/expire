@@ -62,7 +62,7 @@ module Expire
     end
 
     def keep
-      backups.select(&:keep?)
+      self.class.new(backups.select(&:keep?))
     end
 
     def keep_count

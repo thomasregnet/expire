@@ -23,6 +23,19 @@ module Expire
 
     STEP_NOUNS = STEP_WIDTHS.map { |_, noun| noun }.freeze
 
+    ADJECTIVE_FOR = {
+      'hour' => 'hourly',
+      'hours' => 'hourly',
+      'day' => 'daily',
+      'days' => 'daily',
+      'week' => 'weekly',
+      'weeks' => 'weekly',
+      'month' => 'mounthly',
+      'months' => 'mounthly',
+      'year' => 'yearly',
+      'years' => 'yearly'
+    }.freeze
+
     NOUN_FOR = STEP_WIDTHS.to_h.freeze
   end
 end

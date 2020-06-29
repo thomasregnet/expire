@@ -3,26 +3,22 @@
 module Expire
   # Hold backups for a period
   class OnePerSpacingForRule < SpacingRuleBase
-    class << self
-      def from_string(string, **args)
-        stripped = string.strip.downcase
+    FROM_STRING_REGEX = /
+    \A
+    ([0-9_]+)
+    [^0-9a-zA-Z]+
+    (hour|day|week|month|year)s?
+    \z
+    /x.freeze
 
-        # return new(amount: -1, spacing: 'year', unit: nil) if stripped == 'all'
+    def self.from_string(string, **args)
+      stripped = string.strip.downcase
+      match = stripped.match FROM_STRING_REGEX
+      raise ArgumentError, "#{string} is not a valid period" unless match
 
-        match = stripped.match %r{
-          \A
-          ([0-9_]+)
-          [^0-9a-zA-Z]+
-          (hour|day|week|month|year)s?
-          \z
-        }x
-
-        raise ArgumentError, "#{string} is not a valid period" unless match
-
-        args[:amount] = Integer(match[1])
-        args[:unit]   = match[2]
-        new(args)
-      end
+      amount = Integer(match[1])
+      unit = match[2]
+      new(args.merge({ amount: amount, unit: unit }))
     end
 
     def initialize(unit:, **args)

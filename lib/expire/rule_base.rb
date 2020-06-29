@@ -31,5 +31,12 @@ module Expire
     end
 
     attr_reader :amount
+
+    # This method smells of :reek:FeatureEnvy
+    def conditionally_pluralize(term)
+      return term.singularize if amount == 1
+
+      term.pluralize
+    end
   end
 end

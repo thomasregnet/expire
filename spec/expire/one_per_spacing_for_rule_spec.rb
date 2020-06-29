@@ -82,17 +82,5 @@ RSpec.describe Expire::OnePerSpacingForRule do
           .to raise_error(ArgumentError, '333 bad string is not a valid period')
       end
     end
-
-    context 'with the string "all"' do
-      let(:rule) { described_class.from_string('all', spacing: 'day') }
-
-      it 'has an amount of -1' do
-        expect(rule.amount).to eq(-1)
-      end
-
-      it 'has no unit' do
-        expect(rule.unit).to be_nil
-      end
-    end
   end
 end

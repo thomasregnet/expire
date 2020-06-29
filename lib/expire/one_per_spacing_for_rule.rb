@@ -7,7 +7,7 @@ module Expire
       def from_string(string, **args)
         stripped = string.strip.downcase
 
-        return new(amount: -1, spacing: 'year', unit: nil) if stripped == 'all'
+        # return new(amount: -1, spacing: 'year', unit: nil) if stripped == 'all'
 
         match = stripped.match %r{
           \A

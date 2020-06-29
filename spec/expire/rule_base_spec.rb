@@ -50,4 +50,22 @@ RSpec.describe Expire::RuleBase do
       end
     end
   end
+
+  describe '#conditionally_pluralize' do
+    context 'with an amount of 1' do
+      let(:rule) { described_class.new(amount: 1) }
+
+      it 'returns the singular' do
+        expect(rule.conditionally_pluralize('backups')).to eq('backup')
+      end
+    end
+
+    context 'with an amount greater than 1' do
+      let(:rule) { described_class.new(amount: 2) }
+
+      it 'returns the plural' do
+        expect(rule.conditionally_pluralize('backup')).to eq('backups')
+      end
+    end
+  end
 end

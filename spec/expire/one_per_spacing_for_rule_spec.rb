@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'support/shared_examples_for_rules'
+require 'test_dates'
 
 RSpec.describe Expire::OnePerSpacingForRule do
   subject do
@@ -80,6 +81,34 @@ RSpec.describe Expire::OnePerSpacingForRule do
       it 'raises an ArgumentError' do
         expect { described_class.from_string('333 bad string', spacing: 'day') }
           .to raise_error(ArgumentError, '333 bad string is not a valid period')
+      end
+    end
+  end
+
+  describe '#apply' do
+    context 'without a reference_time' do
+      let(:backups) do
+        backups = []
+        datetimes = TestDates.create(years: 1850..1860)
+        datetimes.each do |datetime|
+          backups << Expire::Backup.new(
+            datetime: DateTime.new(*datetime),
+            path:     datetime.to_s
+          )
+        end
+        Expire::Backups.new(backups)
+      end
+
+      let(:rule) do
+        described_class.new(
+          amount:  5,
+          unit:    'years',
+          spacing: 'year'
+        )
+      end
+
+      it 'keeps 5 backups' do
+        expect(rule.apply(backups).length).to eq(5)
       end
     end
   end

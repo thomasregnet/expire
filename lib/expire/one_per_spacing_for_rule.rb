@@ -28,5 +28,11 @@ module Expire
     end
 
     attr_reader :unit
+
+    def apply(backups, reference_time = nil)
+      reference_time ||= backups.newest
+      min_datetime = reference_time.ago(amount.send(unit))
+      backups.newer_than(min_datetime)
+    end
   end
 end

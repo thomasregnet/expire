@@ -41,6 +41,11 @@ module Expire
       self.class.new(sort.reverse.first(amount))
     end
 
+    def newer_than(reference_time)
+      result = backups.select { |backup| backup.datetime >= reference_time }
+      self.class.new(result)
+    end
+
     def newest
       backups.max
     end

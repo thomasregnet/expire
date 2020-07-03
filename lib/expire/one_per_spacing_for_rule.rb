@@ -36,14 +36,13 @@ module Expire
 
       min = reference_time.send(spacing) - amount
 
-      backups.each do |backup|
-        next unless backup.send(spacing) > min
+      spacing_form = spacing.singularize
+      backups.one_per(spacing).each do |backup|
+        next if backup.send(spacing_form) <= min
 
         backup.add_reason_to_keep(reason_to_keep)
       end
     end
-
-    private
 
     def reason_to_keep
       backup_form = conditionally_pluralize('backup')

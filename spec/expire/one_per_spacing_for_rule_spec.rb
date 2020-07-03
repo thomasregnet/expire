@@ -88,7 +88,7 @@ RSpec.describe Expire::OnePerSpacingForRule do
   describe '#apply' do
     let(:backups) do
       backups = []
-      datetimes = TestDates.create(years: 1850..1860)
+      datetimes = TestDates.create(years: 1850..1860, months: 4..5)
       datetimes.each do |datetime|
         backups << Expire::NewBackup.new(
           datetime: DateTime.new(*datetime),
@@ -100,27 +100,48 @@ RSpec.describe Expire::OnePerSpacingForRule do
 
     let(:rule) do
       described_class.new(
-        amount:  5,
+        amount:  3,
         unit:    'years',
         spacing: 'year'
       )
     end
 
     context 'with a reference_time' do
-      let(:reference_time) { DateTime.new(1862, 9, 17, 12, 0, 0) }
+      let(:reference_time) { DateTime.new(1861, 9, 17, 12, 0, 0) }
 
       before { rule.apply(backups, reference_time) }
 
       it 'keeps the expected amount of backups' do
-        expect(backups.keep.length).to eq(3)
+        expect(backups.keep).to contain_exactly(
+          Expire::NewBackup.new(
+            datetime: DateTime.new(1859, 5, 17, 12, 0, 0),
+            path:     :fake_path
+          ),
+          Expire::NewBackup.new(
+            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+            path:     :fake_path
+          )
+        )
       end
     end
 
     context 'without a reference_time' do
+      let(:expected_backups) do
+        datetimes = TestDates.create(years: 1858..1860)
+        backups = datetimes.map do |datetime|
+          Expire::NewBackup.new(
+            datetime: DateTime.new(*datetime),
+            path:     datetime.to_s
+          )
+        end
+
+        Expire::Backups.new(backups)
+      end
+
       before { rule.apply(backups) }
 
       it 'keeps 5 backups' do
-        expect(backups.keep.length).to eq(5)
+        expect(backups.keep).to contain_exactly(*expected_backups)
       end
     end
   end

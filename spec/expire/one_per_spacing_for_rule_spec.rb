@@ -145,4 +145,63 @@ RSpec.describe Expire::OnePerSpacingForRule do
       end
     end
   end
+
+  describe '#increase_greed' do
+    let(:reference_time) { DateTime.new(1860, 5, 17, 12, 13, 14) }
+
+    context 'with "hour" as spacing' do
+      let(:rule) do
+        described_class.new(amount: 3, spacing: 'hour', unit: 'yearh')
+      end
+
+      it 'returns the expected DateTime-object' do
+        greedy = DateTime.new(1860, 5, 17, 12, 0, 0)
+        expect(rule.increase_greed(reference_time)).to eq(greedy)
+      end
+    end
+
+    context 'with "day" as spacing' do
+      let(:rule) do
+        described_class.new(amount: 3, spacing: 'day', unit: 'yearh')
+      end
+
+      it 'returns the expected DateTime-object' do
+        greedy = DateTime.new(1860, 5, 17, 0, 0, 0)
+        expect(rule.increase_greed(reference_time)).to eq(greedy)
+      end
+    end
+
+    context 'with "week" as spacing' do
+      let(:rule) do
+        described_class.new(amount: 3, spacing: 'week', unit: 'yearh')
+      end
+
+      it 'returns the expected DateTime-object' do
+        greedy = DateTime.new(1860, 5, 14, 0, 0, 0)
+        expect(rule.increase_greed(reference_time)).to eq(greedy)
+      end
+    end
+
+    context 'with "month" as spacing' do
+      let(:rule) do
+        described_class.new(amount: 3, spacing: 'month', unit: 'yearh')
+      end
+
+      it 'returns the expected DateTime-object' do
+        greedy = DateTime.new(1860, 5, 1, 0, 0, 0)
+        expect(rule.increase_greed(reference_time)).to eq(greedy)
+      end
+    end
+
+    context 'with "year" as spacing' do
+      let(:rule) do
+        described_class.new(amount: 3, spacing: 'year', unit: 'yearh')
+      end
+
+      it 'returns the expected DateTime-object' do
+        greedy = DateTime.new(1860, 1, 1, 0, 0, 0)
+        expect(rule.increase_greed(reference_time)).to eq(greedy)
+      end
+    end
+  end
 end

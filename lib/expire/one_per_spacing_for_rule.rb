@@ -32,7 +32,7 @@ module Expire
     attr_reader :unit
 
     def apply(backups, reference_time = nil)
-      reference_time ||= backups.newest
+      reference_time = increase_greed(reference_time || backups.newest)
 
       min = reference_time.send(spacing) - amount
 
@@ -47,6 +47,17 @@ module Expire
     def reason_to_keep
       backup_form = conditionally_pluralize('backup')
       "keep #{amount} #{ADJECTIVE_FOR[spacing]} #{backup_form}"
+    end
+
+    # This method smells of :reek:FeatureEnvy
+    def increase_greed(reference_time)
+      reference_time = reference_time.prev_week.next_week if spacing == 'week'
+
+      month = spacing == 'year'                    ? 1 : reference_time.month
+      day   = %w[month year].include?(spacing)     ? 1 : reference_time.day
+      hour  = %w[day month year].include?(spacing) ? 0 : reference_time.hour
+
+      DateTime.new(reference_time.year, month, day, hour, 0, 0)
     end
   end
 end

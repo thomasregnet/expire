@@ -3,6 +3,8 @@
 module Expire
   # Hold backups for a period
   class OnePerSpacingForRule < SpacingRuleBase
+    include Constants
+
     FROM_STRING_REGEX = /
     \A
     ([0-9_]+)
@@ -31,8 +33,21 @@ module Expire
 
     def apply(backups, reference_time = nil)
       reference_time ||= backups.newest
-      min_datetime = reference_time.ago(amount.send(unit))
-      backups.newer_than(min_datetime)
+
+      min = reference_time.send(spacing) - amount
+
+      backups.each do |backup|
+        next unless backup.send(spacing) > min
+
+        backup.add_reason_to_keep(reason_to_keep)
+      end
+    end
+
+    private
+
+    def reason_to_keep
+      backup_form = conditionally_pluralize('backup')
+      "keep #{amount} #{ADJECTIVE_FOR[spacing]} #{backup_form}"
     end
   end
 end

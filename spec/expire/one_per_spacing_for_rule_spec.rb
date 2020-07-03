@@ -90,7 +90,7 @@ RSpec.describe Expire::OnePerSpacingForRule do
       backups = []
       datetimes = TestDates.create(years: 1850..1860)
       datetimes.each do |datetime|
-        backups << Expire::Backup.new(
+        backups << Expire::NewBackup.new(
           datetime: DateTime.new(*datetime),
           path:     datetime.to_s
         )
@@ -109,14 +109,18 @@ RSpec.describe Expire::OnePerSpacingForRule do
     context 'with a reference_time' do
       let(:reference_time) { DateTime.new(1862, 9, 17, 12, 0, 0) }
 
+      before { rule.apply(backups, reference_time) }
+
       it 'keeps the expected amount of backups' do
-        expect(rule.apply(backups, reference_time).length).to eq(3)
+        expect(backups.keep.length).to eq(3)
       end
     end
 
     context 'without a reference_time' do
+      before { rule.apply(backups) }
+
       it 'keeps 5 backups' do
-        expect(rule.apply(backups).length).to eq(5)
+        expect(backups.keep.length).to eq(5)
       end
     end
   end

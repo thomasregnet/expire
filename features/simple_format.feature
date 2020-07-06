@@ -7,7 +7,7 @@ Feature: Simple Format
     Given the backup directory exists
     Given a file named "rules.yml" with:
     """
-    at_least: 3
+    most_recent: 3
     """
     When I run `expire purge --rules-file=rules.yml --format=simple backups`
     Then the output should contain "keeping"

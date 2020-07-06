@@ -30,10 +30,21 @@ module Expire
     ALL_RULE_NAMES.each { |rule_name| attr_reader rule_name }
 
     class << self
+      def from_yaml(file)
+        pathname = Pathname.new(file)
+        content = pathname.read
+        from_string_values(YAML.safe_load(content, symbolize_names: true))
+      end
+
       def from_string_values(raw_rules)
         raise_on_unknown_rule(raw_rules)
 
         rules = {}
+
+        if (most_recent_value = raw_rules[:most_recent])
+          rules[:most_recent] = MostRecentRule.new(amount: most_recent_value)
+        end
+
         ONE_PER_UNIT_RULE_NAMES.each do |name|
           string = raw_rules[name]
           next unless string
@@ -76,6 +87,8 @@ module Expire
       apply_one_per_unit_rules(backups)
       apply_one_per_unit_for_rules(backups)
       apply_from_now_one_per_unit_for_rules(backups)
+
+      backups
     end
 
     private

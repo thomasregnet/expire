@@ -19,6 +19,7 @@ require 'expire/calculate_service'
 require 'expire/calculate_adjective_for_from_now_service'
 require 'expire/format_base'
 require 'expire/from_directory_service'
+require 'expire/new_from_directory_service'
 require 'expire/null_format'
 require 'expire/expired_format'
 require 'expire/enhanced_format'
@@ -64,9 +65,10 @@ module Expire
     format = format_for(options)
 
     rules_file = options[:rules_file] || return
-    rules = Rules.from_yaml(rules_file)
+    rules = NewRules.from_yaml(rules_file)
 
-    FromDirectoryService.call(path).apply(rules).purge(format)
+    backups = NewFromDirectoryService.call(path)
+    rules.apply(backups).purge(format)
   end
 
   def self.format_for(options)

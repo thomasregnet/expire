@@ -7,7 +7,7 @@ Feature: Expire Format
     Given a file named "rules.yml" with:
     """
     ---
-    at_least: 3
+    most_recent: 3
     """
     Given a directory named "backups/2020-05-25-12-13"
     Given a directory named "backups/2020-05-24-12-13"

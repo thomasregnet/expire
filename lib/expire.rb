@@ -4,21 +4,10 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/core_ext/date_and_time/calculations'
 require 'date'
-require 'expire/audited_backup'
 require 'expire/new_backup'
-require 'expire/backup'
-require 'expire/backup_list'
 require 'expire/backups'
 require 'expire/constants'
-require 'expire/calculate_service_base'
-require 'expire/calculate_adjective_service_base'
-require 'expire/calculate_adjective_service'
-require 'expire/calculate_adjective_for_service_base'
-require 'expire/calculate_adjective_for_service'
-require 'expire/calculate_service'
-require 'expire/calculate_adjective_for_from_now_service'
 require 'expire/format_base'
-require 'expire/from_directory_service'
 require 'expire/new_from_directory_service'
 require 'expire/null_format'
 require 'expire/expired_format'
@@ -48,15 +37,15 @@ module Expire
   end
 
   def self.directory(path)
-    FromDirectoryService.call(path)
+    NewFromDirectoryService.call(path)
   end
 
   def self.latest(path)
-    FromDirectoryService.call(path).latest_one
+    NewFromDirectoryService.call(path).newest
   end
 
   def self.oldest(path)
-    FromDirectoryService.call(path).oldest_one
+    NewFromDirectoryService.call(path).oldest
   end
 
   def self.purge(path, options)

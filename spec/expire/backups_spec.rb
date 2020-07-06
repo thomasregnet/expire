@@ -13,16 +13,16 @@ RSpec.describe Expire::Backups do
     let(:backups) do
       described_class.new(
         [
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :oldest
           ),
 
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :newest
           ),
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
             path:     :middle
           )
@@ -66,12 +66,12 @@ RSpec.describe Expire::Backups do
     let(:backup_list) do
       described_class.new(
         [
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :fake_path
           ),
 
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
           )
@@ -90,12 +90,12 @@ RSpec.describe Expire::Backups do
     let(:backup_list) do
       described_class.new(
         [
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :fake_path
           ),
 
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
           )
@@ -115,26 +115,26 @@ RSpec.describe Expire::Backups do
       let(:hourly) do
         described_class.new(
           [
-            Expire::Backup.new(
+            Expire::NewBackup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
               path:     :fake_path
             ),
 
-            Expire::Backup.new(
+            Expire::NewBackup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
               path:     :fake_path
             ),
-            Expire::Backup.new(
+            Expire::NewBackup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
               path:     :fake_path
             ),
 
-            Expire::Backup.new(
+            Expire::NewBackup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 33, 0),
               path:     :fake_path
             ),
 
-            Expire::Backup.new(
+            Expire::NewBackup.new(
               datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
               path:     :fake_path
             )
@@ -149,71 +149,17 @@ RSpec.describe Expire::Backups do
       # rubocop:disable RSpec/ExampleLength
       it 'returns hourly backups' do
         expect(hourly).to contain_exactly(
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
           ),
-          Expire::Backup.new(
+          Expire::NewBackup.new(
             datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
             path:     :fake_path
           )
         )
       end
       # rubocop:enable RSpec/ExampleLength
-    end
-  end
-
-  describe '#to_audited_backup_list' do
-    let(:backup_list) do
-      described_class.new(
-        [
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
-          )
-        ]
-      )
-    end
-
-    it { should respond_to(:to_audited_backup_list) }
-
-    it 'returns a BackupList' do
-      expect(backup_list.to_audited_backup_list)
-        .to be_instance_of(described_class)
-    end
-
-    it 'contains AuditedBackups' do
-      expect(backup_list.to_audited_backup_list.first)
-        .to be_instance_of(Expire::AuditedBackup)
-    end
-  end
-
-  describe '#apply' do
-    let(:backup_list) do
-      described_class.new(
-        [
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
-          ),
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :fake_path
-          ),
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
-            path:     :fake_path
-          )
-        ]
-      )
-    end
-
-    it 'calls Expire::CalculateService' do
-      allow(Expire::CalculateService).to receive(:call)
-
-      backup_list.apply(:fake_rules)
-
-      expect(Expire::CalculateService).to have_received(:call)
     end
   end
 

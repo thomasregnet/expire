@@ -70,6 +70,8 @@ module Expire
     attr_reader :rules
 
     def apply(backups)
+      return if backups.empty?
+
       apply_most_recent_rule(backups)
       apply_one_per_unit_rules(backups)
       apply_one_per_unit_for_rules(backups)

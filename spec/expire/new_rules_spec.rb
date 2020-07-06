@@ -65,12 +65,31 @@ RSpec.describe Expire::NewRules do
   end
 
   describe '#apply' do
+    let(:backups) { instance_double('Expire::Backups') }
+
+    context 'when backups are empty' do
+      let(:most_recent_rule) { instance_double('Expire::MostRecentRule') }
+      let(:rules) { described_class.new(most_recent: most_recent_rule) }
+
+      before {
+        allow(backups).to receive(:empty?).and_return(true)
+        allow(most_recent_rule).to receive(:apply)
+      }
+
+      it 'does not call #apply on the rules' do
+        rules.apply(backups)
+        expect(most_recent_rule).not_to have_received(:apply)
+      end
+    end
+
     context 'with the most_recent rule' do
       let(:most_recent_rule) { instance_double('Expire::MostRecentRule') }
       let(:rules) { described_class.new(most_recent: most_recent_rule) }
-      let(:backups) { [] }
 
-      before { allow(most_recent_rule).to receive(:apply) }
+      before do
+        allow(backups).to receive(:empty?).and_return(false)
+        allow(most_recent_rule).to receive(:apply)
+      end
 
       it 'calls apply on the most_recent rule' do
         rules.apply(backups)
@@ -84,7 +103,8 @@ RSpec.describe Expire::NewRules do
       let(:one_per_week_rule) { instance_double('Expire::SimpleRule') }
       let(:one_per_month_rule) { instance_double('Expire::SimpleRule') }
       let(:one_per_year_rule) { instance_double('Expire::SimpleRule') }
-      let(:backups) { [] }
+      # let(:backups) { [] }
+      let(:backups) { instance_double('Expire::Backups') }
 
       let(:rules) do
         described_class.new(
@@ -97,6 +117,8 @@ RSpec.describe Expire::NewRules do
       end
 
       before do
+        allow(backups).to receive(:empty?).and_return(false)
+
         allow(one_per_hour_rule).to receive(:apply)
         allow(one_per_day_rule).to receive(:apply)
         allow(one_per_week_rule).to receive(:apply)
@@ -148,7 +170,6 @@ RSpec.describe Expire::NewRules do
         instance_double('Expire::OnePerSpacingForRule')
       end
 
-      let(:backups) { [] }
       let(:reference_time) { DateTime.now }
 
       let(:rules) do
@@ -162,6 +183,8 @@ RSpec.describe Expire::NewRules do
       end
 
       before do
+        allow(backups).to receive(:empty?).and_return(false)
+
         allow(one_per_hour_for_rule).to receive(:apply)
         allow(one_per_day_for_rule).to receive(:apply)
         allow(one_per_week_for_rule).to receive(:apply)
@@ -191,13 +214,13 @@ RSpec.describe Expire::NewRules do
         expect(one_per_year_for_rule).to have_received(:apply).with(backups)
       end
     end
+
     context 'with one_per_spacing rules' do
       let(:one_per_hour_rule) { instance_double('Expire::SimpleRule') }
       let(:one_per_day_rule) { instance_double('Expire::SimpleRule') }
       let(:one_per_week_rule) { instance_double('Expire::SimpleRule') }
       let(:one_per_month_rule) { instance_double('Expire::SimpleRule') }
       let(:one_per_year_rule) { instance_double('Expire::SimpleRule') }
-      let(:backups) { [] }
 
       let(:rules) do
         described_class.new(
@@ -210,6 +233,8 @@ RSpec.describe Expire::NewRules do
       end
 
       before do
+        allow(backups).to receive(:empty?).and_return(false)
+
         allow(one_per_hour_rule).to receive(:apply)
         allow(one_per_day_rule).to receive(:apply)
         allow(one_per_week_rule).to receive(:apply)
@@ -261,7 +286,6 @@ RSpec.describe Expire::NewRules do
         instance_double('Expire::OnePerSpacingForRule')
       end
 
-      let(:backups) { [] }
       let(:reference_time) { DateTime.now }
 
       let(:rules) do
@@ -275,6 +299,8 @@ RSpec.describe Expire::NewRules do
       end
 
       before do
+        allow(backups).to receive(:empty?).and_return(false)
+
         allow(from_now_one_per_hour_for_rule).to receive(:apply)
         allow(from_now_one_per_day_for_rule).to receive(:apply)
         allow(from_now_one_per_week_for_rule).to receive(:apply)

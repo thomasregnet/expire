@@ -72,6 +72,8 @@ module Expire
     def apply(backups)
       apply_most_recent_rule(backups)
       apply_one_per_unit_rules(backups)
+      apply_one_per_unit_for_rules(backups)
+      apply_from_now_one_per_unit_for_rules(backups)
     end
 
     private
@@ -85,6 +87,22 @@ module Expire
       ONE_PER_UNIT_RULE_NAMES.each do |rule_name|
         rule = rules[rule_name]
         rule&.apply(backups)
+      end
+    end
+
+    def apply_one_per_unit_for_rules(backups)
+      ONE_PER_UNIT_FOR_RULE_NAMES.each do |rule_name|
+        rule = rules[rule_name]
+        rule&.apply(backups)
+      end
+    end
+
+    def apply_from_now_one_per_unit_for_rules(backups)
+      now = DateTime.now
+
+      FROM_NOW_ONE_PER_UNIT_FOR_RULE_NAMES.each do |rule_name|
+        rule = rules[rule_name]
+        rule&.apply(backups, now)
       end
     end
   end

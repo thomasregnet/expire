@@ -15,7 +15,7 @@ module Expire
 
     attr_reader :backups
 
-    def_delegators :backups, :each, :last, :length, :<<
+    def_delegators :backups, :each, :empty?, :last, :length, :<<
 
     def one_per(noun)
       return [] unless any?

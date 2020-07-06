@@ -13,8 +13,6 @@ module Expire
       attr_reader :path, :options
 
       def execute(input: $stdin, output: $stdout)
-        # courier = Expire::SimpleCourier.new
-
         Expire.purge(path, options)
 
         output.puts "OK"

@@ -4,6 +4,7 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/core_ext/date_and_time/calculations'
 require 'date'
+require 'yaml'
 require 'expire/new_backup'
 require 'expire/backups'
 require 'expire/constants'
@@ -21,7 +22,7 @@ require 'expire/most_recent_rule'
 require 'expire/spacing_rule_base'
 require 'expire/one_per_spacing_rule'
 require 'expire/one_per_spacing_for_rule'
-require 'expire/rules'
+# require 'expire/rules'
 require 'expire/new_rules'
 require 'expire/version'
 require 'expire/unknown_rule_error'
@@ -54,6 +55,7 @@ module Expire
     format = format_for(options)
 
     rules_file = options[:rules_file] || return
+
     rules = NewRules.from_yaml(rules_file)
 
     backups = NewFromDirectoryService.call(path)

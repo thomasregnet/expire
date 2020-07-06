@@ -17,8 +17,7 @@ Feature: Purge
     Given a directory named "backups/2020-03-23-12-13"
 
   Scenario: Purge with a rules-file per CLI
-    When I run `expire purge tmp/aruba/backups --rules_file=tmp/aruba/rules.yml`
-    When I run `expire purge backups --rules_file=rules.yml`
+    When I run `expire purge backups --rules-file=rules.yml`
     Then the following directories should exist:
       | backups/2020-05-25-12-13 |
       | backups/2020-05-24-12-13 |

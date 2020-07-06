@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Expire::NewRules do
+RSpec.describe Expire::Rules do
   it { should respond_to(:one_per_hour) }
   it { should respond_to(:one_per_day) }
   it { should respond_to(:one_per_week) }

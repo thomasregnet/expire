@@ -2,7 +2,7 @@
 
 module Expire
   # Representation of a single backup
-  class NewBackup < Delegator
+  class Backup < Delegator
     include Comparable
 
     def initialize(datetime:, path:)

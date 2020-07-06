@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Expire::NewBackup do
+RSpec.describe Expire::Backup do
   subject do
     described_class.new(
       datetime: DateTime.new(1860, 5, 17, 12, 0, 0),

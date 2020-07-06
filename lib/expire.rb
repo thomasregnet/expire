@@ -5,11 +5,11 @@ require 'active_support/core_ext'
 require 'active_support/core_ext/date_and_time/calculations'
 require 'date'
 require 'yaml'
-require 'expire/new_backup'
+require 'expire/backup'
 require 'expire/backups'
 require 'expire/constants'
 require 'expire/format_base'
-require 'expire/new_from_directory_service'
+require 'expire/from_directory_service'
 require 'expire/null_format'
 require 'expire/expired_format'
 require 'expire/enhanced_format'
@@ -23,7 +23,7 @@ require 'expire/spacing_rule_base'
 require 'expire/one_per_spacing_rule'
 require 'expire/one_per_spacing_for_rule'
 # require 'expire/rules'
-require 'expire/new_rules'
+require 'expire/rules'
 require 'expire/version'
 require 'expire/unknown_rule_error'
 
@@ -38,15 +38,15 @@ module Expire
   end
 
   def self.directory(path)
-    NewFromDirectoryService.call(path)
+    FromDirectoryService.call(path)
   end
 
   def self.latest(path)
-    NewFromDirectoryService.call(path).newest
+    FromDirectoryService.call(path).newest
   end
 
   def self.oldest(path)
-    NewFromDirectoryService.call(path).oldest
+    FromDirectoryService.call(path).oldest
   end
 
   def self.purge(path, options)
@@ -56,9 +56,9 @@ module Expire
 
     rules_file = options[:rules_file] || return
 
-    rules = NewRules.from_yaml(rules_file)
+    rules = Rules.from_yaml(rules_file)
 
-    backups = NewFromDirectoryService.call(path)
+    backups = FromDirectoryService.call(path)
     rules.apply(backups).purge(format)
   end
 

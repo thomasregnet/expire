@@ -4,7 +4,7 @@ require 'byebug'
 
 module Expire
   # Reads contents of a directory and returns a corresponding BackupList
-  class NewFromDirectoryService
+  class FromDirectoryService
     def self.call(path)
       new(path).call
     end
@@ -23,7 +23,7 @@ module Expire
       path.children.each do |backup_dir|
         datetime = datetime_for(backup_dir)
 
-        backup = NewBackup.new(datetime: datetime, path: backup_dir)
+        backup = Backup.new(datetime: datetime, path: backup_dir)
         backups << backup
       end
 

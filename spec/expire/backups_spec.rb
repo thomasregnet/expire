@@ -13,16 +13,16 @@ RSpec.describe Expire::Backups do
     let(:backups) do
       described_class.new(
         [
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :oldest
           ),
 
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :newest
           ),
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
             path:     :middle
           )
@@ -66,12 +66,12 @@ RSpec.describe Expire::Backups do
     let(:backup_list) do
       described_class.new(
         [
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :fake_path
           ),
 
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
           )
@@ -90,12 +90,12 @@ RSpec.describe Expire::Backups do
     let(:backup_list) do
       described_class.new(
         [
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :fake_path
           ),
 
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
           )
@@ -115,26 +115,26 @@ RSpec.describe Expire::Backups do
       let(:hourly) do
         described_class.new(
           [
-            Expire::NewBackup.new(
+            Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
               path:     :fake_path
             ),
 
-            Expire::NewBackup.new(
+            Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
               path:     :fake_path
             ),
-            Expire::NewBackup.new(
+            Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
               path:     :fake_path
             ),
 
-            Expire::NewBackup.new(
+            Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 33, 0),
               path:     :fake_path
             ),
 
-            Expire::NewBackup.new(
+            Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
               path:     :fake_path
             )
@@ -149,11 +149,11 @@ RSpec.describe Expire::Backups do
       # rubocop:disable RSpec/ExampleLength
       it 'returns hourly backups' do
         expect(hourly).to contain_exactly(
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
             path:     :fake_path
           ),
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
             path:     :fake_path
           )
@@ -164,9 +164,9 @@ RSpec.describe Expire::Backups do
   end
 
   describe 'after expire' do
-    let(:expired_one) { instance_double('Expire::NewBackup') }
-    let(:expired_two) { instance_double('Expire::NewBackup') }
-    let(:kept_one) { instance_double('Expire::NewBackup') }
+    let(:expired_one) { instance_double('Expire::Backup') }
+    let(:expired_two) { instance_double('Expire::Backup') }
+    let(:kept_one) { instance_double('Expire::Backup') }
 
     let(:backups) do
       described_class.new([expired_one, expired_two, kept_one])
@@ -216,7 +216,7 @@ RSpec.describe Expire::Backups do
 
     describe '#purge' do
       # No verifying double for backup because #id is delegated
-      let(:backup) { instance_double('Expire::NewBackup') }
+      let(:backup) { instance_double('Expire::Backup') }
       let(:format) { instance_double('Expire::NullFormat') }
       let(:result) { described_class.new([backup]) }
 

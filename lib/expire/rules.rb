@@ -4,7 +4,7 @@ require 'expire/unknown_rule_error'
 
 module Expire
   # Rules how to expire backups
-  class NewRules
+  class Rules
     include Constants
 
     ONE_PER_UNIT_RULE_NAMES = STEP_NOUNS.map do |unit|

@@ -49,9 +49,9 @@ module Expire
       backups.min
     end
 
-    def to_audited_backup_list
-      self.class.new(map { |backup| AuditedBackup.new(backup) })
-    end
+    # def to_audited_backup_list
+    #   self.class.new(map { |backup| AuditedBackup.new(backup) })
+    # end
 
     def expired
       self.class.new(backups.select(&:expired?))

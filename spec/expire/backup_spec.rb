@@ -1,6 +1,17 @@
 # frozen_string_literal: true
 
 RSpec.describe Expire::Backup do
+  subject do
+    described_class.new(
+      datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+      path:     Pathname.new('backups/1860-05-17_12_00_00')
+    )
+  end
+
+  it { should respond_to :reasons_to_keep }
+  it { should respond_to :expired? }
+  it { should respond_to :keep? }
+
   describe '#same_hour?' do
     let(:backup) do
       described_class.new(
@@ -65,7 +76,6 @@ RSpec.describe Expire::Backup do
         )
       end
 
-
       it 'returns true' do
         expect(backup).to be_same_day(other)
       end
@@ -91,7 +101,6 @@ RSpec.describe Expire::Backup do
           path:     Pathname.new('backups/1860-04-22_12_00_00')
         )
       end
-
 
       it 'returns false' do
         expect(backup).not_to be_same_day(other)
@@ -189,7 +198,6 @@ RSpec.describe Expire::Backup do
         )
       end
 
-
       it 'returns false' do
         expect(backup).not_to be_same_week(other)
       end
@@ -204,7 +212,6 @@ RSpec.describe Expire::Backup do
       )
     end
 
-
     context 'when the year is the same' do
       let(:other) do
         described_class.new(
@@ -212,7 +219,6 @@ RSpec.describe Expire::Backup do
           path:     Pathname.new('backups/1860-05-15_01_10_30')
         )
       end
-
 
       it 'returns true' do
         expect(backup).to be_same_year(other)
@@ -229,6 +235,52 @@ RSpec.describe Expire::Backup do
 
       it 'returns false' do
         expect(backup).not_to be_same_year(other)
+      end
+    end
+  end
+
+  describe '#expired?' do
+    let(:backup) do
+      described_class.new(
+        datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+        path:     Pathname.new('backups/1860-05-17_12_00_00')
+      )
+    end
+
+    context 'with reasons_to_keep' do
+      before { backup.add_reason_to_keep('want to keep') }
+
+      it 'returns false' do
+        expect(backup).not_to be_expired
+      end
+    end
+
+    context 'without reasons_to_keep' do
+      it 'returns true' do
+        expect(backup).to be_expired
+      end
+    end
+  end
+
+  describe '#keep?' do
+    let(:backup) do
+      described_class.new(
+        datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+        path:     Pathname.new('backups/1860-05-17_12_00_00')
+      )
+    end
+
+    context 'with reasons_to_keep' do
+      before { backup.add_reason_to_keep('want to keep') }
+
+      it 'returns true' do
+        expect(backup).to be_keep
+      end
+    end
+
+    context 'without reasons_to_keep' do
+      it 'returns false' do
+        expect(backup).not_to be_keep
       end
     end
   end

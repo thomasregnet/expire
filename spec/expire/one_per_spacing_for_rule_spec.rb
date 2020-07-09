@@ -90,7 +90,7 @@ RSpec.describe Expire::OnePerSpacingForRule do
       backups = []
       datetimes = TestDates.create(years: 1850..1860, months: 4..5)
       datetimes.each do |datetime|
-        backups << Expire::NewBackup.new(
+        backups << Expire::Backup.new(
           datetime: DateTime.new(*datetime),
           path:     datetime.to_s
         )
@@ -113,11 +113,11 @@ RSpec.describe Expire::OnePerSpacingForRule do
 
       it 'keeps the expected amount of backups' do
         expect(backups.keep).to contain_exactly(
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1859, 5, 17, 12, 0, 0),
             path:     :fake_path
           ),
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
             path:     :fake_path
           )
@@ -129,7 +129,7 @@ RSpec.describe Expire::OnePerSpacingForRule do
       let(:expected_backups) do
         datetimes = TestDates.create(years: 1858..1860)
         backups = datetimes.map do |datetime|
-          Expire::NewBackup.new(
+          Expire::Backup.new(
             datetime: DateTime.new(*datetime),
             path:     datetime.to_s
           )

@@ -163,64 +163,10 @@ RSpec.describe Expire::Backups do
     end
   end
 
-  describe '#to_audited_backup_list' do
-    let(:backup_list) do
-      described_class.new(
-        [
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
-          )
-        ]
-      )
-    end
-
-    it { should respond_to(:to_audited_backup_list) }
-
-    it 'returns a BackupList' do
-      expect(backup_list.to_audited_backup_list)
-        .to be_instance_of(described_class)
-    end
-
-    it 'contains AuditedBackups' do
-      expect(backup_list.to_audited_backup_list.first)
-        .to be_instance_of(Expire::AuditedBackup)
-    end
-  end
-
-  describe '#apply' do
-    let(:backup_list) do
-      described_class.new(
-        [
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
-          ),
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :fake_path
-          ),
-          Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
-            path:     :fake_path
-          )
-        ]
-      )
-    end
-
-    it 'calls Expire::CalculateService' do
-      allow(Expire::CalculateService).to receive(:call)
-
-      backup_list.apply(:fake_rules)
-
-      expect(Expire::CalculateService).to have_received(:call)
-    end
-  end
-
   describe 'after expire' do
-    let(:expired_one) { instance_double('Expire::NewBackup') }
-    let(:expired_two) { instance_double('Expire::NewBackup') }
-    let(:kept_one) { instance_double('Expire::NewBackup') }
+    let(:expired_one) { instance_double('Expire::Backup') }
+    let(:expired_two) { instance_double('Expire::Backup') }
+    let(:kept_one) { instance_double('Expire::Backup') }
 
     let(:backups) do
       described_class.new([expired_one, expired_two, kept_one])
@@ -270,7 +216,7 @@ RSpec.describe Expire::Backups do
 
     describe '#purge' do
       # No verifying double for backup because #id is delegated
-      let(:backup) { instance_double('Expire::NewBackup') }
+      let(:backup) { instance_double('Expire::Backup') }
       let(:format) { instance_double('Expire::NullFormat') }
       let(:result) { described_class.new([backup]) }
 

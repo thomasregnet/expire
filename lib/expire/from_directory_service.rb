@@ -12,10 +12,11 @@ module Expire
     def initialize(path)
       @path = Pathname.new(path)
 
-      @backup_list = BackupList.new
+      # @backup_list = BackupList.new
+      @backups = Backups.new
     end
 
-    attr_reader :backup_list, :path
+    attr_reader :backups, :path
 
     def call
       # raise "#{Dir.pwd[30..42]}"
@@ -23,10 +24,10 @@ module Expire
         datetime = datetime_for(backup_dir)
 
         backup = Backup.new(datetime: datetime, path: backup_dir)
-        backup_list << backup
+        backups << backup
       end
 
-      backup_list
+      backups
     end
 
     private

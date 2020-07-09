@@ -4,19 +4,10 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/core_ext/date_and_time/calculations'
 require 'date'
-require 'expire/audited_backup'
-require 'expire/new_backup'
+require 'yaml'
 require 'expire/backup'
-require 'expire/backup_list'
 require 'expire/backups'
 require 'expire/constants'
-require 'expire/calculate_service_base'
-require 'expire/calculate_adjective_service_base'
-require 'expire/calculate_adjective_service'
-require 'expire/calculate_adjective_for_service_base'
-require 'expire/calculate_adjective_for_service'
-require 'expire/calculate_service'
-require 'expire/calculate_adjective_for_from_now_service'
 require 'expire/format_base'
 require 'expire/from_directory_service'
 require 'expire/null_format'
@@ -31,8 +22,8 @@ require 'expire/most_recent_rule'
 require 'expire/spacing_rule_base'
 require 'expire/one_per_spacing_rule'
 require 'expire/one_per_spacing_for_rule'
+# require 'expire/rules'
 require 'expire/rules'
-require 'expire/new_rules'
 require 'expire/version'
 require 'expire/unknown_rule_error'
 
@@ -51,11 +42,11 @@ module Expire
   end
 
   def self.latest(path)
-    FromDirectoryService.call(path).latest_one
+    FromDirectoryService.call(path).newest
   end
 
   def self.oldest(path)
-    FromDirectoryService.call(path).oldest_one
+    FromDirectoryService.call(path).oldest
   end
 
   def self.purge(path, options)
@@ -64,9 +55,11 @@ module Expire
     format = format_for(options)
 
     rules_file = options[:rules_file] || return
+
     rules = Rules.from_yaml(rules_file)
 
-    FromDirectoryService.call(path).apply(rules).purge(format)
+    backups = FromDirectoryService.call(path)
+    rules.apply(backups).purge(format)
   end
 
   def self.format_for(options)

@@ -10,7 +10,7 @@ RSpec.describe Expire::OnePerSpacingRule do
       let(:backups) do
         backups = TestDates.create(months: 4..5, years: 1856..1860).map do |date|
           datetime = DateTime.new(*date)
-          Expire::NewBackup.new(datetime: datetime, path: 'fake/path')
+          Expire::Backup.new(datetime: datetime, path: 'fake/path')
         end
 
         Expire::Backups.new(backups)
@@ -46,7 +46,7 @@ RSpec.describe Expire::OnePerSpacingRule do
       let(:backups) do
         backups = TestDates.create(days: (1..30).step(3)).map do |date|
           datetime = DateTime.new(*date)
-          Expire::NewBackup.new(datetime: datetime, path: 'fake/path')
+          Expire::Backup.new(datetime: datetime, path: 'fake/path')
         end
 
         Expire::Backups.new(backups)

@@ -8,9 +8,11 @@ module Expire
     def initialize(datetime:, path:)
       @datetime = datetime
       @path     = path
+
+      @reasons_to_keep = []
     end
 
-    attr_reader :datetime, :path
+    attr_reader :datetime, :path, :reasons_to_keep
     alias __getobj__ datetime
 
     def same_hour?(other)
@@ -49,6 +51,22 @@ module Expire
     # Note that this Class includes the Comparable module
     def <=>(other)
       datetime <=> other.datetime
+    end
+
+    def add_reason_to_keep(reason)
+      reasons_to_keep << reason
+    end
+
+    # def datetime
+    #   backup.datetime
+    # end
+
+    def expired?
+      reasons_to_keep.empty?
+    end
+
+    def keep?
+      reasons_to_keep.any?
     end
   end
 end

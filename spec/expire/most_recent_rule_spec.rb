@@ -8,8 +8,8 @@ RSpec.describe Expire::MostRecentRule do
   it_behaves_like 'a rule'
 
   describe '#apply' do
-    let(:backup_one) { instance_double('Expire::NewBackup') }
-    let(:backup_two) { instance_double('Expire::NewBackup') }
+    let(:backup_one) { instance_double('Expire::Backup') }
+    let(:backup_two) { instance_double('Expire::Backup') }
 
     let(:backups) { instance_double('Expire::Backups') }
 

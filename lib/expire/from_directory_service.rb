@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'byebug'
-
 module Expire
   # Reads contents of a directory and returns a corresponding BackupList
   class FromDirectoryService

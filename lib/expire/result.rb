@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'forwardable'
-
 module Expire
   # The resulting backup of a calculation
   class Result

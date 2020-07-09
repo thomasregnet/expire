@@ -1,31 +1,15 @@
 # frozen_string_literal: true
 
+
 require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/core_ext/date_and_time/calculations'
 require 'date'
 require 'yaml'
-require 'expire/backup'
-require 'expire/backups'
-require 'expire/constants'
-require 'expire/format_base'
-require 'expire/from_directory_service'
-require 'expire/null_format'
-require 'expire/expired_format'
-require 'expire/enhanced_format'
-require 'expire/keep_format'
-require 'expire/playground'
-require 'expire/simple_format'
-require 'expire/result'
-require 'expire/rule_base'
-require 'expire/most_recent_rule'
-require 'expire/spacing_rule_base'
-require 'expire/one_per_spacing_rule'
-require 'expire/one_per_spacing_for_rule'
-# require 'expire/rules'
-require 'expire/rules'
-require 'expire/version'
-require 'expire/unknown_rule_error'
+require 'zeitwerk'
+
+loader = Zeitwerk::Loader.for_gem
+loader.setup
 
 # Expire backup directories
 module Expire

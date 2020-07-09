@@ -25,6 +25,7 @@ PATH
       tty-table (~> 0.11.0)
       tty-tree (~> 0.3)
       tty-which (~> 0.4)
+      zeitwerk
 
 GEM
   remote: https://rubygems.org/

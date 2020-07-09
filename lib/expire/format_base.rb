@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-require 'expire/null_format'
+# For some unknown reason Pastel is not autoloaded by Zeitwerk
+require 'pastel'
 
 module Expire
   # Base class for formats

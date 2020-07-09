@@ -1,8 +1,5 @@
 # frozen_string_literal: true
 
-require 'tty-screen'
-require 'expire/simple_format'
-
 module Expire
   # Detailed information about what is being kept and why
   class EnhancedFormat < SimpleFormat

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'expire/unknown_rule_error'
-
 module Expire
   # Rules how to expire backups
   class Rules

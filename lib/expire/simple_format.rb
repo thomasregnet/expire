@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'pastel'
-
 module Expire
   # Sends "keeping" and "purged" to it's receiver
   class SimpleFormat < FormatBase

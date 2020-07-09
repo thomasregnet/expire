@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'fileutils'
-
 module Expire
   # Create playground with example data
   class Playground

@@ -5,6 +5,9 @@ module Expire
   class AdjectiveRule < Rule
     include Constants
 
+    def self.from_value(value)
+    end
+
     def spacing
       match = class_name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
 

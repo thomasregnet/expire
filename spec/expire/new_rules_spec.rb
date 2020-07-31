@@ -36,12 +36,7 @@ RSpec.describe Expire::NewRules do
     let(:second_rule) { instance_double('Expire::DailyRule') }
 
     before do
-      allow(rules).to receive(:rules).and_return(
-        {
-          first_rule:  first_rule,
-          second_rule: second_rule
-        }
-      )
+      allow(rules).to receive(:rules).and_return([second_rule, first_rule])
       allow(first_rule).to receive(:rank).and_return(1)
       allow(second_rule).to receive(:rank).and_return(2)
 

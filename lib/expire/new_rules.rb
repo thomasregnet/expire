@@ -29,16 +29,16 @@ module Expire
     ].flatten.freeze
 
     def initialize(given = {})
-      @rules = given.map do |key, value|
-        rule_class = rule_class_for(key)
-        [key, rule_class.from_value(value)]
+      @rules = given.map do |rule_name, value|
+        rule_class = rule_class_for(rule_name)
+        rule_class.from_value(value)
       end
     end
 
     attr_reader :rules
 
     def apply
-      rules.each_value { |rule| rule.apply }
+      rules.each { |rule| rule.apply }
     end
 
     private

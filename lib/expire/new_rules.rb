@@ -37,6 +37,10 @@ module Expire
 
     attr_reader :rules
 
+    def apply
+      rules.each_value { |rule| rule.apply }
+    end
+
     private
 
     def rule_class_for(key)

@@ -8,6 +8,12 @@ module Expire
     def self.from_value(value)
     end
 
+    def apply
+    end
+
+    def rank
+    end
+
     def spacing
       match = class_name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
 

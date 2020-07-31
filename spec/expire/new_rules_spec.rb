@@ -29,4 +29,34 @@ RSpec.describe Expire::NewRules do
       end
     end
   end
+
+  describe '#apply' do
+    let(:rules) { described_class.new }
+    let(:first_rule) { instance_double('Expire::HourlyRule') }
+    let(:second_rule) { instance_double('Expire::DailyRule') }
+
+    before do
+      allow(rules).to receive(:rules).and_return(
+        {
+          first_rule:  first_rule,
+          second_rule: second_rule
+        }
+      )
+      allow(first_rule).to receive(:rank).and_return(1)
+      allow(second_rule).to receive(:rank).and_return(2)
+
+      allow(first_rule).to receive(:apply)
+      allow(second_rule).to receive(:apply)
+    end
+
+    it 'calls #apply on the first rule' do
+      rules.apply
+      expect(first_rule).to have_received(:apply)
+    end
+
+    it 'calls #apply on the second rule' do
+      rules.apply
+      expect(second_rule).to have_received(:apply)
+    end
+  end
 end

@@ -7,6 +7,10 @@ module Expire
       new(amount: Integer(value))
     end
 
+    def rank
+      10
+    end
+
     def apply(backups)
       backups.most_recent(amount).each do |backup|
         backup.add_reason_to_keep(reason_to_keep)

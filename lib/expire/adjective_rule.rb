@@ -5,6 +5,8 @@ module Expire
   class AdjectiveRule < Rule
     include Constants
 
+    PRIMARY_RANK = 20
+
     def self.from_value(value)
     end
 
@@ -12,6 +14,11 @@ module Expire
     end
 
     def rank
+      primary_rank + secondary_rank
+    end
+
+    def primary_rank
+      PRIMARY_RANK
     end
 
     def spacing

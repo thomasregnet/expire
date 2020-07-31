@@ -5,7 +5,9 @@ require 'support/shared_examples_for_rules.rb'
 RSpec.describe Expire::MostRecentRule do
   subject { described_class.new(amount: 1) }
 
-  it_behaves_like 'a rule'
+  it_behaves_like 'a rule' do
+    let(:rank) { 10 }
+  end
 
   describe '#apply' do
     let(:backup_one) { instance_double('Expire::Backup') }

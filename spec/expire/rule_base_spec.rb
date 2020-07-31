@@ -7,7 +7,7 @@ RSpec.describe Expire::RuleBase do
     described_class.new(amount: 1)
   end
 
-  it_behaves_like 'a rule'
+  # it_behaves_like 'a rule'
 
   describe 'amount' do
     context 'with an integer as value' do

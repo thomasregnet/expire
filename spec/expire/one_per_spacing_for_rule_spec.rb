@@ -12,7 +12,7 @@ RSpec.describe Expire::OnePerSpacingForRule do
     )
   end
 
-  it_behaves_like 'a rule'
+  # it_behaves_like 'a rule'
 
   it { should respond_to(:unit) }
 

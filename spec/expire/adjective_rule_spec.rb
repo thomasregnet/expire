@@ -5,8 +5,6 @@ require 'support/shared_examples_for_rules'
 RSpec.describe Expire::AdjectiveRule do
   subject { described_class.new(amount: 3) }
 
-  it_behaves_like 'a rule'
-
   describe '#spacing' do
     let(:instance) { described_class.new(amount: 3) }
 

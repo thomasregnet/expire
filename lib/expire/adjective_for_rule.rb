@@ -2,7 +2,7 @@
 
 module Expire
   # Hold backups for a period
-  class AdjectiveForRule < AdjectiveRule
+  class AdjectiveForRule < FromNowAdjectiveForRule
     include Constants
 
     FROM_STRING_REGEX = /
@@ -33,16 +33,8 @@ module Expire
 
     attr_reader :unit
 
-    def apply(backups, reference_time = nil)
-      reference_time ||= backups.newest
-      minimal = reference_time.send(spacing) - amount
-      spacing_form = spacing.singularize
-
-      backups.one_per(spacing).each do |backup|
-        next if backup.send(spacing_form) <= minimal
-
-        backup.add_reason_to_keep(reason_to_keep)
-      end
+    def apply(backups, _)
+      super(backups, backups.newest)
     end
 
     def primary_rank
@@ -50,7 +42,7 @@ module Expire
     end
 
     def reason_to_keep
-      backup_form = conditionally_pluralize('backup')
+      backup_form = 'backup'.pluralize(amount)
       "keep #{amount} #{ADJECTIVE_FOR[spacing]} #{backup_form}"
     end
   end

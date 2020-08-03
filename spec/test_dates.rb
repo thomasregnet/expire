@@ -47,12 +47,9 @@ class TestDates
   # rubocop:enable Metrics/MethodLength
 
   def days_for(year, month)
-    allowed_days = year.last_day_of(month)
-    days_max = days.max
+    last_day = year.last_day_of(month)
 
-    last_day = days_max > allowed_days ? allowed_days : days_max
-
-    days.min..last_day
+    days.select { |day| day <= last_day }
   end
 
   def to_a
@@ -63,6 +60,19 @@ class TestDates
     Expire::BackupList.new(
       to_backup_list.map { |backup| Expire::AuditedBackup.new(backup) }
     )
+  end
+
+  def to_backups
+    backups = result.map do |args|
+      path = "backups/#{args[0..5].join('_')}"
+
+      Expire::Backup.new(
+        datetime: DateTime.new(*args),
+        path:     path
+      )
+    end
+
+    Expire::Backups.new(backups)
   end
 
   def to_backup_list

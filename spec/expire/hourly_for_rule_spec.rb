@@ -2,13 +2,13 @@
 
 require 'support/shared_examples_for_rules'
 require 'support/shared_examples_for_adjective_rules'
-require 'support/shared_examples_for_adjective_rules/apply'
+require 'support/shared_examples_for_adjective_for_rules'
 
-RSpec.describe Expire::HourlyRule do
-  subject { described_class.new(amount: 3) }
+RSpec.describe Expire::HourlyForRule do
+  subject { described_class.new(amount: 2, unit: 'hour') }
 
   it_behaves_like 'a rule' do
-    let(:rank) { 21 }
+    let(:rank) { 31 }
   end
 
   it_behaves_like 'an adjective rule' do
@@ -16,7 +16,5 @@ RSpec.describe Expire::HourlyRule do
     let(:spacing) { 'hour' }
   end
 
-  it_behaves_like 'an applicable adjective rule' do
-    let(:adjective) { 'hourly' }
-  end
+  it_behaves_like 'an adjective-for rule'
 end

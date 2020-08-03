@@ -18,13 +18,12 @@ module Expire
     end
 
     def adjective
-      match = class_name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
-      return unless match
-
-      match[1]
+      @adjective ||= infer_adjective
     end
 
-    def apply
+    def apply(backups)
+      kept = backups.one_per(spacing).most_recent(amount)
+      kept.each { |backup| backup.add_reason_to_keep(reason_to_keep) }
     end
 
     def rank
@@ -47,6 +46,18 @@ module Expire
 
     def class_name
       self.class.name
+    end
+
+    def infer_adjective
+      match = class_name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
+      return unless match
+
+      match[1]
+    end
+
+    def reason_to_keep
+      plural = 'backup'.pluralize(amount)
+      "keep #{amount} #{adjective} #{plural}"
     end
   end
 end

@@ -11,6 +11,7 @@ RSpec.describe Expire::HourlyRule do
   end
 
   it_behaves_like 'an adjective rule' do
+    let(:adjective) { 'hourly' }
     let(:spacing) { 'hour' }
   end
 end

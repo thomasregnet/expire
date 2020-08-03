@@ -6,8 +6,22 @@ module Expire
     include Constants
 
     PRIMARY_RANK = 20
+    SECONDARY_RANK_FOR = {
+      'hourly' => 1,
+      'daily' => 2,
+      'weekly' => 3,
+      'monthly' => 4,
+      'yearly' => 5
+    }.freeze
 
     def self.from_value(value)
+    end
+
+    def adjective
+      match = class_name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
+      return unless match
+
+      match[1]
     end
 
     def apply
@@ -21,12 +35,12 @@ module Expire
       PRIMARY_RANK
     end
 
+    def secondary_rank
+      SECONDARY_RANK_FOR[adjective]
+    end
+
     def spacing
-      match = class_name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
-
-      return unless match
-
-      NOUN_FOR[match[1]]
+      NOUN_FOR[adjective]
     end
 
     private

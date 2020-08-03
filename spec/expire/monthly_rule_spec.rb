@@ -11,6 +11,7 @@ RSpec.describe Expire::MonthlyRule do
   end
 
   it_behaves_like 'an adjective rule' do
+    let(:adjective) { 'monthly' }
     let(:spacing) { 'month' }
   end
 end

@@ -11,6 +11,7 @@ RSpec.describe Expire::DailyRule do
   end
 
   it_behaves_like 'an adjective rule' do
+    let(:adjective) { 'daily' }
     let(:spacing) { 'day' }
   end
 end

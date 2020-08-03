@@ -11,6 +11,7 @@ RSpec.describe Expire::YearlyRule do
   end
 
   it_behaves_like 'an adjective rule' do
+    let(:adjective) { 'yearly' }
     let(:spacing) { 'year' }
   end
 end

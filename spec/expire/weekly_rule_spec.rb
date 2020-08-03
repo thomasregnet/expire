@@ -11,6 +11,7 @@ RSpec.describe Expire::WeeklyRule do
   end
 
   it_behaves_like 'an adjective rule' do
+    let(:adjective) { 'weekly' }
     let(:spacing) { 'week' }
   end
 end

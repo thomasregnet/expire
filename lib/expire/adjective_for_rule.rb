@@ -25,13 +25,13 @@ module Expire
       new(args.merge({ amount: amount, unit: unit }))
     end
 
-    def initialize(unit:, **args)
-      super(args)
+    # def initialize(unit:, **args)
+    #   super(args)
 
-      @unit = unit
-    end
+    #   @unit = unit
+    # end
 
-    attr_reader :unit
+    # attr_reader :unit
 
     def apply(backups, _)
       super(backups, backups.newest)

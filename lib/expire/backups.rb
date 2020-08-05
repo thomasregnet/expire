@@ -53,10 +53,6 @@ module Expire
       sort.select { |backup| backup.datetime >= reference_time }
     end
 
-    # def to_audited_backup_list
-    #   self.class.new(map { |backup| AuditedBackup.new(backup) })
-    # end
-
     def expired
       self.class.new(backups.select(&:expired?))
     end

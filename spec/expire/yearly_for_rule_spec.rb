@@ -22,11 +22,11 @@ RSpec.describe Expire::YearlyForRule do
 
   it_behaves_like 'an #apply on a rule' do
     let(:backups) do
-      TestDates.create(years: 1858..1860, months: 4..5).to_backups
+      TestDates.create(years: 1857..1860, months: 4..5).to_backups
     end
 
     let(:kept) do
-      TestDates.create(years: 1859..1860, months: (5..5)).to_backups
+      TestDates.create(years: 1858..1860, months: (5..5)).to_backups
     end
 
     let(:reference_time) { nil }

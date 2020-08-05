@@ -26,7 +26,7 @@ RSpec.describe Expire::MonthlyForRule do
     end
 
     let(:kept) do
-      TestDates.create(months: 4..5, days: (29..29)).to_backups
+      TestDates.create(months: 3..5, days: (29..29)).to_backups
     end
 
     let(:reference_time) { nil }

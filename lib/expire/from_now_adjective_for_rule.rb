@@ -3,7 +3,6 @@
 module Expire
   # Base class for from-now rules
   class FromNowAdjectiveForRule < AdjectiveRule
-    # PRIMARY_RANK = 40
     PRIMARY_RANK = 40
 
     def initialize(unit:, **args)
@@ -15,27 +14,19 @@ module Expire
     attr_reader :unit
 
     def apply(backups, reference_datetime)
-      minimal_backup = compareable_fake_backup_for(reference_datetime)
+      minimal_datetime = reference_datetime - amount.send(unit)
+      kept = backups.one_per(spacing).not_older_than(minimal_datetime)
 
-      backups.one_per(spacing).each do |backup|
-        next if backup <= minimal_backup
-
-        backup.add_reason_to_keep(reason_to_keep)
-      end
+      kept.each { |backup| backup.add_reason_to_keep(reason_to_keep) }
     end
 
     def primary_rank
       PRIMARY_RANK
     end
 
-    private
-
-    def compareable_fake_backup_for(reference_datetime)
-      minimal_datetime = reference_datetime - amount.send(unit)
-      fake_backup = Object.new
-      fake_backup.define_singleton_method(:datetime) { minimal_datetime }
-
-      fake_backup
+    def reason_to_keep
+      numerus_unit = unit.pluralize(amount)
+      "from now keep all backups for #{amount} #{numerus_unit}"
     end
   end
 end

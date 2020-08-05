@@ -21,8 +21,8 @@ RSpec.describe Expire::FromNowHourlyForRule do
   it_behaves_like 'an from now adjective-for rule'
 
   it_behaves_like 'an #apply on a rule' do
-    let(:backups) { TestDates.create(days: (16..17), hours: 11..12).to_backups }
-    let(:kept) { TestDates.create(hours: 11..12).to_backups }
-    let(:reference_time) { DateTime.new(1860, 5, 18, 12, 0, 0) }
+    let(:backups) { TestDates.create(days: (15..17), hours: 11..12).to_backups }
+    let(:kept) { TestDates.create(days: 16..17, hours: 11..12).to_backups }
+    let(:reference_time) { DateTime.new(1860, 5, 18, 10, 33, 0) }
   end
 end

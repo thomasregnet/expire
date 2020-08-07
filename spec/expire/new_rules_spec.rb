@@ -22,7 +22,12 @@ RSpec.describe Expire::NewRules do
           daily:                    3,
           weekly:                   3,
           monthly:                  3,
-          yearly:                   3
+          yearly:                   3,
+          hourly_for:               '3 years',
+          daily_for:                '3 years',
+          weekly_for:               '3 years',
+          monthly_for:              '3 years',
+          yearly_for:               '3 years'
         }
       end
 

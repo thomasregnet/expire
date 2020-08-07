@@ -3,6 +3,8 @@
 module Expire
   # Base class for from-now rules
   class FromNowAdjectiveForRule < AdjectiveRule
+    extend FromSpanValue
+
     PRIMARY_RANK = 40
 
     def initialize(unit:, **args)

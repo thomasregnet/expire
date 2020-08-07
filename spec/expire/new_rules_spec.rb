@@ -16,8 +16,8 @@ RSpec.describe Expire::NewRules do
       let(:rules) do
         {
           most_recent:              3,
-          # most_recent_for:          '3 days',
-          # from_now_most_recent_for: '3 days',
+          most_recent_for:          '3 days',
+          from_now_most_recent_for: '3 days',
           hourly:                   3,
           daily:                    3,
           weekly:                   3,

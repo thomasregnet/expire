@@ -2,6 +2,8 @@
 
 module Expire
   class FromNowMostRecentForRule < Rule
+    extend FromSpanValue
+
     def initialize(unit:, **args)
       super(args)
 

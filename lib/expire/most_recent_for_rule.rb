@@ -2,6 +2,7 @@
 
 module Expire
   class MostRecentForRule < FromNowMostRecentForRule
+    extend FromSpanValue
     attr_reader :unit
 
     def apply(backups, _)

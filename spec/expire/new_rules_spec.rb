@@ -15,12 +15,14 @@ RSpec.describe Expire::NewRules do
     context 'with valid rules' do
       let(:rules) do
         {
-          most_recent: 3,
-          hourly:      3,
-          daily:       3,
-          weekly:      3,
-          monthly:     3,
-          yearly:      3
+          most_recent:              3,
+          # most_recent_for:          '3 days',
+          # from_now_most_recent_for: '3 days',
+          hourly:                   3,
+          daily:                    3,
+          weekly:                   3,
+          monthly:                  3,
+          yearly:                   3
         }
       end
 

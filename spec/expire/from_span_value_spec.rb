@@ -28,10 +28,17 @@ RSpec.describe Expire::FromSpanValue do
     ['1 year',   1, 'year'],
     ['3 years',  3, 'year'],
 
-    ['  5   years ',    5, 'year'],
-    ['5.years',          5, 'year'],
-    ['18_60 year',    1860, 'year'],
-    ['18_60_5_17 year',    1860517, 'year']
+    ['  5   years ',       5, 'year'],
+    ['5.years',            5, 'year'],
+    ['18_60 year',         1860, 'year'],
+    ['18_60_5_17 year',    1_860_517, 'year'],
+
+    ['none', 0, nil],
+    ['NONE', 0, nil],
+    ['None', 0, nil],
+    ['nOne', 0, nil],
+    ['noNe', 0, nil],
+    ['nonE', 0, nil]
   ]
 
   good_test_params.each do |test_params|

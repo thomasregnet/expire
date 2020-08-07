@@ -13,5 +13,17 @@ RSpec.shared_examples 'a from span-value rule' do
         expect(rule.unit).to eq('year')
       end
     end
+
+    context 'with "none" as value' do
+      let(:rule) { described_class.from_value('none') }
+
+      it 'has an amount of 0' do
+        expect(rule.amount).to be(0)
+      end
+
+      it 'has no unit' do
+        expect(rule.unit).to be_nil
+      end
+    end
   end
 end

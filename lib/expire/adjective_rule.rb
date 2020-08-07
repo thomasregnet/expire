@@ -4,6 +4,7 @@ module Expire
   # Base class for rules with an adjective in their name
   class AdjectiveRule < Rule
     include Constants
+    using RefineAllAndNone
 
     PRIMARY_RANK = 20
     SECONDARY_RANK_FOR = {
@@ -15,6 +16,13 @@ module Expire
     }.freeze
 
     def self.from_value(value)
+      value = -1 if value.all?
+      value = 0 if value.none?
+
+      integer_value = Integer(value)
+      raise ArgumentError, 'must be at least -1' if integer_value < -1
+
+      new(amount: integer_value)
     end
 
     def adjective

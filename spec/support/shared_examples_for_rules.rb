@@ -2,10 +2,29 @@
 
 RSpec.shared_examples 'a rule' do
   it { should respond_to(:amount) }
+  it { should respond_to('<=>') }
 
   describe 'rank' do
-    it "has a rank of " do
+    it 'has a rank of' do
       expect(subject.rank).to eq(rank)
+    end
+  end
+
+  describe 'rules are comparable' do
+    let(:other_rule) { double }
+
+    context 'when compared with a lower ranked rule' do
+      it 'returns the rule' do
+        allow(other_rule).to receive(:rank).and_return(-99_999)
+        expect(subject).to be > other_rule
+      end
+    end
+
+    context 'when compared with a higher ranked rule' do
+      it 'returns the rule' do
+        allow(other_rule).to receive(:rank).and_return(99_999)
+        expect(subject).to be < other_rule
+      end
     end
   end
 end

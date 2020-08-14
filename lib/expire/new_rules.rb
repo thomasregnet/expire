@@ -37,8 +37,8 @@ module Expire
 
     attr_reader :rules
 
-    def apply(backups)
-      rules.each { |rule| rule.apply(backups) }
+    def apply(backups, reference_time)
+      rules.each { |rule| rule.apply(backups, reference_time) }
     end
 
     private

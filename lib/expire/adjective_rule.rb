@@ -29,7 +29,7 @@ module Expire
       @adjective ||= infer_adjective
     end
 
-    def apply(backups)
+    def apply(backups, _)
       kept = backups.one_per(spacing).most_recent(amount)
       kept.each { |backup| backup.add_reason_to_keep(reason_to_keep) }
     end

@@ -58,12 +58,12 @@ RSpec.describe Expire::NewRules do
     end
 
     it 'calls #apply on the first rule' do
-      rules.apply(backups)
+      rules.apply(backups, :dummy_reference_time)
       expect(first_rule).to have_received(:apply)
     end
 
     it 'calls #apply on the second rule' do
-      rules.apply(backups)
+      rules.apply(backups, :dummy_reference_time)
       expect(second_rule).to have_received(:apply)
     end
   end

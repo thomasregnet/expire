@@ -5,29 +5,6 @@ module Expire
   class Rules
     include Constants
 
-    STEP_ADJECTIVE_RULES = STEP_ADJECTIVES.each do |adjective|
-      adjective.to_sym
-    end.freeze
-
-    STEP_ADJECTIVE_FOR_RULES = STEP_ADJECTIVES.each do |adjective|
-      "#{adjective}_for".to_sym
-    end.freeze
-
-    STEP_ADJECTIVE_FOR_RULES = STEP_ADJECTIVES.each do |adjective|
-      "#{adjective}_for".to_sym
-    end.freeze
-
-    FROM_NOW_STEP_ADJECTIVE_FOR_RULES = STEP_ADJECTIVES.each do |adjective|
-      "from_now_#{adjective}_for".to_sym
-    end.freeze
-
-    ALL_RULES = [
-      :most_recent,
-      STEP_ADJECTIVE_RULES,
-      STEP_ADJECTIVE_FOR_RULES,
-      FROM_NOW_STEP_ADJECTIVE_FOR_RULES
-    ].flatten.freeze
-
     def self.from_yaml(file_name)
       pathname = Pathname.new(file_name)
       yaml_text = pathname.read
@@ -46,7 +23,7 @@ module Expire
     attr_reader :rules
 
     def apply(backups, reference_time)
-      rules.each { |rule| rule.apply(backups, reference_time) }
+      rules.sort.each { |rule| rule.apply(backups, reference_time) }
 
       backups
     end

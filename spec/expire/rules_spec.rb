@@ -45,8 +45,8 @@ RSpec.describe Expire::Rules do
   describe '#apply' do
     let(:backups) { instance_double 'Expire::Backups' }
     let(:rules) { described_class.new }
-    let(:first_rule) { instance_double('Expire::HourlyRule') }
-    let(:second_rule) { instance_double('Expire::DailyRule') }
+    let(:first_rule) { Expire::HourlyRule.from_value('none') }
+    let(:second_rule) { Expire::DailyRule.from_value('none') }
 
     before do
       allow(rules).to receive(:rules).and_return([second_rule, first_rule])

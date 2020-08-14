@@ -15,7 +15,7 @@ RSpec.describe Expire::MostRecentForRule do
   it_behaves_like 'an #apply on a rule' do
     let(:backups) { TestDates.create(days: 14..17).to_backups }
     let(:kept) { TestDates.create(days: 15..17).to_backups }
-    let(:reference_time) { nil }
+    let(:reference_datetime) { nil }
   end
 
   it_behaves_like 'a from span-value rule'

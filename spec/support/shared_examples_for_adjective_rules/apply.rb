@@ -16,15 +16,15 @@ RSpec.shared_examples 'an applicable adjective rule' do
     end
 
     it 'keeps 2 backups' do
-      expect(rule.apply(backups, :dummy_reference_time).length).to eq(2)
+      expect(rule.apply(backups, :dummy_reference_datetime).length).to eq(2)
     end
 
     it 'keeps a backup from the year 1860' do
-      expect(rule.apply(backups, :dummy_reference_time).first.year).to eq(1860)
+      expect(rule.apply(backups, :dummy_reference_datetime).first.year).to eq(1860)
     end
 
     it 'keeps a backup from the year 1859' do
-      expect(rule.apply(backups, :dummy_reference_time).last.year).to eq(1859)
+      expect(rule.apply(backups, :dummy_reference_datetime).last.year).to eq(1859)
     end
 
     it 'adds a reason_to_keep to the first kept backup' do
@@ -33,7 +33,7 @@ RSpec.shared_examples 'an applicable adjective rule' do
     end
 
     it 'adds a reason_to_keep to the second kept backup' do
-      expect(rule.apply(backups, :dummy_reference_time).last.reasons_to_keep)
+      expect(rule.apply(backups, :dummy_reference_datetime).last.reasons_to_keep)
         .to contain_exactly("keep 2 #{adjective} backups")
     end
   end

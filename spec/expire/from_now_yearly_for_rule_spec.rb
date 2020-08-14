@@ -28,6 +28,6 @@ RSpec.describe Expire::FromNowYearlyForRule do
     let(:kept) do
       TestDates.create(years: 1859..1860).to_backups
     end
-    let(:reference_time) { DateTime.new(1861, 5, 10, 12, 0, 0) }
+    let(:reference_datetime) { DateTime.new(1861, 5, 10, 12, 0, 0) }
   end
 end

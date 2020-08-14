@@ -116,31 +116,31 @@ RSpec.describe Expire::Backups do
     let(:backups) { TestDates.create(days: 15..17).to_backups }
 
     context 'with no backup not older than reference time' do
-      let(:reference_time) { DateTime.new(1860, 5, 17, 12, 0, 1) }
+      let(:reference_datetime) { DateTime.new(1860, 5, 17, 12, 0, 1) }
       let(:kept) { described_class.new }
 
       it 'returns all backups not older than the reference time' do
-        expect(backups.not_older_than(reference_time))
+        expect(backups.not_older_than(reference_datetime))
           .to contain_exactly(*kept)
       end
     end
 
     context 'with all backups not older than reference time' do
-      let(:reference_time) { DateTime.new(1860, 5, 15, 12, 0, 0) }
+      let(:reference_datetime) { DateTime.new(1860, 5, 15, 12, 0, 0) }
       let(:kept) { TestDates.create(days: 15..17).to_backups }
 
       it 'returns all backups not older than the reference time' do
-        expect(backups.not_older_than(reference_time))
+        expect(backups.not_older_than(reference_datetime))
           .to contain_exactly(*kept)
       end
     end
 
     context 'with some backups not older than reference time' do
-      let(:reference_time) { DateTime.new(1860, 5, 15, 12, 0, 1) }
+      let(:reference_datetime) { DateTime.new(1860, 5, 15, 12, 0, 1) }
       let(:kept) { TestDates.create(days: 16..17).to_backups }
 
       it 'returns all backups not older than the reference time' do
-        expect(backups.not_older_than(reference_time))
+        expect(backups.not_older_than(reference_datetime))
           .to contain_exactly(*kept)
       end
     end

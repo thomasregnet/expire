@@ -23,6 +23,6 @@ RSpec.describe Expire::HourlyForRule do
   it_behaves_like 'an #apply on a rule' do
     let(:backups) { TestDates.create(days: 15..17, hours: 11..12).to_backups }
     let(:kept) { TestDates.create(hours: 11..12).to_backups }
-    let(:reference_time) { nil }
+    let(:reference_datetime) { nil }
   end
 end

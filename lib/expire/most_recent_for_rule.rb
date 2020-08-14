@@ -6,8 +6,8 @@ module Expire
     attr_reader :unit
 
     def apply(backups, _)
-      reference_time = backups.newest
-      super(backups, reference_time)
+      reference_datetime = backups.newest
+      super(backups, reference_datetime)
     end
 
     def rank

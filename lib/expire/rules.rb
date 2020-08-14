@@ -22,8 +22,8 @@ module Expire
 
     attr_reader :rules
 
-    def apply(backups, reference_time)
-      rules.sort.each { |rule| rule.apply(backups, reference_time) }
+    def apply(backups, reference_datetime)
+      rules.sort.each { |rule| rule.apply(backups, reference_datetime) }
 
       backups
     end

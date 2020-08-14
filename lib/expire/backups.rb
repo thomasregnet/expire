@@ -49,8 +49,8 @@ module Expire
       backups.min
     end
 
-    def not_older_than(reference_time)
-      sort.select { |backup| backup.datetime >= reference_time }
+    def not_older_than(reference_datetime)
+      sort.select { |backup| backup.datetime >= reference_datetime }
     end
 
     def expired

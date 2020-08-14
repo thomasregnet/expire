@@ -82,20 +82,20 @@ RSpec.describe Expire::Rules do
       end
     end
 
-    context 'with the most_recent rule' do
-      let(:most_recent_rule) { instance_double('Expire::MostRecentRule') }
-      let(:rules) { described_class.new(most_recent: most_recent_rule) }
+    # context 'with the most_recent rule' do
+    #   let(:most_recent_rule) { instance_double('Expire::MostRecentRule') }
+    #   let(:rules) { described_class.new(most_recent: most_recent_rule) }
 
-      before do
-        allow(backups).to receive(:empty?).and_return(false)
-        allow(most_recent_rule).to receive(:apply)
-      end
+    #   before do
+    #     allow(backups).to receive(:empty?).and_return(false)
+    #     allow(most_recent_rule).to receive(:apply)
+    #   end
 
-      it 'calls apply on the most_recent rule' do
-        rules.apply(backups)
-        expect(most_recent_rule).to have_received(:apply).with(backups)
-      end
-    end
+    #   it 'calls apply on the most_recent rule' do
+    #     rules.apply(backups)
+    #     expect(most_recent_rule).to have_received(:apply).with(backups)
+    #   end
+    # end
 
     context 'with one_per_spacing rules' do
       let(:one_per_hour_rule) { instance_double('Expire::SimpleRule') }

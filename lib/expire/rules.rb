@@ -93,7 +93,7 @@ module Expire
 
     def apply_most_recent_rule(backups)
       rule = rules[:most_recent] || return
-      rule.apply(backups)
+      rule.apply(backups, :dummy_reference_time)
     end
 
     def apply_one_per_unit_rules(backups)

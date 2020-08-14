@@ -11,7 +11,7 @@ module Expire
       10
     end
 
-    def apply(backups)
+    def apply(backups, _)
       backups.most_recent(amount).each do |backup|
         backup.add_reason_to_keep(reason_to_keep)
       end

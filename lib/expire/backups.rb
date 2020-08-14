@@ -49,9 +49,9 @@ module Expire
       backups.min
     end
 
-    # def to_audited_backup_list
-    #   self.class.new(map { |backup| AuditedBackup.new(backup) })
-    # end
+    def not_older_than(reference_time)
+      sort.select { |backup| backup.datetime >= reference_time }
+    end
 
     def expired
       self.class.new(backups.select(&:expired?))

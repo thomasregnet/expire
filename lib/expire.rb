@@ -8,6 +8,8 @@ require 'date'
 require 'yaml'
 require 'zeitwerk'
 
+require 'byebug'
+
 loader = Zeitwerk::Loader.for_gem
 loader.setup
 
@@ -34,8 +36,6 @@ module Expire
   end
 
   def self.purge(path, options)
-    # format = options[:format]
-    # format = format == 'simple' ? SimpleFormat.new : NullFormat.new
     format = format_for(options)
 
     rules_file = options[:rules_file] || return
@@ -43,7 +43,9 @@ module Expire
     rules = Rules.from_yaml(rules_file)
 
     backups = FromDirectoryService.call(path)
-    rules.apply(backups).purge(format)
+    reference_datetime = DateTime.now
+
+    rules.apply(backups, reference_datetime).purge(format)
   end
 
   def self.format_for(options)

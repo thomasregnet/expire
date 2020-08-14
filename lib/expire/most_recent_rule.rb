@@ -3,7 +3,15 @@
 module Expire
   # Keep the most recent Backups
   class MostRecentRule < RuleBase
-    def apply(backups)
+    def self.from_value(value)
+      new(amount: Integer(value))
+    end
+
+    def rank
+      10
+    end
+
+    def apply(backups, _)
       backups.most_recent(amount).each do |backup|
         backup.add_reason_to_keep(reason_to_keep)
       end

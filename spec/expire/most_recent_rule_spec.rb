@@ -5,7 +5,9 @@ require 'support/shared_examples_for_rules.rb'
 RSpec.describe Expire::MostRecentRule do
   subject { described_class.new(amount: 1) }
 
-  it_behaves_like 'a rule'
+  it_behaves_like 'a rule' do
+    let(:rank) { 10 }
+  end
 
   describe '#apply' do
     let(:backup_one) { instance_double('Expire::Backup') }
@@ -23,7 +25,7 @@ RSpec.describe Expire::MostRecentRule do
 
         allow(backup_one).to receive(:add_reason_to_keep)
 
-        rule.apply(backups)
+        rule.apply(backups, :dummy_reference_time)
       end
 
       it 'adds a reason_to_keep to the most recent backup' do
@@ -47,7 +49,7 @@ RSpec.describe Expire::MostRecentRule do
         allow(backup_one).to receive(:add_reason_to_keep)
         allow(backup_two).to receive(:add_reason_to_keep)
 
-        rule.apply(backups)
+        rule.apply(backups, :dummy_reference_time)
       end
 
       it 'adds a reason_to_keep to the most recent backup' do

@@ -46,7 +46,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'tty-file', '~> 0.8.0'
   spec.add_dependency 'tty-font', '~> 0.4.0'
   spec.add_dependency 'tty-logger', '~> 0.2.0'
-  spec.add_dependency 'tty-markdown', '~> 0.6.0'
+  # tty-markdown depends on an old version of kramdown. This old kramdown
+  # has an vulnerability. Since we don't need markdown simple comment it out.
+  # spec.add_dependency 'tty-markdown', '~> 0.6.0'
   spec.add_dependency 'tty-pager', '~> 0.12'
   spec.add_dependency 'tty-pie', '~> 0.3.0'
   spec.add_dependency 'tty-platform', '~> 0.2'

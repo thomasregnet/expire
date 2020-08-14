@@ -2,7 +2,7 @@
 
 module Expire
   # Base class for from-now rules
-  class FromNowAdjectiveForRule < AdjectiveRule
+  class FromNowAdjectiveForRuleBase < AdjectiveRuleBase
     extend FromSpanValue
 
     PRIMARY_RANK = 40

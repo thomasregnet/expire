@@ -2,7 +2,7 @@
 
 module Expire
   # Base class for rules with an adjective in their name
-  class AdjectiveRule < Rule
+  class AdjectiveRuleBase < RuleBase
     include Constants
     using RefineAllAndNone
 

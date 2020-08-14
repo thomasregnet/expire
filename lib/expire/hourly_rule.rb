@@ -2,6 +2,6 @@
 
 module Expire
   # Keep one backup per hour
-  class HourlyRule < AdjectiveRule
+  class HourlyRule < AdjectiveRuleBase
   end
 end

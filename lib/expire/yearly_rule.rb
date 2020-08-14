@@ -2,6 +2,6 @@
 
 module Expire
   # Keep one backup per year
-  class YearlyRule < AdjectiveRule
+  class YearlyRule < AdjectiveRuleBase
   end
 end

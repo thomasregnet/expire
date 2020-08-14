@@ -2,7 +2,7 @@
 
 module Expire
   # Hold backups for a period
-  class AdjectiveForRule < FromNowAdjectiveForRule
+  class AdjectiveForRuleBase < FromNowAdjectiveForRuleBase
     include Constants
 
     # FROM_STRING_REGEX = /

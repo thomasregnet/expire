@@ -2,7 +2,7 @@
 
 module Expire
   # Base class of all rules
-  class Rule
+  class RuleBase
     def initialize(amount:)
       @amount = amount
     end

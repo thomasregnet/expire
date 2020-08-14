@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 module Expire
-  class FromNowMonthlyForRule < FromNowAdjectiveForRule
+  class FromNowMonthlyForRule < FromNowAdjectiveForRuleBase
   end
 end

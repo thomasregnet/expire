@@ -2,6 +2,6 @@
 
 module Expire
   # Keep one backup per day
-  class DailyRule < AdjectiveRule
+  class DailyRule < AdjectiveRuleBase
   end
 end

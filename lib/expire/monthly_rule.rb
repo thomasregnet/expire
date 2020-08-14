@@ -2,6 +2,6 @@
 
 module Expire
   # Keep one backup per month
-  class MonthlyRule < AdjectiveRule
+  class MonthlyRule < AdjectiveRuleBase
   end
 end

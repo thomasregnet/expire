@@ -2,7 +2,7 @@
 
 require 'support/shared_examples_for_rules'
 
-RSpec.describe Expire::AdjectiveRule do
+RSpec.describe Expire::AdjectiveRuleBase do
   subject { described_class.new(amount: 3) }
 
   describe 'adjective' do

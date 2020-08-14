@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Expire
-  class FromNowMostRecentForRule < Rule
+  class FromNowMostRecentForRule < RuleBase
     extend FromSpanValue
 
     def initialize(unit:, **args)

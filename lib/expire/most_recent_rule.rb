@@ -2,7 +2,7 @@
 
 module Expire
   # Keep the most recent Backups
-  class MostRecentRule < Rule
+  class MostRecentRule < RuleBase
     def self.from_value(value)
       new(amount: Integer(value))
     end

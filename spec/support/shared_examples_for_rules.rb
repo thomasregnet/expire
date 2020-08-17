@@ -4,6 +4,16 @@ RSpec.shared_examples 'a rule' do
   it { should respond_to(:amount) }
   it { should respond_to('<=>') }
 
+  describe '.from_value' do
+    context 'when "none"' do
+      let(:rule) { described_class.from_value('none') }
+
+      it 'has an amount of zero' do
+        expect(rule.amount).to eq(0)
+      end
+    end
+  end
+
   describe 'rank' do
     it 'has a rank of' do
       expect(subject.rank).to eq(rank)

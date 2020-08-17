@@ -3,7 +3,11 @@
 module Expire
   # Keep the most recent Backups
   class MostRecentRule < RuleBase
+    using RefineAllAndNone
+
     def self.from_value(value)
+      return new(amount: 0) if value.none?
+
       new(amount: Integer(value))
     end
 

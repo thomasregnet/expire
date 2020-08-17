@@ -6,6 +6,18 @@ module Expire
   # Command line interface
   class CLI < Thor
 
+    desc 'remove', 'Command description...'
+    method_option :help, aliases: '-h', type: :boolean,
+                         desc: 'Display usage information'
+    def remove(path)
+      if options[:help]
+        invoke :help, ['remove']
+      else
+        require_relative 'commands/remove'
+        Expire::Commands::Remove.new(path: path).execute
+      end
+    end
+
     desc 'oldest PATH', 'Show the oldest backup'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
@@ -44,6 +56,8 @@ module Expire
       enum: %w[expired keep none simple enhanced],
       default: 'none',
       desc: 'output format'
+    method_option :purge_command, aliases: '--cmd', type: :string,
+      desc: 'run command to purge the backup'
     method_option :rules_file, aliases: '-r', type: :string,
       desc: 'read expire-rules from file'
     def purge(path)

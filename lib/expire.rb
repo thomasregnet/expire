@@ -11,6 +11,7 @@ require 'zeitwerk'
 require 'byebug'
 
 loader = Zeitwerk::Loader.for_gem
+loader.inflector.inflect('cli' => 'CLI')
 loader.setup
 
 # Expire backup directories
@@ -57,6 +58,10 @@ module Expire
 
   def self.remove(path)
     FileUtils.rm_r(path)
+  end
+
+  def self.rule_classes
+    Expire::Rules.rule_classes
   end
 
   def self.format_for(options)

@@ -6,6 +6,18 @@ module Expire
   # Command line interface
   class CLI < Thor
 
+    desc 'rule_classes', 'Command description...'
+    method_option :help, aliases: '-h', type: :boolean,
+                         desc: 'Display usage information'
+    def rule_classes(*)
+      if options[:help]
+        invoke :help, ['rule_classes']
+      else
+        require_relative 'commands/rule_classes'
+        Expire::Commands::RuleClasses.new(options).execute
+      end
+    end
+
     desc 'remove', 'Command description...'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'

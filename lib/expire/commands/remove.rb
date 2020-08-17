@@ -12,7 +12,7 @@ module Expire
 
       attr_reader :path
 
-      def execute(input: $stdin, output: $stdout)
+      def execute(output: $stdout)
         begin
           Expire.remove(path)
         rescue Errno::ENOENT => e

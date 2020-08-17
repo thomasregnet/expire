@@ -9,7 +9,6 @@ module Expire
       pathname = Pathname.new(file_name)
       yaml_text = pathname.read
       yaml_rules = YAML.safe_load(yaml_text, symbolize_names: true)
-      puts yaml_rules
       new(yaml_rules)
     end
 

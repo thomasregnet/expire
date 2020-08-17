@@ -36,3 +36,22 @@ Feature: Purge
       | backups/2020-04-23-12-13 |
       | backups/2020-03-23-12-13 |
 
+  # Scenario: Purge with --purge-command per CLI
+  #   When I run `expire purge backups --rules-file=rules.yml --expire-command \'expire <%= path %>\'`
+  #   Then the following directories should exist:
+  #     | backups/2020-05-25-12-13 |
+  #     | backups/2020-05-24-12-13 |
+  #     | backups/2020-05-23-12-13 |
+  #   And the following directories should not exist:
+  #     | backups/2020-04-23-12-13 |
+  #     | backups/2020-03-23-12-13 |
+
+  Scenario: Purge with --purge-command per API
+    When I call Expire.purge with the purge-command option
+    Then the following directories should exist:
+      | backups/2020-05-25-12-13 |
+      | backups/2020-05-24-12-13 |
+      | backups/2020-05-23-12-13 |
+    And the following directories should not exist:
+      | backups/2020-04-23-12-13 |
+      | backups/2020-03-23-12-13 |

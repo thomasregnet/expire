@@ -45,7 +45,14 @@ module Expire
     backups = FromDirectoryService.call(path)
     reference_datetime = DateTime.now
 
-    rules.apply(backups, reference_datetime).purge(format)
+    purge_command = options[:purge_command]
+    if purge_command
+      rules.apply(backups, reference_datetime).purge(format) do |backup|
+        system("#{purge_command} #{backup.path}")
+      end
+    else
+      rules.apply(backups, reference_datetime).purge(format)
+    end
   end
 
   def self.format_for(options)

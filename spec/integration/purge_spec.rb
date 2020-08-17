@@ -6,11 +6,12 @@ Usage:
   expire purge PATH
 
 Options:
-  -h, [--help], [--no-help]      # Display usage information
-  -f, [--format=FORMAT]          # output format
-                                 # Default: none
-                                 # Possible values: expired, keep, none, simple, enhanced
-  -r, [--rules-file=RULES_FILE]  # read expire-rules from file
+  -h, [--help], [--no-help]               # Display usage information
+  -f, [--format=FORMAT]                   # output format
+                                          # Default: none
+                                          # Possible values: expired, keep, none, simple, enhanced
+  --cmd, [--purge-command=PURGE_COMMAND]  # run command to purge the backup
+  -r, [--rules-file=RULES_FILE]           # read expire-rules from file
 
 Command description...
     OUT

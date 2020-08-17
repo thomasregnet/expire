@@ -55,6 +55,10 @@ module Expire
     end
   end
 
+  def self.remove(path)
+    FileUtils.rm_r(path)
+  end
+
   def self.format_for(options)
     case options[:format]
     when 'expired'

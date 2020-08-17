@@ -19,3 +19,8 @@ Feature: Remove
     """
     can't remove backups/bad_backup: No such file or directory
     """
+  Scenario: Try to remove a directory that does not exist per API
+    Given a directory named "backups/bad_backup" does not exist
+    When I call Expire.remove(\"backups/bad_backup\")
+    Then an Errno::ENOENT exception is thrown
+

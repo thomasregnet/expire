@@ -14,7 +14,7 @@ module Expire
 
       def execute(input: $stdin, output: $stdout)
         begin
-          FileUtils.rm_r(path)
+          Expire.remove(path)
         rescue Errno::ENOENT => e
           output.puts "can't remove #{path}: #{e}"
           exit 1

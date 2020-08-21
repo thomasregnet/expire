@@ -69,7 +69,7 @@ module Expire
   end
 
   def self.rule_option_names
-    Expire::Rules.rule_option_names
+    Expire::RuleList.option_names
   end
 
   def self.format_for(options)

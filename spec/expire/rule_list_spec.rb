@@ -58,4 +58,33 @@ RSpec.describe Expire::RuleList do
       expect(described_class.names).to contain_exactly(*expected)
     end
   end
+
+  describe '.option_names' do
+    let(:expected) do
+      %w[
+        --most-recent
+        --most-recent-for
+        --from-now-most-recent-for
+        --hourly
+        --daily
+        --weekly
+        --monthly
+        --yearly
+        --hourly-for
+        --daily-for
+        --weekly-for
+        --monthly-for
+        --yearly-for
+        --from-now-hourly-for
+        --from-now-daily-for
+        --from-now-weekly-for
+        --from-now-monthly-for
+        --from-now-yearly-for
+      ]
+    end
+
+    it 'returns the option_names' do
+      expect(described_class.option_names).to contain_exactly(*expected)
+    end
+  end
 end

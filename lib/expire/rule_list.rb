@@ -11,6 +11,10 @@ module Expire
       new.names
     end
 
+    def self.option_names
+      new.option_names
+    end
+
     def initialize
       class_symbols = Expire.constants.select do |klass|
         Expire.const_get(klass).to_s =~ /Rule\z/
@@ -29,6 +33,10 @@ module Expire
 
     def names
       rule_instances.map(&:name)
+    end
+
+    def option_names
+      rule_instances.map(&:option_name)
     end
 
     private

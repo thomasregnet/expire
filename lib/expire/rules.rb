@@ -34,6 +34,18 @@ module Expire
       rules.sort.map(&:name)
     end
 
+    def self.rule_option_names
+      rule_classes = Expire.constants.select do |klass|
+        Expire.const_get(klass).to_s =~ /Rule\z/
+      end
+
+      rules = rule_classes.map do |klass|
+        "Expire::#{klass}".constantize.from_value('none')
+      end
+
+      rules.sort.map(&:option_name)
+    end
+
     def initialize(given = {})
       @rules = given.map do |rule_name, value|
         rule_class = rule_class_for(rule_name)

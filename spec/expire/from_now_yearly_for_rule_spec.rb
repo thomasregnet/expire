@@ -10,8 +10,9 @@ RSpec.describe Expire::FromNowYearlyForRule do
   subject { described_class.new(amount: 2, unit: 'years') }
 
   it_behaves_like 'a rule' do
-    let(:name) { 'from_now_yearly_for' }
-    let(:rank) { 45 }
+    let(:name)        { 'from_now_yearly_for' }
+    let(:option_name) { '--from-now-yearly-for' }
+    let(:rank)        { 45 }
   end
 
   it_behaves_like 'an adjective rule' do

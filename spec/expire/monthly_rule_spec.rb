@@ -8,8 +8,9 @@ RSpec.describe Expire::MonthlyRule do
   subject { described_class.new(amount: 3) }
 
   it_behaves_like 'a rule' do
-    let(:name) { 'monthly' }
-    let(:rank) { 24 }
+    let(:name)        { 'monthly' }
+    let(:option_name) { '--monthly' }
+    let(:rank)        { 24 }
   end
 
   it_behaves_like 'an adjective rule' do

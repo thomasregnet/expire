@@ -16,8 +16,20 @@ module Expire
       match[1].underscore
     end
 
+    def option_name
+      camelized = camelized_name || return
+      "--#{camelized.underscore.dasherize}"
+    end
+
     def <=>(other)
       rank <=> other.rank
+    end
+
+    private
+
+    def camelized_name
+      match = self.class.to_s.match(/\A.*::(.+)Rule\z/) || return
+      match[1]
     end
   end
 end

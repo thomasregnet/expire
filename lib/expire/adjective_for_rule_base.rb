@@ -7,7 +7,7 @@ module Expire
       'hour' => 'hourly',
       'day' => 'daily',
       'week' => 'weekly',
-      'month' => 'mounthly',
+      'month' => 'monthly',
       'year' => 'yearly',
     }.freeze
 

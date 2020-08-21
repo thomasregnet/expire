@@ -8,7 +8,7 @@ module Expire
       'day' => 'daily',
       'week' => 'weekly',
       'month' => 'monthly',
-      'year' => 'yearly',
+      'year' => 'yearly'
     }.freeze
 
     PRIMARY_RANK = 30

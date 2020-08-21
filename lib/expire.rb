@@ -61,7 +61,7 @@ module Expire
   end
 
   def self.rule_classes
-    Expire::Rules.rule_classes
+    Expire::RuleList.class_names
   end
 
   def self.rule_names

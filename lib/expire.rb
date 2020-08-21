@@ -64,6 +64,10 @@ module Expire
     Expire::Rules.rule_classes
   end
 
+  def self.rule_names
+    Expire::Rules.rule_names
+  end
+
   def self.format_for(options)
     case options[:format]
     when 'expired'

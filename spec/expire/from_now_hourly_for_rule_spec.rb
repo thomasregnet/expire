@@ -10,6 +10,7 @@ RSpec.describe Expire::FromNowHourlyForRule do
   subject { described_class.new(amount: 2, unit: 'days') }
 
   it_behaves_like 'a rule' do
+    let(:name) { 'from_now_hourly_for' }
     let(:rank) { 41 }
   end
 

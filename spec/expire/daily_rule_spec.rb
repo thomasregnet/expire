@@ -8,6 +8,7 @@ RSpec.describe Expire::DailyRule do
   subject { described_class.new(amount: 3) }
 
   it_behaves_like 'a rule' do
+    let(:name) { 'daily' }
     let(:rank) { 22 }
   end
 

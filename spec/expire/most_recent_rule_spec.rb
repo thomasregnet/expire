@@ -6,6 +6,7 @@ RSpec.describe Expire::MostRecentRule do
   subject { described_class.new(amount: 1) }
 
   it_behaves_like 'a rule' do
+    let(:name) { 'most_recent' }
     let(:rank) { 10 }
   end
 

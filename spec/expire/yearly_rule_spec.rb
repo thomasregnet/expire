@@ -8,6 +8,7 @@ RSpec.describe Expire::YearlyRule do
   subject { described_class.new(amount: 3) }
 
   it_behaves_like 'a rule' do
+    let(:name) { 'yearly' }
     let(:rank) { 25 }
   end
 

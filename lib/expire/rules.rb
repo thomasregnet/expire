@@ -3,8 +3,6 @@
 module Expire
   # How backups are expired
   class Rules
-    include Constants
-
     def self.from_yaml(file_name)
       pathname = Pathname.new(file_name)
       yaml_text = pathname.read

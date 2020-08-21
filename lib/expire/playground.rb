@@ -3,9 +3,13 @@
 module Expire
   # Create playground with example data
   class Playground
-    include Constants
-
-    PLAYGROUND_SIZES = %w[small medium large].freeze
+    STEP_WIDTHS = {
+      'hourly' => 'hour',
+      'daily' => 'day',
+      'weekly' => 'week',
+      'monthly' => 'month',
+      'yearly' => 'year'
+    }.freeze
 
     def self.create(base)
       new(base).create

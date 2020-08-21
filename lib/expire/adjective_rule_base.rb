@@ -3,8 +3,15 @@
 module Expire
   # Base class for rules with an adjective in their name
   class AdjectiveRuleBase < RuleBase
-    include Constants
     using RefineAllAndNone
+
+    NOUN_FOR = {
+      'hourly' => 'hour',
+      'daily' => 'day',
+      'weekly' => 'week',
+      'monthly' => 'month',
+      'yearly' => 'year'
+    }.freeze
 
     PRIMARY_RANK = 20
     SECONDARY_RANK_FOR = {

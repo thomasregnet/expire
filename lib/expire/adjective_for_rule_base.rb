@@ -5,15 +5,10 @@ module Expire
   class AdjectiveForRuleBase < FromNowAdjectiveForRuleBase
     ADJECTIVE_FOR = {
       'hour' => 'hourly',
-      'hours' => 'hourly',
       'day' => 'daily',
-      'days' => 'daily',
       'week' => 'weekly',
-      'weeks' => 'weekly',
       'month' => 'mounthly',
-      'months' => 'mounthly',
       'year' => 'yearly',
-      'years' => 'yearly'
     }.freeze
 
     PRIMARY_RANK = 30

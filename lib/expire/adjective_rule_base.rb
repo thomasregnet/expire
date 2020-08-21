@@ -42,7 +42,7 @@ module Expire
     end
 
     def rank
-      primary_rank + secondary_rank
+      @rank ||= primary_rank + secondary_rank
     end
 
     def primary_rank

@@ -10,6 +10,7 @@ RSpec.describe Expire::FromNowWeeklyForRule do
   subject { described_class.new(amount: 2, unit: 'weeks') }
 
   it_behaves_like 'a rule' do
+    let(:name) { 'from_now_weekly_for' }
     let(:rank) { 43 }
   end
 

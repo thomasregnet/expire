@@ -14,7 +14,13 @@ RSpec.shared_examples 'a rule' do
     end
   end
 
-  describe 'rank' do
+  describe '#name' do
+    it 'returns the right name' do
+      expect(subject.name).to eq(name)
+    end
+  end
+
+  describe '#rank' do
     it 'has a rank of' do
       expect(subject.rank).to eq(rank)
     end

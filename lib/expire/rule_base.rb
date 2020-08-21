@@ -11,6 +11,11 @@ module Expire
 
     attr_reader :amount
 
+    def name
+      match = self.class.to_s.match(/\A.*::(.+)Rule\z/) || return
+      match[1].underscore
+    end
+
     def <=>(other)
       rank <=> other.rank
     end

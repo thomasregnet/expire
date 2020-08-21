@@ -96,6 +96,48 @@ module Expire
       desc: 'run command to purge the backup'
     method_option :rules_file, aliases: '-r', type: :string,
       desc: 'read expire-rules from file'
+    method_option :most_recent, type: :string,
+      desc: 'keep the <integer> most recent backups'
+    method_option :most_recent_for, type: :string,
+      desc: 'keep the most recent backups for <integer> <unit>'
+    method_option :from_now_most_recent_for, type: :string,
+      desc: 'keep the most recent backups for <integer> <unit>' \
+      + 'calculated from now'
+    method_option :hourly, type: :string,
+      desc: 'keep the <integer> most recent backups from different hours'
+    method_option :daily, type: :string,
+      desc: 'keep the <integer> most recent backups from different days'
+    method_option :weekly, type: :string,
+      desc: 'keep the <integer> most recent backups from different weeks'
+    method_option :monthly, type: :string,
+      desc: 'keep the <integer> most recent backups from different months'
+    method_option :yearly, type: :string,
+      desc: 'keep the <integer> most recent backups from different years'
+    method_option :hourly_for, type: :string,
+      desc: 'keep one backup per hour for <integer> <unit>'
+    method_option :daily_for, type: :string,
+      desc: 'keep one backup per day for <integer> <unit>'
+    method_option :weekly_for, type: :string,
+      desc: 'keep one backup per week for <integer> <unit>'
+    method_option :monthly_for, type: :string,
+      desc: 'keep one backup per month for <integer> <unit>'
+    method_option :yearly_for, type: :string,
+      desc: 'keep one backup per year for <integer> <unit>'
+    method_option :from_now_hourly_for, type: :string,
+      desc: 'keep one backup per hour for <integer> <unit>' \
+      + 'calculated from now'
+    method_option :from_now_daily_for, type: :string,
+      desc: 'keep one backup per hour for <integer> <unit>' \
+      + 'calculated from now'
+    method_option :from_now_weekly_for, type: :string,
+      desc: 'keep one backup per hour for <integer> <unit>' \
+      + 'calculated from now'
+    method_option :from_now_monthly_for, type: :string,
+      desc: 'keep one backup per hour for <integer> <unit>' \
+      + 'calculated from now'
+    method_option :from_now_yearly_for, type: :string,
+      desc: 'keep one backup per hour for <integer> <unit>' \
+      + 'calculated from now'
     def purge(path)
       if options[:help]
         invoke :help, ['purge']

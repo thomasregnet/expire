@@ -5,15 +5,13 @@ module Expire
   class AdjectiveRuleBase < RuleBase
     using RefineAllAndNone
 
-    STEP_WIDTHS = [
-      %w[hourly hour].freeze,
-      %w[daily day].freeze,
-      %w[weekly week].freeze,
-      %w[monthly month].freeze,
-      %w[yearly year].freeze
-    ].freeze
-
-    NOUN_FOR = STEP_WIDTHS.to_h.freeze
+    NOUN_FOR = {
+      'hourly' => 'hour',
+      'daily' => 'day',
+      'weekly' => 'week',
+      'monthly' => 'month',
+      'yearly' => 'year'
+    }.freeze
 
     PRIMARY_RANK = 20
     SECONDARY_RANK_FOR = {

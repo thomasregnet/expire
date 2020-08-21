@@ -9,8 +9,9 @@ RSpec.describe Expire::MostRecentForRule do
   subject { described_class.new(amount: 2, unit: 'days') }
 
   it_behaves_like 'a rule' do
-    let(:name) { 'most_recent_for' }
-    let(:rank) { 11 }
+    let(:name)        { 'most_recent_for' }
+    let(:option_name) { '--most-recent-for' }
+    let(:rank)        { 11 }
   end
 
   it_behaves_like 'an #apply on a rule' do

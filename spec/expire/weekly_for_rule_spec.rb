@@ -10,8 +10,9 @@ RSpec.describe Expire::WeeklyForRule do
   subject { described_class.new(amount: 2, unit: 'weeks') }
 
   it_behaves_like 'a rule' do
-    let(:name) { 'weekly_for' }
-    let(:rank) { 33 }
+    let(:name)        { 'weekly_for' }
+    let(:option_name) { '--weekly-for' }
+    let(:rank)        { 33 }
   end
 
   it_behaves_like 'an adjective rule' do

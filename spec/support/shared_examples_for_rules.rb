@@ -20,6 +20,12 @@ RSpec.shared_examples 'a rule' do
     end
   end
 
+  describe '#option_name' do
+    it 'returns the right option_name' do
+      expect(subject.option_name).to eq(option_name)
+    end
+  end
+
   describe '#rank' do
     it 'has a rank of' do
       expect(subject.rank).to eq(rank)

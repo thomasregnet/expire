@@ -10,8 +10,9 @@ RSpec.describe Expire::FromNowDailyForRule do
   subject { described_class.new(amount: 2, unit: 'days') }
 
   it_behaves_like 'a rule' do
-    let(:name) { 'from_now_daily_for' }
-    let(:rank) { 42 }
+    let(:name)        { 'from_now_daily_for' }
+    let(:option_name) { '--from-now-daily-for' }
+    let(:rank)        { 42 }
   end
 
   it_behaves_like 'an adjective rule' do

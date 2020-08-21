@@ -3,8 +3,17 @@
 module Expire
   # Base class for rules with an adjective in their name
   class AdjectiveRuleBase < RuleBase
-    include Constants
     using RefineAllAndNone
+
+    STEP_WIDTHS = [
+      %w[hourly hour].freeze,
+      %w[daily day].freeze,
+      %w[weekly week].freeze,
+      %w[monthly month].freeze,
+      %w[yearly year].freeze
+    ].freeze
+
+    NOUN_FOR = STEP_WIDTHS.to_h.freeze
 
     PRIMARY_RANK = 20
     SECONDARY_RANK_FOR = {

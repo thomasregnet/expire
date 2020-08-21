@@ -3,7 +3,18 @@
 module Expire
   # Hold backups for a period
   class AdjectiveForRuleBase < FromNowAdjectiveForRuleBase
-    include Constants
+    ADJECTIVE_FOR = {
+      'hour' => 'hourly',
+      'hours' => 'hourly',
+      'day' => 'daily',
+      'days' => 'daily',
+      'week' => 'weekly',
+      'weeks' => 'weekly',
+      'month' => 'mounthly',
+      'months' => 'mounthly',
+      'year' => 'yearly',
+      'years' => 'yearly'
+    }.freeze
 
     # FROM_STRING_REGEX = /
     # \A

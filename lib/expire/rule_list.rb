@@ -11,6 +11,10 @@ module Expire
       new.names
     end
 
+    def self.name_symbols
+      new.name_symbols
+    end
+
     def self.option_names
       new.option_names
     end
@@ -33,6 +37,10 @@ module Expire
 
     def names
       rule_instances.map(&:name)
+    end
+
+    def name_symbols
+      names.map(&:to_sym)
     end
 
     def option_names

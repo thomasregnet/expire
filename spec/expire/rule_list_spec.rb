@@ -59,6 +59,35 @@ RSpec.describe Expire::RuleList do
     end
   end
 
+  describe '.name_symbols' do
+    let(:expected) do
+      %i[
+        most_recent
+        most_recent_for
+        from_now_most_recent_for
+        hourly
+        daily
+        weekly
+        monthly
+        yearly
+        hourly_for
+        daily_for
+        weekly_for
+        monthly_for
+        yearly_for
+        from_now_hourly_for
+        from_now_daily_for
+        from_now_weekly_for
+        from_now_monthly_for
+        from_now_yearly_for
+      ]
+    end
+
+    it 'returns the names as symbols' do
+      expect(described_class.name_symbols).to contain_exactly(*expected)
+    end
+  end
+
   describe '.option_names' do
     let(:expected) do
       %w[

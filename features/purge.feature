@@ -55,3 +55,23 @@ Feature: Purge
     And the following directories should not exist:
       | backups/2020-04-23-12-13 |
       | backups/2020-03-23-12-13 |
+
+  Scenario: Purge with rules per cli
+    When I run `expire purge backups --most-recent=3`
+    And the following directories should exist:
+      | backups/2020-05-25-12-13 |
+      | backups/2020-05-24-12-13 |
+      | backups/2020-05-23-12-13 |
+    And the following directories should not exist:
+      | backups/2020-04-23-12-13 |
+      | backups/2020-03-23-12-13 |
+
+  Scenario: Purge with --most-recent=3 per API
+    When I call Expire.purge with the most_recent option
+    Then the following directories should exist:
+      | backups/2020-05-25-12-13 |
+      | backups/2020-05-24-12-13 |
+      | backups/2020-05-23-12-13 |
+    And the following directories should not exist:
+      | backups/2020-04-23-12-13 |
+      | backups/2020-03-23-12-13 |

@@ -3,6 +3,14 @@
 module Expire
   # How backups are expired
   class Rules
+    def self.from_options(options)
+      known_rules = RuleList.name_symbols
+
+      rule_options = options.select { |opt, _| known_rules.include?(opt) }
+
+      new(rule_options)
+    end
+
     def self.from_yaml(file_name)
       pathname = Pathname.new(file_name)
       yaml_text = pathname.read
@@ -12,8 +20,12 @@ module Expire
 
     def initialize(given = {})
       @rules = given.map do |rule_name, value|
-        rule_class = rule_class_for(rule_name)
-        rule_class.from_value(value)
+        if value.respond_to? :rank
+          value
+        else
+          rule_class = rule_class_for(rule_name)
+          rule_class.from_value(value)
+        end
       end
     end
 
@@ -23,6 +35,18 @@ module Expire
       rules.sort.each { |rule| rule.apply(backups, reference_datetime) }
 
       backups
+    end
+
+    def count
+      @rules.length
+    end
+
+    def merge(prior_rules)
+      self.class.new(to_h.merge(prior_rules.to_h))
+    end
+
+    def to_h
+      rules.map { |rule| [rule.name.to_sym, rule] }.to_h
     end
 
     private

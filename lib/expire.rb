@@ -24,10 +24,6 @@ module Expire
     Playground.create(base)
   end
 
-  def self.directory(path)
-    FromDirectoryService.call(path)
-  end
-
   def self.latest(path)
     FromDirectoryService.call(path).newest
   end
@@ -37,23 +33,7 @@ module Expire
   end
 
   def self.purge(path, options)
-    format = format_for(options)
-
-    rules_file = options[:rules_file] || return
-
-    rules = Rules.from_yaml(rules_file)
-
-    backups = FromDirectoryService.call(path)
-    reference_datetime = DateTime.now
-
-    purge_command = options[:purge_command]
-    if purge_command
-      rules.apply(backups, reference_datetime).purge(format) do |backup|
-        system("#{purge_command} #{backup.path}")
-      end
-    else
-      rules.apply(backups, reference_datetime).purge(format)
-    end
+    PurgeService.call(path, options)
   end
 
   def self.remove(path)
@@ -70,22 +50,5 @@ module Expire
 
   def self.rule_option_names
     Expire::RuleList.option_names
-  end
-
-  def self.format_for(options)
-    case options[:format]
-    when 'expired'
-      ExpiredFormat.new
-    when 'keep'
-      KeepFormat.new
-    when 'simple'
-      SimpleFormat.new
-    when 'enhanced'
-      EnhancedFormat.new
-    when 'none'
-      NullFormat.new
-    else
-      NullFormat.new
-    end
   end
 end

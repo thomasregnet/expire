@@ -37,7 +37,8 @@ module Expire
     end
 
     def apply(backups, _)
-      kept = backups.one_per(spacing).most_recent(amount)
+      per_spacing = backups.one_per(spacing)
+      kept = amount == -1 ? per_spacing : per_spacing.most_recent(amount)
       kept.each { |backup| backup.add_reason_to_keep(reason_to_keep) }
     end
 
@@ -72,7 +73,11 @@ module Expire
 
     def reason_to_keep
       plural = 'backup'.pluralize(amount)
-      "keep #{amount} #{adjective} #{plural}"
+      "keep #{pretty_amount} #{adjective} #{plural}"
+    end
+
+    def pretty_amount
+      amount == -1 ? 'all' : amount.to_s
     end
   end
 end

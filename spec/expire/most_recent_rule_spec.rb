@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_rules.rb'
+require 'support/shared_examples_for_rules'
 
 RSpec.describe Expire::MostRecentRule do
   subject { described_class.new(amount: 1) }

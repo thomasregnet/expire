@@ -20,6 +20,28 @@ RSpec.shared_examples 'a rule' do
     end
   end
 
+  describe '#numerus_backup' do
+    context 'with an amount of 1' do
+      let(:rule) { described_class.from_value('none') }
+
+      before { allow(rule).to receive(:amount).and_return(1) }
+
+      it 'returns "backup" (singular)' do
+        expect(rule.numerus_backup).to eq('backup')
+      end
+    end
+
+    context 'with an amount of 10' do
+      let(:rule) { described_class.from_value('none') }
+
+      before { allow(rule).to receive(:amount).and_return(10) }
+
+      it 'returns "backup" (plural)' do
+        expect(rule.numerus_backup).to eq('backups')
+      end
+    end
+  end
+
   describe '#option_name' do
     it 'returns the right option_name' do
       expect(subject.option_name).to eq(option_name)

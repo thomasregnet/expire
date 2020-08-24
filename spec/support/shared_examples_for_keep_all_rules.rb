@@ -10,6 +10,15 @@ RSpec.shared_examples 'a keep all rule' do
     end
   end
 
+  describe '#numerus_backp' do
+    context 'with an amount of -1' do
+      it 'returns "backups"' do
+        rule = described_class.new(amount: -1)
+        expect(rule.numerus_backup).to eq('backups')
+      end
+    end
+  end
+
   describe '#reason_to_keep' do
     context 'with an amount of 5' do
       it 'keeps 1 backup' do

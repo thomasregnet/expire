@@ -73,7 +73,11 @@ module Expire
 
     def reason_to_keep
       plural = 'backup'.pluralize(amount)
-      "keep #{amount} #{adjective} #{plural}"
+      "keep #{pretty_amount} #{adjective} #{plural}"
+    end
+
+    def pretty_amount
+      amount == -1 ? 'all' : amount.to_s
     end
   end
 end

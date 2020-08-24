@@ -3,20 +3,22 @@
 module Expire
   # List rule classes, names and option-names
   class RuleList
+    include Singleton
+
     def self.class_names
-      new.class_names
+      instance.class_names
     end
 
     def self.names
-      new.names
+      instance.names
     end
 
     def self.name_symbols
-      new.name_symbols
+      instance.name_symbols
     end
 
     def self.option_names
-      new.option_names
+      instance.option_names
     end
 
     def initialize

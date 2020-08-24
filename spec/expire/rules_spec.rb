@@ -100,4 +100,35 @@ RSpec.describe Expire::Rules do
       expect(second_rule).to have_received(:apply)
     end
   end
+
+  describe '#count' do
+    let(:rules) { described_class.new(daily: 1, weekly: 3) }
+
+    it 'returns the number of rules' do
+      expect(rules.count).to eq(2)
+    end
+  end
+
+  describe '#merge' do
+    let(:merged) do
+      described_class.new(most_recent: 3, weekly: 3)
+                     .merge(described_class.new(weekly: 5, yearly: 7))
+    end
+
+    it 'returns the expected count of rules' do
+      expect(merged.count).to eq(3)
+    end
+
+    it 'keeps rules that are not contained in the prior rules' do
+      expect(merged.to_h[:most_recent].amount).to eq(3)
+    end
+
+    it 'prefers the rules in the prior rules' do
+      expect(merged.to_h[:weekly].amount).to eq(5)
+    end
+
+    it 'adds rules that are only contained in the prior rules' do
+      expect(merged.to_h[:yearly].amount).to eq(7)
+    end
+  end
 end

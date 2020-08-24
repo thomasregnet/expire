@@ -37,6 +37,10 @@ module Expire
       backups
     end
 
+    def count
+      @rules.length
+    end
+
     def merge(prior_rules)
       self.class.new(to_h.merge(prior_rules.to_h))
     end

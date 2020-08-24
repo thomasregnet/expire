@@ -42,6 +42,15 @@ RSpec.shared_examples 'an applicable adjective rule' do
       end
     end
 
+    context 'with an amount of 0' do
+      let(:rule) { described_class.new(amount: 0) }
+
+      it 'keeps all backups' do
+        rule.apply(backups, :dummy_reference_datetime)
+        expect(backups.keep_count).to eq(0)
+      end
+    end
+
     context 'with an amount of -1' do
       let(:rule) { described_class.new(amount: -1) }
 

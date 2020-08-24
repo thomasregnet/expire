@@ -16,6 +16,10 @@ module Expire
       match[1].underscore
     end
 
+    def numerus_backup
+      'backup'.pluralize(amount)
+    end
+
     def option_name
       camelized = camelized_name || return
       "--#{camelized.underscore.dasherize}"

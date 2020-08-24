@@ -3,6 +3,7 @@
 module Expire
   class FromNowMostRecentForRule < RuleBase
     extend FromSpanValue
+    include NumerusUnit
 
     def initialize(unit:, **args)
       super(args)
@@ -26,8 +27,6 @@ module Expire
     end
 
     def reason_to_keep
-      numerus_unit = unit.pluralize(amount)
-
       "from now keep most recent backups for #{amount} #{numerus_unit}"
     end
   end

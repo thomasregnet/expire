@@ -2,7 +2,8 @@
 
 require 'support/shared_examples_for_from_span_value_rules'
 require 'support/shared_examples_for_rule_apply'
-require 'support/shared_examples_for_rules.rb'
+require 'support/shared_examples_for_rules'
+require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
 RSpec.describe Expire::MostRecentForRule do
@@ -21,4 +22,6 @@ RSpec.describe Expire::MostRecentForRule do
   end
 
   it_behaves_like 'a from span-value rule'
+
+  it_behaves_like 'an unit rule'
 end

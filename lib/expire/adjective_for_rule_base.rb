@@ -22,8 +22,7 @@ module Expire
     end
 
     def reason_to_keep
-      backup_form = 'backup'.pluralize(amount)
-      "keep #{amount} #{ADJECTIVE_FOR[spacing]} #{backup_form}"
+      "keep #{amount} #{ADJECTIVE_FOR[spacing]} #{numerus_backup}"
     end
   end
 end

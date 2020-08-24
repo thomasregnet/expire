@@ -77,21 +77,4 @@ module Expire
   def self.rule_option_names
     Expire::RuleList.option_names
   end
-
-  def self.format_for(options)
-    case options[:format]
-    when 'expired'
-      ExpiredFormat.new
-    when 'keep'
-      KeepFormat.new
-    when 'simple'
-      SimpleFormat.new
-    when 'enhanced'
-      EnhancedFormat.new
-    when 'none'
-      NullFormat.new
-    else
-      NullFormat.new
-    end
-  end
 end

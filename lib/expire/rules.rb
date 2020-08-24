@@ -3,6 +3,14 @@
 module Expire
   # How backups are expired
   class Rules
+    def self.from_options(options)
+      known_rules = RuleList.name_symbols
+
+      rule_options = options.select { |opt, _| known_rules.include?(opt) }
+
+      new(rule_options)
+    end
+
     def self.from_yaml(file_name)
       pathname = Pathname.new(file_name)
       yaml_text = pathname.read

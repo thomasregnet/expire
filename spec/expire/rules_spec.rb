@@ -1,6 +1,39 @@
 # frozen_string_literal: true
 
 RSpec.describe Expire::Rules do
+  context 'with rule and non rule options' do
+    describe '.from_options' do
+      let(:options) do
+        {
+          no_rule_at_all:           'some value',
+          most_recent:              3,
+          most_recent_for:          '3 days',
+          from_now_most_recent_for: '3 days',
+          hourly:                   3,
+          daily:                    3,
+          weekly:                   3,
+          monthly:                  3,
+          yearly:                   3,
+          hourly_for:               '3 years',
+          daily_for:                '3 years',
+          weekly_for:               '3 years',
+          monthly_for:              '3 years',
+          yearly_for:               '3 years',
+          from_now_hourly_for:      '3 years',
+          from_now_daily_for:       '3 years',
+          from_now_weekly_for:      '3 years',
+          from_now_monthly_for:     '3 years',
+          from_now_yearly_for:      '3 years'
+        }
+      end
+
+      it 'returns a Expire::Rules instance' do
+        expect(described_class.from_options(options))
+          .to be_instance_of(described_class)
+      end
+    end
+  end
+
   describe '.new' do
     context 'with an unknown rule' do
       it 'raises an Expire::UnknownRuleError' do

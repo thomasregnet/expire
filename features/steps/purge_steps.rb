@@ -12,3 +12,10 @@ When('I call Expire.purge with the purge-command option') do
     rules_file:    'tmp/aruba/rules.yml'
   )
 end
+
+When('I call Expire.purge with the most_recent option') do
+  Expire.purge(
+    'tmp/aruba/backups',
+    most_recent: 3
+  )
+end

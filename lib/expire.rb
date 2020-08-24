@@ -39,14 +39,17 @@ module Expire
   def self.purge(path, options)
     format = format_for(options)
 
-    rules_file = options[:rules_file] || return
+    rules_file = options[:rules_file]
+    file_rules = rules_file ? Rules.from_yaml(rules_file) : Rules.new
 
-    rules = Rules.from_yaml(rules_file)
+    option_rules = Rules.from_options(options.transform_keys(&:to_sym))
+    rules = file_rules.merge(option_rules)
 
     backups = FromDirectoryService.call(path)
     reference_datetime = DateTime.now
 
     purge_command = options[:purge_command]
+
     if purge_command
       rules.apply(backups, reference_datetime).purge(format) do |backup|
         system("#{purge_command} #{backup.path}")

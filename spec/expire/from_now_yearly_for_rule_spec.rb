@@ -4,6 +4,7 @@ require 'support/shared_examples_for_rules'
 require 'support/shared_examples_for_adjective_rules'
 require 'support/shared_examples_for_from_now_adjective_for_rules'
 require 'support/shared_examples_for_rule_apply'
+require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
 RSpec.describe Expire::FromNowYearlyForRule do
@@ -32,4 +33,6 @@ RSpec.describe Expire::FromNowYearlyForRule do
     end
     let(:reference_datetime) { DateTime.new(1861, 5, 10, 12, 0, 0) }
   end
+
+  it_behaves_like 'an unit rule'
 end

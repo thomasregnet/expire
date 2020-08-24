@@ -4,6 +4,7 @@ module Expire
   # Base class for from-now rules
   class FromNowAdjectiveForRuleBase < AdjectiveRuleBase
     extend FromSpanValue
+    include NumerusUnit
 
     PRIMARY_RANK = 40
 
@@ -27,7 +28,6 @@ module Expire
     end
 
     def reason_to_keep
-      numerus_unit = unit.pluralize(amount)
       "from now keep all backups for #{amount} #{numerus_unit}"
     end
   end

@@ -80,7 +80,7 @@ RSpec.describe Expire::RuleList do
         from_now_weekly_for
         from_now_monthly_for
         from_now_yearly_for
-        ]
+      ]
     end
 
     it 'returns the names as symbols' do

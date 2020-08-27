@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-When('I call Expire.latest\(path)') do
-  @latest_backup = Expire.latest('tmp/aruba/backups')
+When('I call Expire.newest\(path)') do
+  @latest_backup = Expire.newest('tmp/aruba/backups')
 end
 
 Then("I get the latest backup") do

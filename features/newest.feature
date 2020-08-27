@@ -8,7 +8,7 @@ Feature: Latest
     Given a directory named "backups/2020-05-23-12-13"
 
   Scenario: Get the latest backup per API
-    When I call Expire.latest(path)
+    When I call Expire.newest(path)
     Then I get the latest backup
     
   Scenario: Get the latest backup per CLI

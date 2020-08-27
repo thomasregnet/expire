@@ -71,7 +71,7 @@ module Expire
                          desc: 'Display usage information'
     def newest(path)
       if options[:help]
-        invoke :help, ['latest']
+        invoke :help, ['newest']
       else
         require_relative 'commands/newest'
         Expire::Commands::Newest.new(path, options).execute

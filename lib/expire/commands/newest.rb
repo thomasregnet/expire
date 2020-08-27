@@ -4,7 +4,7 @@ require_relative '../command'
 
 module Expire
   module Commands
-    class Latest < Expire::Command
+    class Newest < Expire::Command
       def initialize(path, options)
         @path = path
         @options = options

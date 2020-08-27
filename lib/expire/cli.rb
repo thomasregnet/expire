@@ -66,15 +66,15 @@ module Expire
       end
     end
 
-    desc 'latest PATH', 'Show the latest backup'
+    desc 'newest PATH', 'Show the newest backup'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
-    def latest(path)
+    def newest(path)
       if options[:help]
-        invoke :help, ['latest']
+        invoke :help, ['newest']
       else
-        require_relative 'commands/latest'
-        Expire::Commands::Latest.new(path, options).execute
+        require_relative 'commands/newest'
+        Expire::Commands::Newest.new(path, options).execute
       end
     end
     # Play with test-data

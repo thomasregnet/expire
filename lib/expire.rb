@@ -24,7 +24,7 @@ module Expire
     Playground.create(base)
   end
 
-  def self.latest(path)
+  def self.newest(path)
     FromDirectoryService.call(path).newest
   end
 

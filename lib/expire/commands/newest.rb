@@ -4,7 +4,7 @@ require_relative '../command'
 
 module Expire
   module Commands
-    class Latest < Expire::Command
+    class Newest < Expire::Command
       def initialize(path, options)
         @path = path
         @options = options
@@ -13,7 +13,7 @@ module Expire
       attr_reader :path
 
       def execute(input: $stdin, output: $stdout)
-        output.puts Expire.latest(path).path
+        output.puts Expire.newest(path).path
       end
     end
   end

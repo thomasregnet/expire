@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'expire/commands/latest'
+require 'expire/commands/newest'
 require 'fileutils'
 
-RSpec.describe Expire::Commands::Latest do
+RSpec.describe Expire::Commands::Newest do
   before do
     backup_path = Pathname.new('tmp/aruba/backups')
     FileUtils.rm_rf(backup_path)
@@ -12,7 +12,7 @@ RSpec.describe Expire::Commands::Latest do
     FileUtils.mkpath("#{backup_path}/1860-05-17T13_00_00")
   end
 
-  it 'executes `latest` command successfully' do
+  it 'executes `newest` command successfully' do
     output = StringIO.new
     path = 'tmp/aruba/backups'
     options = {}

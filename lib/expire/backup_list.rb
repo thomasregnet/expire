@@ -4,7 +4,7 @@ require 'forwardable'
 
 module Expire
   # All Backups go here
-  class Backups
+  class BackupList
     include Enumerable
     extend Forwardable
 

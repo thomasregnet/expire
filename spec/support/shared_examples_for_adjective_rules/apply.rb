@@ -10,7 +10,7 @@ RSpec.shared_examples 'an applicable adjective rule' do
         Expire::Backup.new(datetime: datetime, path: 'fake/path')
       end
 
-      Expire::Backups.new(backups)
+      Expire::BackupList.new(backups)
     end
 
     context 'with an amount of 2' do

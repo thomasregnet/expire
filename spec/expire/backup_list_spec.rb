@@ -2,7 +2,7 @@
 
 require 'test_dates'
 
-RSpec.describe Expire::Backups do
+RSpec.describe Expire::BackupList do
   describe '#backups' do
     context 'when initialized without any backups' do
       it 'returns an empty array' do

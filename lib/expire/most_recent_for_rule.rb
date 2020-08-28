@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 module Expire
+  # Keep the most recent backups for a
+  # certain period of time.
   class MostRecentForRule < FromNowMostRecentForRule
     extend FromSpanValue
     include NumerusUnit

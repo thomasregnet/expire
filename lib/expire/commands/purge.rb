@@ -4,6 +4,7 @@ require_relative '../command'
 
 module Expire
   module Commands
+    # Purge expired backups
     class Purge < Expire::Command
       def initialize(path, options)
         @path = path
@@ -15,7 +16,7 @@ module Expire
       def execute(input: $stdin, output: $stdout)
         Expire.purge(path, options)
 
-        output.puts "OK"
+        output.puts 'OK'
       end
     end
   end

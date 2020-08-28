@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'expire/commands/rule_option_names'
 
 RSpec.describe Expire::Commands::RuleOptionNames do
@@ -23,7 +25,7 @@ RSpec.describe Expire::Commands::RuleOptionNames do
       --from-now-yearly-for
     EXPECTED
   end
-  it "executes `rule_option_names` command successfully" do
+  it 'executes `rule_option_names` command successfully' do
     output = StringIO.new
     options = {}
     command = Expire::Commands::RuleOptionNames.new(options)

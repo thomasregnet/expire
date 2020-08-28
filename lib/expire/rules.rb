@@ -58,7 +58,7 @@ module Expire
     def rule_class_for(key)
       rule_class_name_for(key).constantize
     rescue NameError
-      raise UnknownRuleError.new(key)
+      raise UnknownRuleError, key
     end
 
     def rule_class_name_for(key)

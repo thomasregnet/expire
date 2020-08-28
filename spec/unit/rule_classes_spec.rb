@@ -26,7 +26,7 @@ RSpec.describe Expire::Commands::RuleClasses do
     EXPECTED
   end
 
-  it "executes `rule_classes` command successfully" do
+  it 'executes `rule_classes` command successfully' do
     output = StringIO.new
     options = {}
     command = Expire::Commands::RuleClasses.new(options)

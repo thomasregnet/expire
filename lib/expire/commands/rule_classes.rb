@@ -4,9 +4,9 @@ require_relative '../command'
 
 module Expire
   module Commands
+    # Print all rule-classes
     class RuleClasses < Expire::Command
-      def initialize(_)
-      end
+      def initialize(_); end
 
       def execute(output: $stdout)
         Expire.rule_classes.each do |rule_class|

@@ -4,6 +4,7 @@ require_relative '../command'
 
 module Expire
   module Commands
+    # Print the names of all rules
     class RuleNames < Expire::Command
       def initialize(options)
         @options = options

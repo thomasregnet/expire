@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe '`expire remove` command', type: :cli do
   it 'executes `expire help remove` command successfully' do
     output = `expire help remove`

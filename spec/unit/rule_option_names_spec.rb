@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'expire/commands/rule_option_names'
 
 RSpec.describe Expire::Commands::RuleOptionNames do

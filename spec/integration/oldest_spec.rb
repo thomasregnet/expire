@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe '`expire oldest` command', type: :cli do
   it 'executes `expire help oldest` command successfully' do
     output = `expire help oldest`

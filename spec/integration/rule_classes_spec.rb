@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec.describe '`expire rule_classes` command', type: :cli do
   it 'executes `expire help rule_classes` command successfully' do
     output = `expire help rule_classes`

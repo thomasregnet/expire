@@ -15,14 +15,12 @@ module Expire
     attr_reader :options, :path
 
     def call
-      reference_datetime = DateTime.now
-
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
 
       if options[:purge_command]
-        purge_with_command(reference_datetime)
+        purge_with_command
       else
-        rules.apply(backups, reference_datetime).purge(format)
+        purge_without_command
       end
     end
 
@@ -30,6 +28,11 @@ module Expire
 
     def backups
       FromDirectoryService.call(path)
+    end
+
+    def annotaded_backup_list
+      @annotaded_backup_list ||= \
+        rules.apply(FromDirectoryService.call(path), DateTime.now)
     end
 
     def format
@@ -47,9 +50,27 @@ module Expire
         or raise ArgumentError, "unknown format \"#{wanted_format}\""
     end
 
-    def purge_with_command(reference_datetime)
-      rules.apply(backups, reference_datetime).purge(format) do |backup|
-        system("#{options[:purge_command]} #{backup.path}")
+    def purge_without_command
+      annotaded_backup_list.each do |backup|
+        if backup.expired?
+          format.before_purge(backup)
+          FileUtils.rm_rf(backup.path)
+          format.after_purge(backup)
+        else
+          format.on_keep(backup)
+        end
+      end
+    end
+
+    def purge_with_command
+      annotaded_backup_list.each do |backup|
+        if backup.expired?
+          format.before_purge(backup)
+          system("#{options[:purge_command]} #{backup.path}")
+          format.after_purge(backup)
+        else
+          format.on_keep(backup)
+        end
       end
     end
 

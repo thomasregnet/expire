@@ -26,10 +26,6 @@ module Expire
 
     private
 
-    def backups
-      FromDirectoryService.call(path)
-    end
-
     def annotaded_backup_list
       @annotaded_backup_list ||= \
         rules.apply(FromDirectoryService.call(path), DateTime.now)

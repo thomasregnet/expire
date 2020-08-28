@@ -24,6 +24,7 @@ class TestDates
   end
 
   attr_reader :years, :months, :days, :hours, :minutes, :result
+
   def_delegators :result, :each
 
   # This method smells of :reek:TooManyStatements

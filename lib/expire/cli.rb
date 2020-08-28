@@ -1,14 +1,19 @@
 # frozen_string_literal: true
+
 require 'expire'
 require 'thor'
 
 module Expire
   # Command line interface
+  # rubocop:disable Metrics/ClassLength
   class CLI < Thor
-
     desc 'rule_option_names', 'Command description...'
-    method_option :help, aliases: '-h', type: :boolean,
-                         desc: 'Display usage information'
+    method_option(
+      :help,
+      aliases: '-h',
+      type:    :boolean,
+      desc:    'Display usage information'
+    )
     def rule_option_names(*)
       if options[:help]
         invoke :help, ['rule_option_names']
@@ -19,8 +24,12 @@ module Expire
     end
 
     desc 'rule_names', 'Command description...'
-    method_option :help, aliases: '-h', type: :boolean,
-                         desc: 'Display usage information'
+    method_option(
+      :help,
+      aliases: '-h',
+      type:    :boolean,
+      desc:    'Display usage information'
+    )
     def rule_names(*)
       if options[:help]
         invoke :help, ['rule_names']
@@ -31,8 +40,12 @@ module Expire
     end
 
     desc 'rule_classes', 'Command description...'
-    method_option :help, aliases: '-h', type: :boolean,
-                         desc: 'Display usage information'
+    method_option(
+      :help,
+      aliases: '-h',
+      type:    :boolean,
+      desc:    'Display usage information'
+    )
     def rule_classes(*)
       if options[:help]
         invoke :help, ['rule_classes']
@@ -96,48 +109,96 @@ module Expire
       desc: 'run command to purge the backup'
     method_option :rules_file, aliases: '-r', type: :string,
       desc: 'read expire-rules from file'
-    method_option :most_recent, type: :string,
+    method_option(
+      :most_recent,
+      type: :string,
       desc: 'keep the <integer> most recent backups'
-    method_option :most_recent_for, type: :string,
+    )
+    method_option(
+      :most_recent_for,
+      type: :string,
       desc: 'keep the most recent backups for <integer> <unit>'
-    method_option :from_now_most_recent_for, type: :string,
-      desc: 'keep the most recent backups for <integer> <unit>' \
-      + 'calculated from now'
-    method_option :hourly, type: :string,
+    )
+    method_option(
+      :from_now_most_recent_for,
+      type: :string,
+      desc: 'keep the most recent backups for <integer> <unit> calculated from now'
+    )
+    method_option(
+      :hourly,
+      type: :string,
       desc: 'keep the <integer> most recent backups from different hours'
-    method_option :daily, type: :string,
+    )
+    method_option(
+      :daily,
+      type: :string,
       desc: 'keep the <integer> most recent backups from different days'
-    method_option :weekly, type: :string,
+    )
+    method_option(
+      :weekly,
+      type: :string,
       desc: 'keep the <integer> most recent backups from different weeks'
-    method_option :monthly, type: :string,
+    )
+    method_option(
+      :monthly,
+      type: :string,
       desc: 'keep the <integer> most recent backups from different months'
-    method_option :yearly, type: :string,
+    )
+    method_option(
+      :yearly,
+      type: :string,
       desc: 'keep the <integer> most recent backups from different years'
-    method_option :hourly_for, type: :string,
+    )
+    method_option(
+      :hourly_for,
+      type: :string,
       desc: 'keep one backup per hour for <integer> <unit>'
-    method_option :daily_for, type: :string,
+    )
+    method_option(
+      :daily_for,
+      type: :string,
       desc: 'keep one backup per day for <integer> <unit>'
-    method_option :weekly_for, type: :string,
+    )
+    method_option(
+      :weekly_for,
+      type: :string,
       desc: 'keep one backup per week for <integer> <unit>'
-    method_option :monthly_for, type: :string,
+    )
+    method_option(
+      :monthly_for,
+      type: :string,
       desc: 'keep one backup per month for <integer> <unit>'
-    method_option :yearly_for, type: :string,
+    )
+    method_option(
+      :yearly_for,
+      type: :string,
       desc: 'keep one backup per year for <integer> <unit>'
-    method_option :from_now_hourly_for, type: :string,
-      desc: 'keep one backup per hour for <integer> <unit>' \
-      + 'calculated from now'
-    method_option :from_now_daily_for, type: :string,
-      desc: 'keep one backup per hour for <integer> <unit>' \
-      + 'calculated from now'
-    method_option :from_now_weekly_for, type: :string,
-      desc: 'keep one backup per hour for <integer> <unit>' \
-      + 'calculated from now'
-    method_option :from_now_monthly_for, type: :string,
-      desc: 'keep one backup per hour for <integer> <unit>' \
-      + 'calculated from now'
-    method_option :from_now_yearly_for, type: :string,
-      desc: 'keep one backup per hour for <integer> <unit>' \
-      + 'calculated from now'
+    )
+    method_option(
+      :from_now_hourly_for,
+      type: :string,
+      desc: 'keep one backup per hour for <integer> <unit> calculated from now'
+    )
+    method_option(
+      :from_now_daily_for,
+      type: :string,
+      desc: 'keep one backup per hour for <integer> <unit> calculated from now'
+    )
+    method_option(
+      :from_now_weekly_for,
+      type: :string,
+      desc: 'keep one backup per hour for <integer> <unit> calculated from now'
+    )
+    method_option(
+      :from_now_monthly_for,
+      type: :string,
+      desc: 'keep one backup per hour for <integer> <unit> calculated from now'
+    )
+    method_option(
+      :from_now_yearly_for,
+      type: :string,
+      desc: 'keep one backup per hour for <integer> <unit> calculated from now'
+    )
     def purge(path)
       if options[:help]
         invoke :help, ['purge']
@@ -147,17 +208,8 @@ module Expire
       end
     end
 
-    # desc 'purge', 'purge expired backups'
-    # def purge
-    #   # puts '2020-05-23-12-13'
-    #   # TODO: use real rules
-    #   rules = Expire::Rules.new(at_least: 3)
-    #   format = Expire::SimpleFormat.new
-
-    #   Expire.directory('backups').apply(rules).purge(format)
-    # end
-
     desc 'playground', 'play with test-data'
     subcommand 'playground', Playground
   end
+  # rubocop:enable Metrics/ClassLength
 end

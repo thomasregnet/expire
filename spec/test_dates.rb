@@ -56,12 +56,6 @@ class TestDates
     result
   end
 
-  def to_audited_backup_list
-    Expire::BackupList.new(
-      to_backup_list.map { |backup| Expire::AuditedBackup.new(backup) }
-    )
-  end
-
   def to_backups
     backups = result.map do |args|
       path = "backups/#{args[0..5].join('_')}"

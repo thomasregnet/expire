@@ -17,6 +17,8 @@ module Expire
     def call
       reference_datetime = DateTime.now
 
+      raise NoRulesError, 'Will not purge without rules' unless rules.any?
+
       if options[:purge_command]
         purge_with_command(reference_datetime)
       else
@@ -31,14 +33,18 @@ module Expire
     end
 
     def format
-      return NullFormat.new unless wanted_format
-      return NullFormat.new if wanted_format == 'none'
+      @format ||= format_class.new
+    end
 
-      begin
-        "::Expire::#{wanted_format.titleize}Format".constantize.new
-      rescue NameError
-        raise ArgumentError, "unknown format \"#{wanted_format}\""
-      end
+    def format_class
+      wanted_format = options[:format]
+
+      return NullFormat unless wanted_format
+      return NullFormat if wanted_format == 'none'
+
+      class_name = "::Expire::#{wanted_format.titleize}Format"
+      class_name.safe_constantize \
+        or raise ArgumentError, "unknown format \"#{wanted_format}\""
     end
 
     def purge_with_command(reference_datetime)
@@ -48,15 +54,15 @@ module Expire
     end
 
     def rules
+      @rules ||= merge_rules
+    end
+
+    def merge_rules
       rules_file = options[:rules_file]
       file_rules = rules_file ? Rules.from_yaml(rules_file) : Rules.new
 
       option_rules = Rules.from_options(options.transform_keys(&:to_sym))
       file_rules.merge(option_rules)
-    end
-
-    def wanted_format
-      @wanted_format ||= options[:format]
     end
   end
 end

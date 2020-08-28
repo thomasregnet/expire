@@ -4,6 +4,7 @@ require_relative '../command'
 
 module Expire
   module Commands
+    # Print the newest backup
     class Newest < Expire::Command
       def initialize(path, options)
         @path = path

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe  Expire::PurgeService do
+RSpec.describe Expire::PurgeService do
   describe '.call' do
     let(:backup_path)    { 'tmp/backups' }
     let(:expired_backup) { 'tmp/backups/2020-08-11_12_00_00' }
@@ -28,12 +28,12 @@ RSpec.describe  Expire::PurgeService do
 
     context 'with an invalid format' do
       it 'raises an ArgumentError' do
-        expect {
+        expect do
           described_class.call(
             backup_path,
             format: 'grimpfl', most_recent: 1
           )
-        }.to raise_error ArgumentError, 'unknown format "grimpfl"'
+        end.to raise_error ArgumentError, 'unknown format "grimpfl"'
       end
     end
 

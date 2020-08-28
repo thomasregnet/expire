@@ -15,7 +15,7 @@ module Expire
       def execute(input: $stdin, output: $stdout)
         Expire.purge(path, options)
 
-        output.puts "OK"
+        output.puts 'OK'
       end
     end
   end

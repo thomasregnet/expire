@@ -27,25 +27,25 @@ RSpec.describe Expire::EnhancedFormat do
         format.on_keep(backup)
 
         expect(receiver).to have_received(:puts)
-          .with(%r{keeping #{path}})
+          .with(/keeping #{path}/)
       end
 
       it 'sends "  reason:" to the receiver' do
         format.on_keep(backup)
 
-        expect(receiver).to have_received(:puts).with(%r{reasons:})
+        expect(receiver).to have_received(:puts).with(/reasons:/)
       end
 
       it 'sends the first reason to the receiver' do
         format.on_keep(backup)
 
-        expect(receiver).to have_received(:puts).with(%r{this is reason 1})
+        expect(receiver).to have_received(:puts).with(/this is reason 1/)
       end
 
       it 'sends the second reason to the receiver' do
         format.on_keep(backup)
 
-        expect(receiver).to have_received(:puts).with(%r{this is reason 2})
+        expect(receiver).to have_received(:puts).with(/this is reason 2/)
       end
     end
   end

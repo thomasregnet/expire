@@ -15,3 +15,7 @@ detectors:
     accept:
       - e
       - _
+directories:
+  "lib/expire/commands":
+    UnusedParameters:
+      enabled: false

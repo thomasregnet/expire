@@ -15,7 +15,7 @@ RSpec.describe Expire::MostRecentRule do
     let(:backup_one) { instance_double('Expire::Backup') }
     let(:backup_two) { instance_double('Expire::Backup') }
 
-    let(:backups) { instance_double('Expire::Backups') }
+    let(:backups) { instance_double('Expire::BackupList') }
 
     context 'with an amount of 1' do
       let(:rule) { described_class.new(amount: 1) }
@@ -23,7 +23,7 @@ RSpec.describe Expire::MostRecentRule do
       before do
         allow(backups).to receive(:most_recent)
           .with(1)
-          .and_return(Expire::Backups.new([backup_one]))
+          .and_return(Expire::BackupList.new([backup_one]))
 
         allow(backup_one).to receive(:add_reason_to_keep)
 
@@ -44,7 +44,7 @@ RSpec.describe Expire::MostRecentRule do
         allow(backups).to receive(:most_recent)
           .with(2)
           .and_return(
-            Expire::Backups.new(
+            Expire::BackupList.new(
               [backup_one, backup_two]
             )
           )

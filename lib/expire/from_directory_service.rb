@@ -11,7 +11,7 @@ module Expire
       @path = Pathname.new(path)
 
       # @backup_list = BackupList.new
-      @backups = Backups.new
+      @backups = BackupList.new
     end
 
     attr_reader :backups, :path

@@ -72,7 +72,7 @@ class TestDates
       )
     end
 
-    Expire::Backups.new(backups)
+    Expire::BackupList.new(backups)
   end
 
   def to_backup_list

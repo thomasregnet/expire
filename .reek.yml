@@ -18,4 +18,6 @@ detectors:
 directories:
   "lib/expire/commands":
     UnusedParameters:
-      enabled: false
+        enabled: false
+    UtilityFunction:
+       enabled: false 

@@ -4,6 +4,7 @@ require_relative '../command'
 
 module Expire
   module Commands
+    # Purge expired backups
     class Purge < Expire::Command
       def initialize(path, options)
         @path = path

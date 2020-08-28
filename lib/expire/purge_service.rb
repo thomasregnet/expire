@@ -15,21 +15,24 @@ module Expire
     attr_reader :options, :path
 
     def call
-      reference_datetime = DateTime.now
-
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
 
-      if options[:purge_command]
-        purge_with_command(reference_datetime)
-      else
-        rules.apply(backups, reference_datetime).purge(format)
+      annotaded_backup_list.each do |backup|
+        if backup.expired?
+          format.before_purge(backup)
+          purge_path(backup.path)
+          format.after_purge(backup)
+        else
+          format.on_keep(backup)
+        end
       end
     end
 
     private
 
-    def backups
-      FromDirectoryService.call(path)
+    def annotaded_backup_list
+      @annotaded_backup_list ||= \
+        rules.apply(FromDirectoryService.call(path), DateTime.now)
     end
 
     def format
@@ -47,22 +50,26 @@ module Expire
         or raise ArgumentError, "unknown format \"#{wanted_format}\""
     end
 
-    def purge_with_command(reference_datetime)
-      rules.apply(backups, reference_datetime).purge(format) do |backup|
-        system("#{options[:purge_command]} #{backup.path}")
-      end
-    end
-
-    def rules
-      @rules ||= merge_rules
-    end
-
     def merge_rules
       rules_file = options[:rules_file]
       file_rules = rules_file ? Rules.from_yaml(rules_file) : Rules.new
 
       option_rules = Rules.from_options(options.transform_keys(&:to_sym))
       file_rules.merge(option_rules)
+    end
+
+    def purge_path(path)
+      purge_command = options[:purge_command]
+
+      if purge_command
+        system("#{purge_command} #{path}")
+      else
+        FileUtils.rm_rf(path)
+      end
+    end
+
+    def rules
+      @rules ||= merge_rules
     end
   end
 end

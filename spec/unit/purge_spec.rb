@@ -13,12 +13,11 @@ RSpec.describe Expire::Commands::Purge do
     end
   end
 
-  it "executes `purge` command successfully" do
+  it 'executes `purge` command successfully' do
     output = StringIO.new
-    # path = nil
     path = 'tmp/backups'
-    options = {}
-    command = Expire::Commands::Purge.new(path, options)
+    options = { most_recent: 3 }
+    command = described_class.new(path, options)
 
     command.execute(output: output)
 

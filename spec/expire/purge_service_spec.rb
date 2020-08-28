@@ -36,6 +36,13 @@ RSpec.describe  Expire::PurgeService do
         }.to raise_error ArgumentError, 'unknown format "grimpfl"'
       end
     end
+
+    context 'without any rules' do
+      it 'raises a NoRulesError' do
+        expect { described_class.call(backup_path, {}) }
+          .to raise_error Expire::NoRulesError, 'Will not purge without rules'
+      end
+    end
   end
 
   describe '#format (private)' do

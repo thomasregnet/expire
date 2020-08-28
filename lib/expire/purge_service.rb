@@ -52,7 +52,11 @@ module Expire
       file_rules = rules_file ? Rules.from_yaml(rules_file) : Rules.new
 
       option_rules = Rules.from_options(options.transform_keys(&:to_sym))
-      file_rules.merge(option_rules)
+      merged_rules = file_rules.merge(option_rules)
+      raise NoRulesError, 'Will not purge without rules' \
+        unless merged_rules.any?
+
+      merged_rules
     end
 
     def wanted_format

@@ -21,3 +21,13 @@ Naming/VariableNumber:
 
 RSpec/ImplicitExpect:
   Enabled: false
+
+Lint/MissingSuper:
+  Enabled: true
+  Exclude:
+    - lib/expire/commands/*
+
+Lint/UnusedMethodArgument:
+  Enabled: true
+  Exclude:
+    - lib/expire/commands/*

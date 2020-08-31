@@ -20,8 +20,8 @@ module Expire
     end
 
     def option_name
-      camelized = camelized_name || return
-      "--#{camelized.underscore.dasherize}"
+      rule_name = name || return
+      "--#{rule_name.dasherize}"
     end
 
     def <=>(other)

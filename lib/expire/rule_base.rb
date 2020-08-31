@@ -12,8 +12,7 @@ module Expire
     attr_reader :amount
 
     def name
-      match = self.class.to_s.match(/\A.*::(.+)Rule\z/) || return
-      match[1].underscore
+      camelized_name&.underscore
     end
 
     def numerus_backup
@@ -21,8 +20,8 @@ module Expire
     end
 
     def option_name
-      camelized = camelized_name || return
-      "--#{camelized.underscore.dasherize}"
+      rule_name = name || return
+      "--#{rule_name.dasherize}"
     end
 
     def <=>(other)

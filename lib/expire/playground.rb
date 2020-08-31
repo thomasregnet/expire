@@ -31,6 +31,8 @@ module Expire
     attr_reader :backups_dir, :base, :options
 
     def create
+      raise_if_backups_dir_exists
+
       oldest_backup = DateTime.now
 
       STEP_WIDTHS.each do |adjective, noun|
@@ -46,6 +48,15 @@ module Expire
     def mkbackup(datetime)
       backup_name = datetime.to_s.sub(/:\d\d[+-]\d\d:\d\d\z/, '')
       FileUtils.mkdir_p("#{backups_dir}/#{backup_name}")
+    end
+
+    def raise_if_backups_dir_exists
+      return unless FileTest.exist?(backups_dir)
+
+      raise(
+        PathAlreadyExistsError,
+        "Will not create playground in existing path #{backups_dir}"
+      )
     end
   end
 end

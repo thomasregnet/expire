@@ -14,7 +14,8 @@ module Expire
     /x.freeze
 
     def from_value(string, **args)
-      return new(args.merge({ amount: 0, unit: nil })) if string.none?
+      # return new(args.merge({ amount: 0, unit: nil })) if string.none?
+      return new(**args.merge(amount: 0, unit: nil)) if string.none?
 
       stripped_down = string.strip.downcase
       match = stripped_down.match FROM_VALUE_REGEX
@@ -22,7 +23,7 @@ module Expire
 
       amount = Integer(match[1])
       unit = match[5]
-      new(args.merge({ amount: amount, unit: unit }))
+      new(**args.merge(amount: amount, unit: unit))
     end
   end
 end

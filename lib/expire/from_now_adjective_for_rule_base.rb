@@ -9,7 +9,7 @@ module Expire
     PRIMARY_RANK = 40
 
     def initialize(unit:, **args)
-      super(args)
+      super(**args)
 
       @unit = unit
     end

@@ -8,7 +8,7 @@ module Expire
     include NumerusUnit
 
     def initialize(unit:, **args)
-      super(args)
+      super(**args)
 
       @unit = unit
     end

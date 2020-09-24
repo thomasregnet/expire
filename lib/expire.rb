@@ -7,8 +7,6 @@ require 'date'
 require 'yaml'
 require 'zeitwerk'
 
-require 'byebug'
-
 loader = Zeitwerk::Loader.for_gem
 loader.inflector.inflect('cli' => 'CLI')
 loader.setup

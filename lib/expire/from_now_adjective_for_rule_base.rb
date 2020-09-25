@@ -8,6 +8,10 @@ module Expire
 
     PRIMARY_RANK = 40
 
+    def self.primary_rank
+      PRIMARY_RANK
+    end
+
     def initialize(unit:, **args)
       super(**args)
 
@@ -24,7 +28,7 @@ module Expire
     end
 
     def primary_rank
-      PRIMARY_RANK
+      self.class.primary_rank
     end
 
     def reason_to_keep

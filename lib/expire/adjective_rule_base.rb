@@ -32,6 +32,21 @@ module Expire
       new(amount: integer_value)
     end
 
+    def self.primary_rank
+      PRIMARY_RANK
+    end
+
+    def self.rank
+      primary_rank + secondary_rank
+    end
+
+    def self.secondary_rank
+      match = name.downcase.match(/(hourly|daily|weekly|monthly|yearly)/)
+      return unless match
+
+      SECONDARY_RANK_FOR[match[1]]
+    end
+
     def adjective
       @adjective ||= infer_adjective
     end
@@ -47,11 +62,11 @@ module Expire
     end
 
     def primary_rank
-      PRIMARY_RANK
+      self.class.primary_rank
     end
 
     def secondary_rank
-      SECONDARY_RANK_FOR[adjective]
+      self.class.secondary_rank
     end
 
     def spacing

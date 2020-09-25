@@ -7,6 +7,12 @@ module Expire
     extend FromSpanValue
     include NumerusUnit
 
+    RULE_RANK = 12
+
+    def self.rank
+      RULE_RANK
+    end
+
     def initialize(unit:, **args)
       super(**args)
 
@@ -25,7 +31,7 @@ module Expire
     end
 
     def rank
-      12
+      self.class.rank
     end
 
     def reason_to_keep

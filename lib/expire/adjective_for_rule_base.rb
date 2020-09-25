@@ -13,12 +13,20 @@ module Expire
 
     PRIMARY_RANK = 30
 
+    def self.primary_rank
+      PRIMARY_RANK
+    end
+
+    def self.rank
+      primary_rank + secondary_rank
+    end
+
     def apply(backups, _)
       super(backups, backups.newest)
     end
 
     def primary_rank
-      PRIMARY_RANK
+      self.class.primary_rank
     end
 
     def reason_to_keep

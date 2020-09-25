@@ -5,14 +5,20 @@ module Expire
   class MostRecentRule < RuleBase
     using RefineAllAndNone
 
+    RULE_RANK = 10
+
     def self.from_value(value)
       return new(amount: 0) if value.none?
 
       new(amount: Integer(value))
     end
 
+    def self.rank
+      RULE_RANK
+    end
+
     def rank
-      10
+      self.class.rank
     end
 
     def apply(backups, _)

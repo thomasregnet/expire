@@ -48,6 +48,12 @@ RSpec.shared_examples 'a rule' do
     end
   end
 
+  describe '.rank' do
+    it 'has a rank of' do
+      expect(described_class.rank).to eq(rank)
+    end
+  end
+
   describe '#rank' do
     it 'has a rank of' do
       expect(subject.rank).to eq(rank)

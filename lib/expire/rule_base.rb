@@ -10,7 +10,7 @@ module Expire
     end
 
     def self.camelized_name
-      match = self.to_s.match(/\A.*::(.+)Rule\z/) || return
+      match = to_s.match(/\A.*::(.+)Rule\z/) || return
       match[1]
     end
 

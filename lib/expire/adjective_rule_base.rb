@@ -76,7 +76,7 @@ module Expire
     private
 
     def class_name
-      self.class.name
+      self.class.to_s
     end
 
     def infer_adjective

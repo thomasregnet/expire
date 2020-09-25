@@ -5,6 +5,24 @@ module Expire
   class RuleBase
     include Comparable
 
+    def self.<=>(other)
+      rank <=> other.rank
+    end
+
+    def self.camelized_name
+      match = self.to_s.match(/\A.*::(.+)Rule\z/) || return
+      match[1]
+    end
+
+    def self.name
+      camelized_name&.underscore
+    end
+
+    def self.option_name
+      rule_name = name || return
+      "--#{rule_name.dasherize}"
+    end
+
     def initialize(amount:)
       @amount = amount
     end

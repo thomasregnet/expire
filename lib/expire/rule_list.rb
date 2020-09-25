@@ -26,19 +26,15 @@ module Expire
         Expire.const_get(klass).to_s =~ /Rule\z/
       end
 
-      instances = class_symbols.map do |c_sym|
-        "Expire::#{c_sym}".constantize.from_value('none')
-      end
-
-      @rule_instances = instances.sort
+      rule_class_names = class_symbols.map { |c_sym| "Expire::#{c_sym}" }
+      @rule_classes = rule_class_names.map(&:constantize).sort.freeze
+      @class_names = rule_classes.map(&:to_s).freeze
     end
 
-    def class_names
-      rule_instances.map { |instance| instance.class.to_s }
-    end
+    attr_reader :class_names, :rule_classes
 
     def names
-      rule_instances.map(&:name)
+      rule_classes.map(&:name)
     end
 
     def name_symbols
@@ -46,11 +42,7 @@ module Expire
     end
 
     def option_names
-      rule_instances.map(&:option_name)
+      rule_classes.map(&:option_name)
     end
-
-    private
-
-    attr_reader :rule_instances
   end
 end

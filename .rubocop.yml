@@ -19,6 +19,16 @@ Layout/HashAlignment:
 Naming/VariableNumber:
   EnforcedStyle: snake_case
 
+RSpec/DescribeClass:
+  Enabled: true
+  Exclude:
+    - 'spec/integration/*'
+
+RSpec/FilePath:
+  Enabled: true
+  Exclude:
+    - 'spec/unit/*'
+
 RSpec/ImplicitExpect:
   Enabled: false
 

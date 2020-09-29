@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 RSpec.describe '`expire purge` command', type: :cli do
-  it 'executes `expire help purge` command successfully' do
-    output = `expire help purge`
-    expected_output = <<~OUT
+  let(:expected_output) do
+    <<~OUT
       Usage:
         expire purge PATH
 
@@ -35,7 +34,10 @@ RSpec.describe '`expire purge` command', type: :cli do
 
       Command description...
     OUT
+  end
 
+  it 'executes `expire help purge` command successfully' do
+    output = `expire help purge`
     expect(output).to eq(expected_output)
   end
 end

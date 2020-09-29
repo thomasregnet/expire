@@ -3,6 +3,10 @@
 require 'expire/commands/purge'
 
 RSpec.describe Expire::Commands::Purge do
+  let(:output) { StringIO.new }
+  let(:path) { 'tmp/backups' }
+  let(:options) { { most_recent: 3 } }
+
   before do
     backup_path = 'tmp/backups'
     FileUtils.rm_rf('tmp/backups')
@@ -14,13 +18,8 @@ RSpec.describe Expire::Commands::Purge do
   end
 
   it 'executes `purge` command successfully' do
-    output = StringIO.new
-    path = 'tmp/backups'
-    options = { most_recent: 3 }
     command = described_class.new(path, options)
-
     command.execute(output: output)
-
     expect(output.string).to eq("OK\n")
   end
 end

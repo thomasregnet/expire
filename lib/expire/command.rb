@@ -3,6 +3,7 @@
 require 'forwardable'
 
 module Expire
+  # Helpers for TTY
   class Command
     extend Forwardable
 

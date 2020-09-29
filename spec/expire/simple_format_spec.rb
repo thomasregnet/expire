@@ -8,7 +8,7 @@ RSpec.describe Expire::SimpleFormat do
   it_behaves_like 'a FormatBase descendant'
 
   describe 'messages' do
-    let(:backup) { double('Expire::AuditedBackup') }
+    let(:backup) { instance_double('Expire::AuditedBackup') }
     let(:receiver) { instance_double('IO') }
     let(:path) { Pathname.new('backups/2020-06-01-11-29') }
 

@@ -4,6 +4,10 @@ require 'expire/commands/oldest'
 require 'fileutils'
 
 RSpec.describe Expire::Commands::Oldest do
+  let(:output) { StringIO.new }
+  let(:path) { 'tmp/aruba/backups' }
+  let(:options) { {} }
+
   before do
     backup_path = Pathname.new('tmp/aruba/backups')
     FileUtils.rm_rf(backup_path)
@@ -13,13 +17,8 @@ RSpec.describe Expire::Commands::Oldest do
   end
 
   it 'executes `oldest` command successfully' do
-    output = StringIO.new
-    path = 'tmp/aruba/backups'
-    options = {}
     command = described_class.new(path, options)
-
     command.execute(output: output)
-
     expect(output.string).to eq("tmp/aruba/backups/1860-05-17T12_00_00\n")
   end
 end

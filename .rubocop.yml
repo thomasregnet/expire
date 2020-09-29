@@ -35,7 +35,8 @@ RSpec/ImplicitExpect:
 Lint/MissingSuper:
   Enabled: true
   Exclude:
-    - lib/expire/commands/*
+    - 'lib/expire/*'
+    - 'lib/expire/commands/*'
 
 Lint/UnusedMethodArgument:
   Enabled: true

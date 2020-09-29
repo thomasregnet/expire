@@ -29,7 +29,7 @@ RSpec.describe Expire::Commands::RuleClasses do
   it 'executes `rule_classes` command successfully' do
     output = StringIO.new
     options = {}
-    command = Expire::Commands::RuleClasses.new(options)
+    command = described_class.new(options)
 
     command.execute(output: output)
 

@@ -10,6 +10,7 @@ class DefaultTestDates < TestDates
 
   def initialize
     @result = []
+    super
   end
 
   attr_reader :result

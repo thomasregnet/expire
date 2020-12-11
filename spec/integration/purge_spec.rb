@@ -32,7 +32,7 @@ RSpec.describe '`expire purge` command', type: :cli do
             [--from-now-monthly-for=FROM_NOW_MONTHLY_FOR]          # keep one backup per hour for <integer> <unit> calculated from now
             [--from-now-yearly-for=FROM_NOW_YEARLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
 
-      Command description...
+      Remove expired backups from PATH
     OUT
   end
 

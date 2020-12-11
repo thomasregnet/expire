@@ -98,7 +98,7 @@ module Expire
       end
     end
 
-    desc 'purge PATH', 'Command description...'
+    desc 'purge PATH', 'Remove expired backups from PATH'
     method_option :help, aliases: '-h', type: :boolean,
       desc: 'Display usage information'
     method_option :format, aliases: '-f', type: :string,

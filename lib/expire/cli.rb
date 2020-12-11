@@ -55,7 +55,7 @@ module Expire
       end
     end
 
-    desc 'remove', 'Command description...'
+    desc 'remove PATH', 'Remove PATH from the filesystem'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     def remove(path)

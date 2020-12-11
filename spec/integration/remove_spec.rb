@@ -4,12 +4,12 @@ RSpec.describe '`expire remove` command', type: :cli do
   let(:expected_output) do
     <<~OUT
       Usage:
-        expire remove
+        expire remove PATH
 
       Options:
         -h, [--help], [--no-help]  # Display usage information
 
-      Command description...
+      Remove PATH from the filesystem
     OUT
   end
 

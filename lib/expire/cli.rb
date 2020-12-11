@@ -7,7 +7,7 @@ module Expire
   # Command line interface
   # rubocop:disable Metrics/ClassLength
   class CLI < Thor
-    desc 'rule_option_names', 'Command description...'
+    desc 'rule_option_names', 'List rule option names ordered by their rank'
     method_option(
       :help,
       aliases: '-h',
@@ -23,7 +23,7 @@ module Expire
       end
     end
 
-    desc 'rule_names', 'Command description...'
+    desc 'rule_names', 'List rule names ordered by their rank'
     method_option(
       :help,
       aliases: '-h',
@@ -39,7 +39,7 @@ module Expire
       end
     end
 
-    desc 'rule_classes', 'Command description...'
+    desc 'rule_classes', 'List rule classes ordered by their rank'
     method_option(
       :help,
       aliases: '-h',
@@ -55,7 +55,7 @@ module Expire
       end
     end
 
-    desc 'remove', 'Command description...'
+    desc 'remove PATH', 'Remove PATH from the filesystem'
     method_option :help, aliases: '-h', type: :boolean,
                          desc: 'Display usage information'
     def remove(path)
@@ -98,7 +98,7 @@ module Expire
       end
     end
 
-    desc 'purge PATH', 'Command description...'
+    desc 'purge PATH', 'Remove expired backups from PATH'
     method_option :help, aliases: '-h', type: :boolean,
       desc: 'Display usage information'
     method_option :format, aliases: '-f', type: :string,

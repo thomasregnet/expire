@@ -9,7 +9,7 @@ RSpec.describe '`expire rule_option_names` command', type: :cli do
       Options:
         -h, [--help], [--no-help]  # Display usage information
 
-      Command description...
+      List rule option names ordered by their rank
     OUT
   end
 

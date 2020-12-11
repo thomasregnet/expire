@@ -7,7 +7,7 @@ module Expire
   # Command line interface
   # rubocop:disable Metrics/ClassLength
   class CLI < Thor
-    desc 'rule_option_names', 'Command description...'
+    desc 'rule_option_names', 'List rule option names ordered by their rank'
     method_option(
       :help,
       aliases: '-h',
@@ -23,7 +23,7 @@ module Expire
       end
     end
 
-    desc 'rule_names', 'Command description...'
+    desc 'rule_names', 'List rule names ordered by their rank'
     method_option(
       :help,
       aliases: '-h',
@@ -39,7 +39,7 @@ module Expire
       end
     end
 
-    desc 'rule_classes', 'Command description...'
+    desc 'rule_classes', 'List rule classes ordered by their rank'
     method_option(
       :help,
       aliases: '-h',

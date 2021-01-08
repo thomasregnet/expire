@@ -197,6 +197,18 @@ RSpec.describe Expire::BackupList do
       end
       # rubocop:enable RSpec/ExampleLength
     end
+
+    context 'when empty' do
+      let(:backup_list) { described_class.new }
+
+      it 'returns an empty instance' do
+        expect(backup_list.one_per(:hour)).to be_empty
+      end
+
+      it 'returns a new instance' do
+        expect(backup_list.one_per(:day)).not_to eq(backup_list)
+      end
+    end
   end
 
   describe 'after expire' do

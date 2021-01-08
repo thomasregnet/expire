@@ -18,19 +18,20 @@ module Expire
     def_delegators :backups, :each, :empty?, :last, :length, :<<
 
     def one_per(noun)
-      return [] unless any?
+      backups_per_noun = self.class.new
+      return backups_per_noun unless any?
 
       reversed = sort.reverse
 
-      result = [reversed.first]
+      backups_per_noun << reversed.first
 
       message = "same_#{noun}?"
 
       reversed.each do |backup|
-        result << backup unless backup.send(message, result.last)
+        backups_per_noun << backup unless backup.send(message, backups_per_noun.last)
       end
 
-      self.class.new(result)
+      backups_per_noun
     end
 
     def apply(rules)

@@ -3,8 +3,8 @@
 module Expire
   # Take a path and return an instance of Expire::Backup
   class BackupFromPathService
-    def self.call(path:, by: nil)
-      new(path, by).call
+    def self.call(path:, by: :path)
+      new(path: path, by: by).call
     end
 
     def initialize(path:, by: :path)

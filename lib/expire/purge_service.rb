@@ -17,7 +17,7 @@ module Expire
     def call
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
 
-      annotaded_backup_list.each do |backup|
+      annotated_backup_list.each do |backup|
         if backup.expired?
           format.before_purge(backup)
           purge_path(backup.path)
@@ -30,8 +30,8 @@ module Expire
 
     private
 
-    def annotaded_backup_list
-      @annotaded_backup_list ||= \
+    def annotated_backup_list
+      @annotated_backup_list ||= \
         rules.apply(FromDirectoryService.call(path), DateTime.now)
     end
 

@@ -16,8 +16,8 @@ module Expire
     def call
       backups = BackupList.new
 
-      pathname.children.each do |backup_dir|
-        backups << BackupFromPathService.call(path: backup_dir)
+      pathname.children.each do |backup_path|
+        backups << BackupFromPathService.call(path: backup_path)
       end
 
       backups

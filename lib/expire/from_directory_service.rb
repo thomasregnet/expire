@@ -9,14 +9,13 @@ module Expire
 
     def initialize(path)
       @path = Pathname.new(path)
-
-      # @backup_list = BackupList.new
-      @backups = BackupList.new
     end
 
-    attr_reader :backups, :path
+    attr_reader :path
 
     def call
+      backups = BackupList.new
+
       path.children.each do |backup_dir|
         backups << BackupFromPathService.call(path: backup_dir)
       end

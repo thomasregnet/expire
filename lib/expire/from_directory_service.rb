@@ -8,15 +8,15 @@ module Expire
     end
 
     def initialize(path)
-      @path = Pathname.new(path)
+      @pathname = Pathname.new(path)
     end
 
-    attr_reader :path
+    attr_reader :pathname
 
     def call
       backups = BackupList.new
 
-      path.children.each do |backup_dir|
+      pathname.children.each do |backup_dir|
         backups << BackupFromPathService.call(path: backup_dir)
       end
 

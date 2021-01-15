@@ -4,12 +4,12 @@ RSpec.describe Expire::PurgeService do
   describe '.call' do
     let(:backup_path)    { 'tmp/backups' }
     let(:expired_backup) { 'tmp/backups/2020-08-11_12_00_00' }
-    let(:keept_backup)   { 'tmp/backups/2020-08-22_12_00_00' }
+    let(:kept_backup)    { 'tmp/backups/2020-08-22_12_00_00' }
 
     before do
       FileUtils.rm_rf(backup_path)
       FileUtils.mkpath(expired_backup)
-      FileUtils.mkpath(keept_backup)
+      FileUtils.mkpath(kept_backup)
     end
 
     context 'with valid options' do
@@ -22,7 +22,7 @@ RSpec.describe Expire::PurgeService do
       end
 
       it 'keeps the unexpired backup' do
-        expect(Pathname.new(keept_backup)).to exist
+        expect(Pathname.new(kept_backup)).to exist
       end
     end
 
@@ -30,7 +30,7 @@ RSpec.describe Expire::PurgeService do
       before do
         # Idea to use a StringIO object was found here:
         # https://hackernoon.com/how-to-use-rspec-from-basics-to-testing-user-input-i03k36m3
-        io = StringIO.new("#{expired_backup}\n#{keept_backup}")
+        io = StringIO.new("#{expired_backup}\n#{kept_backup}")
         $stdin = io
         described_class.call('-', most_recent: 1)
       end
@@ -40,7 +40,7 @@ RSpec.describe Expire::PurgeService do
       end
 
       it 'keeps the unexpired backup' do
-        expect(Pathname.new(keept_backup)).to exist
+        expect(Pathname.new(kept_backup)).to exist
       end
     end
 

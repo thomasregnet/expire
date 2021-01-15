@@ -22,11 +22,11 @@ module Expire
   end
 
   def self.newest(path)
-    FromDirectoryService.call(path).newest
+    GenerateBackupListService.call(path).newest
   end
 
   def self.oldest(path)
-    FromDirectoryService.call(path).oldest
+    GenerateBackupListService.call(path).oldest
   end
 
   def self.purge(path, options)

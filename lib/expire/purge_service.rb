@@ -40,7 +40,7 @@ module Expire
 
         rules.apply(backups, DateTime.now)
       else
-        rules.apply(FromDirectoryService.call(path), DateTime.now)
+        rules.apply(GenerateBackupListService.call(path), DateTime.now)
       end
     end
 

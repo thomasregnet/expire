@@ -31,11 +31,6 @@ module Expire
     private
 
     def annotated_backup_list
-      @annotated_backup_list = annotated_backup_list_xxx # ||= \
-      #  rules.apply(FromDirectoryService.call(path), DateTime.now)
-    end
-
-    def annotated_backup_list_xxx
       if path == '-'
         backups = BackupList.new
 

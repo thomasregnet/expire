@@ -4,12 +4,12 @@ RSpec.describe Expire::PurgeService do
   describe '.call' do
     let(:backup_path)    { 'tmp/backups' }
     let(:expired_backup) { 'tmp/backups/2020-08-11_12_00_00' }
-    let(:keept_backup)   { 'tmp/backups/2020-08-22_12_00_00' }
+    let(:kept_backup)    { 'tmp/backups/2020-08-22_12_00_00' }
 
     before do
       FileUtils.rm_rf(backup_path)
       FileUtils.mkpath(expired_backup)
-      FileUtils.mkpath(keept_backup)
+      FileUtils.mkpath(kept_backup)
     end
 
     context 'with valid options' do
@@ -22,16 +22,34 @@ RSpec.describe Expire::PurgeService do
       end
 
       it 'keeps the unexpired backup' do
-        expect(Pathname.new(keept_backup)).to exist
+        expect(Pathname.new(kept_backup)).to exist
+      end
+    end
+
+    context 'with paths from STDIN' do
+      before do
+        # Idea to use a StringIO object was found here:
+        # https://hackernoon.com/how-to-use-rspec-from-basics-to-testing-user-input-i03k36m3
+        io = StringIO.new("#{expired_backup}\n#{kept_backup}")
+        $stdin = io
+        described_class.call('-', most_recent: 1)
+      end
+
+      it 'removes the expired backup' do
+        expect(Pathname.new(expired_backup)).not_to exist
+      end
+
+      it 'keeps the unexpired backup' do
+        expect(Pathname.new(kept_backup)).to exist
       end
     end
 
     context 'with an invalid format' do
-      let(:opts) { { format: 'grimpfl', most_recent: 1 } }
+      let(:opts) { { format: 'no_such_format', most_recent: 1 } }
 
       it 'raises an ArgumentError' do
         expect { described_class.call(backup_path, opts) }
-          .to raise_error ArgumentError, 'unknown format "grimpfl"'
+          .to raise_error ArgumentError, 'unknown format "no_such_format"'
       end
     end
 

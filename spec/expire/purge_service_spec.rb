@@ -45,11 +45,11 @@ RSpec.describe Expire::PurgeService do
     end
 
     context 'with an invalid format' do
-      let(:opts) { { format: 'grimpfl', most_recent: 1 } }
+      let(:opts) { { format: 'no_such_format', most_recent: 1 } }
 
       it 'raises an ArgumentError' do
         expect { described_class.call(backup_path, opts) }
-          .to raise_error ArgumentError, 'unknown format "grimpfl"'
+          .to raise_error ArgumentError, 'unknown format "no_such_format"'
       end
     end
 

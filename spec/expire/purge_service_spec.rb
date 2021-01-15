@@ -26,6 +26,24 @@ RSpec.describe Expire::PurgeService do
       end
     end
 
+    context 'with paths from STDIN' do
+      before do
+        # Idea to use a StringIO object was found here:
+        # https://hackernoon.com/how-to-use-rspec-from-basics-to-testing-user-input-i03k36m3
+        io = StringIO.new("#{expired_backup}\n#{keept_backup}")
+        $stdin = io
+        described_class.call('-', most_recent: 1)
+      end
+
+      it 'removes the expired backup' do
+        expect(Pathname.new(expired_backup)).not_to exist
+      end
+
+      it 'keeps the unexpired backup' do
+        expect(Pathname.new(keept_backup)).to exist
+      end
+    end
+
     context 'with an invalid format' do
       let(:opts) { { format: 'grimpfl', most_recent: 1 } }
 

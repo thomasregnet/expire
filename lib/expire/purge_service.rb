@@ -31,8 +31,24 @@ module Expire
     private
 
     def annotated_backup_list
-      @annotated_backup_list ||= \
+      @annotated_backup_list = annotated_backup_list_xxx # ||= \
+      #  rules.apply(FromDirectoryService.call(path), DateTime.now)
+    end
+
+    def annotated_backup_list_xxx
+      if path == '-'
+        backups = BackupList.new
+
+        $stdin.each do |path|
+          backups << BackupFromPathService.call(path: path)
+        end
+
+        val = rules.apply(backups, DateTime.now)
+        backups.each { |bak| puts "#{bak.path} expired #{bak.expired?}" }
+        val
+      else
         rules.apply(FromDirectoryService.call(path), DateTime.now)
+      end
     end
 
     def format
@@ -64,7 +80,8 @@ module Expire
       if purge_command
         system("#{purge_command} #{path}")
       else
-        FileUtils.rm_rf(path)
+        x_path = Pathname.new(path.to_s.chomp.strip)
+        x_path.unlink
       end
     end
 

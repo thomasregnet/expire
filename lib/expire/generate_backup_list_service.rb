@@ -2,7 +2,7 @@
 
 module Expire
   # Reads contents of a directory and returns a corresponding BackupList
-  class FromDirectoryService
+  class GenerateBackupListService
     def self.call(path)
       new(path).call
     end

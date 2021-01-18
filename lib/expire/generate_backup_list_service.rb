@@ -14,26 +14,20 @@ module Expire
     attr_reader :path
 
     def call
-      path == '-' ? from_stdin : from_directory
+      if path == '-'
+        generate_backup_list_from($stdin)
+      else
+        pathname = Pathname.new(path)
+        generate_backup_list_from(pathname.children)
+      end
     end
 
     private
 
-    def from_directory
-      backup_list = BackupList.new
-      pathname = Pathname.new(path)
-
-      pathname.children.each do |backup_path|
-        backup_list << BackupFromPathService.call(path: backup_path)
-      end
-
-      backup_list
-    end
-
-    def from_stdin
+    def generate_backup_list_from(source)
       backup_list = BackupList.new
 
-      $stdin.each do |backup_path|
+      source.each do |backup_path|
         backup_list << BackupFromPathService.call(path: backup_path)
       end
 

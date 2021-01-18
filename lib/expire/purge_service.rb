@@ -31,17 +31,7 @@ module Expire
     private
 
     def annotated_backup_list
-      if path == '-'
-        backups = BackupList.new
-
-        $stdin.each do |path|
-          backups << BackupFromPathService.call(path: path.chomp.strip)
-        end
-
-        rules.apply(backups, DateTime.now)
-      else
-        rules.apply(GenerateBackupListService.call(path), DateTime.now)
-      end
+      rules.apply(GenerateBackupListService.call(path), DateTime.now)
     end
 
     def format

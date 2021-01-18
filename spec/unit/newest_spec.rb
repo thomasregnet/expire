@@ -5,10 +5,11 @@ require 'fileutils'
 
 RSpec.describe Expire::Commands::Newest do
   let(:output) { StringIO.new }
-  let(:path) { 'tmp/backups' }
   let(:options) { {} }
 
   describe 'with an directory as input' do
+    let(:path) { 'tmp/backups' }
+
     before do
       backup_path = Pathname.new('tmp/backups')
       FileUtils.rm_rf(backup_path)

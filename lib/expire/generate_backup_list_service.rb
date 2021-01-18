@@ -28,10 +28,16 @@ module Expire
       backup_list = BackupList.new
 
       source.each do |backup_path|
-        backup_list << BackupFromPathService.call(path: backup_path)
+        backup_list << BackupFromPathService.call(path: purify_backup_path(backup_path))
       end
 
       backup_list
+    end
+
+    # backup_path may be a String or a Pathname so we call #to_s to
+    # ensure that chomp works as expected
+    def purify_backup_path(backup_path)
+      backup_path.to_s.chomp.strip
     end
   end
 end

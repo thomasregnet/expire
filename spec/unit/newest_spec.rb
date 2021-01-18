@@ -18,6 +18,8 @@ RSpec.describe Expire::Commands::Newest do
       FileUtils.mkpath("#{backup_path}/1860-05-17T13_00_00")
     end
 
+    after { FileUtils.rm_rf(path) }
+
     it 'executes `newest` command successfully' do
       command = described_class.new(path, options)
       command.execute(output: output)

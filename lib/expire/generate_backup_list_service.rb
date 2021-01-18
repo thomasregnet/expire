@@ -8,19 +8,36 @@ module Expire
     end
 
     def initialize(path)
-      @pathname = Pathname.new(path)
+      @path = path
     end
 
-    attr_reader :pathname
+    attr_reader :path
 
     def call
-      backups = BackupList.new
+      path == '-' ? from_stdin : from_directory
+    end
+
+    private
+
+    def from_directory
+      backup_list = BackupList.new
+      pathname = Pathname.new(path)
 
       pathname.children.each do |backup_path|
-        backups << BackupFromPathService.call(path: backup_path)
+        backup_list << BackupFromPathService.call(path: backup_path)
       end
 
-      backups
+      backup_list
+    end
+
+    def from_stdin
+      backup_list = BackupList.new
+
+      $stdin.each do |backup_path|
+        backup_list << BackupFromPathService.call(path: backup_path)
+      end
+
+      backup_list
     end
   end
 end

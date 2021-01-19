@@ -61,28 +61,28 @@ RSpec.describe Expire::PurgeService do
     end
   end
 
-  describe '#format (private)' do
+  describe '#report (private)' do
     context 'when the wanted format is "none"' do
-      it 'returns an instance of Expire::NullFormat' do
+      it 'returns an instance of Expire::ReportNull' do
         purge_service = described_class.new('path', format: 'none')
-        expect(purge_service.send(:format))
-          .to be_instance_of(Expire::NullFormat)
+        expect(purge_service.send(:report))
+          .to be_instance_of(Expire::ReportNull)
       end
     end
 
     context 'when the wanted format is nil' do
-      it 'returns an instance of Expire::NullFormat' do
+      it 'returns an instance of Expire::ReportNull' do
         purge_service = described_class.new('path', most_recent: 1)
-        expect(purge_service.send(:format))
-          .to be_instance_of(Expire::NullFormat)
+        expect(purge_service.send(:report))
+          .to be_instance_of(Expire::ReportNull)
       end
     end
 
     context 'when the wanted format is "enhanced"' do
-      it 'returns an instance of Expire::EnhancedFormat' do
+      it 'returns an instance of Expire::ReportEnhanced' do
         purge_service = described_class.new('path', format: 'enhanced')
-        expect(purge_service.send(:format))
-          .to be_instance_of(Expire::EnhancedFormat)
+        expect(purge_service.send(:report))
+          .to be_instance_of(Expire::ReportEnhanced)
       end
     end
   end

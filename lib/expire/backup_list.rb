@@ -69,22 +69,5 @@ module Expire
     def keep_count
       keep.length
     end
-
-    # def purge(format, &block)
-    #   # expired.each { |backup| FileUtils.rm_rf(backup.id) }
-    #   each do |backup|
-    #     if backup.expired?
-    #       format.before_purge(backup)
-    #       if block_given?
-    #         block.call(backup)
-    #       else
-    #         FileUtils.rm_rf(backup.path)
-    #       end
-    #       format.after_purge(backup)
-    #     else
-    #       format.on_keep(backup)
-    #     end
-    #   end
-    # end
   end
 end

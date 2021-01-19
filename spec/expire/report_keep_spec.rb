@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_formats'
-require 'support/shared_examples_for_format_base_descendants'
+require 'support/shared_examples_for_reporters'
+require 'support/shared_examples_for_report_base_descendants'
 
-RSpec.describe Expire::ExpiredFormat do
-  it_behaves_like 'a format'
-  it_behaves_like 'a FormatBase descendant'
+RSpec.describe Expire::ReportKeep do
+  it_behaves_like 'a reporter'
+  it_behaves_like 'a ReportBase descendant'
 
   describe '#on_keep' do
     let(:backup) { instance_double('Expire::Backup') }
     let(:receiver) { instance_double('IO') }
     let(:pathname) { Pathname.new('backups/2020-16-16T21:15:16') }
 
-    let(:format) { described_class.new(receiver: receiver) }
+    let(:report) { described_class.new(receiver: receiver) }
 
     before do
       allow(backup).to receive(:path).and_return(pathname)
@@ -20,7 +20,7 @@ RSpec.describe Expire::ExpiredFormat do
     end
 
     it 'sends the path as message to the receiver' do
-      format.before_purge(backup)
+      report.on_keep(backup)
 
       expect(receiver).to have_received(:puts).with(pathname.to_s)
     end

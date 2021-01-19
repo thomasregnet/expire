@@ -2,7 +2,7 @@
 
 module Expire
   # Detailed information about what is being kept and why
-  class EnhancedFormat < SimpleFormat
+  class ReportEnhanced < ReportSimple
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.path}"))
       receiver.puts '  reasons:'

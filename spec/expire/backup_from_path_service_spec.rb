@@ -8,7 +8,7 @@ RSpec.describe Expire::BackupFromPathService do
       /1/22/345/20210102T03:04:59
     ].each do |path|
       context "with path #{path}" do
-        let(:service) { described_class.new(path: Pathname.new('/path/to/backups/20210102T0304'), by: :path) }
+        let(:service) { described_class.new(path: path, by: :path) }
 
         it 'returns an instance of Expire::Backup' do
           expect(service.call).to be_instance_of(Expire::Backup)

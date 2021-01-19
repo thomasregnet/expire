@@ -12,7 +12,7 @@ RSpec.describe Expire::ReportKeep do
     let(:receiver) { instance_double('IO') }
     let(:pathname) { Pathname.new('backups/2020-16-16T21:15:16') }
 
-    let(:format) { described_class.new(receiver: receiver) }
+    let(:report) { described_class.new(receiver: receiver) }
 
     before do
       allow(backup).to receive(:path).and_return(pathname)
@@ -20,7 +20,7 @@ RSpec.describe Expire::ReportKeep do
     end
 
     it 'sends the path as message to the receiver' do
-      format.on_keep(backup)
+      report.on_keep(backup)
 
       expect(receiver).to have_received(:puts).with(pathname.to_s)
     end

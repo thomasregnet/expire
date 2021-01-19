@@ -265,19 +265,19 @@ RSpec.describe Expire::BackupList do
     # describe '#purge' do
     #   # No verifying double for backup because #id is delegated
     #   let(:backup) { instance_double('Expire::Backup') }
-    #   let(:format) { instance_double('Expire::ReportNull') }
+    #   let(:report) { instance_double('Expire::ReportNull') }
     #   let(:result) { described_class.new([backup]) }
 
     #   before do
-    #     allow(format).to receive(:before_purge)
-    #     allow(format).to receive(:after_purge)
+    #     allow(report).to receive(:before_purge)
+    #     allow(report).to receive(:after_purge)
     #     allow(backup).to receive(:path).and_return(:fake_path)
     #     allow(backup).to receive(:expired?).and_return(true)
     #     allow(FileUtils).to receive(:rm_rf)
     #   end
 
     #   it 'calls FileUtils.rm_rf' do
-    #     result.purge(format)
+    #     result.purge(report)
 
     #     expect(FileUtils).to have_received(:rm_rf)
     #   end

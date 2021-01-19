@@ -23,9 +23,7 @@ module Expire
     private
 
     def datetime
-      basename = pathname.basename.to_s
-
-      digits = basename.gsub(/[^0-9]/, '')
+      digits = extract_digits
 
       year   = digits[0..3].to_i
       month  = digits[4..5].to_i
@@ -34,6 +32,19 @@ module Expire
       minute = digits[10..11].to_i
 
       DateTime.new(year, month, day, hour, minute)
+    end
+
+    def extract_digits
+      basename = pathname.basename.to_s
+
+      digits = basename.gsub(/[^0-9]/, '')
+
+      digits_length = digits.length
+
+      return digits if digits_length == 12
+      return digits if digits_length == 14
+
+      raise InvalidPathError, "can't extract date and time from #{basename}"
     end
   end
 end

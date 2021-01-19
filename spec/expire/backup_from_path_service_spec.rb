@@ -19,5 +19,37 @@ RSpec.describe Expire::BackupFromPathService do
         end
       end
     end
+
+    context 'with to much numbers' do
+      let(:service) { described_class.new(path: '/backups/2021-01-19T20:21:22extra123, by: :path') }
+
+      it 'raises an InvalidPathError' do
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /2021-01-19T20:21:22extra123/)
+      end
+    end
+
+    context 'without enough numbers' do
+      let(:service) { described_class.new(path: '/backups/2021-01-19T20, by: :path') }
+
+      it 'raises an InvalidPathError' do
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /2021-01-19T20/)
+      end
+    end
+
+    context 'with 13 numbers' do
+      let(:service) { described_class.new(path: '/backups/1234567890123', by: :path) }
+
+      it 'raises an InvalidPathError' do
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /1234567890123/)
+      end
+    end
+
+    context 'without any numbers' do
+      let(:service) { described_class.new(path: '/backups/hello_world', by: :path) }
+
+      it 'raises an InvalidPathError' do
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /hello_world/)
+      end
+    end
   end
 end

@@ -19,11 +19,11 @@ module Expire
 
       annotated_backup_list.each do |backup|
         if backup.expired?
-          format.before_purge(backup)
+          report.before_purge(backup)
           purge_pathname(backup.path)
-          format.after_purge(backup)
+          report.after_purge(backup)
         else
-          format.on_keep(backup)
+          report.on_keep(backup)
         end
       end
     end
@@ -34,11 +34,11 @@ module Expire
       rules.apply(GenerateBackupListService.call(path), DateTime.now)
     end
 
-    def format
-      @format ||= format_class.new
+    def report
+      @report ||= report_class.new
     end
 
-    def format_class
+    def report_class
       wanted_format = options[:format]
 
       return ReportNull unless wanted_format

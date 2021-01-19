@@ -4,7 +4,7 @@
 require 'pastel'
 
 module Expire
-  # Base class for formats
+  # Base class for Reporters
   class ReportBase < ReportNull
     def initialize(receiver: $stdout)
       @receiver = receiver

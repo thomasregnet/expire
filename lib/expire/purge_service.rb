@@ -41,8 +41,8 @@ module Expire
     def format_class
       wanted_format = options[:format]
 
-      return NullFormat unless wanted_format
-      return NullFormat if wanted_format == 'none'
+      return ReportNull unless wanted_format
+      return ReportNull if wanted_format == 'none'
 
       class_name = "::Expire::#{wanted_format.titleize}Format"
       class_name.safe_constantize \

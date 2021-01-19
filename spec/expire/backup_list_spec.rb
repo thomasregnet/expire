@@ -265,7 +265,7 @@ RSpec.describe Expire::BackupList do
     # describe '#purge' do
     #   # No verifying double for backup because #id is delegated
     #   let(:backup) { instance_double('Expire::Backup') }
-    #   let(:format) { instance_double('Expire::NullFormat') }
+    #   let(:format) { instance_double('Expire::ReportNull') }
     #   let(:result) { described_class.new([backup]) }
 
     #   before do

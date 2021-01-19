@@ -2,7 +2,7 @@
 
 module Expire
   # A Format that discards all messages
-  class NullFormat
+  class ReportNull
     def before_all(_); end
 
     def after_all(_); end

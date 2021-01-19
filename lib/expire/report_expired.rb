@@ -2,7 +2,7 @@
 
 module Expire
   # Print the paths of expired backups
-  class ExpiredFormat < ReportBase
+  class ReportExpired < ReportBase
     def before_purge(backup)
       receiver.puts backup.path.to_s
     end

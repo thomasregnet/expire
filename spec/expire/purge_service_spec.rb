@@ -79,10 +79,10 @@ RSpec.describe Expire::PurgeService do
     end
 
     context 'when the wanted format is "enhanced"' do
-      it 'returns an instance of Expire::EnhancedFormat' do
+      it 'returns an instance of Expire::ReportEnhanced' do
         purge_service = described_class.new('path', format: 'enhanced')
         expect(purge_service.send(:format))
-          .to be_instance_of(Expire::EnhancedFormat)
+          .to be_instance_of(Expire::ReportEnhanced)
       end
     end
   end

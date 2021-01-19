@@ -44,9 +44,8 @@ module Expire
       return ReportNull unless wanted_format
       return ReportNull if wanted_format == 'none'
 
-      class_name = "::Expire::#{wanted_format.titleize}Format"
-      class_name.safe_constantize \
-        or raise ArgumentError, "unknown format \"#{wanted_format}\""
+      class_name = "::Expire::Report#{wanted_format.titleize}"
+      class_name.safe_constantize or raise ArgumentError, "unknown format \"#{wanted_format}\""
     end
 
     def merge_rules

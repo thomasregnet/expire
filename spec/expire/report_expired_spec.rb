@@ -3,7 +3,7 @@
 require 'support/shared_examples_for_formats'
 require 'support/shared_examples_for_report_base_descendants'
 
-RSpec.describe Expire::KeepFormat do
+RSpec.describe Expire::ReportExpired do
   it_behaves_like 'a format'
   it_behaves_like 'a ReportBase descendant'
 
@@ -20,7 +20,7 @@ RSpec.describe Expire::KeepFormat do
     end
 
     it 'sends the path as message to the receiver' do
-      format.on_keep(backup)
+      format.before_purge(backup)
 
       expect(receiver).to have_received(:puts).with(pathname.to_s)
     end

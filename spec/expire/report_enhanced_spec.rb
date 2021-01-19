@@ -12,7 +12,7 @@ RSpec.describe Expire::ReportEnhanced do
     let(:receiver) { instance_double('IO') }
     let(:path) { Pathname.new('backups/1860-05-17T11_12_13_00') }
 
-    let(:format) { described_class.new(receiver: receiver) }
+    let(:report) { described_class.new(receiver: receiver) }
 
     describe '#on_keep' do
       before do
@@ -24,26 +24,26 @@ RSpec.describe Expire::ReportEnhanced do
       end
 
       it 'sends "keep ..." to the receiver' do
-        format.on_keep(backup)
+        report.on_keep(backup)
 
         expect(receiver).to have_received(:puts)
           .with(/keeping #{path}/)
       end
 
       it 'sends "  reason:" to the receiver' do
-        format.on_keep(backup)
+        report.on_keep(backup)
 
         expect(receiver).to have_received(:puts).with(/reasons:/)
       end
 
       it 'sends the first reason to the receiver' do
-        format.on_keep(backup)
+        report.on_keep(backup)
 
         expect(receiver).to have_received(:puts).with(/this is reason 1/)
       end
 
       it 'sends the second reason to the receiver' do
-        format.on_keep(backup)
+        report.on_keep(backup)
 
         expect(receiver).to have_received(:puts).with(/this is reason 2/)
       end

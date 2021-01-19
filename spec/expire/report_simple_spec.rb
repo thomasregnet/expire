@@ -12,7 +12,7 @@ RSpec.describe Expire::ReportSimple do
     let(:receiver) { instance_double('IO') }
     let(:path) { Pathname.new('backups/2020-06-01-11-29') }
 
-    let(:format) { described_class.new(receiver: receiver) }
+    let(:report) { described_class.new(receiver: receiver) }
 
     before do
       allow(backup).to receive(:path).and_return(path)
@@ -21,7 +21,7 @@ RSpec.describe Expire::ReportSimple do
 
     describe 'after_purge' do
       it 'sends the expected messages to the receiver' do
-        format.after_purge(backup)
+        report.after_purge(backup)
 
         expect(receiver).to have_received(:puts)
           .with(%r{purged backups/2020-06-01-11-29})
@@ -30,7 +30,7 @@ RSpec.describe Expire::ReportSimple do
 
     describe '#on_keep' do
       it 'sends the expected messages to the receiver' do
-        format.on_keep(backup)
+        report.on_keep(backup)
 
         expect(receiver).to have_received(:puts)
           .with(%r{keeping backups/2020-06-01-11-29})

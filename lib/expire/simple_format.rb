@@ -2,7 +2,7 @@
 
 module Expire
   # Sends "keeping" and "purged" to it's receiver
-  class SimpleFormat < FormatBase
+  class SimpleFormat < ReportBase
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.path}"))
     end

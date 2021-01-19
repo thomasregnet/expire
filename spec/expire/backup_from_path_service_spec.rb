@@ -59,5 +59,13 @@ RSpec.describe Expire::BackupFromPathService do
         expect { service.call }.to raise_error(Expire::InvalidPathError, /can't construct/)
       end
     end
+
+    context 'with a path representing an invalid time' do
+      let(:service) { described_class.new(path: '/backups/2021-02-12T25:12', by: :path) }
+
+      it 'raises an InvalidPathError' do
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /can't construct/)
+      end
+    end
   end
 end

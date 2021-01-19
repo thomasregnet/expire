@@ -24,7 +24,7 @@ RSpec.describe Expire::BackupFromPathService do
       let(:service) { described_class.new(path: '/backups/2021-01-19T20:21:22extra123, by: :path') }
 
       it 'raises an InvalidPathError' do
-        expect { service.call }.to raise_error(Expire::InvalidPathError, /2021-01-19T20:21:22extra123/)
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /can't extract/)
       end
     end
 
@@ -32,7 +32,7 @@ RSpec.describe Expire::BackupFromPathService do
       let(:service) { described_class.new(path: '/backups/2021-01-19T20, by: :path') }
 
       it 'raises an InvalidPathError' do
-        expect { service.call }.to raise_error(Expire::InvalidPathError, /2021-01-19T20/)
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /can't extract/)
       end
     end
 
@@ -40,7 +40,7 @@ RSpec.describe Expire::BackupFromPathService do
       let(:service) { described_class.new(path: '/backups/1234567890123', by: :path) }
 
       it 'raises an InvalidPathError' do
-        expect { service.call }.to raise_error(Expire::InvalidPathError, /1234567890123/)
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /can't extract/)
       end
     end
 
@@ -48,7 +48,7 @@ RSpec.describe Expire::BackupFromPathService do
       let(:service) { described_class.new(path: '/backups/hello_world', by: :path) }
 
       it 'raises an InvalidPathError' do
-        expect { service.call }.to raise_error(Expire::InvalidPathError, /hello_world/)
+        expect { service.call }.to raise_error(Expire::InvalidPathError, /can't extract/)
       end
     end
 

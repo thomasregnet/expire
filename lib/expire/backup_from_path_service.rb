@@ -31,7 +31,14 @@ module Expire
       hour   = digits[8..9].to_i
       minute = digits[10..11].to_i
 
+      # DateTime.new(year, month, day, hour, minute)
+      datetime_for(year, month, day, hour, minute)
+    end
+
+    def datetime_for(year, month, day, hour, minute)
       DateTime.new(year, month, day, hour, minute)
+    rescue Date::Error
+      raise InvalidPathError, "can't construct date and time from #{pathname}" 
     end
 
     def extract_digits

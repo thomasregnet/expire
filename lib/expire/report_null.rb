@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Expire
-  # A Format that discards all messages
+  # Ignore all messages and report nothing
   class ReportNull
     def before_all(_); end
 

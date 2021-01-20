@@ -57,6 +57,8 @@ module Expire
     end
 
     def purge_pathname(pathname)
+      return if options[:simulate]
+
       purge_command = options[:purge_command]
 
       if purge_command

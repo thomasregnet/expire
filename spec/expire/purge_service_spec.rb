@@ -26,6 +26,20 @@ RSpec.describe Expire::PurgeService do
       end
     end
 
+    context 'with the "simulate" option' do
+      before do
+        described_class.call('tmp/backups', most_recent: 1, simulate: true)
+      end
+
+      it 'removes the expired backup' do
+        expect(Pathname.new(expired_backup)).to exist
+      end
+
+      it 'keeps the unexpired backup' do
+        expect(Pathname.new(kept_backup)).to exist
+      end
+    end
+
     context 'with paths from STDIN' do
       before do
         # Idea to use a StringIO object was found here:

@@ -109,6 +109,8 @@ module Expire
       desc: 'run command to purge the backup'
     method_option :rules_file, aliases: '-r', type: :string,
       desc: 'read expire-rules from file'
+    method_option :simulate, aliases: '-s', type: :boolean,
+      desc: 'Simulate purge, do not delete anything'
     method_option(
       :most_recent,
       type: :string,

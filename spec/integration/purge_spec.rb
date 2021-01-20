@@ -13,6 +13,7 @@ RSpec.describe '`expire purge` command', type: :cli do
                                                                    # Possible values: expired, keep, none, simple, enhanced
         --cmd, [--purge-command=PURGE_COMMAND]                     # run command to purge the backup
         -r, [--rules-file=RULES_FILE]                              # read expire-rules from file
+        -s, [--simulate], [--no-simulate]                          # Simulate purge, do not delete anything
             [--most-recent=MOST_RECENT]                            # keep the <integer> most recent backups
             [--most-recent-for=MOST_RECENT_FOR]                    # keep the most recent backups for <integer> <unit>
             [--from-now-most-recent-for=FROM_NOW_MOST_RECENT_FOR]  # keep the most recent backups for <integer> <unit> calculated from now

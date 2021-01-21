@@ -23,6 +23,25 @@ Or install it yourself as:
 
 TODO: Write usage instructions here
 
+## Rules
+
+Rules control which backups to keep and which to discard.
+Rules can be specified by with command line parameters or in a yaml-file.
+
+### Most recent rules
+
+There are three  _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
+
+#### --most-recent amount
+
+The `--most-recent` rule takes the amount of last backups to keep.
+For example `--most-recent=3` preserves the three newest backups from being purged.
+
+##### --most-recent-for amount unit
+
+Keeps the newest backups for a period of time.
+The period of time is specified with the `amount` and `unit` parameters.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

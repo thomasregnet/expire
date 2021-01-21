@@ -26,7 +26,7 @@ TODO: Write usage instructions here
 ## Rules
 
 Rules control which backups to keep and which to discard.
-Rules can be specified by with command line parameters or in a yaml-file.
+Rules can be specified by command line parameters or in a yaml-file.
 
 ### Most recent rules
 

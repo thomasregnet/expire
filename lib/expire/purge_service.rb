@@ -17,7 +17,7 @@ module Expire
     def call
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
 
-      annotated_backup_list.each do |backup|
+      annotated_backup_list.sort.each do |backup|
         if backup.expired?
           report.before_purge(backup)
           purge_pathname(backup.path)

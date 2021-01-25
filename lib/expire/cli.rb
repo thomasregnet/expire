@@ -102,7 +102,7 @@ module Expire
     method_option :help, aliases: '-h', type: :boolean,
       desc: 'Display usage information'
     method_option :format, aliases: '-f', type: :string,
-      enum: %w[expired keep none simple enhanced],
+      enum: %w[expired kept none simple enhanced],
       default: 'none',
       desc: 'output format'
     method_option :purge_command, aliases: '--cmd', type: :string,

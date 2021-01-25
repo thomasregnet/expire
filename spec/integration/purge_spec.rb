@@ -11,7 +11,7 @@ RSpec.describe '`expire purge` command', type: :cli do
           -h, [--help], [--no-help]                                  # Display usage information
           -f, [--format=FORMAT]                                      # output format
                                                                      # Default: none
-                                                                     # Possible values: expired, keep, none, simple, enhanced
+                                                                     # Possible values: expired, kept, none, simple, enhanced
           --cmd, [--purge-command=PURGE_COMMAND]                     # run command to purge the backup
           -r, [--rules-file=RULES_FILE]                              # read expire-rules from file
           -s, [--simulate], [--no-simulate]                          # Simulate purge, do not delete anything

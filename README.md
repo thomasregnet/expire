@@ -5,6 +5,8 @@ It can be used either from the command line or as a ruby gem.
 
 ## Installation
 
+**The installation is currently not yet possible!**
+
 Add this line to your application's Gemfile:
 
 ``` ruby
@@ -26,6 +28,37 @@ gem install expire
 ## Usage
 
 TODO: Write usage instructions here
+
+## Purge
+
+The purge command is used to calculate and delete the expired backups.
+It is invoked as follows
+
+``` shell
+expire path/to/backups <rules>
+```
+
+This would delete, according to the rules, all expired backups under `path/to/backups`.
+
+Before deleting, you may want to know what would be removed.
+The `--simulate` option is suitable for this purpose.
+
+### Simulate purge
+
+To check the expire-rules you can call `expire purge` with the `--simulate` option:
+
+``` shell
+expire path/to/backups <rules> --simulate
+```
+
+When `expire purge` is called this way it will calculate the expired backups
+but will not delete anything.
+
+To see what `purge` would delete you have to specify a format, covered in the following section.
+
+### Formats
+
+Formats are used to what's going on during purification.
 
 ## Rules
 

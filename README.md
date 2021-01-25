@@ -7,17 +7,21 @@ It can be used either from the command line or as a ruby gem.
 
 Add this line to your application's Gemfile:
 
-```ruby
+``` ruby
 gem 'expire'
 ```
 
 And then execute:
 
-    $ bundle
+``` shell
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install expire
+``` shell
+gem install expire
+```
 
 ## Usage
 

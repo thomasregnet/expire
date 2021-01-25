@@ -1,7 +1,7 @@
 Feature: Keep Format
   In order to see only the paths that are kept
   as a user
-  I want to uset the --format=keep option
+  I want to uset the --format=kept option
 
  Background:
     Given a file named "rules.yml" with:
@@ -15,8 +15,8 @@ Feature: Keep Format
     Given a directory named "backups/2020-04-23-12-13"
     Given a directory named "backups/2020-03-23-12-13"
 
-  Scenario: Purge with the --format=keep option
-    When I run `expire purge --rules-file=rules.yml --format=keep backups` 
+  Scenario: Purge with the --format=kept option
+    When I run `expire purge --rules-file=rules.yml --format=kept backups` 
     Then the output should contain "backups/2020-05-25-12-13"
     And the output should contain "backups/2020-05-24-12-13"
     And the output should contain "backups/2020-05-23-12-13"

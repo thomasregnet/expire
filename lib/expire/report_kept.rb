@@ -2,7 +2,7 @@
 
 module Expire
   # Print the backups that are kept
-  class ReportKeep < ReportBase
+  class ReportKept < ReportBase
     def on_keep(backup)
       receiver.puts backup.path.to_s
     end

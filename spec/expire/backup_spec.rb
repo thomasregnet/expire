@@ -284,4 +284,17 @@ RSpec.describe Expire::Backup do
       end
     end
   end
+
+  describe '#reasons_to_keep' do
+    let(:backup) do
+      described_class.new(
+        datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+        pathname: Pathname.new('backups/1860-05-17_12_00_00')
+      )
+    end
+
+    it 'returns a Set' do
+      expect(backup.reasons_to_keep).to be_instance_of(Set)
+    end
+  end
 end

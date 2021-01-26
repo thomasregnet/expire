@@ -9,7 +9,9 @@ module Expire
       @datetime = datetime
       @pathname = pathname
 
-      @reasons_to_keep = []
+      # @reasons_to_keep is a Set so a reason can added multiple times
+      # but appears only once
+      @reasons_to_keep = Set.new
     end
 
     attr_reader :datetime, :pathname, :reasons_to_keep

@@ -17,7 +17,7 @@ module Expire
     attr_reader :by, :pathname
 
     def call
-      Backup.new(datetime: datetime, path: pathname)
+      Backup.new(datetime: datetime, pathname: pathname)
     end
 
     private

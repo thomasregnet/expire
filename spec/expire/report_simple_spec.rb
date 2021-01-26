@@ -10,12 +10,12 @@ RSpec.describe Expire::ReportSimple do
   describe 'messages' do
     let(:backup) { instance_double('Expire::AuditedBackup') }
     let(:receiver) { instance_double('IO') }
-    let(:path) { Pathname.new('backups/2020-06-01-11-29') }
+    let(:pathname) { Pathname.new('backups/2020-06-01-11-29') }
 
     let(:report) { described_class.new(receiver: receiver) }
 
     before do
-      allow(backup).to receive(:path).and_return(path)
+      allow(backup).to receive(:pathname).and_return(pathname)
       allow(receiver).to receive(:puts)
     end
 

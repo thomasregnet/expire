@@ -20,7 +20,7 @@ module Expire
       annotated_backup_list.sort.each do |backup|
         if backup.expired?
           report.before_purge(backup)
-          purge_pathname(backup.path)
+          purge_pathname(backup.pathname)
           report.after_purge(backup)
         else
           report.on_keep(backup)

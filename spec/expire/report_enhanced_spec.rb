@@ -10,13 +10,13 @@ RSpec.describe Expire::ReportEnhanced do
   describe 'output' do
     let(:backup) { instance_double('Expire::AuditedBackup') }
     let(:receiver) { instance_double('IO') }
-    let(:path) { Pathname.new('backups/1860-05-17T11_12_13_00') }
+    let(:pathname) { Pathname.new('backups/1860-05-17T11_12_13_00') }
 
     let(:report) { described_class.new(receiver: receiver) }
 
     describe '#on_keep' do
       before do
-        allow(backup).to receive(:path).and_return(path)
+        allow(backup).to receive(:pathname).and_return(pathname)
         allow(backup).to receive(:reasons_to_keep).and_return(
           ['this is reason 1', 'this is reason 2']
         )
@@ -27,7 +27,7 @@ RSpec.describe Expire::ReportEnhanced do
         report.on_keep(backup)
 
         expect(receiver).to have_received(:puts)
-          .with(/keeping #{path}/)
+          .with(/keeping #{pathname}/)
       end
 
       it 'sends "  reason:" to the receiver' do

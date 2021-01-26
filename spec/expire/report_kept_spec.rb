@@ -15,7 +15,7 @@ RSpec.describe Expire::ReportKept do
     let(:report) { described_class.new(receiver: receiver) }
 
     before do
-      allow(backup).to receive(:path).and_return(pathname)
+      allow(backup).to receive(:pathname).and_return(pathname)
       allow(receiver).to receive(:puts)
     end
 

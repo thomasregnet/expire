@@ -5,5 +5,5 @@ When('I call Expire.newest\(path)') do
 end
 
 Then('I get the latest backup') do
-  expect(@latest_backup.path.to_s).to eq('tmp/aruba/backups/2020-05-25-12-13')
+  expect(@latest_backup.pathname.to_s).to eq('tmp/aruba/backups/2020-05-25-12-13')
 end

@@ -14,7 +14,7 @@ module Expire
       attr_reader :path
 
       def execute(input: $stdin, output: $stdout)
-        output.puts Expire.oldest(path).path
+        output.puts Expire.oldest(path).pathname
       end
     end
   end

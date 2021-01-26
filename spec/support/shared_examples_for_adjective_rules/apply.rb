@@ -7,7 +7,7 @@ RSpec.shared_examples 'an applicable adjective rule' do
     let(:backups) do
       backups = TestDates.create(years: 1856..1860).map do |date|
         datetime = DateTime.new(*date)
-        Expire::Backup.new(datetime: datetime, path: 'fake/path')
+        Expire::Backup.new(datetime: datetime, pathname: Pathname.new('fake/path'))
       end
 
       Expire::BackupList.new(backups)

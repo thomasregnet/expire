@@ -17,16 +17,16 @@ RSpec.describe Expire::BackupList do
         [
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :oldest
+            pathname: Pathname.new('backups/oldest')
           ),
 
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :newest
+            pathname: Pathname.new('backups/newest')
           ),
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
-            path:     :middle
+            pathname: Pathname.new('backups/middle')
           )
         ]
       )
@@ -42,7 +42,7 @@ RSpec.describe Expire::BackupList do
       end
 
       it 'returns the most recent backup' do
-        expect(backups.most_recent.last.path).to eq(:newest)
+        expect(backups.most_recent.last.pathname.to_s).to eq('backups/newest')
       end
     end
 
@@ -52,8 +52,8 @@ RSpec.describe Expire::BackupList do
       end
 
       it 'returns the most recent backup' do
-        paths = backups.most_recent(2).map(&:path)
-        expect(paths).to eq(%i[newest middle])
+        paths = backups.most_recent(2).map { |backup| backup.pathname.to_s }
+        expect(paths).to eq(%w[backups/newest backups/middle])
       end
     end
 
@@ -70,12 +70,12 @@ RSpec.describe Expire::BackupList do
         [
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
+            pathname: Pathname.new('fake_path')
           ),
 
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :fake_path
+            pathname: Pathname.new('fake_path')
           )
         ]
       )
@@ -94,12 +94,12 @@ RSpec.describe Expire::BackupList do
         [
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-            path:     :fake_path
+            pathname: Pathname.new('fake_path')
           ),
 
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :fake_path
+            pathname: Pathname.new('fake_path')
           )
         ]
       )
@@ -153,26 +153,26 @@ RSpec.describe Expire::BackupList do
           [
             Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
-              path:     :fake_path
+              pathname: Pathname.new('fake_path')
             ),
 
             Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-              path:     :fake_path
+              pathname: Pathname.new('fake_path')
             ),
             Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
-              path:     :fake_path
+              pathname: Pathname.new('fake_path')
             ),
 
             Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 12, 33, 0),
-              path:     :fake_path
+              pathname: Pathname.new('fake_path')
             ),
 
             Expire::Backup.new(
               datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
-              path:     :fake_path
+              pathname: Pathname.new('fake_path')
             )
           ]
         ).one_per(:hour)
@@ -187,11 +187,11 @@ RSpec.describe Expire::BackupList do
         expect(hourly).to contain_exactly(
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
-            path:     :fake_path
+            pathname: :fake_path
           ),
           Expire::Backup.new(
             datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
-            path:     :fake_path
+            pathname: :fake_path
           )
         )
       end

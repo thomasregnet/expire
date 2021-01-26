@@ -59,11 +59,11 @@ class TestDates
 
   def to_backups
     backups = result.map do |args|
-      path = "backups/#{args[0..5].join('_')}"
+      pathname = Pathname.new("backups/#{args[0..5].join('_')}")
 
       Expire::Backup.new(
         datetime: DateTime.new(*args),
-        path:     path
+        pathname: pathname
       )
     end
 

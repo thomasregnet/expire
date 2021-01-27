@@ -43,7 +43,7 @@ This would delete, according to the rules, all expired backups under `path/to/ba
 Before deleting, you may want to know what would be removed.
 The `--simulate` option is suitable for this purpose.
 
-### Simulate purge
+### `--simulate`, `-s` flag
 
 To check the expire-rules you can call `expire purge` with the `--simulate` option:
 
@@ -56,28 +56,28 @@ but will not delete anything.
 
 To see what `purge` would delete you have to specify a format, covered in the following section.
 
-### Formats
+### The `--format`, `-f` options
 
 Formats are used to what's going on during purification.
 
-#### Expired
+#### `--format=expired`
 
 The **expired** format prints the paths of the expired backups, one per line.
 
-#### kept
+#### `--format=kept`
 
 The **kept** format prints the paths of the kept backups, one per line.
 
-#### none
+#### `--format=none`
 
 This is the default format, it prints nothing.
 
-#### simple
+#### `--format=simple`
 
 The **simple** format prints the path of the kept backups preceded by the work `keeping`
 and the expired backups preceded by the word `purged`.
 
-#### enhanced
+#### `--format=enhanced`
 
 The **enhanced** format works the same way as the simple format.
 In addition, it prints the reasons why a backup is kept.

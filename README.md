@@ -89,9 +89,29 @@ Rules can be specified by command line parameters or in a yaml-file.
 
 You must specify at least one rule or `expire purge` will fail.
 
+```shell
+backups/2016-01-27T1112
+backups/2019-12-24T1200
+backups/2021-01-19T1113
+backups/2021-01-26T1111
+backups/2021-01-27T1111
+backups/2021-01-27T1112
+```
+
 ### Most recent rules
 
 There are three _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
+
+`
+
+```diff
+!purged backups/2016-01-27T1112
+!purged backups/2019-12-24T1200
+!purged backups/2021-01-19T1113
++keeping backups/2021-01-26T1111
++keeping backups/2021-01-27T1111
++keeping backups/2021-01-27T1112
+```
 
 #### --most-recent
 

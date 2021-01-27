@@ -60,16 +60,40 @@ To see what `purge` would delete you have to specify a format, covered in the fo
 
 Formats are used to what's going on during purification.
 
+#### Expired
+
+The **expired** format prints the paths of the expired backups, one per line.
+
+#### kept
+
+The **kept** format prints the paths of the kept backups, one per line.
+
+#### none
+
+This is the default format, it prints nothing.
+
+#### simple
+
+The **simple** format prints the path of the kept backups preceded by the work `keeping`
+and the expired backups preceded by the word `purged`.
+
+#### enhanced
+
+The **enhanced** format works the same way as the simple format.
+In addition, it prints the reasons why a backup is kept.
+
 ## Rules
 
 Rules control which backups to keep and which to discard.
 Rules can be specified by command line parameters or in a yaml-file.
 
+You must specify at least one rule or `expire purge` will fail.
+
 ### Most recent rules
 
-There are three  _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
+There are three _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
 
-#### --most-recent amount
+#### --most-recent
 
 The `--most-recent` rule takes the amount of last backups to keep.
 For example `--most-recent=3` preserves the three newest backups from being purged.

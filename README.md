@@ -102,15 +102,14 @@ backups/2021-01-27T1112
 
 There are three _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
 
-`
-
-```diff
-!purged backups/2016-01-27T1112
-!purged backups/2019-12-24T1200
-!purged backups/2021-01-19T1113
-+keeping backups/2021-01-26T1111
-+keeping backups/2021-01-27T1111
-+keeping backups/2021-01-27T1112
+```shell
+$ expire purge backups --most-recent 3 --format simple --simulate
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 #### --most-recent

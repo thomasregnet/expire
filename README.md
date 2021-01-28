@@ -100,7 +100,7 @@ backups/2021-01-27T1112
 #### `--format=none`
 
 This is the default format, it prints nothing.
-Since nothing is printed here there is no example.
+Nothing is printed here, so no example.
 
 #### `--format=simple`
 

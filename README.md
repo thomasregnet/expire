@@ -32,7 +32,7 @@ TODO: Write usage instructions here
 ## Purge
 
 The purge command is used to calculate and delete the expired backups.
-It is invoked as follows
+It is invoked as follows:
 
 ``` shell
 expire path/to/backups <rules>
@@ -43,7 +43,7 @@ This would delete, according to the rules, all expired backups under `path/to/ba
 Before deleting, you may want to know what would be removed.
 The `--simulate` option is suitable for this purpose.
 
-### Simulate purge
+### The `--simulate`, `-s` flag
 
 To check the expire-rules you can call `expire purge` with the `--simulate` option:
 
@@ -56,20 +56,119 @@ but will not delete anything.
 
 To see what `purge` would delete you have to specify a format, covered in the following section.
 
-### Formats
+### The `--format`, `-f` options
 
-Formats are used to what's going on during purification.
+Formats are used to control the output of `expire`.
+`expire` supports various formats.
+The following examples assume a backup-directory containing some backups:
+
+```shell
+backups
+├── 2016-01-27T1112
+├── 2019-12-24T1200
+├── 2021-01-19T1113
+├── 2021-01-26T1111
+├── 2021-01-27T1111
+└── 2021-01-27T1112
+```
+
+All examples use the `--most-recent=3` rule.
+Rules are explained later in this document.
+
+#### `--format=expired`
+
+The **expired** format prints the paths of the expired backups, one per line.
+
+```bash
+$ expire purge backups --format=expired --most-recent=3
+backups/2016-01-27T1112
+backups/2019-12-24T1200
+backups/2021-01-19T1113
+```
+
+#### `--format=kept`
+
+The **kept** format prints the paths of the kept backups, one per line.
+
+```shell
+$ expire purge backups --format=kept --most-recent=3
+backups/2021-01-26T1111
+backups/2021-01-27T1111
+backups/2021-01-27T1112
+```
+
+#### `--format=none`
+
+This is the default format, it prints nothing.
+Nothing is printed here, so no example.
+
+#### `--format=simple`
+
+The **simple** format prints the path of the kept backups preceded by the work `keeping`
+and the expired backups preceded by the word `purged`.
+
+```bash
+$ expire purge backups --format=simple --most-recent=3
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
+```
+
+#### `--format=enhanced`
+
+The **enhanced** format works the same way as the simple format.
+In addition, it prints the reasons why a backup is kept.
+
+```bash
+$ expire purge backups --format=enhanced --most-recent=3
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+  reasons:
+    - keep the 3 most recent backups
+keeping backups/2021-01-27T1111
+  reasons:
+    - keep the 3 most recent backups
+keeping backups/2021-01-27T1112
+  reasons:
+    - keep the 3 most recent backups
+```
 
 ## Rules
 
 Rules control which backups to keep and which to discard.
-Rules can be specified by command line parameters or in a yaml-file.
+Rules can be specified by command line parameters or in a Yaml file.
+
+You must specify at least one rule or `expire purge` will fail.
+
+```shell
+backups/2016-01-27T1112
+backups/2019-12-24T1200
+backups/2021-01-19T1113
+backups/2021-01-26T1111
+backups/2021-01-27T1111
+backups/2021-01-27T1112
+```
 
 ### Most recent rules
 
-There are three  _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
+There are three _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
 
-#### --most-recent amount
+```shell
+$ expire purge backups --most-recent 3 --format simple --simulate
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
+```
+
+#### --most-recent
 
 The `--most-recent` rule takes the amount of last backups to keep.
 For example `--most-recent=3` preserves the three newest backups from being purged.
@@ -87,8 +186,10 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/expire.
+Bug reports and pull requests are welcome on
+GitHub at [thomasregnet/expire](https://github.com/thomasregnet/expire.)
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+The gem is available as open source under the terms of the
+[MIT License](https://opensource.org/licenses/MIT).

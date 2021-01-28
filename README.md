@@ -60,7 +60,7 @@ To see what `purge` would delete you have to specify a format, covered in the fo
 
 Formats are used to control the output of `expire`.
 `expire` supports various formats.
-The following examples assume a backup-directory with this contents:
+The following examples assume a backup-directory containing some backups:
 
 ```shell
 backups

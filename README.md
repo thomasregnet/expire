@@ -43,7 +43,7 @@ This would delete, according to the rules, all expired backups under `path/to/ba
 Before deleting, you may want to know what would be removed.
 The `--simulate` option is suitable for this purpose.
 
-### `--simulate`, `-s` flag
+### The `--simulate`, `-s` flag
 
 To check the expire-rules you can call `expire purge` with the `--simulate` option:
 
@@ -141,7 +141,7 @@ keeping backups/2021-01-27T1112
 ## Rules
 
 Rules control which backups to keep and which to discard.
-Rules can be specified by command line parameters or in a yaml-file.
+Rules can be specified by command line parameters or in a Yaml file.
 
 You must specify at least one rule or `expire purge` will fail.
 

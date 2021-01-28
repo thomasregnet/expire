@@ -32,7 +32,7 @@ TODO: Write usage instructions here
 ## Purge
 
 The purge command is used to calculate and delete the expired backups.
-It is invoked as follows
+It is invoked as follows:
 
 ``` shell
 expire path/to/backups <rules>

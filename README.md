@@ -59,28 +59,84 @@ To see what `purge` would delete you have to specify a format, covered in the fo
 ### The `--format`, `-f` options
 
 Formats are used to what's going on during purification.
+`expire` supports various formats.
+The following examples assume a backup-directory with this contents:
+
+```shell
+backups
+├── 2016-01-27T1112
+├── 2019-12-24T1200
+├── 2021-01-19T1113
+├── 2021-01-26T1111
+├── 2021-01-27T1111
+└── 2021-01-27T1112
+```
+
+All examples use the `--most-recent=3` rule.
+Rules are explained later in this document.
 
 #### `--format=expired`
 
 The **expired** format prints the paths of the expired backups, one per line.
 
+```bash
+$ expire purge backups --format=expired --most-recent=3
+backups/2016-01-27T1112
+backups/2019-12-24T1200
+backups/2021-01-19T1113
+```
+
 #### `--format=kept`
 
 The **kept** format prints the paths of the kept backups, one per line.
 
+```shell
+$ expire purge backups --format=kept --most-recent=3
+backups/2021-01-26T1111
+backups/2021-01-27T1111
+backups/2021-01-27T1112
+```
+
 #### `--format=none`
 
 This is the default format, it prints nothing.
+Since nothing is printed here there is no example.
 
 #### `--format=simple`
 
 The **simple** format prints the path of the kept backups preceded by the work `keeping`
 and the expired backups preceded by the word `purged`.
 
+```bash
+$ expire purge backups --format=simple --most-recent=3
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
+```
+
 #### `--format=enhanced`
 
 The **enhanced** format works the same way as the simple format.
 In addition, it prints the reasons why a backup is kept.
+
+```bash
+$ expire purge backups --format=enhanced --most-recent=3
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+  reasons:
+    - keep the 3 most recent backups
+keeping backups/2021-01-27T1111
+  reasons:
+    - keep the 3 most recent backups
+keeping backups/2021-01-27T1112
+  reasons:
+    - keep the 3 most recent backups
+```
 
 ## Rules
 

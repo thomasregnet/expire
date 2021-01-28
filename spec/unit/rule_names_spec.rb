@@ -5,24 +5,24 @@ require 'expire/commands/rule_names'
 RSpec.describe Expire::Commands::RuleNames do
   def expected
     <<~EXPECTED
-      most_recent
-      most_recent_for
-      from_now_most_recent_for
-      hourly
-      daily
-      weekly
-      monthly
-      yearly
-      hourly_for
-      daily_for
-      weekly_for
-      monthly_for
-      yearly_for
-      from_now_hourly_for
-      from_now_daily_for
-      from_now_weekly_for
-      from_now_monthly_for
-      from_now_yearly_for
+      keep_most_recent
+      keep_most_recent_for
+      keep_from_now_most_recent_for
+      keep_hourly
+      keep_daily
+      keep_weekly
+      keep_monthly
+      keep_yearly
+      keep_hourly_for
+      keep_daily_for
+      keep_weekly_for
+      keep_monthly_for
+      keep_yearly_for
+      keep_from_now_hourly_for
+      keep_from_now_daily_for
+      keep_from_now_weekly_for
+      keep_from_now_monthly_for
+      keep_from_now_yearly_for
     EXPECTED
   end
 

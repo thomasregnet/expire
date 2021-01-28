@@ -12,9 +12,9 @@ When('I call Expire.purge with the purge-command option') do
   )
 end
 
-When('I call Expire.purge with the most_recent option') do
+When('I call Expire.purge with the keep_most_recent option') do
   Expire.purge(
     'tmp/aruba/backups',
-    most_recent: 3
+    keep_most_recent: 3
   )
 end

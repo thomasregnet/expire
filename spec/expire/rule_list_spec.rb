@@ -4,24 +4,24 @@ RSpec.describe Expire::RuleList do
   describe '.class_names' do
     let(:expected) do
       %w[
-        Expire::MostRecentRule
-        Expire::MostRecentForRule
-        Expire::FromNowMostRecentForRule
-        Expire::HourlyRule
-        Expire::DailyRule
-        Expire::WeeklyRule
-        Expire::MonthlyRule
-        Expire::YearlyRule
-        Expire::HourlyForRule
-        Expire::DailyForRule
-        Expire::WeeklyForRule
-        Expire::MonthlyForRule
-        Expire::YearlyForRule
-        Expire::FromNowHourlyForRule
-        Expire::FromNowDailyForRule
-        Expire::FromNowWeeklyForRule
-        Expire::FromNowMonthlyForRule
-        Expire::FromNowYearlyForRule
+        Expire::KeepMostRecentRule
+        Expire::KeepMostRecentForRule
+        Expire::KeepFromNowMostRecentForRule
+        Expire::KeepHourlyRule
+        Expire::KeepDailyRule
+        Expire::KeepWeeklyRule
+        Expire::KeepMonthlyRule
+        Expire::KeepYearlyRule
+        Expire::KeepHourlyForRule
+        Expire::KeepDailyForRule
+        Expire::KeepWeeklyForRule
+        Expire::KeepMonthlyForRule
+        Expire::KeepYearlyForRule
+        Expire::KeepFromNowHourlyForRule
+        Expire::KeepFromNowDailyForRule
+        Expire::KeepFromNowWeeklyForRule
+        Expire::KeepFromNowMonthlyForRule
+        Expire::KeepFromNowYearlyForRule
       ]
     end
 
@@ -33,24 +33,24 @@ RSpec.describe Expire::RuleList do
   describe '.names' do
     let(:expected) do
       %w[
-        most_recent
-        most_recent_for
-        from_now_most_recent_for
-        hourly
-        daily
-        weekly
-        monthly
-        yearly
-        hourly_for
-        daily_for
-        weekly_for
-        monthly_for
-        yearly_for
-        from_now_hourly_for
-        from_now_daily_for
-        from_now_weekly_for
-        from_now_monthly_for
-        from_now_yearly_for
+        keep_most_recent
+        keep_most_recent_for
+        keep_from_now_most_recent_for
+        keep_hourly
+        keep_daily
+        keep_weekly
+        keep_monthly
+        keep_yearly
+        keep_hourly_for
+        keep_daily_for
+        keep_weekly_for
+        keep_monthly_for
+        keep_yearly_for
+        keep_from_now_hourly_for
+        keep_from_now_daily_for
+        keep_from_now_weekly_for
+        keep_from_now_monthly_for
+        keep_from_now_yearly_for
       ]
     end
 
@@ -62,24 +62,24 @@ RSpec.describe Expire::RuleList do
   describe '.name_symbols' do
     let(:expected) do
       %i[
-        most_recent
-        most_recent_for
-        from_now_most_recent_for
-        hourly
-        daily
-        weekly
-        monthly
-        yearly
-        hourly_for
-        daily_for
-        weekly_for
-        monthly_for
-        yearly_for
-        from_now_hourly_for
-        from_now_daily_for
-        from_now_weekly_for
-        from_now_monthly_for
-        from_now_yearly_for
+        keep_most_recent
+        keep_most_recent_for
+        keep_from_now_most_recent_for
+        keep_hourly
+        keep_daily
+        keep_weekly
+        keep_monthly
+        keep_yearly
+        keep_hourly_for
+        keep_daily_for
+        keep_weekly_for
+        keep_monthly_for
+        keep_yearly_for
+        keep_from_now_hourly_for
+        keep_from_now_daily_for
+        keep_from_now_weekly_for
+        keep_from_now_monthly_for
+        keep_from_now_yearly_for
       ]
     end
 
@@ -91,24 +91,24 @@ RSpec.describe Expire::RuleList do
   describe '.option_names' do
     let(:expected) do
       %w[
-        --most-recent
-        --most-recent-for
-        --from-now-most-recent-for
-        --hourly
-        --daily
-        --weekly
-        --monthly
-        --yearly
-        --hourly-for
-        --daily-for
-        --weekly-for
-        --monthly-for
-        --yearly-for
-        --from-now-hourly-for
-        --from-now-daily-for
-        --from-now-weekly-for
-        --from-now-monthly-for
-        --from-now-yearly-for
+        --keep-most-recent
+        --keep-most-recent-for
+        --keep-from-now-most-recent-for
+        --keep-hourly
+        --keep-daily
+        --keep-weekly
+        --keep-monthly
+        --keep-yearly
+        --keep-hourly-for
+        --keep-daily-for
+        --keep-weekly-for
+        --keep-monthly-for
+        --keep-yearly-for
+        --keep-from-now-hourly-for
+        --keep-from-now-daily-for
+        --keep-from-now-weekly-for
+        --keep-from-now-monthly-for
+        --keep-from-now-yearly-for
       ]
     end
 

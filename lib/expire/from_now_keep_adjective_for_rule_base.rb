@@ -2,7 +2,7 @@
 
 module Expire
   # Base class for from-now rules
-  class FromNowAdjectiveForRuleBase < KeepAdjectiveRuleBase
+  class FromNowKeepAdjectiveForRuleBase < KeepAdjectiveRuleBase
     extend FromSpanValue
     include NumerusUnit
 

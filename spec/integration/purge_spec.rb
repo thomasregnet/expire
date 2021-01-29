@@ -44,7 +44,7 @@ RSpec.describe '`expire purge` command', type: :cli do
     end
   end
 
-  describe '`expire purge backups --format expired --most-recent-for 2 days' do
+  describe '`expire purge backups --format expired --keep-most-recent-for 2 days' do
     before do
       FileUtils.rm_rf('tmp/backups')
       FileUtils.mkpath('tmp/backups/2021-01-10T22:10')

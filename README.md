@@ -177,6 +177,30 @@ The `--keep-most-recent=3` option preserves the three newest backups from being 
 Keeps the newest backups for a period of time.
 The period of time is specified with the `amount` and `unit` parameters.
 
+## Time ranges
+
+Some rules take a time range as argument.
+Ranges may be expressed like this:
+
+```shell
+1 hour
+2.weeks
+3 months
+1_000 years
+```
+
+As you can see, a range is expressed as a combination of an **integer** and a **unit**.
+The integer portion can include underscores (`_`) **between** the digits.
+Possible values for the unit portion are:
+
+* `hour` and `hours`
+* `day` and `days`
+* `week` and `weeks`
+* `moth` and `months`
+* `year` and `years`
+
+Units are case-insensitive, so `Year` and `yEaR` are valid too.
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

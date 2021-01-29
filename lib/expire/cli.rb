@@ -122,7 +122,7 @@ module Expire
       desc: 'keep the most recent backups for <integer> <unit>'
     )
     method_option(
-      :keep_from_now_most_recent_for,
+      :from_now_keep_most_recent_for,
       type: :string,
       desc: 'keep the most recent backups for <integer> <unit> calculated from now'
     )
@@ -177,27 +177,27 @@ module Expire
       desc: 'keep one backup per year for <integer> <unit>'
     )
     method_option(
-      :keep_from_now_hourly_for,
+      :from_now_keep_hourly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :keep_from_now_daily_for,
+      :from_now_keep_daily_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :keep_from_now_weekly_for,
+      :from_now_keep_weekly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :keep_from_now_monthly_for,
+      :from_now_keep_monthly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :keep_from_now_yearly_for,
+      :from_now_keep_yearly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )

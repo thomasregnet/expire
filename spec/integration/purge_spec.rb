@@ -17,7 +17,7 @@ RSpec.describe '`expire purge` command', type: :cli do
           -s, [--simulate], [--no-simulate]                                    # Simulate purge, do not delete anything
               [--keep-most-recent=KEEP_MOST_RECENT]                            # keep the <integer> most recent backups
               [--keep-most-recent-for=KEEP_MOST_RECENT_FOR]                    # keep the most recent backups for <integer> <unit>
-              [--keep-from-now-most-recent-for=KEEP_FROM_NOW_MOST_RECENT_FOR]  # keep the most recent backups for <integer> <unit> calculated from now
+              [--from-now-keep-most-recent-for=FROM_NOW_KEEP_MOST_RECENT_FOR]  # keep the most recent backups for <integer> <unit> calculated from now
               [--keep-hourly=KEEP_HOURLY]                                      # keep the <integer> most recent backups from different hours
               [--keep-daily=KEEP_DAILY]                                        # keep the <integer> most recent backups from different days
               [--keep-weekly=KEEP_WEEKLY]                                      # keep the <integer> most recent backups from different weeks
@@ -28,11 +28,11 @@ RSpec.describe '`expire purge` command', type: :cli do
               [--keep-weekly-for=KEEP_WEEKLY_FOR]                              # keep one backup per week for <integer> <unit>
               [--keep-monthly-for=KEEP_MONTHLY_FOR]                            # keep one backup per month for <integer> <unit>
               [--keep-yearly-for=KEEP_YEARLY_FOR]                              # keep one backup per year for <integer> <unit>
-              [--keep-from-now-hourly-for=KEEP_FROM_NOW_HOURLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
-              [--keep-from-now-daily-for=KEEP_FROM_NOW_DAILY_FOR]              # keep one backup per hour for <integer> <unit> calculated from now
-              [--keep-from-now-weekly-for=KEEP_FROM_NOW_WEEKLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
-              [--keep-from-now-monthly-for=KEEP_FROM_NOW_MONTHLY_FOR]          # keep one backup per hour for <integer> <unit> calculated from now
-              [--keep-from-now-yearly-for=KEEP_FROM_NOW_YEARLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
+              [--from-now-keep-hourly-for=FROM_NOW_KEEP_HOURLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
+              [--from-now-keep-daily-for=FROM_NOW_KEEP_DAILY_FOR]              # keep one backup per hour for <integer> <unit> calculated from now
+              [--from-now-keep-weekly-for=FROM_NOW_KEEP_WEEKLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
+              [--from-now-keep-monthly-for=FROM_NOW_KEEP_MONTHLY_FOR]          # keep one backup per hour for <integer> <unit> calculated from now
+              [--from-now-keep-yearly-for=FROM_NOW_KEEP_YEARLY_FOR]            # keep one backup per hour for <integer> <unit> calculated from now
 
         Remove expired backups from PATH
       OUT

@@ -3,7 +3,7 @@
 module Expire
   # Base class for from-now rules
   class FromNowKeepAdjectiveForRuleBase < KeepAdjectiveRuleBase
-    extend FromSpanValue
+    extend FromRangeValue
     include NumerusUnit
 
     PRIMARY_RANK = 40

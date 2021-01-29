@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module Expire
-  # Dummy class For testing Expire::FromSpanValue
-  class TestFromSpanValue
-    extend Expire::FromSpanValue
+  # Dummy class For testing Expire::FromRangeValue
+  class TestFromRangeValue
+    extend Expire::FromRangeValue
 
     def initialize(amount:, unit:, **args)
       @amount = amount
@@ -15,7 +15,7 @@ module Expire
   end
 end
 
-RSpec.describe Expire::FromSpanValue do
+RSpec.describe Expire::FromRangeValue do
   good_test_params = [
     ['1 hour',   1, 'hour'],
     ['3 hours',  3, 'hour'],
@@ -43,7 +43,7 @@ RSpec.describe Expire::FromSpanValue do
 
   good_test_params.each do |test_params|
     context "with a value of \"#{test_params[0]}\"" do
-      let(:rule) { Expire::TestFromSpanValue.from_value(test_params[0]) }
+      let(:rule) { Expire::TestFromRangeValue.from_value(test_params[0]) }
 
       it "has an amount of #{test_params[1]}" do
         expect(rule.amount).to eq(test_params[1])
@@ -64,8 +64,8 @@ RSpec.describe Expire::FromSpanValue do
   bad_test_values.each do |value|
     context "with the value \"#{value}\"" do
       it 'raises an ArgumentError' do
-        expect { Expire::TestFromSpanValue.from_value(value) }
-          .to raise_error(ArgumentError) # , /is not a valid span value/)
+        expect { Expire::TestFromRangeValue.from_value(value) }
+          .to raise_error(ArgumentError, /is not a valid range value/)
       end
     end
   end

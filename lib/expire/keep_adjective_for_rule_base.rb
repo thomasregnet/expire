@@ -2,10 +2,8 @@
 
 module Expire
   # Hold backups for a period
-  class AdjectiveForRuleBase < FromNowAdjectiveForRuleBase
+  class KeepAdjectiveForRuleBase < FromNowAdjectiveForRuleBase
     ADJECTIVE_FOR = {
-      'hour' => 'hourly',
-      'day' => 'daily',
       'week' => 'weekly',
       'month' => 'monthly',
       'year' => 'yearly'

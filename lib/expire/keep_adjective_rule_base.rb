@@ -2,7 +2,7 @@
 
 module Expire
   # Base class for rules with an adjective in their name
-  class AdjectiveRuleBase < RuleBase
+  class KeepAdjectiveRuleBase < RuleBase
     using RefineAllAndNone
 
     NOUN_FOR = {

@@ -112,92 +112,92 @@ module Expire
     method_option :simulate, aliases: '-s', type: :boolean,
       desc: 'Simulate purge, do not delete anything'
     method_option(
-      :most_recent,
+      :keep_most_recent,
       type: :string,
       desc: 'keep the <integer> most recent backups'
     )
     method_option(
-      :most_recent_for,
+      :keep_most_recent_for,
       type: :string,
       desc: 'keep the most recent backups for <integer> <unit>'
     )
     method_option(
-      :from_now_most_recent_for,
+      :from_now_keep_most_recent_for,
       type: :string,
       desc: 'keep the most recent backups for <integer> <unit> calculated from now'
     )
     method_option(
-      :hourly,
+      :keep_hourly,
       type: :string,
       desc: 'keep the <integer> most recent backups from different hours'
     )
     method_option(
-      :daily,
+      :keep_daily,
       type: :string,
       desc: 'keep the <integer> most recent backups from different days'
     )
     method_option(
-      :weekly,
+      :keep_weekly,
       type: :string,
       desc: 'keep the <integer> most recent backups from different weeks'
     )
     method_option(
-      :monthly,
+      :keep_monthly,
       type: :string,
       desc: 'keep the <integer> most recent backups from different months'
     )
     method_option(
-      :yearly,
+      :keep_yearly,
       type: :string,
       desc: 'keep the <integer> most recent backups from different years'
     )
     method_option(
-      :hourly_for,
+      :keep_hourly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit>'
     )
     method_option(
-      :daily_for,
+      :keep_daily_for,
       type: :string,
       desc: 'keep one backup per day for <integer> <unit>'
     )
     method_option(
-      :weekly_for,
+      :keep_weekly_for,
       type: :string,
       desc: 'keep one backup per week for <integer> <unit>'
     )
     method_option(
-      :monthly_for,
+      :keep_monthly_for,
       type: :string,
       desc: 'keep one backup per month for <integer> <unit>'
     )
     method_option(
-      :yearly_for,
+      :keep_yearly_for,
       type: :string,
       desc: 'keep one backup per year for <integer> <unit>'
     )
     method_option(
-      :from_now_hourly_for,
+      :from_now_keep_hourly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :from_now_daily_for,
+      :from_now_keep_daily_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :from_now_weekly_for,
+      :from_now_keep_weekly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :from_now_monthly_for,
+      :from_now_keep_monthly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )
     method_option(
-      :from_now_yearly_for,
+      :from_now_keep_yearly_for,
       type: :string,
       desc: 'keep one backup per hour for <integer> <unit> calculated from now'
     )

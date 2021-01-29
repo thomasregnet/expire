@@ -5,25 +5,25 @@ RSpec.describe Expire::Rules do
     describe '.from_options' do
       let(:options) do
         {
-          no_rule_at_all:           'some value',
-          most_recent:              3,
-          most_recent_for:          '3 days',
-          from_now_most_recent_for: '3 days',
-          hourly:                   3,
-          daily:                    3,
-          weekly:                   3,
-          monthly:                  3,
-          yearly:                   3,
-          hourly_for:               '3 years',
-          daily_for:                '3 years',
-          weekly_for:               '3 years',
-          monthly_for:              '3 years',
-          yearly_for:               '3 years',
-          from_now_hourly_for:      '3 years',
-          from_now_daily_for:       '3 years',
-          from_now_weekly_for:      '3 years',
-          from_now_monthly_for:     '3 years',
-          from_now_yearly_for:      '3 years'
+          no_rule_at_all:                'some value',
+          keep_most_recent:              3,
+          keep_most_recent_for:          '3 days',
+          keep_from_now_most_recent_for: '3 days',
+          keep_hourly:                   3,
+          keep_daily:                    3,
+          keep_weekly:                   3,
+          keep_monthly:                  3,
+          keep_yearly:                   3,
+          keep_hourly_for:               '3 years',
+          keep_daily_for:                '3 years',
+          keep_weekly_for:               '3 years',
+          keep_monthly_for:              '3 years',
+          keep_yearly_for:               '3 years',
+          keep_from_now_hourly_for:      '3 years',
+          keep_from_now_daily_for:       '3 years',
+          keep_from_now_weekly_for:      '3 years',
+          keep_from_now_monthly_for:     '3 years',
+          keep_from_now_yearly_for:      '3 years'
         }
       end
 
@@ -48,24 +48,24 @@ RSpec.describe Expire::Rules do
     context 'with valid rules' do
       let(:rules) do
         {
-          most_recent:              3,
-          most_recent_for:          '3 days',
-          from_now_most_recent_for: '3 days',
-          hourly:                   3,
-          daily:                    3,
-          weekly:                   3,
-          monthly:                  3,
-          yearly:                   3,
-          hourly_for:               '3 years',
-          daily_for:                '3 years',
-          weekly_for:               '3 years',
-          monthly_for:              '3 years',
-          yearly_for:               '3 years',
-          from_now_hourly_for:      '3 years',
-          from_now_daily_for:       '3 years',
-          from_now_weekly_for:      '3 years',
-          from_now_monthly_for:     '3 years',
-          from_now_yearly_for:      '3 years'
+          keep_most_recent:              3,
+          keep_most_recent_for:          '3 days',
+          from_now_keep_most_recent_for: '3 days',
+          keep_hourly:                   3,
+          keep_daily:                    3,
+          keep_weekly:                   3,
+          keep_monthly:                  3,
+          keep_yearly:                   3,
+          keep_hourly_for:               '3 years',
+          keep_daily_for:                '3 years',
+          keep_weekly_for:               '3 years',
+          keep_monthly_for:              '3 years',
+          keep_yearly_for:               '3 years',
+          from_now_keep_hourly_for:      '3 years',
+          from_now_keep_daily_for:       '3 years',
+          from_now_keep_weekly_for:      '3 years',
+          from_now_keep_monthly_for:     '3 years',
+          from_now_keep_yearly_for:      '3 years'
         }
       end
 
@@ -78,8 +78,8 @@ RSpec.describe Expire::Rules do
   describe '#apply' do
     let(:backups) { instance_double 'Expire::BackupList' }
     let(:rules) { described_class.new }
-    let(:first_rule) { Expire::HourlyRule.from_value('none') }
-    let(:second_rule) { Expire::DailyRule.from_value('none') }
+    let(:first_rule) { Expire::KeepHourlyRule.from_value('none') }
+    let(:second_rule) { Expire::KeepDailyRule.from_value('none') }
 
     before do
       allow(rules).to receive(:rules).and_return([second_rule, first_rule])
@@ -102,7 +102,7 @@ RSpec.describe Expire::Rules do
   end
 
   describe '#count' do
-    let(:rules) { described_class.new(daily: 1, weekly: 3) }
+    let(:rules) { described_class.new(keep_daily: 1, keep_weekly: 3) }
 
     it 'returns the number of rules' do
       expect(rules.count).to eq(2)
@@ -111,8 +111,8 @@ RSpec.describe Expire::Rules do
 
   describe '#merge' do
     let(:merged) do
-      described_class.new(most_recent: 3, weekly: 3)
-                     .merge(described_class.new(weekly: 5, yearly: 7))
+      described_class.new(keep_most_recent: 3, keep_weekly: 3)
+                     .merge(described_class.new(keep_weekly: 5, keep_yearly: 7))
     end
 
     it 'returns the expected count of rules' do
@@ -120,15 +120,15 @@ RSpec.describe Expire::Rules do
     end
 
     it 'keeps rules that are not contained in the prior rules' do
-      expect(merged.to_h[:most_recent].amount).to eq(3)
+      expect(merged.to_h[:keep_most_recent].amount).to eq(3)
     end
 
     it 'prefers the rules in the prior rules' do
-      expect(merged.to_h[:weekly].amount).to eq(5)
+      expect(merged.to_h[:keep_weekly].amount).to eq(5)
     end
 
     it 'adds rules that are only contained in the prior rules' do
-      expect(merged.to_h[:yearly].amount).to eq(7)
+      expect(merged.to_h[:keep_yearly].amount).to eq(7)
     end
   end
 end

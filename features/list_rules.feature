@@ -7,22 +7,22 @@ Feature: List rules
     When I run `expire rule-classes`
     Then it should pass with exactly:
     """
-    Expire::MostRecentRule
-    Expire::MostRecentForRule
-    Expire::FromNowMostRecentForRule
-    Expire::HourlyRule
-    Expire::DailyRule
-    Expire::WeeklyRule
-    Expire::MonthlyRule
-    Expire::YearlyRule
-    Expire::HourlyForRule
-    Expire::DailyForRule
-    Expire::WeeklyForRule
-    Expire::MonthlyForRule
-    Expire::YearlyForRule
-    Expire::FromNowHourlyForRule
-    Expire::FromNowDailyForRule
-    Expire::FromNowWeeklyForRule
-    Expire::FromNowMonthlyForRule
-    Expire::FromNowYearlyForRule
+    Expire::KeepMostRecentRule
+    Expire::KeepMostRecentForRule
+    Expire::FromNowKeepMostRecentForRule
+    Expire::KeepHourlyRule
+    Expire::KeepDailyRule
+    Expire::KeepWeeklyRule
+    Expire::KeepMonthlyRule
+    Expire::KeepYearlyRule
+    Expire::KeepHourlyForRule
+    Expire::KeepDailyForRule
+    Expire::KeepWeeklyForRule
+    Expire::KeepMonthlyForRule
+    Expire::KeepYearlyForRule
+    Expire::FromNowKeepHourlyForRule
+    Expire::FromNowKeepDailyForRule
+    Expire::FromNowKeepWeeklyForRule
+    Expire::FromNowKeepMonthlyForRule
+    Expire::FromNowKeepYearlyForRule
     """

@@ -7,7 +7,7 @@ Feature: Enhanced Format
     Given the backup directory exists
     Given a file named "rules.yml" with:
     """
-    most_recent: 3
+    keep_most_recent: 3
     """
     When I run `expire purge --rules-file=rules.yml --format=enhanced backups` 
     Then the output should contain "keeping"

@@ -5,7 +5,7 @@ require 'expire/commands/purge'
 RSpec.describe Expire::Commands::Purge do
   let(:output) { StringIO.new }
   let(:path) { 'tmp/backups' }
-  let(:options) { { most_recent: 3 } }
+  let(:options) { { keep_most_recent: 3 } }
 
   before do
     backup_path = 'tmp/backups'

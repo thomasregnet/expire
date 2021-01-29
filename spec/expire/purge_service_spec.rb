@@ -14,7 +14,7 @@ RSpec.describe Expire::PurgeService do
 
     context 'with valid options' do
       before do
-        described_class.call('tmp/backups', most_recent: 1)
+        described_class.call('tmp/backups', keep_most_recent: 1)
       end
 
       it 'removes the expired backup' do
@@ -28,7 +28,7 @@ RSpec.describe Expire::PurgeService do
 
     context 'with the "simulate" option' do
       before do
-        described_class.call('tmp/backups', most_recent: 1, simulate: true)
+        described_class.call('tmp/backups', keep_most_recent: 1, simulate: true)
       end
 
       it 'removes the expired backup' do
@@ -46,7 +46,7 @@ RSpec.describe Expire::PurgeService do
         # https://hackernoon.com/how-to-use-rspec-from-basics-to-testing-user-input-i03k36m3
         io = StringIO.new("#{expired_backup}\n#{kept_backup}")
         $stdin = io
-        described_class.call('-', most_recent: 1)
+        described_class.call('-', keep_most_recent: 1)
       end
 
       it 'removes the expired backup' do
@@ -59,7 +59,7 @@ RSpec.describe Expire::PurgeService do
     end
 
     context 'with an invalid format' do
-      let(:opts) { { format: 'no_such_format', most_recent: 1 } }
+      let(:opts) { { format: 'no_such_format', keep_most_recent: 1 } }
 
       it 'raises an ArgumentError' do
         expect { described_class.call(backup_path, opts) }

@@ -7,7 +7,7 @@ Feature: Keep Format
     Given a file named "rules.yml" with:
     """
     ---
-    most_recent: 3
+    keep_most_recent: 3
     """
     Given a directory named "backups/2020-05-25-12-13"
     Given a directory named "backups/2020-05-24-12-13"

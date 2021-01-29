@@ -72,7 +72,7 @@ backups
 └── 2021-01-27T1112
 ```
 
-All examples use the `--most-recent=3` rule.
+All examples use the `--keep-most-recent=3` rule.
 Rules are explained later in this document.
 
 #### `--format=expired`
@@ -80,7 +80,7 @@ Rules are explained later in this document.
 The **expired** format prints the paths of the expired backups, one per line.
 
 ```bash
-$ expire purge backups --format=expired --most-recent=3
+$ expire purge backups --format=expired --keep-most-recent=3
 backups/2016-01-27T1112
 backups/2019-12-24T1200
 backups/2021-01-19T1113
@@ -91,7 +91,7 @@ backups/2021-01-19T1113
 The **kept** format prints the paths of the kept backups, one per line.
 
 ```shell
-$ expire purge backups --format=kept --most-recent=3
+$ expire purge backups --format=kept --keep-most-recent=3
 backups/2021-01-26T1111
 backups/2021-01-27T1111
 backups/2021-01-27T1112
@@ -108,7 +108,7 @@ The **simple** format prints the path of the kept backups preceded by the work `
 and the expired backups preceded by the word `purged`.
 
 ```bash
-$ expire purge backups --format=simple --most-recent=3
+$ expire purge backups --format=simple --keep-most-recent=3
 purged backups/2016-01-27T1112
 purged backups/2019-12-24T1200
 purged backups/2021-01-19T1113
@@ -123,7 +123,7 @@ The **enhanced** format works the same way as the simple format.
 In addition, it prints the reasons why a backup is kept.
 
 ```bash
-$ expire purge backups --format=enhanced --most-recent=3
+$ expire purge backups --format=enhanced --keep-most-recent=3
 purged backups/2016-01-27T1112
 purged backups/2019-12-24T1200
 purged backups/2021-01-19T1113
@@ -156,10 +156,10 @@ backups/2021-01-27T1112
 
 ### Most recent rules
 
-There are three _most recent_ rules, `--most-recent`, `--most-recent-for` and `--from-now-most-recent-for`.
+There are three _most recent_ rules, `--keep-most-recent`, `--keep-most-recent-for` and `--from-now-keep-most-recent-for`.
 
 ```shell
-$ expire purge backups --most-recent 3 --format simple --simulate
+$ expire purge backups --keep-most-recent 3 --format simple
 purged backups/2016-01-27T1112
 purged backups/2019-12-24T1200
 purged backups/2021-01-19T1113
@@ -168,12 +168,11 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-#### --most-recent
+#### --keep-most-recent
 
-The `--most-recent` rule takes the amount of last backups to keep.
-For example `--most-recent=3` preserves the three newest backups from being purged.
+The `--keep-most-recent=3` option preserves the three newest backups from being purged.
 
-##### --most-recent-for amount unit
+##### --keep-most-recent-for amount unit
 
 Keeps the newest backups for a period of time.
 The period of time is specified with the `amount` and `unit` parameters.

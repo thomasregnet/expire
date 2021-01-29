@@ -6,7 +6,7 @@ RSpec.describe Expire::RuleList do
       %w[
         Expire::KeepMostRecentRule
         Expire::KeepMostRecentForRule
-        Expire::KeepFromNowMostRecentForRule
+        Expire::FromNowKeepMostRecentForRule
         Expire::KeepHourlyRule
         Expire::KeepDailyRule
         Expire::KeepWeeklyRule
@@ -35,7 +35,7 @@ RSpec.describe Expire::RuleList do
       %w[
         keep_most_recent
         keep_most_recent_for
-        keep_from_now_most_recent_for
+        from_now_keep_most_recent_for
         keep_hourly
         keep_daily
         keep_weekly
@@ -64,7 +64,7 @@ RSpec.describe Expire::RuleList do
       %i[
         keep_most_recent
         keep_most_recent_for
-        keep_from_now_most_recent_for
+        from_now_keep_most_recent_for
         keep_hourly
         keep_daily
         keep_weekly
@@ -93,7 +93,7 @@ RSpec.describe Expire::RuleList do
       %w[
         --keep-most-recent
         --keep-most-recent-for
-        --keep-from-now-most-recent-for
+        --from-now-keep-most-recent-for
         --keep-hourly
         --keep-daily
         --keep-weekly

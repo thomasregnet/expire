@@ -7,7 +7,7 @@ RSpec.describe Expire::Commands::RuleClasses do
     <<~EXPECTED
       Expire::KeepMostRecentRule
       Expire::KeepMostRecentForRule
-      Expire::KeepFromNowMostRecentForRule
+      Expire::FromNowKeepMostRecentForRule
       Expire::KeepHourlyRule
       Expire::KeepDailyRule
       Expire::KeepWeeklyRule

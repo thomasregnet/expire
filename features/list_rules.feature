@@ -9,7 +9,7 @@ Feature: List rules
     """
     Expire::KeepMostRecentRule
     Expire::KeepMostRecentForRule
-    Expire::KeepFromNowMostRecentForRule
+    Expire::FromNowKeepMostRecentForRule
     Expire::KeepHourlyRule
     Expire::KeepDailyRule
     Expire::KeepWeeklyRule

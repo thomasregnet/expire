@@ -7,7 +7,7 @@ RSpec.describe Expire::Commands::RuleNames do
     <<~EXPECTED
       keep_most_recent
       keep_most_recent_for
-      keep_from_now_most_recent_for
+      from_now_keep_most_recent_for
       keep_hourly
       keep_daily
       keep_weekly

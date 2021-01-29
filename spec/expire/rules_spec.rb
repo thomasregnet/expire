@@ -50,7 +50,7 @@ RSpec.describe Expire::Rules do
         {
           keep_most_recent:              3,
           keep_most_recent_for:          '3 days',
-          keep_from_now_most_recent_for: '3 days',
+          from_now_keep_most_recent_for: '3 days',
           keep_hourly:                   3,
           keep_daily:                    3,
           keep_weekly:                   3,

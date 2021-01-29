@@ -6,12 +6,12 @@ require 'support/shared_examples_for_rules'
 require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
-RSpec.describe Expire::KeepFromNowMostRecentForRule do
+RSpec.describe Expire::FromNowKeepMostRecentForRule do
   subject { described_class.new(amount: 2, unit: 'days') }
 
   it_behaves_like 'a rule' do
-    let(:name)        { 'keep_from_now_most_recent_for' }
-    let(:option_name) { '--keep-from-now-most-recent-for' }
+    let(:name)        { 'from_now_keep_most_recent_for' }
+    let(:option_name) { '--from-now-keep-most-recent-for' }
     let(:rank)        { 12 }
   end
 

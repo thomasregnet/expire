@@ -3,7 +3,7 @@
 module Expire
   # Keep the most recent backups from now for a certain
   # period of time.
-  class KeepFromNowMostRecentForRule < RuleBase
+  class FromNowKeepMostRecentForRule < RuleBase
     extend FromSpanValue
     include NumerusUnit
 

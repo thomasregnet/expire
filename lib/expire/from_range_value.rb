@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Expire
-  # Provide a pseudo constructor for rules that require a span
-  module FromSpanValue
+  # Provide a pseudo constructor for rules that require a time range
+  module FromRangeValue
     using RefineAllAndNone
 
     FROM_VALUE_REGEX = /
@@ -19,7 +19,7 @@ module Expire
 
       stripped_down = string.strip.downcase
       match = stripped_down.match FROM_VALUE_REGEX
-      raise ArgumentError, "#{string} is not a valid span value" unless match
+      raise ArgumentError, "#{string} is not a valid range value" unless match
 
       amount = Integer(match[1])
       unit = match[5]

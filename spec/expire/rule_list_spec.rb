@@ -17,11 +17,11 @@ RSpec.describe Expire::RuleList do
         Expire::KeepWeeklyForRule
         Expire::KeepMonthlyForRule
         Expire::KeepYearlyForRule
-        Expire::KeepFromNowHourlyForRule
-        Expire::KeepFromNowDailyForRule
-        Expire::KeepFromNowWeeklyForRule
-        Expire::KeepFromNowMonthlyForRule
-        Expire::KeepFromNowYearlyForRule
+        Expire::FromNowKeepHourlyForRule
+        Expire::FromNowKeepDailyForRule
+        Expire::FromNowKeepWeeklyForRule
+        Expire::FromNowKeepMonthlyForRule
+        Expire::FromNowKeepYearlyForRule
       ]
     end
 
@@ -46,11 +46,11 @@ RSpec.describe Expire::RuleList do
         keep_weekly_for
         keep_monthly_for
         keep_yearly_for
-        keep_from_now_hourly_for
-        keep_from_now_daily_for
-        keep_from_now_weekly_for
-        keep_from_now_monthly_for
-        keep_from_now_yearly_for
+        from_now_keep_hourly_for
+        from_now_keep_daily_for
+        from_now_keep_weekly_for
+        from_now_keep_monthly_for
+        from_now_keep_yearly_for
       ]
     end
 
@@ -75,11 +75,11 @@ RSpec.describe Expire::RuleList do
         keep_weekly_for
         keep_monthly_for
         keep_yearly_for
-        keep_from_now_hourly_for
-        keep_from_now_daily_for
-        keep_from_now_weekly_for
-        keep_from_now_monthly_for
-        keep_from_now_yearly_for
+        from_now_keep_hourly_for
+        from_now_keep_daily_for
+        from_now_keep_weekly_for
+        from_now_keep_monthly_for
+        from_now_keep_yearly_for
       ]
     end
 
@@ -104,11 +104,11 @@ RSpec.describe Expire::RuleList do
         --keep-weekly-for
         --keep-monthly-for
         --keep-yearly-for
-        --keep-from-now-hourly-for
-        --keep-from-now-daily-for
-        --keep-from-now-weekly-for
-        --keep-from-now-monthly-for
-        --keep-from-now-yearly-for
+        --from-now-keep-hourly-for
+        --from-now-keep-daily-for
+        --from-now-keep-weekly-for
+        --from-now-keep-monthly-for
+        --from-now-keep-yearly-for
       ]
     end
 

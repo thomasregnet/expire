@@ -7,12 +7,12 @@ require 'support/shared_examples_for_rule_apply'
 require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
-RSpec.describe Expire::KeepFromNowDailyForRule do
+RSpec.describe Expire::FromNowKeepDailyForRule do
   subject { described_class.new(amount: 2, unit: 'days') }
 
   it_behaves_like 'a rule' do
-    let(:name)        { 'keep_from_now_daily_for' }
-    let(:option_name) { '--keep-from-now-daily-for' }
+    let(:name)        { 'from_now_keep_daily_for' }
+    let(:option_name) { '--from-now-keep-daily-for' }
     let(:rank)        { 42 }
   end
 

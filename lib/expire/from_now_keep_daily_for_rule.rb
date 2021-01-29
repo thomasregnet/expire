@@ -2,6 +2,6 @@
 
 module Expire
   # Keea a daily backup from now for a certain period of time
-  class KeepFromNowDailyForRule < FromNowKeepAdjectiveForRuleBase
+  class FromNowKeepDailyForRule < FromNowKeepAdjectiveForRuleBase
   end
 end

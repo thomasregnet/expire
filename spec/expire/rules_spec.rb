@@ -61,11 +61,11 @@ RSpec.describe Expire::Rules do
           keep_weekly_for:               '3 years',
           keep_monthly_for:              '3 years',
           keep_yearly_for:               '3 years',
-          keep_from_now_hourly_for:      '3 years',
-          keep_from_now_daily_for:       '3 years',
-          keep_from_now_weekly_for:      '3 years',
-          keep_from_now_monthly_for:     '3 years',
-          keep_from_now_yearly_for:      '3 years'
+          from_now_keep_hourly_for:      '3 years',
+          from_now_keep_daily_for:       '3 years',
+          from_now_keep_weekly_for:      '3 years',
+          from_now_keep_monthly_for:     '3 years',
+          from_now_keep_yearly_for:      '3 years'
         }
       end
 

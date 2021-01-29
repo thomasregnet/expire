@@ -7,12 +7,12 @@ require 'support/shared_examples_for_rule_apply'
 require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
-RSpec.describe Expire::KeepFromNowMonthlyForRule do
+RSpec.describe Expire::FromNowKeepMonthlyForRule do
   subject { described_class.new(amount: 2, unit: 'years') }
 
   it_behaves_like 'a rule' do
-    let(:name)        { 'keep_from_now_monthly_for' }
-    let(:option_name) { '--keep-from-now-monthly-for' }
+    let(:name)        { 'from_now_keep_monthly_for' }
+    let(:option_name) { '--from-now-keep-monthly-for' }
     let(:rank)        { 44 }
   end
 

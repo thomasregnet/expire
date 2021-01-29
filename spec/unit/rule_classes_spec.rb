@@ -18,11 +18,11 @@ RSpec.describe Expire::Commands::RuleClasses do
       Expire::KeepWeeklyForRule
       Expire::KeepMonthlyForRule
       Expire::KeepYearlyForRule
-      Expire::KeepFromNowHourlyForRule
-      Expire::KeepFromNowDailyForRule
-      Expire::KeepFromNowWeeklyForRule
-      Expire::KeepFromNowMonthlyForRule
-      Expire::KeepFromNowYearlyForRule
+      Expire::FromNowKeepHourlyForRule
+      Expire::FromNowKeepDailyForRule
+      Expire::FromNowKeepWeeklyForRule
+      Expire::FromNowKeepMonthlyForRule
+      Expire::FromNowKeepYearlyForRule
     EXPECTED
   end
 

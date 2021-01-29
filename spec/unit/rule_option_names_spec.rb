@@ -18,11 +18,11 @@ RSpec.describe Expire::Commands::RuleOptionNames do
       --keep-weekly-for
       --keep-monthly-for
       --keep-yearly-for
-      --keep-from-now-hourly-for
-      --keep-from-now-daily-for
-      --keep-from-now-weekly-for
-      --keep-from-now-monthly-for
-      --keep-from-now-yearly-for
+      --from-now-keep-hourly-for
+      --from-now-keep-daily-for
+      --from-now-keep-weekly-for
+      --from-now-keep-monthly-for
+      --from-now-keep-yearly-for
     EXPECTED
   end
   it 'executes `rule_option_names` command successfully' do

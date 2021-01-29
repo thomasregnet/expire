@@ -3,6 +3,6 @@
 module Expire
   # Keep one backup per year from now for
   # a ceretain period of time.
-  class KeepFromNowYearlyForRule < FromNowKeepAdjectiveForRuleBase
+  class FromNowKeepYearlyForRule < FromNowKeepAdjectiveForRuleBase
   end
 end

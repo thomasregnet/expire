@@ -18,11 +18,11 @@ RSpec.describe Expire::Commands::RuleNames do
       keep_weekly_for
       keep_monthly_for
       keep_yearly_for
-      keep_from_now_hourly_for
-      keep_from_now_daily_for
-      keep_from_now_weekly_for
-      keep_from_now_monthly_for
-      keep_from_now_yearly_for
+      from_now_keep_hourly_for
+      from_now_keep_daily_for
+      from_now_keep_weekly_for
+      from_now_keep_monthly_for
+      from_now_keep_yearly_for
     EXPECTED
   end
 

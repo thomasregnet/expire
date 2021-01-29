@@ -7,31 +7,32 @@ require 'support/shared_examples_for_rule_apply'
 require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
-RSpec.describe Expire::KeepFromNowYearlyForRule do
-  subject { described_class.new(amount: 2, unit: 'years') }
+RSpec.describe Expire::FromNowKeepWeeklyForRule do
+  subject { described_class.new(amount: 2, unit: 'weeks') }
 
   it_behaves_like 'a rule' do
-    let(:name)        { 'keep_from_now_yearly_for' }
-    let(:option_name) { '--keep-from-now-yearly-for' }
-    let(:rank)        { 45 }
+    let(:name)        { 'from_now_keep_weekly_for' }
+    let(:option_name) { '--from-now-keep-weekly-for' }
+    let(:rank)        { 43 }
   end
 
   it_behaves_like 'an adjective rule' do
-    let(:adjective) { 'yearly' }
-    let(:spacing) { 'year' }
+    let(:adjective) { 'weekly' }
+    let(:spacing) { 'week' }
   end
 
   it_behaves_like 'an from now adjective-for rule'
 
   it_behaves_like 'an #apply on a rule' do
     let(:backups) do
-      TestDates.create(years: (1858..1860), months: 4..5).to_backups
+      TestDates.create(days: (12..17), hours: 11..12).to_backups
     end
 
     let(:kept) do
-      TestDates.create(years: 1859..1860).to_backups
+      TestDates.create(days: (13..17).step(4), hours: 12..12).to_backups
     end
-    let(:reference_datetime) { DateTime.new(1861, 5, 10, 12, 0, 0) }
+
+    let(:reference_datetime) { DateTime.new(1860, 5, 24, 12, 0, 0) }
   end
 
   it_behaves_like 'an unit rule'

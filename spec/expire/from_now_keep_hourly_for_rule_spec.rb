@@ -7,12 +7,12 @@ require 'support/shared_examples_for_rule_apply'
 require 'support/shared_examples_for_unit_rules'
 require 'test_dates'
 
-RSpec.describe Expire::KeepFromNowHourlyForRule do
+RSpec.describe Expire::FromNowKeepHourlyForRule do
   subject { described_class.new(amount: 2, unit: 'days') }
 
   it_behaves_like 'a rule' do
-    let(:name)        { 'keep_from_now_hourly_for' }
-    let(:option_name) { '--keep-from-now-hourly-for' }
+    let(:name)        { 'from_now_keep_hourly_for' }
+    let(:option_name) { '--from-now-keep-hourly-for' }
     let(:rank)        { 41 }
   end
 

@@ -2,6 +2,6 @@
 
 module Expire
   # Keep one backup per month from now for a certain period of time
-  class KeepFromNowMonthlyForRule < FromNowKeepAdjectiveForRuleBase
+  class FromNowKeepMonthlyForRule < FromNowKeepAdjectiveForRuleBase
   end
 end

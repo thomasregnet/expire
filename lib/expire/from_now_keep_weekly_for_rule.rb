@@ -3,6 +3,6 @@
 module Expire
   # Keep one backup per week from now for a certain
   # period of time
-  class KeepFromNowWeeklyForRule < FromNowKeepAdjectiveForRuleBase
+  class FromNowKeepWeeklyForRule < FromNowKeepAdjectiveForRuleBase
   end
 end

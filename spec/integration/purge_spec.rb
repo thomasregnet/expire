@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 RSpec.describe '`expire purge` command', type: :cli do
+  before do
+    FileUtils.rm_rf('tmp/backups')
+    FileUtils.mkpath('tmp/backups/2021-01-10T22:10')
+    FileUtils.mkpath('tmp/backups/2021-01-12T22:10')
+    FileUtils.mkpath('tmp/backups/2021-01-14T22:11')
+  end
+
+  after { FileUtils.rm_rf('tmp/backups') }
+
   describe '`expire help purge`' do
     let(:expected_output) do
       <<~OUT
@@ -45,15 +54,6 @@ RSpec.describe '`expire purge` command', type: :cli do
   end
 
   describe '`expire purge backups --format expired --keep-most-recent-for 2 days' do
-    before do
-      FileUtils.rm_rf('tmp/backups')
-      FileUtils.mkpath('tmp/backups/2021-01-10T22:10')
-      FileUtils.mkpath('tmp/backups/2021-01-12T22:10')
-      FileUtils.mkpath('tmp/backups/2021-01-14T22:11')
-    end
-
-    after { FileUtils.rm_rf('tmp/backups') }
-
     command = 'expire purge tmp/backups --format expired --keep-most-recent-for "2 days"'
 
     let(:expected_output) do
@@ -79,6 +79,15 @@ RSpec.describe '`expire purge` command', type: :cli do
       `#{command}`
       backup_dir = Pathname.new('tmp/backups')
       expect(backup_dir.children.length).to eq(1)
+    end
+  end
+
+  describe '`expire purge backups --keep-most-recent=none`' do
+    command = 'expire purge tmp/backups --keep-most-recent=none'
+
+    it "executes `#{command}` successfully" do
+      output = `#{command}`
+      expect(output).to match(/Will not delete all backups/)
     end
   end
 end

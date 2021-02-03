@@ -17,6 +17,8 @@ module Expire
     def call
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
 
+      raise AllBackupsExpiredError, 'Will not delete all backups' if annotated_backup_list.keep_count < 1
+
       annotated_backup_list.sort.each do |backup|
         if backup.expired?
           report.before_purge(backup)
@@ -31,7 +33,7 @@ module Expire
     private
 
     def annotated_backup_list
-      rules.apply(GenerateBackupListService.call(path), DateTime.now)
+      @annotated_backup_list ||= rules.apply(GenerateBackupListService.call(path), DateTime.now)
     end
 
     def report

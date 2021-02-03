@@ -3,6 +3,8 @@
 module Expire
   # Ignore all messages and report nothing
   class ReportNull
+    def error(_); end
+
     def before_all(_); end
 
     def after_all(_); end

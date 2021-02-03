@@ -16,18 +16,9 @@ module Expire
 
     def call
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
-
       raise AllBackupsExpiredError, 'Will not delete all backups' if annotated_backup_list.keep_count < 1
 
-      annotated_backup_list.sort.each do |backup|
-        if backup.expired?
-          report.before_purge(backup)
-          purge_pathname(backup.pathname)
-          report.after_purge(backup)
-        else
-          report.on_keep(backup)
-        end
-      end
+      purge_expired_backups
     end
 
     private
@@ -56,6 +47,18 @@ module Expire
 
       option_rules = Rules.from_options(options.transform_keys(&:to_sym))
       file_rules.merge(option_rules)
+    end
+
+    def purge_expired_backups
+      annotated_backup_list.sort.each do |backup|
+        if backup.expired?
+          report.before_purge(backup)
+          purge_pathname(backup.pathname)
+          report.after_purge(backup)
+        else
+          report.on_keep(backup)
+        end
+      end
     end
 
     def purge_pathname(pathname)

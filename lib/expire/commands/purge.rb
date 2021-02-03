@@ -14,7 +14,11 @@ module Expire
       attr_reader :path, :options
 
       def execute(input: $stdin, output: $stdout)
-        Expire.purge(path, options)
+        begin
+          Expire.purge(path, options)
+        rescue StandardError => e
+          puts e.message
+        end
 
         output.puts 'OK'
       end

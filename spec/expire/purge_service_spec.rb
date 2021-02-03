@@ -74,15 +74,21 @@ RSpec.describe Expire::PurgeService do
       end
     end
 
+    context 'without preserving rules' do
+      it 'raises a WillNotDeleteAllBackupsError' do
+        expect { described_class.call(backup_path, { keep_most_recent: 0 }) }
+          .to raise_error Expire::AllBackupsExpiredError
+      end
+    end
+
     context 'with an unsorted BackupList' do
       let(:backup_list) { instance_double('Expire::BackupList') }
       let(:purge_service) { described_class.new('tmp/backups', {}) }
 
       before do
-        # return an array with a value so rules.any? returns true
         allow(purge_service).to receive(:rules).and_return([1])
         allow(purge_service).to receive(:annotated_backup_list).and_return(backup_list)
-        # return an empty array to let #each does nothing
+        allow(backup_list).to receive(:keep_count).and_return(1)
         allow(backup_list).to receive(:sort).and_return([])
       end
 

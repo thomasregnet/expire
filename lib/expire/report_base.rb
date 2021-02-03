@@ -12,6 +12,10 @@ module Expire
 
     attr_reader :receiver
 
+    def error(message)
+      receiver.puts(pastel.red(message))
+    end
+
     def pastel
       @pastel ||= ::Pastel.new
     end

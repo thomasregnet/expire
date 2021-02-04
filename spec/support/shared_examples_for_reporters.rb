@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples 'a reporter' do
+  it { should respond_to(:error) }
   it { should respond_to(:before_all) }
   it { should respond_to(:after_all) }
 

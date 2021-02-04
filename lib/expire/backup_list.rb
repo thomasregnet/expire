@@ -34,10 +34,6 @@ module Expire
       backups_per_noun
     end
 
-    def apply(rules)
-      CalculateService.call(backups: self, rules: rules)
-    end
-
     def most_recent(amount = 1)
       self.class.new(sort.reverse.first(amount))
     end

@@ -15,14 +15,11 @@ module Expire
     attr_reader :options, :path
 
     def call
-      begin
-        check_preconditions
-      rescue StandardError => e
-        report.error(e.message)
-        raise
-      end
-
+      check_preconditions
       purge_expired_backups
+    rescue StandardError => e
+      report.error(e.message)
+      raise
     end
 
     private

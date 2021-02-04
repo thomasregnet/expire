@@ -16,8 +16,8 @@ module Expire
       def execute(input: $stdin, output: $stdout)
         begin
           Expire.purge(path, options)
-        rescue StandardError => e
-          puts e.message
+        rescue StandardError => _e
+          exit 1
         end
 
         output.puts 'OK'

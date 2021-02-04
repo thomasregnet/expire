@@ -15,8 +15,12 @@ module Expire
     attr_reader :options, :path
 
     def call
-      raise NoRulesError, 'Will not purge without rules' unless rules.any?
-      raise AllBackupsExpiredError, 'Will not delete all backups' if annotated_backup_list.keep_count < 1
+      begin
+        check_preconditions
+      rescue StandardError => e
+        report.error(e.message)
+        raise
+      end
 
       purge_expired_backups
     end
@@ -25,6 +29,11 @@ module Expire
 
     def annotated_backup_list
       @annotated_backup_list ||= rules.apply(GenerateBackupListService.call(path), DateTime.now)
+    end
+
+    def check_preconditions
+      raise NoRulesError, 'Will not purge without rules' unless rules.any?
+      raise AllBackupsExpiredError, 'Will not delete all backups' if annotated_backup_list.keep_count < 1
     end
 
     def report

@@ -236,6 +236,13 @@ RSpec.describe Expire::BackupList do
       end
     end
 
+    describe '#expired_count' do
+      it 'returns the amount of expired backups' do
+        allow(backups).to receive(:expired).and_return([0, 1])
+        expect(backups.expired_count).to eq(2)
+      end
+    end
+
     describe '#keep' do
       before do
         allow(expired_one).to receive(:keep?).and_return(false)

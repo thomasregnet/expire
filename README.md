@@ -31,7 +31,7 @@ TODO: Write usage instructions here
 
 ## Purge
 
-The purge command is used to calculate and delete the expired backups.
+The purge command is used to calculate and delete expired backups.
 It is invoked as follows:
 
 ``` shell
@@ -45,7 +45,7 @@ The `--simulate` option is suitable for this purpose.
 
 ### The `--simulate`, `-s` flag
 
-To check the expire-rules you can call `expire purge` with the `--simulate` option:
+To check the expire-rules you can call ```expire purge``` with the `--simulate` option:
 
 ``` shell
 expire path/to/backups <rules> --simulate

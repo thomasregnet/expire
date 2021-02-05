@@ -114,4 +114,20 @@ RSpec.describe '`expire purge` command', type: :cli do
       end
     end
   end
+
+  context 'when the backups directory does not exist' do
+    describe '`expire purge no/such/backups --format expired --keep-most-recent-for 2 days' do
+      command = 'expire purge no/such/backups --format expired --keep-most-recent-for "2 days"'
+
+      it 'complains about missing backups' do
+        output = `#{command}`
+        expect(output).to match(%r{no/such/backups})
+      end
+
+      it 'exits with status 1' do
+        `#{command}`
+        expect($CHILD_STATUS.exitstatus).to eq(1)
+      end
+    end
+  end
 end

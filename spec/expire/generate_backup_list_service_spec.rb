@@ -2,7 +2,7 @@
 
 RSpec.describe Expire::GenerateBackupListService do
   describe '.call' do
-    context 'with an path' do
+    context 'with a path' do
       let(:path) { 'tmp/backups' }
 
       before do
@@ -19,6 +19,13 @@ RSpec.describe Expire::GenerateBackupListService do
 
       it 'returns a BackupList with two Backups' do
         expect(described_class.call(path).length).to eq(2)
+      end
+    end
+
+    context 'with a path that does not exist' do
+      it 'raises an InvalidPathError' do
+        expect { described_class.call('no/such/backups') }
+          .to raise_error(Expire::InvalidPathError, %r{no/such/backups})
       end
     end
 

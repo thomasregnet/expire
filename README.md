@@ -210,6 +210,41 @@ keeping tmp/backups/2021-01-27T1111
 keeping tmp/backups/2021-01-27T1112
 ```
 
+### Adjective Rules
+
+To keep **one backup per time unit** the **adjective rules** are handy.
+There are five adjective rules:
+
+* `--keep-hourly`
+* `--keep-daily`
+* `--keep-weekly`
+* `--keep-monthly`
+* `--keep-yearly`
+
+All of these expect an integer that specifies the maximum of backups they should preserve.
+
+```shell
+$ expire purge tmp/backups --keep-weekly 3 --format=simple
+purged tmp/backups/2016-01-27T1112
+keeping tmp/backups/2019-12-24T1200
+keeping tmp/backups/2021-01-19T1113
+purged tmp/backups/2021-01-26T1111
+purged tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
+You can also use `all` or `-1` to preserve all backups per time unit.
+
+```shell
+expire purge tmp/backups --keep-yearly all --format=simple
+keeping tmp/backups/2016-01-27T1112
+keeping tmp/backups/2019-12-24T1200
+purged tmp/backups/2021-01-19T1113
+purged tmp/backups/2021-01-26T1111
+purged tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
 ## Time ranges
 
 Some rules take a time range as argument.

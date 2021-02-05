@@ -6,14 +6,17 @@ RSpec.describe Expire::PurgeService do
     let(:expired_backup) { 'tmp/backups/2020-08-11_12_00_00' }
     let(:kept_backup)    { 'tmp/backups/2020-08-22_12_00_00' }
 
-    before do
+    def mk_backups
       FileUtils.rm_rf(backup_path)
       FileUtils.mkpath(expired_backup)
       FileUtils.mkpath(kept_backup)
     end
 
+    after { FileUtils.rm_rf(backup_path) }
+
     context 'with valid options' do
       before do
+        mk_backups
         described_class.call('tmp/backups', keep_most_recent: 1)
       end
 
@@ -28,6 +31,7 @@ RSpec.describe Expire::PurgeService do
 
     context 'with the "simulate" option' do
       before do
+        mk_backups
         described_class.call('tmp/backups', keep_most_recent: 1, simulate: true)
       end
 
@@ -42,6 +46,7 @@ RSpec.describe Expire::PurgeService do
 
     context 'with paths from STDIN' do
       before do
+        mk_backups
         # Idea to use a StringIO object was found here:
         # https://hackernoon.com/how-to-use-rspec-from-basics-to-testing-user-input-i03k36m3
         io = StringIO.new("#{expired_backup}\n#{kept_backup}")
@@ -67,7 +72,16 @@ RSpec.describe Expire::PurgeService do
       end
     end
 
+    # context 'without any backups' do
+    #   it 'raises a NoBackupsError' do
+    #     expect { described_class.call(backup_path, keep_most_recent: 1) }
+    #       .to raise_error NoBackupsError, "Can't find any backups"
+    #   end
+    # end
+
     context 'without any rules' do
+      before { mk_backups }
+
       it 'raises a NoRulesError' do
         expect { described_class.call(backup_path, {}) }
           .to raise_error Expire::NoRulesError, 'Will not purge without rules'
@@ -75,6 +89,8 @@ RSpec.describe Expire::PurgeService do
     end
 
     context 'without preserving rules' do
+      before { mk_backups }
+
       it 'raises a WillNotDeleteAllBackupsError' do
         expect { described_class.call(backup_path, { keep_most_recent: 0 }) }
           .to raise_error Expire::AllBackupsExpiredError, 'Will not delete all backups'
@@ -86,6 +102,7 @@ RSpec.describe Expire::PurgeService do
       let(:purge_service) { described_class.new('tmp/backups', {}) }
 
       before do
+        mk_backups
         allow(purge_service).to receive(:rules).and_return([1])
         allow(purge_service).to receive(:annotated_backup_list).and_return(backup_list)
         allow(backup_list).to receive(:keep_count).and_return(1)

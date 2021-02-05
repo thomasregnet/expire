@@ -25,10 +25,15 @@ module Expire
     private
 
     def annotated_backup_list
-      @annotated_backup_list ||= rules.apply(GenerateBackupListService.call(path), DateTime.now)
+      @annotated_backup_list ||= rules.apply(backup_list, DateTime.now)
+    end
+
+    def backup_list
+      @backup_list ||= GenerateBackupListService.call(path)
     end
 
     def check_preconditions
+      raise NoBackupsError, "Can't find any backups" unless backup_list.any?
       raise NoRulesError, 'Will not purge without rules' unless rules.any?
       raise AllBackupsExpiredError, 'Will not delete all backups' if annotated_backup_list.keep_count < 1
     end

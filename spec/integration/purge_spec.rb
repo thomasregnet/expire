@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'English'
+
 RSpec.describe '`expire purge` command', type: :cli do
   describe '`expire help purge`' do
     let(:expected_output) do
@@ -89,6 +91,26 @@ RSpec.describe '`expire purge` command', type: :cli do
       it "executes `#{command}` successfully" do
         output = `#{command}`
         expect(output).to match(/Will not delete all backups/)
+      end
+    end
+  end
+
+  context 'without any backups' do
+    before { FileUtils.mkpath('tmp/backups') }
+
+    after { FileUtils.rm_rf('/tmp/backups') }
+
+    describe '`expire purge backups --format expired --keep-most-recent-for 2 days' do
+      command = 'expire purge tmp/backups --format expired --keep-most-recent-for "2 days"'
+
+      it 'complains about missing backups' do
+        output = `#{command}`
+        expect(output).to match(/Can't find any backups/)
+      end
+
+      it 'exits with status 1' do
+        `#{command}`
+        expect($CHILD_STATUS.exitstatus).to eq(1)
       end
     end
   end

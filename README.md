@@ -176,7 +176,7 @@ keeping backups/2021-01-27T1112
 
 Keeps the newest backups for a **time range** specified by `amount` and `unit`.
 An `amount` is an integer and a unit is something like `days` or `years`.
-Time rates are discussed in more detail within their own section.
+Time ranges are discussed in more detail within their own section.
 
 The `--keep-most-recent-for "3 years"` option keeps all backups that are not older than three years.
 The **calculation takes the timestamp of the newest backup as reference**.

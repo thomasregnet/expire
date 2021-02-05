@@ -45,7 +45,7 @@ The `--simulate` option is suitable for this purpose.
 
 ### The `--simulate`, `-s` flag
 
-To check the expire-rules you can call ```expire purge``` with the `--simulate` option:
+To check the expire-rules you can call `expire purge` with the `--simulate` option:
 
 ``` shell
 expire path/to/backups <rules> --simulate
@@ -158,6 +158,10 @@ backups/2021-01-27T1112
 
 There are three _most recent_ rules, `--keep-most-recent`, `--keep-most-recent-for` and `--from-now-keep-most-recent-for`.
 
+#### `--keep-most-recent`
+
+The `--keep-most-recent=3` option preserves the three newest backups from being purged.
+
 ```shell
 $ expire purge backups --keep-most-recent 3 --format simple
 purged backups/2016-01-27T1112
@@ -168,14 +172,43 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-#### --keep-most-recent
+##### `--keep-most-recent-for <amount> <unit>`
 
-The `--keep-most-recent=3` option preserves the three newest backups from being purged.
+Keeps the newest backups for a **time range** specified by `amount` and `unit`.
+An `amount` is an integer and a unit is something like `days` or `years`.
+Time rates are discussed in more detail within their own section.
 
-##### --keep-most-recent-for amount unit
+The `--keep-most-recent-for "3 years"` option keeps all backups that are not older than three years.
+The **calculation takes the timestamp of the newest backup as reference**.
 
-Keeps the newest backups for a period of time.
-The period of time is specified with the `amount` and `unit` parameters.
+```shell
+$ expire purge tmp/backups --keep-most-recent-for "3 years" --format simple
+purged tmp/backups/2016-01-27T1112
+keeping tmp/backups/2019-12-24T1200
+keeping tmp/backups/2021-01-19T1113
+keeping tmp/backups/2021-01-26T1111
+keeping tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
+#### `--from-now-keep-most-recent-for <amount> <unit>`
+
+The `--from-now-keep-most-recent-for` option works almost the same way as
+the `--keep-most-recent-for` option does.
+But it **bases its calculation on the current time**, not the timestamp of the newest backup.
+
+Assuming today is the 28th January 2021 the option `--from-now-most-recent-for=5.days`
+would act like this:
+
+```shell
+$ expire purge tmp/backups --from-now-keep-most-recent-for 5.days --format simple -s 
+purged tmp/backups/2016-01-27T1112
+purged tmp/backups/2019-12-24T1200
+purged tmp/backups/2021-01-19T1113
+keeping tmp/backups/2021-01-26T1111
+keeping tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
 
 ## Time ranges
 

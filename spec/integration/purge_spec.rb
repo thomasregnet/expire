@@ -63,7 +63,6 @@ RSpec.describe '`expire purge` command', type: :cli do
         <<~OUT
           tmp/backups/2021-01-10T22:10
           tmp/backups/2021-01-12T22:10
-          OK
         OUT
       end
 

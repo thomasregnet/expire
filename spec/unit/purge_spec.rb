@@ -20,6 +20,6 @@ RSpec.describe Expire::Commands::Purge do
   it 'executes `purge` command successfully' do
     command = described_class.new(path, options)
     command.execute(output: output)
-    expect(output.string).to eq("OK\n")
+    expect(output.string).to eq('')
   end
 end

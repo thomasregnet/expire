@@ -20,7 +20,7 @@ module Expire
           exit 1
         end
 
-        output.puts 'OK'
+        # output.puts 'OK'
       end
     end
   end

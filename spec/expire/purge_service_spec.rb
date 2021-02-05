@@ -77,7 +77,7 @@ RSpec.describe Expire::PurgeService do
     context 'without preserving rules' do
       it 'raises a WillNotDeleteAllBackupsError' do
         expect { described_class.call(backup_path, { keep_most_recent: 0 }) }
-          .to raise_error Expire::AllBackupsExpiredError
+          .to raise_error Expire::AllBackupsExpiredError, 'Will not delete all backups'
       end
     end
 

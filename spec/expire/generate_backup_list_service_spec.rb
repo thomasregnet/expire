@@ -2,7 +2,7 @@
 
 RSpec.describe Expire::GenerateBackupListService do
   describe '.call' do
-    context 'with an path' do
+    context 'with a path' do
       let(:path) { 'tmp/backups' }
 
       before do

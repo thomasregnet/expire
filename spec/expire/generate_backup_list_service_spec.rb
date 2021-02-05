@@ -22,6 +22,13 @@ RSpec.describe Expire::GenerateBackupListService do
       end
     end
 
+    context 'with a path that does not exist' do
+      it 'raises an InvalidPathError' do
+        expect { described_class.call('no/such/backups') }
+          .to raise_error(Expire::InvalidPathError, %r{no/such/backups})
+      end
+    end
+
     context 'with paths from STDIN' do
       before do
         $stdin = StringIO.new("tmp/1860-05-17T12_00_00\n1860-05-17T13_00_00\n")

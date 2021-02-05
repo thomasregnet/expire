@@ -18,6 +18,8 @@ module Expire
         generate_backup_list_from($stdin)
       else
         pathname = Pathname.new(path)
+        raise InvalidPathError, "#{pathname} does not exit" unless pathname.exist?
+
         generate_backup_list_from(pathname.children)
       end
     end

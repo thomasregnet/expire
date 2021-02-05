@@ -4,7 +4,6 @@ module Expire
   # Ignores all messages expect #error and report nothing.
   # When error is received the message is printed to STDOUT.
   class ReportNull
-    # def error(_); end
     def error(message)
       puts message
     end

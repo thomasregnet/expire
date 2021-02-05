@@ -201,7 +201,7 @@ Assuming today is the 28th January 2021 the option `--from-now-most-recent-for=5
 would act like this:
 
 ```shell
-$ expire purge tmp/backups --from-now-keep-most-recent-for 5.days --format simple -s 
+$ expire purge tmp/backups --from-now-keep-most-recent-for 5.days --format simple 
 purged tmp/backups/2016-01-27T1112
 purged tmp/backups/2019-12-24T1200
 purged tmp/backups/2021-01-19T1113

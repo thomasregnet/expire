@@ -72,12 +72,14 @@ RSpec.describe Expire::PurgeService do
       end
     end
 
-    # context 'without any backups' do
-    #   it 'raises a NoBackupsError' do
-    #     expect { described_class.call(backup_path, keep_most_recent: 1) }
-    #       .to raise_error NoBackupsError, "Can't find any backups"
-    #   end
-    # end
+    context 'without any backups' do
+      before { FileUtils.mkpath(backup_path) }
+
+      it 'raises a NoBackupsError' do
+        expect { described_class.call(backup_path, keep_most_recent: 1) }
+          .to raise_error Expire::NoBackupsError, "Can't find any backups"
+      end
+    end
 
     context 'without any rules' do
       before { mk_backups }

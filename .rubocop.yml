@@ -8,6 +8,7 @@ AllCops:
     - 'expire.gemspec'
     - 'spec/spec_helper.rb'
   NewCops: enable
+  SuggestExtensions: false
 
 Metrics/BlockLength:
   Exclude:

@@ -319,6 +319,31 @@ Possible values for the unit portion are:
 
 Units are case-insensitive, so `Year` and `yEaR` are valid too.
 
+## `--rules-file` read rules from a file
+
+To read the rules form a YAML-file use the  `--rules-file` option.
+The rules have to be specified with an underscore instead of a hyphen.
+
+Here is an example rules-file called `rules.yml`:
+
+```yml
+keep_most_recent: 3
+```
+
+With this rules-file we can `expire` with the `--rules-file` option:
+
+```shell
+$ expire purge tmp/backups --rules-file tmp/rules.yml --format=simple
+purged tmp/backups/2016-01-27T1112
+purged tmp/backups/2019-12-24T1200
+purged tmp/backups/2021-01-19T1113
+keeping tmp/backups/2021-01-26T1111
+keeping tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
+There is also a shortcut for the `--rules-file` option: `-r`.
+
 ## The `--purge-command`, `--cmd` option
 
 The **expire** program can remove files and directories,

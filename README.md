@@ -295,7 +295,7 @@ purged tmp/backups/2021-01-27T1111
 keeping tmp/backups/2021-01-27T1112
 ```
 
-## Time ranges
+### Time ranges
 
 Some rules take a time range as argument.
 Ranges may be expressed like this:

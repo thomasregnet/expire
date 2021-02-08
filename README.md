@@ -398,6 +398,84 @@ $ expire remove /tmp/stuff
 removed /tmp/stuff
 ```
 
+## Rule classes
+
+The `rule-classes` command returns a list of all rule-classes:
+
+```shell
+$ expire rule-classes
+Expire::KeepMostRecentRule
+Expire::KeepMostRecentForRule
+Expire::FromNowKeepMostRecentForRule
+Expire::KeepHourlyRule
+Expire::KeepDailyRule
+Expire::KeepWeeklyRule
+Expire::KeepMonthlyRule
+Expire::KeepYearlyRule
+Expire::KeepHourlyForRule
+Expire::KeepDailyForRule
+Expire::KeepWeeklyForRule
+Expire::KeepMonthlyForRule
+Expire::KeepYearlyForRule
+Expire::FromNowKeepHourlyForRule
+Expire::FromNowKeepDailyForRule
+Expire::FromNowKeepWeeklyForRule
+Expire::FromNowKeepMonthlyForRule
+Expire::FromNowKeepYearlyForRule
+```
+
+## Rule names
+
+The `rule-names` command shows a list of all rule-names:
+
+```shell
+expire rule-names
+keep_most_recent
+keep_most_recent_for
+from_now_keep_most_recent_for
+keep_hourly
+keep_daily
+keep_weekly
+keep_monthly
+keep_yearly
+keep_hourly_for
+keep_daily_for
+keep_weekly_for
+keep_monthly_for
+keep_yearly_for
+from_now_keep_hourly_for
+from_now_keep_daily_for
+from_now_keep_weekly_for
+from_now_keep_monthly_for
+from_now_keep_yearly_for
+```
+
+## Rule option names
+
+To get a list of all rule option-names call:
+
+```shell
+$ expire rule-option-names
+--keep-most-recent
+--keep-most-recent-for
+--from-now-keep-most-recent-for
+--keep-hourly
+--keep-daily
+--keep-weekly
+--keep-monthly
+--keep-yearly
+--keep-hourly-for
+--keep-daily-for
+--keep-weekly-for
+--keep-monthly-for
+--keep-yearly-for
+--from-now-keep-hourly-for
+--from-now-keep-daily-for
+--from-now-keep-weekly-for
+--from-now-keep-monthly-for
+--from-now-keep-yearly-for
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

@@ -210,7 +210,7 @@ keeping tmp/backups/2021-01-27T1111
 keeping tmp/backups/2021-01-27T1112
 ```
 
-### Adjective Rules
+### Adjective rules
 
 To keep **one backup per time unit** the **adjective rules** are handy.
 There are five adjective rules:
@@ -241,6 +241,56 @@ keeping tmp/backups/2016-01-27T1112
 keeping tmp/backups/2019-12-24T1200
 purged tmp/backups/2021-01-19T1113
 purged tmp/backups/2021-01-26T1111
+purged tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
+### Adjective for rules
+
+To preserve **one backup per unit for a certain time range** you can use **adjective for rules**.
+Time ranges are discussed in more detail within their own section
+There are five adjective for rules:
+
+* `--keep-hourly-for`
+* `--keep-daily-for`
+* `--keep-weekly-for`
+* `--keep-monthly-for`
+* `--keep-yearly-for`
+
+The **calculation takes the timestamp of the newest backup as reference**.
+
+```shell
+$ expire purge tmp/backups --keep-daily-for='3 months' --format=simple
+purged tmp/backups/2016-01-27T1112
+purged tmp/backups/2019-12-24T1200
+keeping tmp/backups/2021-01-19T1113
+keeping tmp/backups/2021-01-26T1111
+purged tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
+### From now adjective for rules
+
+The *from now adjective for rules* work similar to *adjective for rules*,
+expect they **base their calculations on the current time**, not the timestamp of the newest backup.
+
+There are five *from now adjective for rules*:
+
+* `--from-now-keep-hourly-for`
+* `--from-now-keep-daily-for`
+* `--from-now-keep-weekly-for`
+* `--from-now-keep-monthly-for`
+* `--from-now-keep-yearly-for`
+
+Assuming today is the 28th January 2021 the option `--from-now-most-recent-for=5.days`
+would act like this:
+
+```shell
+$ expire purge tmp/backups --from-now-keep-daily-for='3 months' --format=simple
+purged tmp/backups/2016-01-27T1112
+purged tmp/backups/2019-12-24T1200
+keeping tmp/backups/2021-01-19T1113
+keeping tmp/backups/2021-01-26T1111
 purged tmp/backups/2021-01-27T1111
 keeping tmp/backups/2021-01-27T1112
 ```

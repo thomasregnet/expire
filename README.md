@@ -371,6 +371,33 @@ rm -rf backups/2019-12-24T1200
 rm -rf backups/2021-01-19T1113
 ```
 
+## Newest
+
+The `newest` command shows the newest backup:
+
+```shell
+$ expire newest backups                
+backups/2021-01-27T1112
+```
+
+## Oldest
+
+The `oldest` command shows the oldest backup:
+
+```shell
+$ expire oldest backups          
+backups/2016-01-27T1112
+```
+
+## Remove
+
+The `remove` command can be used to remove files or directories:
+
+```shell
+$ expire remove /tmp/stuff
+removed /tmp/stuff
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

@@ -319,6 +319,33 @@ Possible values for the unit portion are:
 
 Units are case-insensitive, so `Year` and `yEaR` are valid too.
 
+## The `--purge-command`, `--cmd` option
+
+The **expire** program can remove files and directories,
+but it doesn't know how to deal with logical volumes or subvolumes.
+This is where the `--purge-command` option comes in.
+
+The `--purge-command` option takes a command as argument.
+For each expired backup this command is executed with the backup-path as argument.
+
+```shell
+bundle exec exe/expire purge tmp/backups --keep-most-recent 3 --format=simple --purge-command='rm -rf'
+purged tmp/backups/2016-01-27T1112
+purged tmp/backups/2019-12-24T1200
+purged tmp/backups/2021-01-19T1113
+keeping tmp/backups/2021-01-26T1111
+keeping tmp/backups/2021-01-27T1111
+keeping tmp/backups/2021-01-27T1112
+```
+
+The previous example has called these shell commands:
+
+```shell
+rm -rf tmp/backups/2016-01-27T1112
+rm -rf tmp/backups/2019-12-24T1200
+rm -rf tmp/backups/2021-01-19T1113
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.

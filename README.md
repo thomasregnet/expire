@@ -182,13 +182,13 @@ The `--keep-most-recent-for "3 years"` option keeps all backups that are not old
 The **calculation takes the timestamp of the newest backup as reference**.
 
 ```shell
-$ expire purge tmp/backups --keep-most-recent-for "3 years" --format simple
-purged tmp/backups/2016-01-27T1112
-keeping tmp/backups/2019-12-24T1200
-keeping tmp/backups/2021-01-19T1113
-keeping tmp/backups/2021-01-26T1111
-keeping tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+$ expire purge backups --keep-most-recent-for "3 years" --format simple
+purged backups/2016-01-27T1112
+keeping backups/2019-12-24T1200
+keeping backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 #### `--from-now-keep-most-recent-for <amount> <unit>`
@@ -201,13 +201,13 @@ Assuming today is the 28th January 2021 the option `--from-now-most-recent-for=5
 would act like this:
 
 ```shell
-$ expire purge tmp/backups --from-now-keep-most-recent-for 5.days --format simple 
-purged tmp/backups/2016-01-27T1112
-purged tmp/backups/2019-12-24T1200
-purged tmp/backups/2021-01-19T1113
-keeping tmp/backups/2021-01-26T1111
-keeping tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+$ expire purge backups --from-now-keep-most-recent-for 5.days --format simple 
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 ### Adjective rules
@@ -224,25 +224,25 @@ There are five adjective rules:
 All of these expect an integer that specifies the maximum of backups they should preserve.
 
 ```shell
-$ expire purge tmp/backups --keep-weekly 3 --format=simple
-purged tmp/backups/2016-01-27T1112
-keeping tmp/backups/2019-12-24T1200
-keeping tmp/backups/2021-01-19T1113
-purged tmp/backups/2021-01-26T1111
-purged tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+$ expire purge backups --keep-weekly 3 --format=simple
+purged backups/2016-01-27T1112
+keeping backups/2019-12-24T1200
+keeping backups/2021-01-19T1113
+purged backups/2021-01-26T1111
+purged backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 You can also use `all` or `-1` to preserve all backups per time unit.
 
 ```shell
-expire purge tmp/backups --keep-yearly all --format=simple
-keeping tmp/backups/2016-01-27T1112
-keeping tmp/backups/2019-12-24T1200
-purged tmp/backups/2021-01-19T1113
-purged tmp/backups/2021-01-26T1111
-purged tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+expire purge backups --keep-yearly all --format=simple
+keeping backups/2016-01-27T1112
+keeping backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+purged backups/2021-01-26T1111
+purged backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 ### Adjective for rules
@@ -260,13 +260,13 @@ There are five adjective for rules:
 The **calculation takes the timestamp of the newest backup as reference**.
 
 ```shell
-$ expire purge tmp/backups --keep-daily-for='3 months' --format=simple
-purged tmp/backups/2016-01-27T1112
-purged tmp/backups/2019-12-24T1200
-keeping tmp/backups/2021-01-19T1113
-keeping tmp/backups/2021-01-26T1111
-purged tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+$ expire purge backups --keep-daily-for='3 months' --format=simple
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+keeping backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+purged backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 ### From now adjective for rules
@@ -286,13 +286,13 @@ Assuming today is the 28th January 2021 the option `--from-now-most-recent-for=5
 would act like this:
 
 ```shell
-$ expire purge tmp/backups --from-now-keep-daily-for='3 months' --format=simple
-purged tmp/backups/2016-01-27T1112
-purged tmp/backups/2019-12-24T1200
-keeping tmp/backups/2021-01-19T1113
-keeping tmp/backups/2021-01-26T1111
-purged tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+$ expire purge backups --from-now-keep-daily-for='3 months' --format=simple
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+keeping backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+purged backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 ### Time ranges
@@ -333,13 +333,13 @@ keep_most_recent: 3
 With this rules-file we can `expire` with the `--rules-file` option:
 
 ```shell
-$ expire purge tmp/backups --rules-file tmp/rules.yml --format=simple
-purged tmp/backups/2016-01-27T1112
-purged tmp/backups/2019-12-24T1200
-purged tmp/backups/2021-01-19T1113
-keeping tmp/backups/2021-01-26T1111
-keeping tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+$ expire purge backups --rules-file tmp/rules.yml --format=simple
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 There is also a shortcut for the `--rules-file` option: `-r`.
@@ -354,21 +354,21 @@ The `--purge-command` option takes a command as argument.
 For each expired backup this command is executed with the backup-path as argument.
 
 ```shell
-bundle exec exe/expire purge tmp/backups --keep-most-recent 3 --format=simple --purge-command='rm -rf'
-purged tmp/backups/2016-01-27T1112
-purged tmp/backups/2019-12-24T1200
-purged tmp/backups/2021-01-19T1113
-keeping tmp/backups/2021-01-26T1111
-keeping tmp/backups/2021-01-27T1111
-keeping tmp/backups/2021-01-27T1112
+bundle exec exe/expire purge backups --keep-most-recent 3 --format=simple --purge-command='rm -rf'
+purged backups/2016-01-27T1112
+purged backups/2019-12-24T1200
+purged backups/2021-01-19T1113
+keeping backups/2021-01-26T1111
+keeping backups/2021-01-27T1111
+keeping backups/2021-01-27T1112
 ```
 
 The previous example has called these shell commands:
 
 ```shell
-rm -rf tmp/backups/2016-01-27T1112
-rm -rf tmp/backups/2019-12-24T1200
-rm -rf tmp/backups/2021-01-19T1113
+rm -rf backups/2016-01-27T1112
+rm -rf backups/2019-12-24T1200
+rm -rf backups/2021-01-19T1113
 ```
 
 ## Development

@@ -212,6 +212,10 @@ module Expire
 
     desc 'playground', 'play with test-data'
     subcommand 'playground', Playground
+
+    def self.exit_on_failure?
+      true
+    end
   end
   # rubocop:enable Metrics/ClassLength
 end

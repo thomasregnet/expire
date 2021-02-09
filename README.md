@@ -25,6 +25,38 @@ Or install it yourself as:
 gem install expire
 ```
 
+- [Expire](#expire)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Purge](#purge)
+    - [The `--simulate`, `-s` flag](#the---simulate--s-flag)
+    - [The `--format`, `-f` options](#the---format--f-options)
+      - [`--format=expired`](#--formatexpired)
+      - [`--format=kept`](#--formatkept)
+      - [`--format=none`](#--formatnone)
+      - [`--format=simple`](#--formatsimple)
+      - [`--format=enhanced`](#--formatenhanced)
+  - [Rules](#rules)
+    - [Most recent rules](#most-recent-rules)
+      - [`--keep-most-recent`](#--keep-most-recent)
+        - [`--keep-most-recent-for <amount> <unit>`](#--keep-most-recent-for-amount-unit)
+      - [`--from-now-keep-most-recent-for <amount> <unit>`](#--from-now-keep-most-recent-for-amount-unit)
+    - [Adjective rules](#adjective-rules)
+    - [Adjective for rules](#adjective-for-rules)
+    - [From now adjective for rules](#from-now-adjective-for-rules)
+    - [Time ranges](#time-ranges)
+  - [`--rules-file` read rules from a file](#--rules-file-read-rules-from-a-file)
+  - [The `--purge-command`, `--cmd` option](#the---purge-command---cmd-option)
+  - [Newest](#newest)
+  - [Oldest](#oldest)
+  - [Remove](#remove)
+  - [Rule classes](#rule-classes)
+  - [Rule names](#rule-names)
+  - [Rule option names](#rule-option-names)
+  - [Development](#development)
+  - [Contributing](#contributing)
+  - [License](#license)
+
 ## Usage
 
 TODO: Write usage instructions here

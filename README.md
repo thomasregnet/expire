@@ -1,8 +1,10 @@
+<!-- omit in toc -->
 # Expire
 
 **Expire** is a tool for identifying backups that are no longer needed and to delete them.
 It can be used either from the command line or as a ruby gem.
 
+<!-- omit in toc -->
 ## Installation
 
 **The installation is currently not yet possible!**
@@ -25,9 +27,7 @@ Or install it yourself as:
 gem install expire
 ```
 
-- [Expire](#expire)
-  - [Installation](#installation)
-  - [Usage](#usage)
+- [Usage](#usage)
   - [Purge](#purge)
     - [The `--simulate`, `-s` flag](#the---simulate--s-flag)
     - [The `--format`, `-f` options](#the---format--f-options)
@@ -36,32 +36,33 @@ gem install expire
       - [`--format=none`](#--formatnone)
       - [`--format=simple`](#--formatsimple)
       - [`--format=enhanced`](#--formatenhanced)
-  - [Rules](#rules)
-    - [Most recent rules](#most-recent-rules)
+    - [Rules](#rules)
+      - [Most recent rules](#most-recent-rules)
       - [`--keep-most-recent`](#--keep-most-recent)
-        - [`--keep-most-recent-for <amount> <unit>`](#--keep-most-recent-for-amount-unit)
+      - [`--keep-most-recent-for <amount> <unit>`](#--keep-most-recent-for-amount-unit)
       - [`--from-now-keep-most-recent-for <amount> <unit>`](#--from-now-keep-most-recent-for-amount-unit)
-    - [Adjective rules](#adjective-rules)
-    - [Adjective for rules](#adjective-for-rules)
-    - [From now adjective for rules](#from-now-adjective-for-rules)
-    - [Time ranges](#time-ranges)
-  - [`--rules-file` read rules from a file](#--rules-file-read-rules-from-a-file)
-  - [The `--purge-command`, `--cmd` option](#the---purge-command---cmd-option)
+      - [Adjective rules](#adjective-rules)
+      - [Adjective for rules](#adjective-for-rules)
+      - [From now adjective for rules](#from-now-adjective-for-rules)
+      - [Time ranges](#time-ranges)
+    - [`--rules-file` read rules from a file](#--rules-file-read-rules-from-a-file)
+    - [The `--purge-command`, `--cmd` option](#the---purge-command---cmd-option)
   - [Newest](#newest)
   - [Oldest](#oldest)
   - [Remove](#remove)
   - [Rule classes](#rule-classes)
   - [Rule names](#rule-names)
   - [Rule option names](#rule-option-names)
-  - [Development](#development)
-  - [Contributing](#contributing)
-  - [License](#license)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Usage
 
 The most important command of `expire` is `purge` which is explained first.
 
-## Purge
+
+### Purge
 
 The purge command is used to calculate and delete expired backups.
 It is invoked as follows:
@@ -75,7 +76,7 @@ This would delete, according to the rules, all expired backups under `path/to/ba
 Before deleting, you may want to know what would be removed.
 The `--simulate` option is suitable for this purpose.
 
-### The `--simulate`, `-s` flag
+#### The `--simulate`, `-s` flag
 
 To check the expire-rules you can call `expire purge` with the `--simulate` option:
 
@@ -88,7 +89,7 @@ but will not delete anything.
 
 To see what `purge` would delete you have to specify a format, covered in the following section.
 
-### The `--format`, `-f` options
+#### The `--format`, `-f` options
 
 Formats are used to control the output of `expire`.
 `expire` supports various formats.
@@ -107,7 +108,7 @@ backups
 All examples use the `--keep-most-recent=3` rule.
 Rules are explained later in this document.
 
-#### `--format=expired`
+##### `--format=expired`
 
 The **expired** format prints the paths of the expired backups, one per line.
 
@@ -118,7 +119,7 @@ backups/2019-12-24T1200
 backups/2021-01-19T1113
 ```
 
-#### `--format=kept`
+##### `--format=kept`
 
 The **kept** format prints the paths of the kept backups, one per line.
 
@@ -129,12 +130,12 @@ backups/2021-01-27T1111
 backups/2021-01-27T1112
 ```
 
-#### `--format=none`
+##### `--format=none`
 
 This is the default format, it prints nothing.
 Nothing is printed here, so no example.
 
-#### `--format=simple`
+##### `--format=simple`
 
 The **simple** format prints the path of the kept backups preceded by the work `keeping`
 and the expired backups preceded by the word `purged`.
@@ -149,7 +150,7 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-#### `--format=enhanced`
+##### `--format=enhanced`
 
 The **enhanced** format works the same way as the simple format.
 In addition, it prints the reasons why a backup is kept.
@@ -170,7 +171,7 @@ keeping backups/2021-01-27T1112
     - keep the 3 most recent backups
 ```
 
-## Rules
+#### Rules
 
 Rules control which backups to keep and which to discard.
 Rules can be specified by command line parameters or in a Yaml file.
@@ -186,11 +187,11 @@ backups/2021-01-27T1111
 backups/2021-01-27T1112
 ```
 
-### Most recent rules
+##### Most recent rules
 
 There are three _most recent_ rules, `--keep-most-recent`, `--keep-most-recent-for` and `--from-now-keep-most-recent-for`.
 
-#### `--keep-most-recent`
+##### `--keep-most-recent`
 
 The `--keep-most-recent=3` option preserves the three newest backups from being purged.
 
@@ -223,7 +224,7 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-#### `--from-now-keep-most-recent-for <amount> <unit>`
+##### `--from-now-keep-most-recent-for <amount> <unit>`
 
 The `--from-now-keep-most-recent-for` option works almost the same way as
 the `--keep-most-recent-for` option does.
@@ -242,7 +243,7 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### Adjective rules
+##### Adjective rules
 
 To keep **one backup per time unit** the **adjective rules** are handy.
 There are five adjective rules:
@@ -277,7 +278,7 @@ purged backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### Adjective for rules
+##### Adjective for rules
 
 To preserve **one backup per unit for a certain time range** you can use **adjective for rules**.
 Time ranges are discussed in more detail within their own section
@@ -301,7 +302,7 @@ purged backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### From now adjective for rules
+##### From now adjective for rules
 
 The *from now adjective for rules* work similar to *adjective for rules*,
 expect they **base their calculations on the current time**, not the timestamp of the newest backup.
@@ -327,7 +328,7 @@ purged backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### Time ranges
+##### Time ranges
 
 Some rules take a time range as argument.
 Ranges may be expressed like this:
@@ -351,7 +352,7 @@ Possible values for the unit portion are:
 
 Units are case-insensitive, so `Year` and `yEaR` are valid too.
 
-## `--rules-file` read rules from a file
+#### `--rules-file` read rules from a file
 
 To read the rules form a YAML-file use the  `--rules-file` option.
 The rules have to be specified with an underscore instead of a hyphen.
@@ -376,7 +377,7 @@ keeping backups/2021-01-27T1112
 
 There is also a shortcut for the `--rules-file` option: `-r`.
 
-## The `--purge-command`, `--cmd` option
+#### The `--purge-command`, `--cmd` option
 
 The **expire** program can remove files and directories,
 but it doesn't know how to deal with logical volumes or subvolumes.
@@ -403,7 +404,7 @@ rm -rf backups/2019-12-24T1200
 rm -rf backups/2021-01-19T1113
 ```
 
-## Newest
+### Newest
 
 The `newest` command shows the newest backup:
 
@@ -412,7 +413,7 @@ $ expire newest backups
 backups/2021-01-27T1112
 ```
 
-## Oldest
+### Oldest
 
 The `oldest` command shows the oldest backup:
 
@@ -421,7 +422,7 @@ $ expire oldest backups
 backups/2016-01-27T1112
 ```
 
-## Remove
+### Remove
 
 The `remove` command can be used to remove files or directories:
 
@@ -430,7 +431,7 @@ $ expire remove /tmp/stuff
 removed /tmp/stuff
 ```
 
-## Rule classes
+### Rule classes
 
 The `rule-classes` command returns a list of all rule-classes:
 
@@ -456,7 +457,7 @@ Expire::FromNowKeepMonthlyForRule
 Expire::FromNowKeepYearlyForRule
 ```
 
-## Rule names
+### Rule names
 
 The `rule-names` command shows a list of all rule-names:
 
@@ -482,7 +483,7 @@ from_now_keep_monthly_for
 from_now_keep_yearly_for
 ```
 
-## Rule option names
+### Rule option names
 
 To get a list of all rule option-names call:
 

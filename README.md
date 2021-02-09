@@ -429,7 +429,7 @@ Expire::FromNowKeepYearlyForRule
 The `rule-names` command shows a list of all rule-names:
 
 ```shell
-expire rule-names
+$ expire rule-names
 keep_most_recent
 keep_most_recent_for
 from_now_keep_most_recent_for

@@ -59,7 +59,7 @@ gem install expire
 
 ## Usage
 
-TODO: Write usage instructions here
+The most important command of `expire` is `purge` which is explained first.
 
 ## Purge
 

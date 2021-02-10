@@ -47,6 +47,7 @@ gem install expire
     - [Time ranges](#time-ranges)
   - [`--rules-file`](#--rules-file)
   - [The `--purge-command`, `--cmd` option](#the---purge-command---cmd-option)
+- [How backup timestamps are detected](#how-backup-timestamps-are-detected)
 - [Newest](#newest)
 - [Oldest](#oldest)
 - [Remove](#remove)
@@ -394,6 +395,39 @@ rm -rf backups/2016-01-27T1112
 rm -rf backups/2019-12-24T1200
 rm -rf backups/2021-01-19T1113
 ```
+
+## How backup timestamps are detected
+
+`expire` recognizes the date of a backup by its file name (or directory name).
+This file name must consist of twelve or 14 digits and optional arbitrary characters.
+The digits are considered as `YYYYmmddHHMMSS`, where,
+
+- `YYYY` denotes the year of the backup such as `2021`
+- `mm` denotes the month the backups was created such as `01` or `11`
+- `dd` denotes the day of month such as `07` or `28`
+- `HH` denotes the hour (`00`..`23`)
+- `MM` denotes the minute
+- `SS` denotes the second; seconds are optional
+
+Some valid filenames:
+
+```shell
+2021-01-19T1113   # with arbitrary characters
+2021-01-19T111345 # with arbitrary characters and seconds
+202101191113      # no arbitrary characters
+20210119111345    # with seconds and no arbitrary characters
+```
+
+Some **invalid** filenames:
+
+```shell
+2021-01-19       # just a date, no time
+2021-02-31T1113  # February 31
+2101191113       # year 2101, only 10 digits
+2021011911134501 # 16 digits are too much
+```
+
+Date detection via ctime or mtime is planned for a future release.
 
 ## Newest
 

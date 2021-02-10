@@ -45,7 +45,7 @@ gem install expire
     - [`--keep-<adjective>-for`](#--keep-adjective-for)
     - [`--from-now-keep-<adjective>-for`](#--from-now-keep-adjective-for)
     - [Time ranges](#time-ranges)
-  - [`--rules-file` read rules from a file](#--rules-file-read-rules-from-a-file)
+  - [`--rules-file`](#--rules-file)
   - [The `--purge-command`, `--cmd` option](#the---purge-command---cmd-option)
 - [Newest](#newest)
 - [Oldest](#oldest)
@@ -104,7 +104,7 @@ backups
 └── 2021-01-27T1112
 ```
 
-All examples use the `--keep-most-recent=3` rule.
+All `--format`-examples use the `--keep-most-recent=3` rule.
 Rules are explained later in this document.
 
 #### `--format=expired`
@@ -193,8 +193,8 @@ keeping backups/2021-01-27T1112
 
 #### `--keep-most-recent-for`
 
-Keeps the newest backups for a **time range** specified by `amount` and `unit`.
-An `amount` is an integer and a unit is something like `days` or `years`.
+Keeps the newest backups for a **time range** specified by *amount* and *unit*.
+An *amount* is an integer and a unit is something like *days* or *years*.
 Time ranges are discussed in more detail within their own section.
 
 The `--keep-most-recent-for "3 years"` option keeps all backups that are not older than three years.
@@ -236,7 +236,7 @@ These adjectives are *hourly*, *daily*, *weekly*, *monthly* and *yearly*.
 
 #### `--keep-<adjective>`
 
-To keep **one backup per time unit** the **adjective rules** are handy.
+To keep **one backup per time unit** the *adjective rules* are handy.
 There are five adjective rules:
 
 - `--keep-hourly`
@@ -271,7 +271,7 @@ keeping backups/2021-01-27T1112
 
 #### `--keep-<adjective>-for`
 
-To preserve **one backup per unit for a certain time range** you can use **adjective for rules**.
+To preserve **one backup per unit for a certain time range** you can use *adjective for rules*.
 Time ranges are discussed in more detail within their own section
 There are five *adjective-for* rules:
 
@@ -322,7 +322,7 @@ keeping backups/2021-01-27T1112
 #### Time ranges
 
 Some rules take a time range as argument.
-Ranges may be expressed like this:
+Time ranges can be expressed like this:
 
 ```shell
 1 hour
@@ -343,9 +343,9 @@ Possible values for the unit portion are:
 
 Units are case-insensitive, so `Year` and `yEaR` are valid too.
 
-### `--rules-file` read rules from a file
+### `--rules-file`
 
-To read the rules form a YAML-file use the  `--rules-file` option.
+To read the rules form a YAML-file use the `--rules-file` option.
 The rules have to be specified with an underscore instead of a hyphen.
 
 Here is an example rules-file called `rules.yml`:
@@ -357,7 +357,7 @@ keep_most_recent: 3
 With this rules-file we can `expire` with the `--rules-file` option:
 
 ```shell
-$ expire purge backups --rules-file tmp/rules.yml --format=simple
+$ expire purge backups --rules-file rules.yml --format=simple
 purged backups/2016-01-27T1112
 purged backups/2019-12-24T1200
 purged backups/2021-01-19T1113
@@ -370,7 +370,7 @@ There is also a shortcut for the `--rules-file` option: `-r`.
 
 ### The `--purge-command`, `--cmd` option
 
-The **expire** program can remove files and directories,
+The `expire` program can remove files and directories,
 but it doesn't know how to deal with logical volumes or subvolumes.
 This is where the `--purge-command` option comes in.
 

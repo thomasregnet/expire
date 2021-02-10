@@ -399,7 +399,7 @@ rm -rf backups/2021-01-19T1113
 ## How backup timestamps are detected
 
 `expire` recognizes the date of a backup by its file name (or directory name).
-This file name must consist of twelve or 14 digits and optional arbitrary characters.
+This file name must consist of twelve or 14 digits and can optionally contain other characters.
 The digits are considered as `YYYYmmddHHMMSS`, where,
 
 - `YYYY` denotes the year of the backup such as `2021`

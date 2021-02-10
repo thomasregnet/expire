@@ -1,8 +1,10 @@
+<!-- omit in toc -->
 # Expire
 
 **Expire** is a tool for identifying backups that are no longer needed and to delete them.
 It can be used either from the command line or as a ruby gem.
 
+<!-- omit in toc -->
 ## Installation
 
 **The installation is currently not yet possible!**
@@ -25,13 +27,44 @@ Or install it yourself as:
 gem install expire
 ```
 
+- [Usage](#usage)
+- [Purge](#purge)
+  - [The `--simulate`, `-s` flag](#the---simulate--s-flag)
+  - [The `--format`, `-f` options](#the---format--f-options)
+    - [`--format=expired`](#--formatexpired)
+    - [`--format=kept`](#--formatkept)
+    - [`--format=none`](#--formatnone)
+    - [`--format=simple`](#--formatsimple)
+    - [`--format=enhanced`](#--formatenhanced)
+  - [Rules](#rules)
+    - [`--keep-most-recent`](#--keep-most-recent)
+    - [`--keep-most-recent-for`](#--keep-most-recent-for)
+    - [`--from-now-keep-most-recent-for`](#--from-now-keep-most-recent-for)
+    - [Adjectives](#adjectives)
+    - [`--keep-<adjective>`](#--keep-adjective)
+    - [`--keep-<adjective>-for`](#--keep-adjective-for)
+    - [`--from-now-keep-<adjective>-for`](#--from-now-keep-adjective-for)
+    - [Time ranges](#time-ranges)
+  - [`--rules-file`](#--rules-file)
+  - [The `--purge-command`, `--cmd` option](#the---purge-command---cmd-option)
+- [How backup timestamps are detected](#how-backup-timestamps-are-detected)
+- [Newest](#newest)
+- [Oldest](#oldest)
+- [Remove](#remove)
+- [Rule classes](#rule-classes)
+- [Rule names](#rule-names)
+- [Rule option names](#rule-option-names)
+- [Development](#development)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Usage
 
-TODO: Write usage instructions here
+The most important command of `expire` is `purge` which is explained first.
 
 ## Purge
 
-The purge command is used to calculate and delete expired backups.
+The `purge` command is used to calculate and delete expired backups.
 It is invoked as follows:
 
 ``` shell
@@ -51,7 +84,7 @@ To check the expire-rules you can call `expire purge` with the `--simulate` opti
 expire path/to/backups <rules> --simulate
 ```
 
-When `expire purge` is called this way it will calculate the expired backups
+When `purge` is called this way it will calculate the expired backups
 but will not delete anything.
 
 To see what `purge` would delete you have to specify a format, covered in the following section.
@@ -72,7 +105,7 @@ backups
 └── 2021-01-27T1112
 ```
 
-All examples use the `--keep-most-recent=3` rule.
+All `--format`-examples use the `--keep-most-recent=3` rule.
 Rules are explained later in this document.
 
 #### `--format=expired`
@@ -138,25 +171,12 @@ keeping backups/2021-01-27T1112
     - keep the 3 most recent backups
 ```
 
-## Rules
+### Rules
 
 Rules control which backups to keep and which to discard.
-Rules can be specified by command line parameters or in a Yaml file.
+Rules can be specified by command line parameters or in a YAML-file.
 
 You must specify at least one rule or `expire purge` will fail.
-
-```shell
-backups/2016-01-27T1112
-backups/2019-12-24T1200
-backups/2021-01-19T1113
-backups/2021-01-26T1111
-backups/2021-01-27T1111
-backups/2021-01-27T1112
-```
-
-### Most recent rules
-
-There are three _most recent_ rules, `--keep-most-recent`, `--keep-most-recent-for` and `--from-now-keep-most-recent-for`.
 
 #### `--keep-most-recent`
 
@@ -172,10 +192,10 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-##### `--keep-most-recent-for <amount> <unit>`
+#### `--keep-most-recent-for`
 
-Keeps the newest backups for a **time range** specified by `amount` and `unit`.
-An `amount` is an integer and a unit is something like `days` or `years`.
+Keeps the newest backups for a **time range** specified by *amount* and *unit*.
+An *amount* is an integer and a unit is something like *days* or *years*.
 Time ranges are discussed in more detail within their own section.
 
 The `--keep-most-recent-for "3 years"` option keeps all backups that are not older than three years.
@@ -191,7 +211,7 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-#### `--from-now-keep-most-recent-for <amount> <unit>`
+#### `--from-now-keep-most-recent-for`
 
 The `--from-now-keep-most-recent-for` option works almost the same way as
 the `--keep-most-recent-for` option does.
@@ -210,16 +230,21 @@ keeping backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### Adjective rules
+#### Adjectives
 
-To keep **one backup per time unit** the **adjective rules** are handy.
+The following rules contain an adjective in their name.
+These adjectives are *hourly*, *daily*, *weekly*, *monthly* and *yearly*.
+
+#### `--keep-<adjective>`
+
+To keep **one backup per time unit** the *adjective rules* are handy.
 There are five adjective rules:
 
-* `--keep-hourly`
-* `--keep-daily`
-* `--keep-weekly`
-* `--keep-monthly`
-* `--keep-yearly`
+- `--keep-hourly`
+- `--keep-daily`
+- `--keep-weekly`
+- `--keep-monthly`
+- `--keep-yearly`
 
 All of these expect an integer that specifies the maximum of backups they should preserve.
 
@@ -245,17 +270,17 @@ purged backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### Adjective for rules
+#### `--keep-<adjective>-for`
 
-To preserve **one backup per unit for a certain time range** you can use **adjective for rules**.
+To preserve **one backup per unit for a certain time range** you can use *adjective for rules*.
 Time ranges are discussed in more detail within their own section
-There are five adjective for rules:
+There are five *adjective-for* rules:
 
-* `--keep-hourly-for`
-* `--keep-daily-for`
-* `--keep-weekly-for`
-* `--keep-monthly-for`
-* `--keep-yearly-for`
+- `--keep-hourly-for`
+- `--keep-daily-for`
+- `--keep-weekly-for`
+- `--keep-monthly-for`
+- `--keep-yearly-for`
 
 The **calculation takes the timestamp of the newest backup as reference**.
 
@@ -269,18 +294,18 @@ purged backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### From now adjective for rules
+#### `--from-now-keep-<adjective>-for`
 
 The *from now adjective for rules* work similar to *adjective for rules*,
 expect they **base their calculations on the current time**, not the timestamp of the newest backup.
 
 There are five *from now adjective for rules*:
 
-* `--from-now-keep-hourly-for`
-* `--from-now-keep-daily-for`
-* `--from-now-keep-weekly-for`
-* `--from-now-keep-monthly-for`
-* `--from-now-keep-yearly-for`
+- `--from-now-keep-hourly-for`
+- `--from-now-keep-daily-for`
+- `--from-now-keep-weekly-for`
+- `--from-now-keep-monthly-for`
+- `--from-now-keep-yearly-for`
 
 Assuming today is the 28th January 2021 the option `--from-now-most-recent-for=5.days`
 would act like this:
@@ -295,10 +320,10 @@ purged backups/2021-01-27T1111
 keeping backups/2021-01-27T1112
 ```
 
-### Time ranges
+#### Time ranges
 
 Some rules take a time range as argument.
-Ranges may be expressed like this:
+Time ranges can be expressed like this:
 
 ```shell
 1 hour
@@ -311,17 +336,17 @@ As you can see, a range is expressed as a combination of an **integer** and a **
 The integer portion can include underscores (`_`) **between** the digits.
 Possible values for the unit portion are:
 
-* `hour` and `hours`
-* `day` and `days`
-* `week` and `weeks`
-* `moth` and `months`
-* `year` and `years`
+- `hour` and `hours`
+- `day` and `days`
+- `week` and `weeks`
+- `moth` and `months`
+- `year` and `years`
 
 Units are case-insensitive, so `Year` and `yEaR` are valid too.
 
-## `--rules-file` read rules from a file
+### `--rules-file`
 
-To read the rules form a YAML-file use the  `--rules-file` option.
+To read the rules form a YAML-file use the `--rules-file` option.
 The rules have to be specified with an underscore instead of a hyphen.
 
 Here is an example rules-file called `rules.yml`:
@@ -333,7 +358,7 @@ keep_most_recent: 3
 With this rules-file we can `expire` with the `--rules-file` option:
 
 ```shell
-$ expire purge backups --rules-file tmp/rules.yml --format=simple
+$ expire purge backups --rules-file rules.yml --format=simple
 purged backups/2016-01-27T1112
 purged backups/2019-12-24T1200
 purged backups/2021-01-19T1113
@@ -344,9 +369,9 @@ keeping backups/2021-01-27T1112
 
 There is also a shortcut for the `--rules-file` option: `-r`.
 
-## The `--purge-command`, `--cmd` option
+### The `--purge-command`, `--cmd` option
 
-The **expire** program can remove files and directories,
+The `expire` program can remove files and directories,
 but it doesn't know how to deal with logical volumes or subvolumes.
 This is where the `--purge-command` option comes in.
 
@@ -370,6 +395,39 @@ rm -rf backups/2016-01-27T1112
 rm -rf backups/2019-12-24T1200
 rm -rf backups/2021-01-19T1113
 ```
+
+## How backup timestamps are detected
+
+`expire` recognizes the date of a backup by its file name (or directory name).
+This file name must consist of twelve or 14 digits and can optionally contain other characters.
+The digits are considered as `YYYYmmddHHMMSS`, where,
+
+- `YYYY` denotes the year of the backup such as `2021`
+- `mm` denotes the month the backups was created such as `01` or `11`
+- `dd` denotes the day of month such as `07` or `28`
+- `HH` denotes the hour (`00`..`23`)
+- `MM` denotes the minute
+- `SS` denotes the second; seconds are optional
+
+Some valid filenames:
+
+```shell
+2021-01-19T1113   # with arbitrary characters
+2021-01-19T111345 # with arbitrary characters and seconds
+202101191113      # no arbitrary characters
+20210119111345    # with seconds and no arbitrary characters
+```
+
+Some **invalid** filenames:
+
+```shell
+2021-01-19       # just a date, no time
+2021-02-31T1113  # February 31
+2101191113       # year 2101, only 10 digits
+2021011911134501 # 16 digits are too much
+```
+
+Date detection via ctime or mtime is planned for a future release.
 
 ## Newest
 

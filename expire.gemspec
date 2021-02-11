@@ -37,28 +37,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency 'activesupport'
-  # spec.add_dependency 'tty-box', '~> 0.4.1'
-  # spec.add_dependency 'tty-color', '~> 0.5'
-  # spec.add_dependency 'tty-command', '~> 0.9.0'
-  # spec.add_dependency 'tty-config', '~> 0.3.2'
-  # spec.add_dependency 'tty-cursor', '~> 0.7'
-  # spec.add_dependency 'tty-editor', '~> 0.5'
-  # spec.add_dependency 'tty-file', '~> 0.10'
-  # spec.add_dependency 'tty-font', '~> 0.4.0'
-  # spec.add_dependency 'tty-logger', '~> 0.2.0'
-  # tty-markdown depends on an old version of kramdown. This old kramdown
-  # has an vulnerability. Since we don't need markdown simple comment it out.
-  # spec.add_dependency 'tty-markdown', '~> 0.6.0'
-  # spec.add_dependency 'tty-pager', '~> 0.12'
-  # spec.add_dependency 'tty-pie', '~> 0.3.0'
-  # spec.add_dependency 'tty-platform', '~> 0.2'
-  # spec.add_dependency 'tty-progressbar', '~> 0.17'
-  # spec.add_dependency 'tty-prompt', '~> 0.19'
-  # spec.add_dependency 'tty-screen', '~> 0.7'
-  # spec.add_dependency 'tty-spinner', '~> 0.9'
-  # spec.add_dependency 'tty-table', '~> 0.11.0'
-  # spec.add_dependency 'tty-tree', '~> 0.3'
-  # spec.add_dependency 'tty-which', '~> 0.4'
   spec.add_dependency 'pastel' #, '~> 0.7'
   spec.add_dependency 'thor'
   spec.add_dependency 'zeitwerk'

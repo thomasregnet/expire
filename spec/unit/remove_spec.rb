@@ -8,7 +8,7 @@ RSpec.describe Expire::Commands::Remove do
   it 'executes `remove` command successfully' do
     output = StringIO.new
     options = { path: 'tmp/aruba/to_be_deleted' }
-    command = described_class.new(options)
+    command = described_class.new(**options)
 
     command.execute(output: output)
 

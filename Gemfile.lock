@@ -80,7 +80,7 @@ GEM
       thread_safe
     psych (3.3.0)
     rainbow (3.0.0)
-    rake (12.3.3)
+    rake (13.0.3)
     reek (6.0.3)
       kwalify (~> 0.7.0)
       parser (~> 3.0.0)
@@ -141,7 +141,7 @@ DEPENDENCIES
   byebug
   cucumber
   expire!
-  rake (~> 12.3)
+  rake (~> 13.0)
   reek
   rspec (~> 3.0)
   rubocop
@@ -149,4 +149,4 @@ DEPENDENCIES
   simplecov
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

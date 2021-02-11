@@ -2,10 +2,10 @@ PATH
   remote: .
   specs:
     expire (0.1.0)
-      activesupport
-      pastel
-      thor
-      zeitwerk
+      activesupport (~> 6.1)
+      pastel (~> 0.8)
+      thor (~> 1.1)
+      zeitwerk (~> 2.4)
 
 GEM
   remote: https://rubygems.org/
@@ -80,7 +80,7 @@ GEM
       thread_safe
     psych (3.3.0)
     rainbow (3.0.0)
-    rake (12.3.3)
+    rake (13.0.3)
     reek (6.0.3)
       kwalify (~> 0.7.0)
       parser (~> 3.0.0)
@@ -136,17 +136,17 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aruba
+  aruba (~> 1.0)
   bundler (~> 2.1)
-  byebug
-  cucumber
+  byebug (~> 11.1)
+  cucumber (~> 5.3)
   expire!
-  rake (~> 12.3)
-  reek
+  rake (~> 13.0)
+  reek (~> 6.0)
   rspec (~> 3.0)
-  rubocop
-  rubocop-rspec
-  simplecov
+  rubocop (~> 1.9)
+  rubocop-rspec (~> 2.2)
+  simplecov (~> 0.21)
 
 BUNDLED WITH
-   2.1.4
+   2.2.3

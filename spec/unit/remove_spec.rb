@@ -3,7 +3,7 @@
 require 'expire/commands/remove'
 
 RSpec.describe Expire::Commands::Remove do
-  let(:to_be_deleted) { File.join('tmp', 'to_be_deleted') }
+  let(:to_be_deleted) { Pathname.new(File.join('tmp', 'to_be_deleted')) }
 
   before { FileUtils.mkpath(to_be_deleted) }
 
@@ -14,5 +14,10 @@ RSpec.describe Expire::Commands::Remove do
     command.execute(output: output)
 
     expect(output.string).to eq("removed tmp/to_be_deleted\n")
+  end
+
+  it 'removes the path' do
+    described_class.new(path: to_be_deleted).execute
+    expect(to_be_deleted).not_to exist
   end
 end

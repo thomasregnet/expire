@@ -44,7 +44,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'aruba', '~> 1.0'
   spec.add_development_dependency 'bundler', '~> 2.1'
   spec.add_development_dependency 'byebug', '~> 11.1'
-  spec.add_development_dependency 'cucumber', '~> 5.3'
+  spec.add_development_dependency 'cucumber', '~> 6.0'
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'reek', '~> 6.0'
   spec.add_development_dependency 'rspec', '~> 3.0'

@@ -427,8 +427,6 @@ Some **invalid** filenames:
 2021011911134501 # 16 digits are too much
 ```
 
-Date detection via ctime or mtime is planned for a future release.
-
 ## Newest
 
 The `newest` command shows the newest backup:

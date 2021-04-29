@@ -3,15 +3,12 @@
 module Expire
   # Take a path and return an instance of Expire::Backup
   class BackupFromPathService
-    def self.call(path:, by: :path)
-      new(path: path, by: by).call
+    def self.call(path:)
+      new(path: path).call
     end
 
-    def initialize(path:, by: :path)
-      @by       = by
+    def initialize(path:)
       @pathname = Pathname.new(path)
-
-      raise ArgumentError, "by: must be :ctime, :mtime or :path, not #{by}" unless %i[ctime mtime path].include?(by)
     end
 
     attr_reader :by, :pathname

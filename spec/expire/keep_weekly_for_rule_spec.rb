@@ -25,6 +25,6 @@ RSpec.describe Expire::KeepWeeklyForRule do
   it_behaves_like 'an #apply on a rule' do
     let(:backups) { TestDates.create(days: (12..20)).to_backups }
     let(:kept) { TestDates.create(days: (13..20).step(7)).to_backups }
-    let(:reference_datetime) { nil }
+    let(:reference_time) { nil }
   end
 end

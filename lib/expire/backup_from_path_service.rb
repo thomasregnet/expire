@@ -3,26 +3,23 @@
 module Expire
   # Take a path and return an instance of Expire::Backup
   class BackupFromPathService
-    def self.call(path:, by: :path)
-      new(path: path, by: by).call
+    def self.call(path:)
+      new(path: path).call
     end
 
-    def initialize(path:, by: :path)
-      @by       = by
+    def initialize(path:)
       @pathname = Pathname.new(path)
-
-      raise ArgumentError, "by: must be :ctime, :mtime or :path, not #{by}" unless %i[ctime mtime path].include?(by)
     end
 
     attr_reader :by, :pathname
 
     def call
-      Backup.new(datetime: datetime, pathname: pathname)
+      Backup.new(time: time, pathname: pathname)
     end
 
     private
 
-    def datetime
+    def time
       digits = extract_digits
 
       year   = digits[0..3].to_i
@@ -31,13 +28,16 @@ module Expire
       hour   = digits[8..9].to_i
       minute = digits[10..11].to_i
 
-      datetime_for(year, month, day, hour, minute)
+      time_for(year, month, day, hour, minute)
     end
 
-    def datetime_for(year, month, day, hour, minute)
-      DateTime.new(year, month, day, hour, minute)
+    def time_for(year, month, day, hour, minute)
+      Date.new(year, month, day)
+      Time.new(year, month, day, hour, minute)
     rescue Date::Error
-      raise InvalidPathError, "can't construct date and time from #{pathname}" 
+      raise InvalidPathError, "can't construct date and time from #{pathname}"
+    rescue ArgumentError
+      raise InvalidPathError, "can't construct date and time from #{pathname}"
     end
 
     def extract_digits

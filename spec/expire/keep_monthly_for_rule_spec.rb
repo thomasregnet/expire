@@ -31,6 +31,6 @@ RSpec.describe Expire::KeepMonthlyForRule do
       TestDates.create(months: 3..5, days: (29..29)).to_backups
     end
 
-    let(:reference_datetime) { nil }
+    let(:reference_time) { nil }
   end
 end

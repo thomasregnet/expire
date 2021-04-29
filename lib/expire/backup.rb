@@ -5,8 +5,8 @@ module Expire
   class Backup < Delegator
     include Comparable
 
-    def initialize(datetime:, pathname:)
-      @datetime = datetime
+    def initialize(time:, pathname:)
+      @time     = time
       @pathname = pathname
 
       # @reasons_to_keep is a Set so a reason can added multiple times
@@ -14,8 +14,8 @@ module Expire
       @reasons_to_keep = Set.new
     end
 
-    attr_reader :datetime, :pathname, :reasons_to_keep
-    alias __getobj__ datetime
+    attr_reader :time, :pathname, :reasons_to_keep
+    alias __getobj__ time
 
     def same_hour?(other)
       return false unless same_day?(other)
@@ -52,16 +52,20 @@ module Expire
     # The <=> method seems not to be delegated so we need to implement it
     # Note that this Class includes the Comparable module
     def <=>(other)
-      datetime <=> other.datetime
+      time <=> other.time
     end
 
     def add_reason_to_keep(reason)
       reasons_to_keep << reason
     end
 
-    # def datetime
-    #   backup.datetime
+    # def time
+    #   backup.time
     # end
+
+    def cweek
+      time&.strftime('%V').to_i
+    end
 
     def expired?
       reasons_to_keep.empty?
@@ -69,6 +73,10 @@ module Expire
 
     def keep?
       reasons_to_keep.any?
+    end
+
+    def to_s
+      time.strftime('%Y-%m-%dT%H:%M')
     end
   end
 end

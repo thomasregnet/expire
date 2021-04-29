@@ -32,7 +32,7 @@ RSpec.describe Expire::FromNowKeepWeeklyForRule do
       TestDates.create(days: (13..17).step(4), hours: 12..12).to_backups
     end
 
-    let(:reference_datetime) { DateTime.new(1860, 5, 24, 12, 0, 0) }
+    let(:reference_time) { Time.new(1860, 5, 24, 12, 0, 0) }
   end
 
   it_behaves_like 'an unit rule'

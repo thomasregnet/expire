@@ -11,7 +11,7 @@ module Expire
     (\s+|\.)
     (hour|day|week|month|year)s?
     \z
-    /x.freeze
+    /x
 
     def from_value(string, **args)
       # return new(args.merge({ amount: 0, unit: nil })) if string.none?

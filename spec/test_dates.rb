@@ -62,7 +62,7 @@ class TestDates
       pathname = Pathname.new("backups/#{args[0..5].join('_')}")
 
       Expire::Backup.new(
-        time: Time.new(*args),
+        time:     Time.new(*args),
         pathname: pathname
       )
     end
@@ -78,7 +78,7 @@ class TestDates
 
         Expire::Backup.new(
           time: Time.new(*args),
-          path:     path
+          path: path
         )
       end
     )
@@ -87,6 +87,6 @@ class TestDates
   private
 
   def range_for(gizmo)
-    gizmo.class == Integer ? gizmo..gizmo : gizmo
+    gizmo.instance_of?(Integer) ? gizmo..gizmo : gizmo
   end
 end

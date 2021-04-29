@@ -90,6 +90,7 @@ module Expire
         Expire::Commands::Newest.new(path, options).execute
       end
     end
+
     # Play with test-data
     class Playground < Thor
       desc 'create PATH', 'play with test-data'

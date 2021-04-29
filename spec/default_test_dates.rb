@@ -33,7 +33,7 @@ class DefaultTestDates < TestDates
 
         Expire::Backup.new(
           time: Time.new(*time),
-          path:     path
+          path: path
         )
       end
     )

@@ -35,7 +35,7 @@ module Expire
       Date.new(year, month, day)
       Time.new(year, month, day, hour, minute)
     rescue Date::Error
-      raise InvalidPathError, "can't construct date and time from #{pathname}" 
+      raise InvalidPathError, "can't construct date and time from #{pathname}"
     rescue ArgumentError
       raise InvalidPathError, "can't construct date and time from #{pathname}"
     end

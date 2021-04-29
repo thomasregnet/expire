@@ -6,7 +6,7 @@ module Expire
     include Comparable
 
     def initialize(time:, pathname:)
-      @time = time
+      @time     = time
       @pathname = pathname
 
       # @reasons_to_keep is a Set so a reason can added multiple times

@@ -33,7 +33,7 @@ module Expire
     def create
       raise_if_backups_dir_exists
 
-      oldest_backup = DateTime.now
+      oldest_backup = Time.now
 
       STEP_WIDTHS.each do |adjective, noun|
         options[adjective.to_sym].times do
@@ -45,8 +45,8 @@ module Expire
 
     private
 
-    def mkbackup(datetime)
-      backup_name = datetime.to_s.sub(/:\d\d[+-]\d\d:\d\d\z/, '')
+    def mkbackup(time)
+      backup_name = time.strftime('%Y-%m-%dT%H:%M')
       FileUtils.mkdir_p("#{backups_dir}/#{backup_name}")
     end
 

@@ -27,7 +27,7 @@ RSpec.describe Expire::KeepMostRecentRule do
 
         allow(backup_one).to receive(:add_reason_to_keep)
 
-        rule.apply(backups, :dummy_reference_datetime)
+        rule.apply(backups, :dummy_reference_time)
       end
 
       it 'adds a reason_to_keep to the most recent backup' do
@@ -51,7 +51,7 @@ RSpec.describe Expire::KeepMostRecentRule do
         allow(backup_one).to receive(:add_reason_to_keep)
         allow(backup_two).to receive(:add_reason_to_keep)
 
-        rule.apply(backups, :dummy_reference_datetime)
+        rule.apply(backups, :dummy_reference_time)
       end
 
       it 'adds a reason_to_keep to the most recent backup' do

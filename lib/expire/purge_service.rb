@@ -25,7 +25,7 @@ module Expire
     private
 
     def annotated_backup_list
-      @annotated_backup_list ||= rules.apply(backup_list, DateTime.now)
+      @annotated_backup_list ||= rules.apply(backup_list, Time.now)
     end
 
     def backup_list

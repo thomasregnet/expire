@@ -62,7 +62,7 @@ class TestDates
       pathname = Pathname.new("backups/#{args[0..5].join('_')}")
 
       Expire::Backup.new(
-        datetime: DateTime.new(*args),
+        time: Time.new(*args),
         pathname: pathname
       )
     end
@@ -72,12 +72,12 @@ class TestDates
 
   def to_backup_list
     Expire::BackupList.new(
-      # result.map { |args| Expire::Backup.new(DateTime.new(*args)) }
+      # result.map { |args| Expire::Backup.new(Time.new(*args)) }
       result.map do |args|
         path = "backups/#{args[0..5].join('_')}"
 
         Expire::Backup.new(
-          datetime: DateTime.new(*args),
+          time: Time.new(*args),
           path:     path
         )
       end

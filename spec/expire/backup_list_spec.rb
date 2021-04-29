@@ -16,16 +16,16 @@ RSpec.describe Expire::BackupList do
       described_class.new(
         [
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+            time: Time.new(1860, 5, 17, 12, 0, 0),
             pathname: Pathname.new('backups/oldest')
           ),
 
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+            time: Time.new(1860, 5, 17, 12, 44, 0),
             pathname: Pathname.new('backups/newest')
           ),
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
+            time: Time.new(1860, 5, 17, 12, 36, 0),
             pathname: Pathname.new('backups/middle')
           )
         ]
@@ -69,12 +69,12 @@ RSpec.describe Expire::BackupList do
       described_class.new(
         [
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+            time:     Time.new(1860, 5, 17, 12, 0, 0),
             pathname: Pathname.new('fake_path')
           ),
 
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+            time:     Time.new(1860, 5, 17, 12, 44, 0),
             pathname: Pathname.new('fake_path')
           )
         ]
@@ -93,12 +93,12 @@ RSpec.describe Expire::BackupList do
       described_class.new(
         [
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+            time: Time.new(1860, 5, 17, 12, 0, 0),
             pathname: Pathname.new('fake_path')
           ),
 
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+            time: Time.new(1860, 5, 17, 12, 44, 0),
             pathname: Pathname.new('fake_path')
           )
         ]
@@ -116,31 +116,31 @@ RSpec.describe Expire::BackupList do
     let(:backups) { TestDates.create(days: 15..17).to_backups }
 
     context 'with no backup not older than reference time' do
-      let(:reference_datetime) { DateTime.new(1860, 5, 17, 12, 0, 1) }
+      let(:reference_time) { Time.new(1860, 5, 17, 12, 0, 1) }
       let(:kept) { described_class.new }
 
       it 'returns all backups not older than the reference time' do
-        expect(backups.not_older_than(reference_datetime))
+        expect(backups.not_older_than(reference_time))
           .to contain_exactly(*kept)
       end
     end
 
     context 'with all backups not older than reference time' do
-      let(:reference_datetime) { DateTime.new(1860, 5, 15, 12, 0, 0) }
+      let(:reference_time) { Time.new(1860, 5, 15, 12, 0, 0) }
       let(:kept) { TestDates.create(days: 15..17).to_backups }
 
       it 'returns all backups not older than the reference time' do
-        expect(backups.not_older_than(reference_datetime))
+        expect(backups.not_older_than(reference_time))
           .to contain_exactly(*kept)
       end
     end
 
     context 'with some backups not older than reference time' do
-      let(:reference_datetime) { DateTime.new(1860, 5, 15, 12, 0, 1) }
+      let(:reference_time) { Time.new(1860, 5, 15, 12, 0, 1) }
       let(:kept) { TestDates.create(days: 16..17).to_backups }
 
       it 'returns all backups not older than the reference time' do
-        expect(backups.not_older_than(reference_datetime))
+        expect(backups.not_older_than(reference_time))
           .to contain_exactly(*kept)
       end
     end
@@ -152,26 +152,26 @@ RSpec.describe Expire::BackupList do
         described_class.new(
           [
             Expire::Backup.new(
-              datetime: DateTime.new(1860, 5, 17, 12, 0, 0),
+              time: Time.new(1860, 5, 17, 12, 0, 0),
               pathname: Pathname.new('fake_path')
             ),
 
             Expire::Backup.new(
-              datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+              time: Time.new(1860, 5, 17, 12, 44, 0),
               pathname: Pathname.new('fake_path')
             ),
             Expire::Backup.new(
-              datetime: DateTime.new(1860, 5, 17, 12, 36, 0),
-              pathname: Pathname.new('fake_path')
-            ),
-
-            Expire::Backup.new(
-              datetime: DateTime.new(1860, 5, 17, 12, 33, 0),
+              time: Time.new(1860, 5, 17, 12, 36, 0),
               pathname: Pathname.new('fake_path')
             ),
 
             Expire::Backup.new(
-              datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
+              time: Time.new(1860, 5, 17, 12, 33, 0),
+              pathname: Pathname.new('fake_path')
+            ),
+
+            Expire::Backup.new(
+              time: Time.new(1860, 5, 17, 13, 0, 0),
               pathname: Pathname.new('fake_path')
             )
           ]
@@ -186,11 +186,11 @@ RSpec.describe Expire::BackupList do
       it 'returns hourly backups' do
         expect(hourly).to contain_exactly(
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 12, 44, 0),
+            time: Time.new(1860, 5, 17, 12, 44, 0),
             pathname: :fake_path
           ),
           Expire::Backup.new(
-            datetime: DateTime.new(1860, 5, 17, 13, 0, 0),
+            time: Time.new(1860, 5, 17, 13, 0, 0),
             pathname: :fake_path
           )
         )

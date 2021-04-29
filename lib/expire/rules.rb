@@ -35,8 +35,8 @@ module Expire
       rules.any?
     end
 
-    def apply(backups, reference_datetime)
-      rules.sort.each { |rule| rule.apply(backups, reference_datetime) }
+    def apply(backups, reference_time)
+      rules.sort.each { |rule| rule.apply(backups, reference_time) }
 
       backups
     end

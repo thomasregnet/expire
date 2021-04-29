@@ -21,9 +21,9 @@ module Expire
 
     attr_reader :unit
 
-    def apply(backups, datetime_now)
-      reference_datetime = datetime_now - amount.send(unit)
-      kept = backups.not_older_than(reference_datetime)
+    def apply(backups, time_now)
+      reference_time = time_now - amount.send(unit)
+      kept = backups.not_older_than(reference_time)
 
       kept.each do |backup|
         backup.add_reason_to_keep(reason_to_keep)

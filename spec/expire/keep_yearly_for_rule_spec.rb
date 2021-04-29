@@ -31,6 +31,6 @@ RSpec.describe Expire::KeepYearlyForRule do
       TestDates.create(years: 1858..1860, months: (5..5)).to_backups
     end
 
-    let(:reference_datetime) { nil }
+    let(:reference_time) { nil }
   end
 end

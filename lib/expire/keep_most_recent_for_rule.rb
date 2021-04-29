@@ -16,8 +16,8 @@ module Expire
     end
 
     def apply(backups, _)
-      reference_datetime = backups.newest
-      super(backups, reference_datetime)
+      reference_time = backups.newest
+      super(backups, reference_time)
     end
 
     def rank

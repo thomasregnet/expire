@@ -20,9 +20,9 @@ module Expire
 
     attr_reader :unit
 
-    def apply(backups, reference_datetime)
-      minimal_datetime = reference_datetime - amount.send(unit)
-      kept = backups.one_per(spacing).not_older_than(minimal_datetime)
+    def apply(backups, reference_time)
+      minimal_time = reference_time - amount.send(unit)
+      kept = backups.one_per(spacing).not_older_than(minimal_time)
 
       kept.each { |backup| backup.add_reason_to_keep(reason_to_keep) }
     end

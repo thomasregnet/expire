@@ -32,7 +32,7 @@ RSpec.describe Expire::FromNowKeepMonthlyForRule do
       TestDates.create(years: 1859..1860, months: 4..5).to_backups
     end
 
-    let(:reference_datetime) { DateTime.new(1861, 4, 1, 12, 0, 0) }
+    let(:reference_time) { Time.new(1861, 4, 1, 12, 0, 0) }
   end
 
   it_behaves_like 'an unit rule'

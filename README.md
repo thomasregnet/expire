@@ -68,7 +68,7 @@ The `purge` command is used to calculate and delete expired backups.
 It is invoked as follows:
 
 ``` shell
-expire path/to/backups <rules>
+expire purge path/to/backups <rules>
 ```
 
 This would delete, according to the rules, all expired backups under `path/to/backups`.
@@ -81,7 +81,7 @@ The `--simulate` option is suitable for this purpose.
 To check the expire-rules you can call `expire purge` with the `--simulate` option:
 
 ``` shell
-expire path/to/backups <rules> --simulate
+expire purge path/to/backups <rules> --simulate
 ```
 
 When `purge` is called this way it will calculate the expired backups

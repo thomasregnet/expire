@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    expire (0.2.0)
+    expire (0.2.1)
       activesupport (~> 7.0)
       pastel (~> 0.8)
       thor (~> 1.2)

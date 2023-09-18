@@ -44,7 +44,7 @@ module Expire
     end
 
     def rule_class_names
-      class_symbols = Expire.constants.select { |klass| Expire.const_get(klass).to_s =~ /Rule\z/ }
+      class_symbols = Expire.constants.select { |klass| Expire.const_get(klass).to_s.end_with?("Rule") }
 
       class_symbols.map { |c_sym| "Expire::#{c_sym}" }
     end

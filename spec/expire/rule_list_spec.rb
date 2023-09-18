@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Expire::RuleList do
-  describe '.class_names' do
+  describe ".class_names" do
     let(:expected) do
       %w[
         Expire::KeepMostRecentRule
@@ -25,12 +25,12 @@ RSpec.describe Expire::RuleList do
       ]
     end
 
-    it 'returns the class names' do
+    it "returns the class names" do
       expect(described_class.class_names).to contain_exactly(*expected)
     end
   end
 
-  describe '.names' do
+  describe ".names" do
     let(:expected) do
       %w[
         keep_most_recent
@@ -54,12 +54,12 @@ RSpec.describe Expire::RuleList do
       ]
     end
 
-    it 'returns the names' do
+    it "returns the names" do
       expect(described_class.names).to contain_exactly(*expected)
     end
   end
 
-  describe '.name_symbols' do
+  describe ".name_symbols" do
     let(:expected) do
       %i[
         keep_most_recent
@@ -83,12 +83,12 @@ RSpec.describe Expire::RuleList do
       ]
     end
 
-    it 'returns the names as symbols' do
+    it "returns the names as symbols" do
       expect(described_class.name_symbols).to contain_exactly(*expected)
     end
   end
 
-  describe '.option_names' do
+  describe ".option_names" do
     let(:expected) do
       %w[
         --keep-most-recent
@@ -112,7 +112,7 @@ RSpec.describe Expire::RuleList do
       ]
     end
 
-    it 'returns the option_names' do
+    it "returns the option_names" do
       expect(described_class.option_names).to contain_exactly(*expected)
     end
   end

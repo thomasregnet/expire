@@ -6,7 +6,7 @@ module Expire
     include Comparable
 
     def initialize(time:, pathname:)
-      @time     = time
+      @time = time
       @pathname = pathname
 
       # @reasons_to_keep is a Set so a reason can added multiple times
@@ -15,7 +15,7 @@ module Expire
     end
 
     attr_reader :time, :pathname, :reasons_to_keep
-    alias __getobj__ time
+    alias_method :__getobj__, :time
 
     def same_hour?(other)
       return false unless same_day?(other)
@@ -64,7 +64,7 @@ module Expire
     # end
 
     def cweek
-      time&.strftime('%V').to_i
+      time&.strftime("%V").to_i
     end
 
     def expired?
@@ -76,7 +76,7 @@ module Expire
     end
 
     def to_s
-      time.strftime('%Y-%m-%dT%H:%M')
+      time.strftime("%Y-%m-%dT%H:%M")
     end
   end
 end

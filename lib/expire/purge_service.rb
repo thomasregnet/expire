@@ -9,7 +9,7 @@ module Expire
 
     def initialize(path, options)
       @options = options
-      @path    = path
+      @path = path
     end
 
     attr_reader :options, :path
@@ -17,7 +17,7 @@ module Expire
     def call
       check_preconditions
       purge_expired_backups
-    rescue StandardError => e
+    rescue => e
       report.error(e.message)
       raise
     end
@@ -34,8 +34,8 @@ module Expire
 
     def check_preconditions
       raise NoBackupsError, "Can't find any backups" unless backup_list.any?
-      raise NoRulesError, 'Will not purge without rules' unless rules.any?
-      raise AllBackupsExpiredError, 'Will not delete all backups' if annotated_backup_list.keep_count < 1
+      raise NoRulesError, "Will not purge without rules" unless rules.any?
+      raise AllBackupsExpiredError, "Will not delete all backups" if annotated_backup_list.keep_count < 1
     end
 
     def report
@@ -46,7 +46,7 @@ module Expire
       wanted_format = options[:format]
 
       return ReportNull unless wanted_format
-      return ReportNull if wanted_format == 'none'
+      return ReportNull if wanted_format == "none"
 
       class_name = "::Expire::Report#{wanted_format.titleize}"
       class_name.safe_constantize or raise ArgumentError, "unknown format \"#{wanted_format}\""

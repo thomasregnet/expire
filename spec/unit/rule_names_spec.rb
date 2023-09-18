@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'expire/commands/rule_names'
+require "expire/commands/rule_names"
 
 RSpec.describe Expire::Commands::RuleNames do
   def expected
@@ -26,7 +26,7 @@ RSpec.describe Expire::Commands::RuleNames do
     EXPECTED
   end
 
-  it 'executes `rule_names` command successfully' do
+  it "executes `rule_names` command successfully" do
     output = StringIO.new
     options = {}
     command = described_class.new(options)

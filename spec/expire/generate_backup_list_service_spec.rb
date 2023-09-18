@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 RSpec.describe Expire::GenerateBackupListService do
-  describe '.call' do
-    context 'with a path' do
-      let(:path) { 'tmp/backups' }
+  describe ".call" do
+    context "with a path" do
+      let(:path) { "tmp/backups" }
 
       before do
         FileUtils.rm_rf(path)
@@ -13,33 +13,33 @@ RSpec.describe Expire::GenerateBackupListService do
 
       after { FileUtils.rm_rf(path) }
 
-      it 'returns an Expire::BackupList' do
+      it "returns an Expire::BackupList" do
         expect(described_class.call(path)).to be_instance_of(Expire::BackupList)
       end
 
-      it 'returns a BackupList with two Backups' do
+      it "returns a BackupList with two Backups" do
         expect(described_class.call(path).length).to eq(2)
       end
     end
 
-    context 'with a path that does not exist' do
-      it 'raises an InvalidPathError' do
-        expect { described_class.call('no/such/backups') }
+    context "with a path that does not exist" do
+      it "raises an InvalidPathError" do
+        expect { described_class.call("no/such/backups") }
           .to raise_error(Expire::InvalidPathError, %r{no/such/backups})
       end
     end
 
-    context 'with paths from STDIN' do
+    context "with paths from STDIN" do
       before do
         $stdin = StringIO.new("tmp/1860-05-17T12_00_00\n1860-05-17T13_00_00\n")
       end
 
-      it 'returns an Expire::BackupList' do
-        expect(described_class.call('-')).to be_instance_of(Expire::BackupList)
+      it "returns an Expire::BackupList" do
+        expect(described_class.call("-")).to be_instance_of(Expire::BackupList)
       end
 
-      it 'returns a BackupList with two Backups' do
-        expect(described_class.call('-').length).to eq(2)
+      it "returns a BackupList with two Backups" do
+        expect(described_class.call("-").length).to eq(2)
       end
     end
   end

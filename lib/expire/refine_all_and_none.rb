@@ -5,7 +5,7 @@ module Expire
   module RefineAllAndNone
     refine String do
       def all?
-        return true if ['-1', 'all'].include?(strip.downcase)
+        return true if ["-1", "all"].include?(strip.downcase)
       end
 
       # %w does not work here, I assume there is a problem with "0"

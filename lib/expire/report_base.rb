@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # For some unknown reason Pastel is not autoloaded by Zeitwerk
-require 'pastel'
+require "pastel"
 
 module Expire
   # Base class for Reporters

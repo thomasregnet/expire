@@ -34,7 +34,7 @@ module Expire
     end
 
     def numerus_backup
-      'backup'.pluralize(amount)
+      "backup".pluralize(amount)
     end
 
     def option_name

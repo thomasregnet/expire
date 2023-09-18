@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'test_dates'
+require "test_dates"
 
 # Default TestDates for testing
 class DefaultTestDates < TestDates
@@ -29,7 +29,7 @@ class DefaultTestDates < TestDates
   def to_backup_list
     Expire::BackupList.new(
       result.map do |time|
-        path = Pathname.new("backups/#{time[0..5].join('-')}")
+        path = Pathname.new("backups/#{time[0..5].join("-")}")
 
         Expire::Backup.new(
           time: Time.new(*time),
@@ -48,27 +48,27 @@ class DefaultTestDates < TestDates
 
   def until_may
     TestDates.create(
-      years:  1860,
+      years: 1860,
       months: 1..4,
       # days:   (1..28).step(3)
-      days:   (1..31).step(3)
+      days: (1..31).step(3)
     ).to_a
   end
 
   def first_of_may
     TestDates.create(
-      years:  1860,
+      years: 1860,
       months: 5,
-      days:   1..14
+      days: 1..14
     ).to_a
   end
 
   def rest_of_may
     TestDates.create(
-      years:   1860,
-      months:  5,
-      days:    15..17,
-      hours:   0..23,
+      years: 1860,
+      months: 5,
+      days: 15..17,
+      hours: 0..23,
       minutes: (0..59).step(20)
     ).to_a
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe '`expire remove` command', type: :cli do
+RSpec.describe "`expire remove` command", type: :cli do
   let(:expected_output) do
     <<~OUT
       Usage:
@@ -13,7 +13,7 @@ RSpec.describe '`expire remove` command', type: :cli do
     OUT
   end
 
-  it 'executes `expire help remove` command successfully' do
+  it "executes `expire help remove` command successfully" do
     output = `expire help remove`
     expect(output).to eq(expected_output)
   end

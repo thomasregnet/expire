@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'last_day_of'
+require "last_day_of"
 
 # Generate ranges of dates for testing
 # This class smells of :reek:TooManyInstanceVariables
@@ -14,11 +14,11 @@ class TestDates
 
   # This method smells of :reek:DuplicateMethodCall
   def initialize(args = {})
-    @years   = range_for(args.fetch(:years,     1860))
-    @months  = range_for(args.fetch(:months,    5))
-    @days    = range_for(args.fetch(:days,      17))
-    @hours   = range_for(args.fetch(:hours,     12))
-    @minutes = range_for(args.fetch(:minutes,   (0..59).step(60)))
+    @years = range_for(args.fetch(:years, 1860))
+    @months = range_for(args.fetch(:months, 5))
+    @days = range_for(args.fetch(:days, 17))
+    @hours = range_for(args.fetch(:hours, 12))
+    @minutes = range_for(args.fetch(:minutes, (0..59).step(60)))
 
     @result = []
   end
@@ -59,10 +59,10 @@ class TestDates
 
   def to_backups
     backups = result.map do |args|
-      pathname = Pathname.new("backups/#{args[0..5].join('_')}")
+      pathname = Pathname.new("backups/#{args[0..5].join("_")}")
 
       Expire::Backup.new(
-        time:     Time.new(*args),
+        time: Time.new(*args),
         pathname: pathname
       )
     end
@@ -74,7 +74,7 @@ class TestDates
     Expire::BackupList.new(
       # result.map { |args| Expire::Backup.new(Time.new(*args)) }
       result.map do |args|
-        path = "backups/#{args[0..5].join('_')}"
+        path = "backups/#{args[0..5].join("_")}"
 
         Expire::Backup.new(
           time: Time.new(*args),

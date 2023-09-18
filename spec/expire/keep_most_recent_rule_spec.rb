@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_rules'
+require "support/shared_examples_for_rules"
 
 RSpec.describe Expire::KeepMostRecentRule do
   subject { described_class.new(amount: 1) }
 
-  it_behaves_like 'a rule' do
-    let(:name)        { 'keep_most_recent' }
-    let(:option_name) { '--keep-most-recent' }
-    let(:rank)        { 10 }
+  it_behaves_like "a rule" do
+    let(:name) { "keep_most_recent" }
+    let(:option_name) { "--keep-most-recent" }
+    let(:rank) { 10 }
   end
 
-  describe '#apply' do
-    let(:backup_one) { instance_double('Expire::Backup') }
-    let(:backup_two) { instance_double('Expire::Backup') }
+  describe "#apply" do
+    let(:backup_one) { instance_double("Expire::Backup") }
+    let(:backup_two) { instance_double("Expire::Backup") }
 
-    let(:backups) { instance_double('Expire::BackupList') }
+    let(:backups) { instance_double("Expire::BackupList") }
 
-    context 'with an amount of 1' do
+    context "with an amount of 1" do
       let(:rule) { described_class.new(amount: 1) }
 
       before do
@@ -30,14 +30,14 @@ RSpec.describe Expire::KeepMostRecentRule do
         rule.apply(backups, :dummy_reference_time)
       end
 
-      it 'adds a reason_to_keep to the most recent backup' do
+      it "adds a reason_to_keep to the most recent backup" do
         expect(backup_one)
           .to have_received(:add_reason_to_keep)
-          .with('keep the most recent backup')
+          .with("keep the most recent backup")
       end
     end
 
-    context 'with an amount of 2' do
+    context "with an amount of 2" do
       let(:rule) { described_class.new(amount: 2) }
 
       before do
@@ -54,16 +54,16 @@ RSpec.describe Expire::KeepMostRecentRule do
         rule.apply(backups, :dummy_reference_time)
       end
 
-      it 'adds a reason_to_keep to the most recent backup' do
+      it "adds a reason_to_keep to the most recent backup" do
         expect(backup_one)
           .to have_received(:add_reason_to_keep)
-          .with('keep the 2 most recent backups')
+          .with("keep the 2 most recent backups")
       end
 
-      it 'adds a reason_to_keep to the second recent backup' do
+      it "adds a reason_to_keep to the second recent backup" do
         expect(backup_two)
           .to have_received(:add_reason_to_keep)
-          .with('keep the 2 most recent backups')
+          .with("keep the 2 most recent backups")
       end
     end
   end

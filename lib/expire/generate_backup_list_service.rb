@@ -14,7 +14,7 @@ module Expire
     attr_reader :path
 
     def call
-      if path == '-'
+      if path == "-"
         generate_backup_list_from($stdin)
       else
         pathname = Pathname.new(path)

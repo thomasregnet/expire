@@ -5,7 +5,7 @@ module Expire
   class ReportEnhanced < ReportSimple
     def on_keep(backup)
       receiver.puts(pastel.green("keeping #{backup.pathname}"))
-      receiver.puts '  reasons:'
+      receiver.puts "  reasons:"
       backup.reasons_to_keep.each do |reason|
         receiver.puts "    - #{reason}"
       end

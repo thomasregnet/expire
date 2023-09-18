@@ -59,6 +59,7 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.6.3)
     kwalify (0.7.2)
+    language_server-protocol (3.17.0.3)
     mime-types (3.4.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
@@ -102,6 +103,9 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.24.0)
       parser (>= 3.1.1.0)
+    rubocop-performance (1.15.1)
+      rubocop (>= 1.7.0, < 2.0)
+      rubocop-ast (>= 0.4.0)
     rubocop-rspec (2.16.0)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
@@ -111,6 +115,10 @@ GEM
       simplecov_json_formatter (~> 0.1)
     simplecov-html (0.12.3)
     simplecov_json_formatter (0.1.4)
+    standard (1.20.0)
+      language_server-protocol (~> 3.17.0.2)
+      rubocop (= 1.40.0)
+      rubocop-performance (= 1.15.1)
     sys-uname (1.2.2)
       ffi (~> 1.1)
     thor (1.2.1)
@@ -135,6 +143,7 @@ DEPENDENCIES
   rubocop (~> 1.9)
   rubocop-rspec (~> 2.2)
   simplecov (~> 0.21)
+  standard
 
 BUNDLED WITH
    2.3.26

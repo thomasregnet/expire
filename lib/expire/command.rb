@@ -104,9 +104,9 @@ module Expire
     # @see http://www.rubydoc.info/gems/tty-which
     #
     # @api public
-    def which(*args)
+    def which(*)
       require "tty-which"
-      TTY::Which.which(*args)
+      TTY::Which.which(*)
     end
 
     # Check if executable exists
@@ -114,9 +114,9 @@ module Expire
     # @see http://www.rubydoc.info/gems/tty-which
     #
     # @api public
-    def exec_exist?(*args)
+    def exec_exist?(*)
       require "tty-which"
-      TTY::Which.exist?(*args)
+      TTY::Which.exist?(*)
     end
   end
 end

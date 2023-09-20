@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples 'an expiration calculation service' do
-  it 'marks the expected backups to keep' do
+RSpec.shared_examples "an expiration calculation service" do
+  it "marks the expected backups to keep" do
     result = described_class.call(
       backups: backups,
-      rules:   rules
+      rules: rules
     )
 
     # Note the splat operator

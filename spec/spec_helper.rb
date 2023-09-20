@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-require 'simplecov'
+require "simplecov"
 # SimpleCov.start is done in .simplecov
 # SimpleCov.start
 
 require "bundler/setup"
 require "expire"
-require 'byebug'
+require "byebug"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

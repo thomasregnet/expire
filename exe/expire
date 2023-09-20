@@ -3,5 +3,5 @@
 
 # -*- mode: ruby
 
-require 'expire/cli'
+require "expire/cli"
 Expire::CLI.start

@@ -4,11 +4,11 @@ module Expire
   # Create playground with example data
   class Playground
     STEP_WIDTHS = {
-      'hourly' => 'hour',
-      'daily' => 'day',
-      'weekly' => 'week',
-      'monthly' => 'month',
-      'yearly' => 'year'
+      "hourly" => "hour",
+      "daily" => "day",
+      "weekly" => "week",
+      "monthly" => "month",
+      "yearly" => "year"
     }.freeze
 
     def self.create(base)
@@ -16,15 +16,15 @@ module Expire
     end
 
     def initialize(base)
-      @base        = base
+      @base = base
       @backups_dir = Pathname.new("#{base}/backups")
 
       @options = {
-        hourly:  42,
-        daily:   15,
-        weekly:  15,
+        hourly: 42,
+        daily: 15,
+        weekly: 15,
         monthly: 25,
-        yearly:  5
+        yearly: 5
       }
     end
 
@@ -46,7 +46,7 @@ module Expire
     private
 
     def mkbackup(time)
-      backup_name = time.strftime('%Y-%m-%dT%H:%M')
+      backup_name = time.strftime("%Y-%m-%dT%H:%M")
       FileUtils.mkdir_p("#{backups_dir}/#{backup_name}")
     end
 

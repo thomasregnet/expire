@@ -22,10 +22,10 @@ module Expire
     def time
       digits = extract_digits
 
-      year   = digits[0..3].to_i
-      month  = digits[4..5].to_i
-      day    = digits[6..7].to_i
-      hour   = digits[8..9].to_i
+      year = digits[0..3].to_i
+      month = digits[4..5].to_i
+      day = digits[6..7].to_i
+      hour = digits[8..9].to_i
       minute = digits[10..11].to_i
 
       time_for(year, month, day, hour, minute)
@@ -43,7 +43,7 @@ module Expire
     def extract_digits
       basename = pathname.basename.to_s
 
-      digits = basename.gsub(/[^0-9]/, '')
+      digits = basename.gsub(/[^0-9]/, "")
 
       digits_length = digits.length
 

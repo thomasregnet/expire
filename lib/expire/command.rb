@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'forwardable'
+require "forwardable"
 
 module Expire
   # Helpers for TTY
@@ -25,7 +25,7 @@ module Expire
     #
     # @api public
     def command(**options)
-      require 'tty-command'
+      require "tty-command"
       TTY::Command.new(options)
     end
 
@@ -35,7 +35,7 @@ module Expire
     #
     # @api public
     def cursor
-      require 'tty-cursor'
+      require "tty-cursor"
       TTY::Cursor
     end
 
@@ -45,7 +45,7 @@ module Expire
     #
     # @api public
     def editor
-      require 'tty-editor'
+      require "tty-editor"
       TTY::Editor
     end
 
@@ -55,7 +55,7 @@ module Expire
     #
     # @api public
     def generator
-      require 'tty-file'
+      require "tty-file"
       TTY::File
     end
 
@@ -65,7 +65,7 @@ module Expire
     #
     # @api public
     def pager(**options)
-      require 'tty-pager'
+      require "tty-pager"
       TTY::Pager.new(options)
     end
 
@@ -75,7 +75,7 @@ module Expire
     #
     # @api public
     def platform
-      require 'tty-platform'
+      require "tty-platform"
       TTY::Platform.new
     end
 
@@ -85,7 +85,7 @@ module Expire
     #
     # @api public
     def prompt(**options)
-      require 'tty-prompt'
+      require "tty-prompt"
       TTY::Prompt.new(options)
     end
 
@@ -95,7 +95,7 @@ module Expire
     #
     # @api public
     def screen
-      require 'tty-screen'
+      require "tty-screen"
       TTY::Screen
     end
 
@@ -104,9 +104,9 @@ module Expire
     # @see http://www.rubydoc.info/gems/tty-which
     #
     # @api public
-    def which(*args)
-      require 'tty-which'
-      TTY::Which.which(*args)
+    def which(*)
+      require "tty-which"
+      TTY::Which.which(*)
     end
 
     # Check if executable exists
@@ -114,9 +114,9 @@ module Expire
     # @see http://www.rubydoc.info/gems/tty-which
     #
     # @api public
-    def exec_exist?(*args)
-      require 'tty-which'
-      TTY::Which.exist?(*args)
+    def exec_exist?(*)
+      require "tty-which"
+      TTY::Which.exist?(*)
     end
   end
 end

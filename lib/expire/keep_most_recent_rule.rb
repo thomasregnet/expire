@@ -30,7 +30,7 @@ module Expire
     private
 
     def reason_to_keep
-      return 'keep the most recent backup' if amount == 1
+      return "keep the most recent backup" if amount == 1
 
       "keep the #{amount} most recent backups"
     end

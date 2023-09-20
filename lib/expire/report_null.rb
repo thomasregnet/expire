@@ -8,14 +8,19 @@ module Expire
       puts message
     end
 
-    def before_all(_); end
+    def before_all(_)
+    end
 
-    def after_all(_); end
+    def after_all(_)
+    end
 
-    def on_keep(_); end
+    def on_keep(_)
+    end
 
-    def before_purge(_); end
+    def before_purge(_)
+    end
 
-    def after_purge(_); end
+    def after_purge(_)
+    end
   end
 end

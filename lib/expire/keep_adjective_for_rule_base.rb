@@ -4,9 +4,9 @@ module Expire
   # Hold backups for a period
   class KeepAdjectiveForRuleBase < FromNowKeepAdjectiveForRuleBase
     ADJECTIVE_FOR = {
-      'week' => 'weekly',
-      'month' => 'monthly',
-      'year' => 'yearly'
+      "week" => "weekly",
+      "month" => "monthly",
+      "year" => "yearly"
     }.freeze
 
     PRIMARY_RANK = 30

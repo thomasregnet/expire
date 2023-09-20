@@ -1,28 +1,28 @@
 # frozen_string_literal: true
 
-require 'support/shared_examples_for_rules'
-require 'support/shared_examples_for_adjective_rules'
-require 'support/shared_examples_for_adjective_for_rules'
-require 'support/shared_examples_for_rule_apply'
-require 'test_dates'
+require "support/shared_examples_for_rules"
+require "support/shared_examples_for_adjective_rules"
+require "support/shared_examples_for_adjective_for_rules"
+require "support/shared_examples_for_rule_apply"
+require "test_dates"
 
 RSpec.describe Expire::KeepYearlyForRule do
-  subject { described_class.new(amount: 2, unit: 'years') }
+  subject { described_class.new(amount: 2, unit: "years") }
 
-  it_behaves_like 'a rule' do
-    let(:name)        { 'keep_yearly_for' }
-    let(:option_name) { '--keep-yearly-for' }
-    let(:rank)        { 35 }
+  it_behaves_like "a rule" do
+    let(:name) { "keep_yearly_for" }
+    let(:option_name) { "--keep-yearly-for" }
+    let(:rank) { 35 }
   end
 
-  it_behaves_like 'an adjective rule' do
-    let(:adjective) { 'yearly' }
-    let(:spacing) { 'year' }
+  it_behaves_like "an adjective rule" do
+    let(:adjective) { "yearly" }
+    let(:spacing) { "year" }
   end
 
-  it_behaves_like 'an adjective-for rule'
+  it_behaves_like "an adjective-for rule"
 
-  it_behaves_like 'an #apply on a rule' do
+  it_behaves_like "an #apply on a rule" do
     let(:backups) do
       TestDates.create(years: 1857..1860, months: 4..5).to_backups
     end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'English'
+require "English"
 
-RSpec.describe '`expire purge` command', type: :cli do
-  describe '`expire help purge`' do
+RSpec.describe "`expire purge` command", type: :cli do
+  describe "`expire help purge`" do
     let(:expected_output) do
       <<~OUT
         Usage:
@@ -40,23 +40,23 @@ RSpec.describe '`expire purge` command', type: :cli do
       OUT
     end
 
-    it 'executes `expire help purge` command successfully' do
+    it "executes `expire help purge` command successfully" do
       output = `expire help purge`
       expect(output).to eq(expected_output)
     end
   end
 
-  context 'when backups exist' do
+  context "when backups exist" do
     before do
-      FileUtils.rm_rf('tmp/backups')
-      FileUtils.mkpath('tmp/backups/2021-01-10T22:10')
-      FileUtils.mkpath('tmp/backups/2021-01-12T22:10')
-      FileUtils.mkpath('tmp/backups/2021-01-14T22:11')
+      FileUtils.rm_rf("tmp/backups")
+      FileUtils.mkpath("tmp/backups/2021-01-10T22:10")
+      FileUtils.mkpath("tmp/backups/2021-01-12T22:10")
+      FileUtils.mkpath("tmp/backups/2021-01-14T22:11")
     end
 
-    after { FileUtils.rm_rf('tmp/backups') }
+    after { FileUtils.rm_rf("tmp/backups") }
 
-    describe '`expire purge backups --format expired --keep-most-recent-for 2 days' do
+    describe "`expire purge backups --format expired --keep-most-recent-for 2 days" do
       command = 'expire purge tmp/backups --format expired --keep-most-recent-for "2 days"'
 
       let(:expected_output) do
@@ -71,21 +71,21 @@ RSpec.describe '`expire purge` command', type: :cli do
         expect(output).to eq(expected_output)
       end
 
-      it 'keeps the expected backup' do
+      it "keeps the expected backup" do
         `#{command}`
-        kept_backup = Pathname.new('tmp/backups/2021-01-14T22:11')
+        kept_backup = Pathname.new("tmp/backups/2021-01-14T22:11")
         expect(kept_backup).to exist
       end
 
-      it 'removes the expired backups' do
+      it "removes the expired backups" do
         `#{command}`
-        backup_dir = Pathname.new('tmp/backups')
+        backup_dir = Pathname.new("tmp/backups")
         expect(backup_dir.children.length).to eq(1)
       end
     end
 
-    describe '`expire purge backups --keep-most-recent=none`' do
-      command = 'expire purge tmp/backups --keep-most-recent=none'
+    describe "`expire purge backups --keep-most-recent=none`" do
+      command = "expire purge tmp/backups --keep-most-recent=none"
 
       it "executes `#{command}` successfully" do
         output = `#{command}`
@@ -94,36 +94,36 @@ RSpec.describe '`expire purge` command', type: :cli do
     end
   end
 
-  context 'without any backups' do
-    before { FileUtils.mkpath('tmp/backups') }
+  context "without any backups" do
+    before { FileUtils.mkpath("tmp/backups") }
 
-    after { FileUtils.rm_rf('/tmp/backups') }
+    after { FileUtils.rm_rf("/tmp/backups") }
 
-    describe '`expire purge backups --format expired --keep-most-recent-for 2 days' do
+    describe "`expire purge backups --format expired --keep-most-recent-for 2 days" do
       command = 'expire purge tmp/backups --format expired --keep-most-recent-for "2 days"'
 
-      it 'complains about missing backups' do
+      it "complains about missing backups" do
         output = `#{command}`
         expect(output).to match(/Can't find any backups/)
       end
 
-      it 'exits with status 1' do
+      it "exits with status 1" do
         `#{command}`
         expect($CHILD_STATUS.exitstatus).to eq(1)
       end
     end
   end
 
-  context 'when the backups directory does not exist' do
-    describe '`expire purge no/such/backups --format expired --keep-most-recent-for 2 days' do
+  context "when the backups directory does not exist" do
+    describe "`expire purge no/such/backups --format expired --keep-most-recent-for 2 days" do
       command = 'expire purge no/such/backups --format expired --keep-most-recent-for "2 days"'
 
-      it 'complains about missing backups' do
+      it "complains about missing backups" do
         output = `#{command}`
         expect(output).to match(%r{no/such/backups})
       end
 
-      it 'exits with status 1' do
+      it "exits with status 1" do
         `#{command}`
         expect($CHILD_STATUS.exitstatus).to eq(1)
       end

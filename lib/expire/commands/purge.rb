@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../command'
+require_relative "../command"
 
 module Expire
   module Commands
@@ -15,7 +15,7 @@ module Expire
 
       def execute(input: $stdin, output: $stdout)
         Expire.purge(path, options)
-      rescue StandardError => _e
+      rescue => _e
         exit 1
       end
     end

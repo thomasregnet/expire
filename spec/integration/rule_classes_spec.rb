@@ -7,7 +7,7 @@ RSpec.describe "`expire rule_classes` command", type: :cli do
         expire rule_classes
 
       Options:
-        -h, [--help], [--no-help]  # Display usage information
+        -h, [--help], [--no-help], [--skip-help]  # Display usage information
 
       List rule classes ordered by their rank
     OUT

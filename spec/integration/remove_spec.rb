@@ -7,7 +7,7 @@ RSpec.describe "`expire remove` command", type: :cli do
         expire remove PATH
 
       Options:
-        -h, [--help], [--no-help]  # Display usage information
+        -h, [--help], [--no-help], [--skip-help]  # Display usage information
 
       Remove PATH from the filesystem
     OUT

@@ -7,7 +7,7 @@ RSpec.describe "`expire newest` command", type: :cli do
         expire newest PATH
 
       Options:
-        -h, [--help], [--no-help]  # Display usage information
+        -h, [--help], [--no-help], [--skip-help]  # Display usage information
 
       Show the newest backup
     OUT

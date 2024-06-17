@@ -7,7 +7,7 @@ RSpec.describe "`expire oldest` command", type: :cli do
         expire oldest PATH
 
       Options:
-        -h, [--help], [--no-help]  # Display usage information
+        -h, [--help], [--no-help], [--skip-help]  # Display usage information
 
       Show the oldest backup
     OUT

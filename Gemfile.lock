@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    expire (0.2.6)
+    expire (0.2.7)
       activesupport (~> 7.0)
       pastel (~> 0.8)
       thor (~> 1.2)
@@ -102,7 +102,7 @@ GEM
     logger (1.7.0)
     memoist3 (1.0.0)
     mini_mime (1.1.5)
-    minitest (5.26.1)
+    minitest (5.26.2)
     multi_test (1.1.0)
     parallel (1.27.0)
     parser (3.3.10.0)
@@ -193,7 +193,7 @@ PLATFORMS
 
 DEPENDENCIES
   aruba (~> 2.1)
-  bundler (~> 2.3)
+  bundler (~> 2.7)
   cucumber (~> 10.0)
   expire!
   rake (~> 13.0)
@@ -204,4 +204,4 @@ DEPENDENCIES
   standard (~> 1.31)
 
 BUNDLED WITH
-   2.4.1
+   2.7.2

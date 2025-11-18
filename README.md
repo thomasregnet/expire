@@ -7,6 +7,8 @@ It can be used either from the command line or as a ruby gem.
 <!-- omit in toc -->
 ## Installation
 
+**The installation is currently not yet possible!**
+
 Add this line to your application's Gemfile:
 
 ``` ruby

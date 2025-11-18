@@ -43,11 +43,13 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "aruba", "~> 2.1"
   spec.add_development_dependency "bundler", "~> 2.3"
-  spec.add_development_dependency "cucumber", "~> 10.0"
+  spec.add_development_dependency "byebug", "~> 11.1"
+  spec.add_development_dependency "cucumber", "~> 8.0"
   spec.add_development_dependency "rake", "~> 13.0"
   spec.add_development_dependency "reek", "~> 6.0"
   spec.add_development_dependency "rspec", "~> 3.0"
-  spec.add_development_dependency "rubocop-rspec"
+  spec.add_development_dependency "rubocop", "~> 1.9"
+  spec.add_development_dependency "rubocop-rspec", "~> 2.2"
   spec.add_development_dependency "simplecov", "~> 0.21"
   spec.add_development_dependency "standard", "~> 1.31"
 end

@@ -36,7 +36,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   spec.required_ruby_version = ">= 3.2"
 
-  spec.add_dependency "activesupport", "~> 7.0"
+  spec.add_dependency "activesupport", ">= 7", "< 9"
   spec.add_dependency "pastel", "~> 0.8"
   spec.add_dependency "thor", "~> 1.2"
   spec.add_dependency "zeitwerk", "~> 2.4"
